@@ -1,6 +1,15 @@
+// Next stuff
 import type { Metadata } from "next";
+
+// Fonts
 import { K2D, Caveat } from "next/font/google";
+
+// Styles
 import "./globals.css";
+
+// Components
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const k2d = K2D({
   subsets: ["latin"],
@@ -25,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${k2d.variable} ${caveat.variable} font-sans`}>
+      <body
+        className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col`}
+      >
         {children}
       </body>
     </html>

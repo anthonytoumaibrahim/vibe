@@ -16,12 +16,14 @@ const Hero = () => {
         priority={true}
       />
       <h1 className="font-display font-normal text-7xl drop-shadow-lg">
-        Good Vibes <span className="font-bold">Only</span>
+        Good Vibes <span className="font-bold">Only</span>.
       </h1>
       <h3>Socialize, play, earn currency and more.</h3>
       <div className="flex gap-4">
-        <Button>Sign Up</Button>
-        <Button color="secondary">Login</Button>
+        <Button href="/signup">Sign Up</Button>
+        <Button href="/login" color="secondary">
+          Login
+        </Button>
       </div>
     </section>
   );

@@ -24,9 +24,9 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
     class: "active:shadow-inner",
     colors: {
       primary:
-        "bg-primary-main hover:bg-gradient-to-t hover:from-primary-main hover:to-primary-600 active:from-primary-600 active:to-primary-main",
+        "bg-primary-main hover:bg-gradient-to-t hover:from-primary-main hover:to-primary-600 active:from-primary-600 active:to-primary-main text-white",
       secondary:
-        "bg-secondary-main hover:bg-gradient-to-t hover:from-secondary-main hover:to-secondary-400 active:from-secondary-400 active:to-secondary-main",
+        "bg-secondary-main hover:bg-gradient-to-t hover:from-secondary-main hover:to-secondary-400 active:from-secondary-400 active:to-secondary-main text-white",
       error: "",
       success: "",
     },
