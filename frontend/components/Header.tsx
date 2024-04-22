@@ -9,13 +9,13 @@ interface HeaderProps {
 const Header = ({ className = "", logoColor }: HeaderProps) => {
   return (
     <header
-      className={`${className} h-20 w-full flex items-center justify-between`}
+      className={`${className} px-8 h-20 w-full flex items-center justify-between`}
     >
-      <Link href="/">
+      <Link href="/" className="unstyled-link">
         <Logo width={128} fill={logoColor} />
       </Link>
 
-      <nav>
+      <nav className="flex items-center gap-4">
         <Link href="/">Home</Link>
         <Link href="/">About</Link>
         <Link href="/">Communities</Link>

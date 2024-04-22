@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
+import Button from "@/components/Button";
 
 export default function Home() {
   return (
@@ -12,9 +13,16 @@ export default function Home() {
       />
       <Hero />
 
-      <main className="container my-10">
+      <main className="container my-12">
         <Features />
       </main>
+
+      <section className="w-full min-h-64 bg-primary-950 text-white flex flex-col items-center justify-center gap-10 before:content-[''] before:">
+        <h1 className="font-display">Ready to join the fun?</h1>
+        <Button href="/" color="secondary">
+          Join now!
+        </Button>
+      </section>
     </>
   );
 }
