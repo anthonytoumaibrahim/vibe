@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply selection:bg-primary-main selection:text-white selection:drop-shadow;
+  @apply selection:bg-primary-main selection:text-white;
 }
 
 h1,

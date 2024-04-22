@@ -1,12 +1,11 @@
-import HelloWorld from "./components/HelloWorld";
-import Image from "next/image";
-
 // Components
 import Hero from "./components/Hero";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <main>
+      <Header />
       <Hero />
     </main>
   );

@@ -1,18 +1,25 @@
+import Image from "next/image";
 import Button from "@/components/Button";
 
 const Hero = () => {
   return (
-    <section
-      className="w-full min-h-[557px] bg-cover bg-no-repeat bg-center text-white flex flex-col gap-4 items-center justify-center"
-      style={{ backgroundImage: "url('/images/landing/hero_bg.jpg')" }}
-    >
+    <section className="w-full min-h-[551px] 2xl:min-h-[780px] relative text-white flex flex-col gap-4 items-center justify-center">
+      <Image
+        src="/images/landing/hero_bg.jpg"
+        alt=""
+        className="-z-10 object-cover object-bottom"
+        sizes="100vw"
+        quality={100}
+        fill
+        priority={true}
+      />
       <h1 className="font-display font-normal text-7xl drop-shadow-lg">
         Good Vibes <span className="font-bold">Only</span>
       </h1>
       <h3>Socialize, play, earn currency and more.</h3>
       <div className="flex gap-4">
         <Button>Sign Up</Button>
-        <Button>Login</Button>
+        <Button color="secondary">Login</Button>
       </div>
     </section>
   );
