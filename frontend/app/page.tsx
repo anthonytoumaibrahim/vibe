@@ -13,9 +13,8 @@ export default function Home() {
 
       <div className="w-12 h-12 bg-primary-main"></div>
       <div className="w-12 h-12 bg-secondary-main"></div>
-      
-      <Image src="/vibe.svg" width={181} height={92} />
-      
+
+      <Image src="/vibe.svg" width={181} height={92} alt="Vibe Logo" />
 
       <HelloWorld name="World" colored={true} />
     </>
