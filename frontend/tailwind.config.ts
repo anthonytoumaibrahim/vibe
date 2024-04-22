@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: "2rem",
+      },
       fontFamily: {
         sans: ["var(--font-k2d)"],
         display: ["var(--font-caveat)"],

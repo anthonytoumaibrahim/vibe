@@ -7,6 +7,7 @@ interface ButtonProps {
   color?: ButtonColors;
   disabled?: boolean;
   className?: string;
+  onClick?: () => void;
   readonly children?: any;
 }
 
@@ -41,12 +42,14 @@ const Button = ({
   color = "primary",
   disabled = false,
   className = "",
+  onClick,
   children,
 }: ButtonProps) => {
   return (
     <button
       className={`${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
