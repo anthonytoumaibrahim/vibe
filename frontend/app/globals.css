@@ -29,5 +29,5 @@ h5 {
 }
 
 a:not(.unstyled-link) {
-  @apply relative after:content-[''] after:w-0 after:h-1 after:bg-primary-main after:absolute after:-bottom-1 after:left-0 after:transition-all after:duration-300 hover:after:w-full;
+  @apply relative text-primary-main after:content-[''] after:w-0 after:h-0.5 after:bg-primary-main after:absolute after:-bottom-0.5 after:left-0 after:transition-all after:duration-300 hover:after:w-full;
 }

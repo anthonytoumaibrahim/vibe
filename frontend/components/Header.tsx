@@ -16,9 +16,15 @@ const Header = ({ className = "", logoColor }: HeaderProps) => {
       </Link>
 
       <nav className="flex items-center gap-4">
-        <Link href="/">Home</Link>
-        <Link href="/">About</Link>
-        <Link href="/">Communities</Link>
+        <Link href="/" className="unstyled-link">
+          Home
+        </Link>
+        <Link href="/" className="unstyled-link">
+          About
+        </Link>
+        <Link href="/" className="unstyled-link">
+          Communities
+        </Link>
       </nav>
     </header>
   );

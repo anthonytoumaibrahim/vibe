@@ -3,20 +3,25 @@ import Header from "@/components/Header";
 
 const MainLayout = ({
   transparentHeader = false,
+  showFooter = true,
   children,
-}: Readonly<{ transparentHeader: boolean; children: React.ReactNode }>) => {
+}: Readonly<{
+  transparentHeader?: boolean;
+  showFooter?: boolean;
+  children?: React.ReactNode;
+}>) => {
   return (
     <>
       <Header
         className={
           transparentHeader
             ? "absolute top-0 left-0 text-white z-10"
-            : undefined
+            : "mb-4 shadow-lg"
         }
         logoColor={transparentHeader ? "#ffffff" : undefined}
       />
       {children}
-      <Footer />
+      {showFooter && <Footer />}
     </>
   );
 };
