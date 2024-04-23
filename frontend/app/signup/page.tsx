@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import MainLayout from "../layouts/MainLayout";
 import Link from "next/link";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import SignupForm from "./components/SignupForm";
 
 export const metadata: Metadata = {
   title: "Signup – Vibe",
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
     "Join Vibe today! Get started by entering your information, then head straight to creating your 2D character!",
 };
 
-const Signup = () => {
+export default function Signup() {
   return (
     <MainLayout transparentHeader={true} showFooter={false}>
       <main className="h-screen w-full relative flex items-center justify-center">
@@ -19,16 +22,15 @@ const Signup = () => {
           src="/images/auth/signup_bg.webp"
           alt=""
           className="-z-10 object-cover"
-          sizes="100vw"
           quality={100}
           fill
           priority={true}
         />
 
-        <section className="bg-white rounded-lg w-full max-w-md p-10 flex flex-col items-center shadow-xl">
-          <h1 className="font-bold">Join Vibe</h1>
+        <section className="bg-white rounded-lg w-full max-w-md p-10 flex flex-col gap-4 items-center shadow-xl">
+          <h1>Join Vibe</h1>
 
-          <form action=""></form>
+          <SignupForm />
 
           <p className="text-slate-500">
             Already a member? <Link href="/login">Login now</Link>
@@ -37,6 +39,4 @@ const Signup = () => {
       </main>
     </MainLayout>
   );
-};
-
-export default Signup;
+}

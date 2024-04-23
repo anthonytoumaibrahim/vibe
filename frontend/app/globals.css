@@ -10,7 +10,7 @@ h2,
 h3,
 h4,
 h5 {
-  @apply font-medium;
+  @apply font-bold;
 }
 h1 {
   @apply text-4xl;

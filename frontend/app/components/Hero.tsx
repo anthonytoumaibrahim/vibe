@@ -16,7 +16,7 @@ const Hero = () => {
       <h1 className="font-display font-normal text-7xl drop-shadow-lg">
         Good Vibes <span className="font-bold">Only</span>.
       </h1>
-      <h3>Socialize, play, earn currency and more.</h3>
+      <h3 className="font-normal">Socialize, play, earn currency and more.</h3>
       <div className="flex gap-4">
         <Button href="/signup" className="w-40">
           Sign Up

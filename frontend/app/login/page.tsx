@@ -18,19 +18,18 @@ const Login = () => {
           src="/images/auth/login_bg.webp"
           alt=""
           className="-z-10 object-cover"
-          sizes="100vw"
           quality={100}
           fill
           priority={true}
         />
 
         <section className="bg-white rounded-lg w-full max-w-md p-10 flex flex-col items-center shadow-xl">
-          <h1 className="font-bold">Login</h1>
+          <h1>Login</h1>
 
           <form action=""></form>
 
           <p className="text-slate-500">
-            Don't have an account yet?{" "}
+            Don&apos;t have an account yet?{" "}
             <Link href="/signup">Join Vibe now!</Link>
           </p>
         </section>
