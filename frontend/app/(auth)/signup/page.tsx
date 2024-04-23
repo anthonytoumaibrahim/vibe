@@ -2,10 +2,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout";
 import Link from "next/link";
-import Input from "@/components/Input";
-import Button from "@/components/Button";
 import SignupForm from "./components/SignupForm";
 
 export const metadata: Metadata = {

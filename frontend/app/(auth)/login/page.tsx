@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout";
 import Link from "next/link";
 
 export const metadata: Metadata = {
