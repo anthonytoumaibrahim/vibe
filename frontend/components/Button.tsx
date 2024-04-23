@@ -24,9 +24,9 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
     class: "active:shadow-inner",
     colors: {
       primary:
-        "bg-primary-main hover:bg-gradient-to-t hover:from-primary-main hover:to-primary-600 active:from-primary-600 active:to-primary-main text-white",
+        "bg-primary-main hover:bg-primary-700 active:bg-gradient-to-t active:from-primary-600 active:to-primary-main text-white",
       secondary:
-        "bg-secondary-main hover:bg-gradient-to-t hover:from-secondary-main hover:to-secondary-400 active:from-secondary-400 active:to-secondary-main text-white",
+        "bg-secondary-main hover:bg-secondary-500 active:bg-gradient-to-t active:from-secondary-400 active:to-secondary-main text-white",
       error: "",
       success: "",
     },
@@ -54,13 +54,13 @@ const Button = ({
   return href ? (
     <Link
       href={href}
-      className={`unstyled-link ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
+      className={`unstyled-link font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
     >
       {children}
     </Link>
   ) : (
     <button
-      className={`disabled:cursor-not-allowed ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
+      className={`disabled:cursor-not-allowed font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
       disabled={disabled}
       onClick={onClick}
     >

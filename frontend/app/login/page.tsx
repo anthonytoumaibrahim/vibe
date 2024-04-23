@@ -6,17 +6,16 @@ import MainLayout from "../layouts/MainLayout";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Signup – Vibe",
-  description:
-    "Join Vibe today! Get started by entering your information, then head straight to creating your 2D character!",
+  title: "Login – Vibe",
+  description: "Rejoin the fun again by logging in to Vibe!",
 };
 
-const Signup = () => {
+const Login = () => {
   return (
     <MainLayout transparentHeader={true} showFooter={false}>
       <main className="h-screen w-full relative flex items-center justify-center">
         <Image
-          src="/images/auth/signup_bg.webp"
+          src="/images/auth/login_bg.webp"
           alt=""
           className="-z-10 object-cover"
           sizes="100vw"
@@ -26,12 +25,13 @@ const Signup = () => {
         />
 
         <section className="bg-white rounded-lg w-full max-w-md p-10 flex flex-col items-center shadow-xl">
-          <h1 className="font-bold">Join Vibe</h1>
+          <h1 className="font-bold">Login</h1>
 
           <form action=""></form>
 
           <p className="text-slate-500">
-            Already a member? <Link href="/login">Login now</Link>
+            Don't have an account yet?{" "}
+            <Link href="/signup">Join Vibe now!</Link>
           </p>
         </section>
       </main>
@@ -39,4 +39,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

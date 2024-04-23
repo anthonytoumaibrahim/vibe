@@ -1,12 +1,18 @@
 import Logo from "./Logo";
 import Link from "next/link";
+import NavLink from "./NavLink";
 
 interface HeaderProps {
   className?: string;
   logoColor?: string;
+  navLinkClass?: string;
 }
 
-const Header = ({ className = "", logoColor }: HeaderProps) => {
+const Header = ({
+  className = "",
+  logoColor,
+  navLinkClass = "",
+}: HeaderProps) => {
   return (
     <header
       className={`${className} px-8 h-20 w-full flex items-center justify-between`}
@@ -16,15 +22,15 @@ const Header = ({ className = "", logoColor }: HeaderProps) => {
       </Link>
 
       <nav className="flex items-center gap-4">
-        <Link href="/" className="unstyled-link">
+        <NavLink href="/" className={navLinkClass}>
           Home
-        </Link>
-        <Link href="/" className="unstyled-link">
+        </NavLink>
+        <NavLink href="/about" className={navLinkClass}>
           About
-        </Link>
-        <Link href="/" className="unstyled-link">
+        </NavLink>
+        <NavLink href="/communities" className={navLinkClass}>
           Communities
-        </Link>
+        </NavLink>
       </nav>
     </header>
   );

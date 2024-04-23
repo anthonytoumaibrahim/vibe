@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Button from "@/components/Button";
 
@@ -20,8 +18,10 @@ const Hero = () => {
       </h1>
       <h3>Socialize, play, earn currency and more.</h3>
       <div className="flex gap-4">
-        <Button href="/signup">Sign Up</Button>
-        <Button href="/login" color="secondary">
+        <Button href="/signup" className="w-40">
+          Sign Up
+        </Button>
+        <Button href="/login" className="w-40" color="secondary">
           Login
         </Button>
       </div>

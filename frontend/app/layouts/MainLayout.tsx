@@ -19,6 +19,7 @@ const MainLayout = ({
             : "mb-4 shadow-lg"
         }
         logoColor={transparentHeader ? "#ffffff" : undefined}
+        navLinkClass={transparentHeader ? "!text-white" : undefined}
       />
       {children}
       {showFooter && <Footer />}
