@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useRequest } from "@/core/hooks/useRequest";
 
 // Components
 import Input from "@/components/Input";
@@ -14,10 +15,13 @@ const SignupForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const sendRequest = useRequest();
 
   const watchUsername = watch("username");
 
-  const submitSignupForm = () => {};
+  const submitSignupForm = (data: object) => {
+    sendRequest("POST", "/auth/signup", data);
+  };
 
   useEffect(() => {}, []);
 
@@ -55,7 +59,6 @@ const SignupForm = () => {
         )} */}
       </div>
       <Input
-        name="email"
         placeholder="your@email.com"
         label="Enter your email address"
         error={
@@ -69,9 +72,8 @@ const SignupForm = () => {
         })}
       />
       <Input
-        name="password"
         type="password"
-        placeholder="your@email.com"
+        placeholder="***********"
         label="Create a password"
         error={
           errors?.password?.type === "pattern"

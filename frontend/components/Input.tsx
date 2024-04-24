@@ -1,15 +1,25 @@
 /* eslint-disable react/display-name */
 import { forwardRef } from "react";
+import type {
+  FieldError,
+  Merge,
+  FieldErrorsImpl,
+  ChangeHandler,
+} from "react-hook-form";
 
 interface InputProps {
   type?: string;
   placeholder?: string;
   className?: string;
   label?: string;
-  onChange?: () => void;
-  onBlur?: () => void;
+  onChange?: ChangeHandler;
+  onBlur?: ChangeHandler;
   name?: string;
-  error?: string | undefined;
+  error?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -43,7 +53,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         onChange={onChange}
         onBlur={onBlur}
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error.toString()}</p>}
     </label>
   )
 );
