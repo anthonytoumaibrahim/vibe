@@ -1,9 +1,6 @@
 // Next stuff
 import type { Metadata } from "next";
 
-// Redux
-import ReduxProvider from "./ReduxProvider";
-
 // Fonts
 import { K2D, Caveat } from "next/font/google";
 
@@ -32,14 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReduxProvider>
-      <html lang="en">
-        <body
-          className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col`}
-        >
-          {children}
-        </body>
-      </html>
-    </ReduxProvider>
+    <html lang="en">
+      <body
+        className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }

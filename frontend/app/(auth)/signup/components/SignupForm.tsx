@@ -2,13 +2,15 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRequest } from "@/core/hooks/useRequest";
+import { useRouter } from "next/navigation";
+import { auth } from "../../actions/auth";
 
 // Components
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import AuthFormTooltip from "../../components/AuthFormTooltip";
 
-const SignupForm = () => {
+export default function SignupForm() {
   const {
     register,
     watch,
@@ -16,11 +18,20 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm();
   const sendRequest = useRequest();
+  const router = useRouter();
 
   const watchUsername = watch("username");
 
   const submitSignupForm = (data: object) => {
-    sendRequest("POST", "/auth/signup", data);
+    sendRequest("POST", "/auth/signup", data)
+      .then((response) => {
+        const { success, message, authorization } = response?.data;
+        if (success) {
+          auth(authorization.token);
+          router.push("/");
+        }
+      })
+      .catch((error) => {});
   };
 
   useEffect(() => {}, []);
@@ -91,6 +102,4 @@ const SignupForm = () => {
       <Button className="mx-auto">Sign Up</Button>
     </form>
   );
-};
-
-export default SignupForm;
+}
