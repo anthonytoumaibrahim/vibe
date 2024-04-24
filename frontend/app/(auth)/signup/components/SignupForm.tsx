@@ -1,9 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useRequest } from "@/core/hooks/useRequest";
-import { useRouter } from "next/navigation";
-import { auth } from "../../actions/auth";
+import { signup } from "../../actions/auth";
 
 // Components
 import Input from "@/components/Input";
@@ -17,24 +15,15 @@ export default function SignupForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const sendRequest = useRequest();
-  const router = useRouter();
 
   const watchUsername = watch("username");
 
-  const submitSignupForm = (data: object) => {
-    sendRequest("POST", "/auth/signup", data)
-      .then((response) => {
-        const { success, message, authorization } = response?.data;
-        if (success) {
-          auth(authorization.token);
-          router.push("/");
-        }
-      })
-      .catch((error) => {});
+  const submitSignupForm = async (data: object) => {
+    const response = await signup(data);
+    if (!response?.success) {
+      alert(response.message);
+    }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <form
