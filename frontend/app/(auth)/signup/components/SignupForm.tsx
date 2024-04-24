@@ -1,9 +1,11 @@
 "use client";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+
+// Components
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import AuthFormTooltip from "../../components/AuthFormTooltip";
-import { useEffect } from "react";
 
 const SignupForm = () => {
   const {
@@ -27,36 +29,62 @@ const SignupForm = () => {
     >
       <div className="relative">
         <Input
-          placeholder="Between 4-20 characters"
+          placeholder="Between 3-16 characters"
           label="Choose a username"
-          error={errors.username ? true : false}
+          error={
+            errors?.username?.type === "pattern"
+              ? "Your username must start with a letter and can only consist of letters, numbers, hyphens (-), dots (.) and underscores (_)."
+              : errors?.username?.message
+          }
           {...register("username", {
             required: "A username is required",
             minLength: {
-              value: 4,
-              message: "Your username must be at least 4 characters long.",
+              value: 3,
+              message: "Your username must be at least 3 characters long",
             },
             maxLength: {
-              value: 20,
+              value: 16,
               message:
-                "Sorry, your username cannot be longer than 20 characters.",
+                "Sorry, your username cannot be longer than 16 characters",
             },
+            pattern: /^[a-zA-Z][a-zA-Z0-9\._-]+$/g,
           })}
         />
-        {errors.username && (
+        {/* {errors.username && (
           <AuthFormTooltip>{errors.username.message}</AuthFormTooltip>
-        )}
+        )} */}
       </div>
       <Input
         name="email"
         placeholder="your@email.com"
         label="Enter your email address"
+        error={
+          errors?.email?.type === "pattern"
+            ? "That email address doesn't look quite right"
+            : errors?.email?.message
+        }
+        {...register("email", {
+          required: "Please enter your email address",
+          pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+        })}
       />
       <Input
         name="password"
         type="password"
         placeholder="your@email.com"
         label="Create a password"
+        error={
+          errors?.password?.type === "pattern"
+            ? "Your password must contain at least one letter, one number, and one special character (~!@#$%^&*())."
+            : errors?.password?.message
+        }
+        {...register("password", {
+          required: "Please enter a password",
+          minLength: {
+            value: 6,
+            message: "Your password must be at least 6 characters long",
+          },
+        })}
       />
       <Button className="mx-auto">Sign Up</Button>
     </form>

@@ -9,7 +9,7 @@ interface InputProps {
   onChange?: () => void;
   onBlur?: () => void;
   name?: string;
-  error?: boolean | undefined;
+  error?: string | undefined;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -22,16 +22,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       onBlur,
       name,
       label,
-      error = false,
+      error = "",
     },
     ref
   ) => (
-    <div className="flex flex-col gap-0.5">
-      <label>{label}</label>
+    <label className="flex flex-col gap-0.5">
+      {label && (
+        <p className={`${error ? "text-red-600 font-bold" : ""}`}>{label}</p>
+      )}
       <input
         type={type}
         className={`p-3 bg-gray-100 rounded-md placeholder:text-gray-400/80 outline-none focus:ring-2 focus:ring-primary-main ${className} ${
-          error ? "bg-red-50 placeholder:text-red-400 focus:ring-red-600" : ""
+          error
+            ? "bg-red-50 text-red-600 placeholder:text-red-400 focus:ring-red-600"
+            : ""
         }`}
         placeholder={placeholder}
         name={name}
@@ -39,7 +43,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         onChange={onChange}
         onBlur={onBlur}
       />
-    </div>
+      {error && <p className="text-sm text-red-600">{error}</p>}
+    </label>
   )
 );
 
