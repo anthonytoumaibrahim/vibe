@@ -5,6 +5,17 @@ import { redirect } from "next/navigation";
 
 export async function auth(jwt: string) {}
 
+export async function checkUsername(username: string) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/auth/check-username",
+    body: {
+      username: username,
+    },
+  });
+  return response;
+}
+
 export async function signup(data: object) {
   const response = await sendRequest({
     method: "POST",
@@ -16,8 +27,5 @@ export async function signup(data: object) {
     cookies().set("token", token);
     redirect("/home");
   }
-  return {
-    success: false,
-    message: response?.message ?? "Sorry, something went wrong.",
-  };
+  return response;
 }

@@ -1,7 +1,7 @@
 "use client";
-import { useEffect } from "react";
+import { Key, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { signup } from "../../actions/auth";
+import { checkUsername, signup } from "../../actions/auth";
 
 // Components
 import Input from "@/components/Input";
@@ -13,15 +13,23 @@ export default function SignupForm() {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    setError,
+    getValues,
+    formState: { isSubmitting, errors },
   } = useForm();
-
-  const watchUsername = watch("username");
 
   const submitSignupForm = async (data: object) => {
     const response = await signup(data);
-    if (!response?.success) {
-      alert(response.message);
+    if (response?.success === false) {
+      const errors: Record<string, string> = response?.errors;
+
+      Object.keys(errors)?.forEach((errKey) => {
+        const errorMessage = errors[errKey];
+        setError(errKey, {
+          type: "custom",
+          message: errorMessage,
+        });
+      });
     }
   };
 
@@ -88,7 +96,9 @@ export default function SignupForm() {
           },
         })}
       />
-      <Button className="mx-auto">Sign Up</Button>
+      <Button className="mx-auto" disabled={isSubmitting}>
+        Sign Up
+      </Button>
     </form>
   );
 }

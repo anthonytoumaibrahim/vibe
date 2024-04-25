@@ -60,7 +60,7 @@ const Button = ({
     </Link>
   ) : (
     <button
-      className={`disabled:cursor-not-allowed font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
+      className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
       disabled={disabled}
       onClick={onClick}
     >

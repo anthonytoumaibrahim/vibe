@@ -10,10 +10,28 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function checkUsername(Request $request)
+    {
+        $request->validate([
+            'username' => 'min:3|max:16|regex:/^[a-zA-Z][a-zA-Z0-9\._-]+$/i'
+        ]);
+        $username = $request->username;
+        $query = User::where('username', $username)->first();
+        if ($query) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This username is already taken, please try another.'
+            ]);
+        }
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|min:3|max:16|unique:users',
+            'username' => 'required|string|min:3|max:16|unique:users|regex:/^[a-zA-Z][a-zA-Z0-9\._-]+$/i',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
