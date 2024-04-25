@@ -47,10 +47,9 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Account created successfully!',
-            'user' => $user,
             'authorization' => [
                 'token' => $token,
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ]
         ]);
     }
@@ -58,26 +57,24 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+                'success' => false,
+                'message' => 'Invalid credentials.',
+            ]);
         }
 
-        $user = Auth::user();
         return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
+            'success' => true,
+            'authorization' => [
                 'token' => $token,
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ]
         ]);
     }
