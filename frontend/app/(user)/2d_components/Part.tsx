@@ -42,7 +42,7 @@ const Part = ({
         style={jsonData}
         className={`${absolute || center ? "absolute" : ""} ${
           center ? "left-1/2 -translate-x-1/2" : ""
-        } ${className}`}
+        } ${className} fill-amber-600`}
       />
       {parts?.map((part: Record<string, any>, index: number) => {
         const { width, center, postfix, ...jsonData } = part;
@@ -54,7 +54,7 @@ const Part = ({
             key={index}
             width={width}
             style={jsonData}
-            className={`${center ? "left-1/2 -translate-x-1/2" : ""}`}
+            className={`${center ? "left-1/2 -translate-x-1/2 fill-amber-600" : ""}`}
           />
         );
       })}
