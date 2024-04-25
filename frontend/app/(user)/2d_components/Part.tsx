@@ -9,11 +9,13 @@ interface PartProps {
   className?: string;
   absolute?: boolean;
   center?: boolean;
+  fill?: string;
 }
 
 const Part = ({
   id,
   className = "",
+  fill,
   type,
   absolute = false,
   center = false,
@@ -40,9 +42,10 @@ const Part = ({
         width={width}
         height={height}
         style={jsonData}
+        fill={fill}
         className={`${absolute || center ? "absolute" : ""} ${
           center ? "left-1/2 -translate-x-1/2" : ""
-        } ${className} fill-amber-600`}
+        } ${className}`}
       />
       {parts?.map((part: Record<string, any>, index: number) => {
         const { width, center, postfix, ...jsonData } = part;
@@ -54,7 +57,10 @@ const Part = ({
             key={index}
             width={width}
             style={jsonData}
-            className={`${center ? "left-1/2 -translate-x-1/2 fill-amber-600" : ""}`}
+            fill={fill}
+            className={`${
+              center ? "left-1/2 -translate-x-1/2" : ""
+            }`}
           />
         );
       })}
