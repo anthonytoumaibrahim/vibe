@@ -9,6 +9,12 @@ const Boarding = () => {
   const [body, setBody] = useState("female_body");
   const [hair, setHair] = useState(1);
 
+  const [character, setCharacter] = useState({
+    body: "female_body",
+    hair: 2,
+    eyes: 3,
+  });
+
   return (
     <>
       <section className="flex flex-col items-center gap-4">
