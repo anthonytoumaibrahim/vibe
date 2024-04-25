@@ -6,7 +6,8 @@ import Tabs from "./components/Tabs";
 import Image from "next/image";
 
 const Boarding = () => {
-  const [body, setBody] = useState("male_body");
+  const [body, setBody] = useState("female_body");
+  const [hair, setHair] = useState(1);
 
   return (
     <>
@@ -28,12 +29,15 @@ const Boarding = () => {
           fill
         />
 
-        <div className="relative z-0 scale-75">
-          <Character body={body} />
+        <div className="relative z-0 scale-75 mx-auto">
+          <Character body={body} hair={hair} />
         </div>
 
         <div className="ml-auto flex gap-10">
-          <Tabs setBody={(val) => setBody(val)} />
+          <Tabs
+            setBody={(val) => setBody(val)}
+            setHair={(val) => setHair(val)}
+          />
         </div>
       </div>
     </>

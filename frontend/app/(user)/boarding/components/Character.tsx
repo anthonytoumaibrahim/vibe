@@ -2,10 +2,16 @@
 
 import Part from "../../2d_components/Part";
 
-const Character = ({ body = "male_body" }: { body: string }) => {
+const Character = ({
+  body = "male_body",
+  hair = 1,
+}: {
+  body: string;
+  hair: number;
+}) => {
   return (
     <>
-      <Part type="hair" center={true} id={2} />
+      <Part type="hair" center={true} id={hair} />
       <Part type="face" id={1} center={true} />
       <Part type="eyebrow" id={5} center={true} />
       <Part type="eye" center={true} id={5} />

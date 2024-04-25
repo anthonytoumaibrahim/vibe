@@ -34,7 +34,7 @@ const Part = ({
 
   useEffect(() => {
     loadJson();
-  }, []);
+  }, [name, id]);
 
   return (
     <>
