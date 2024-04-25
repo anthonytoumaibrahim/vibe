@@ -22,7 +22,7 @@ export async function auth(data: object, type: "login" | "signup") {
   });
   if (response?.success) {
     const { token, type } = response?.authorization;
-    cookies().set("token", token);
+    cookies().set("token", token, { httpOnly: true });
     redirect("/home");
   }
   return response;
