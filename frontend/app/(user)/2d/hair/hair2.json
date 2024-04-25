@@ -2,7 +2,7 @@
   "width": 200,
   "top": -10,
   "marginLeft": -22,
-  "z": 10,
+  "zIndex": 10,
   "parts": [
     {
       "position": "absolute",
@@ -10,7 +10,7 @@
       "width": 180,
       "top": 0,
       "marginLeft": 2,
-      "z": -1,
+      "zIndex": -1,
       "postfix": "backdrop"
     }
   ]

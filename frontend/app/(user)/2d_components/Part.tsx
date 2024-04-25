@@ -20,19 +20,19 @@ const Part = async ({
   const filename = name ? name + id : type + id;
   const SvgComponent = dynamic(() => import(`../2d/${type}/${filename}.svg`));
   const json = await import(`../2d/${type}/${filename}.json`);
-  const { width, height, top, left, translateX, marginLeft, z, marginTop, parts } = json;
+  const { width, height, parts, ...jsonData } = json;
   return (
     <>
       <SvgComponent
         width={width}
         height={height}
-        style={{ top, left, marginTop, translateX, marginLeft, zIndex: z }}
+        style={jsonData}
         className={`${absolute || center ? "absolute" : ""} ${
           center ? "left-1/2 -translate-x-1/2" : ""
         } ${className}`}
       />
-      {parts?.map((part, index) => {
-        const { width, position, center, left, marginLeft, top, z, postfix } = part;
+      {parts?.map((part: Record<string, any>, index: number) => {
+        const { width, center, postfix, ...jsonData } = part;
         const SubSvgComponent = dynamic(
           () => import(`../2d/${type}/${type + id}_${postfix}.svg`)
         );
@@ -40,13 +40,7 @@ const Part = async ({
           <SubSvgComponent
             key={index}
             width={width}
-            style={{
-              position: position,
-              top,
-              left,
-              marginLeft,
-              zIndex: z,
-            }}
+            style={jsonData}
             className={`${center ? "left-1/2 -translate-x-1/2" : ""}`}
           />
         );
