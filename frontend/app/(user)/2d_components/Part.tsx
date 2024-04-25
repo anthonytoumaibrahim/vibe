@@ -58,9 +58,7 @@ const Part = ({
             width={width}
             style={jsonData}
             fill={fill}
-            className={`${
-              center ? "left-1/2 -translate-x-1/2" : ""
-            }`}
+            className={`${center ? "left-1/2 -translate-x-1/2" : ""}`}
           />
         );
       })}

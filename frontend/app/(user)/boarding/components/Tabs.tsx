@@ -1,20 +1,10 @@
 "use client";
-
 import { Tab } from "@headlessui/react";
-import TabPanel from "./TabPanel";
-
 import { C2DParts } from "../../2d/2d_parts";
-
-import MaleBody from "../../2d/body/body2.svg?url";
-import FemaleBody from "../../2d/body/body1.svg?url";
-
-import Hair1 from "../../2d/hair/hair1.svg?url";
-import Hair2 from "../../2d/hair/hair2.svg?url";
-import Hair3 from "../../2d/hair/hair3.svg?url";
 
 import Image from "next/image";
 
-const Tabs = ({ setBody, setHair }) => {
+const Tabs = ({ updateCharacter }) => {
   return (
     <Tab.Group>
       <Tab.Panels className="bg-white my-20 rounded-lg min-w-[640px] shadow-lg">
@@ -29,7 +19,11 @@ const Tabs = ({ setBody, setHair }) => {
                 <div
                   key={id}
                   className="bg-slate-200 rounded-lg h-[240px] relative"
-                  onClick={() => setBody(id)}
+                  onClick={() =>
+                    updateCharacter("body", {
+                      id: id,
+                    })
+                  }
                 >
                   <Image
                     src={`/images/2d_thumbs/body/${id}.png`}
@@ -56,7 +50,11 @@ const Tabs = ({ setBody, setHair }) => {
                 <div
                   key={id}
                   className="bg-slate-200 rounded-lg h-[159px] relative"
-                  onClick={() => setHair(id)}
+                  onClick={() =>
+                    updateCharacter("hair", {
+                      id: id,
+                    })
+                  }
                 >
                   <Image
                     src={`/images/2d_thumbs/hair/${id}.png`}

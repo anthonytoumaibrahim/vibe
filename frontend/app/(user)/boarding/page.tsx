@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import Character from "./components/Character";
+import Character from "../2d_components/Character";
 import Tabs from "./components/Tabs";
 import Image from "next/image";
 
 const Boarding = () => {
-  const [body, setBody] = useState(1);
-  const [hair, setHair] = useState(1);
-
   const [character, setCharacter] = useState({
-    body: 1,
-    hair: 2,
-    eyes: 3,
+    body: {
+      id: 1,
+      fill: "#df9777",
+    },
+    hair: {
+      id: 1,
+      fill: "#c73030",
+    },
   });
 
   return (
@@ -36,13 +38,20 @@ const Boarding = () => {
         />
 
         <div className="relative z-0 scale-75 mx-auto">
-          <Character body={body} hair={hair} />
+          <Character data={character} />
         </div>
 
         <div className="ml-auto flex gap-10">
           <Tabs
-            setBody={(val) => setBody(val)}
-            setHair={(val) => setHair(val)}
+            updateCharacter={(type, value) =>
+              setCharacter({
+                ...character,
+                [type]: {
+                  ...character[type],
+                  ...value,
+                },
+              })
+            }
           />
         </div>
       </div>
