@@ -23,7 +23,7 @@ const Boarding = async () => {
           fill
         />
 
-        <div className="relative z-0">
+        <div className="relative z-0 mx-auto my-10">
           <Part type="hair" center={true} id={2} />
           <Part type="face" id={1} center={true} />
           <Part type="eyebrow" id={5} center={true} />
@@ -33,7 +33,7 @@ const Boarding = async () => {
           <Part type="body" name="female_body" id={1} />
         </div>
 
-        <div>
+        <div className="ml-auto flex gap-10">
           <Tabs />
         </div>
       </div>
