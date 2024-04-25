@@ -1,15 +1,16 @@
 {
   "width": 200,
   "top": -10,
-  "left": 38,
+  "marginLeft": -22,
   "z": 10,
   "parts": [
     {
       "position": "absolute",
+      "center": true,
       "width": 180,
-      "left": 75,
       "top": 0,
-      "z": 0,
+      "marginLeft": 2,
+      "z": -1,
       "postfix": "backdrop"
     }
   ]

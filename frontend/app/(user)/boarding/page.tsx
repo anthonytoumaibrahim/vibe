@@ -1,4 +1,6 @@
 import Part from "../2d_components/Part";
+import Tabs from "./components/Tabs";
+import Image from "next/image";
 
 const Boarding = async () => {
   return (
@@ -11,15 +13,28 @@ const Boarding = async () => {
         </p>
       </section>
 
-      <div className="w-full min-h-[1024px] bg-slate-100 mt-4 rounded-t-xl flex gap-8 relative overflow-hidden">
-        <div className="absolute z-0">
-          <Part type="hair" absolute={true} id={1} />
+      <div className="w-full min-h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden">
+        <Image
+          src="/images/boarding_bg.webp"
+          alt=""
+          className="object-cover object-left filter blur-md -z-10"
+          sizes="100vw"
+          priority={true}
+          fill
+        />
+
+        <div className="relative z-0">
+          <Part type="hair" center={true} id={2} />
           <Part type="face" id={1} center={true} />
           <Part type="eyebrow" id={5} center={true} />
           <Part type="eye" center={true} id={5} />
           <Part type="nose" center={true} id={3} />
           <Part type="mouth" center={true} id={6} />
           <Part type="body" name="female_body" id={1} />
+        </div>
+
+        <div>
+          <Tabs />
         </div>
       </div>
     </>
