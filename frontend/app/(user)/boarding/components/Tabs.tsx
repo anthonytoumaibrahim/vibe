@@ -7,7 +7,7 @@ import MaleBody from "../../2d/body/male_body1.svg?url";
 import FemaleBody from "../../2d/body/female_body1.svg?url";
 import Image from "next/image";
 
-const Tabs = () => {
+const Tabs = ({ setBody }) => {
   return (
     <Tab.Group>
       <Tab.Panels className="bg-white my-20 rounded-lg min-w-[640px] shadow-lg">
@@ -15,10 +15,16 @@ const Tabs = () => {
           <h1 className="text-center">Body</h1>
 
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="bg-slate-200 rounded-lg h-[620px] relative">
+            <div
+              className="bg-slate-200 rounded-lg h-[620px] relative"
+              onClick={() => setBody("male_body")}
+            >
               <Image src={MaleBody} fill alt="Male Body" />
             </div>
-            <div className="bg-slate-200 rounded-lg h-[620px] relative">
+            <div
+              className="bg-slate-200 rounded-lg h-[620px] relative"
+              onClick={() => setBody("female_body")}
+            >
               <Image src={FemaleBody} fill alt="Female Body" />
             </div>
           </div>

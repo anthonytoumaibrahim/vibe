@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 interface PartProps {
@@ -9,7 +12,7 @@ interface PartProps {
   center?: boolean;
 }
 
-const Part = async ({
+const Part = ({
   id,
   className = "",
   name,
@@ -19,8 +22,20 @@ const Part = async ({
 }: PartProps) => {
   const filename = name ? name + id : type + id;
   const SvgComponent = dynamic(() => import(`../2d/${type}/${filename}.svg`));
-  const json = await import(`../2d/${type}/${filename}.json`);
+
+  const [json, setJson] = useState<Record<string, any>>({});
+
   const { width, height, parts, ...jsonData } = json;
+
+  const loadJson = async () => {
+    const json = await import(`../2d/${type}/${filename}.json`);
+    setJson(json);
+  };
+
+  useEffect(() => {
+    loadJson();
+  }, []);
+
   return (
     <>
       <SvgComponent
