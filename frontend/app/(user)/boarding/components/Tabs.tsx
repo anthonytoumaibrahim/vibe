@@ -22,18 +22,26 @@ const Tabs = ({ setBody, setHair }) => {
           <h1 className="text-center">Body</h1>
 
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <div
-              className="bg-slate-200 rounded-lg h-[620px] relative"
-              onClick={() => setBody(2)}
-            >
-              <Image src={MaleBody} fill alt="Male Body" />
-            </div>
-            <div
-              className="bg-slate-200 rounded-lg h-[620px] relative"
-              onClick={() => setBody(1)}
-            >
-              <Image src={FemaleBody} fill alt="Female Body" />
-            </div>
+            {C2DParts.body.map((body) => {
+              const { id, name } = body;
+
+              return (
+                <div
+                  key={id}
+                  className="bg-slate-200 rounded-lg h-[240px] relative"
+                  onClick={() => setBody(id)}
+                >
+                  <Image
+                    src={`/images/2d_thumbs/body/${id}.png`}
+                    fill
+                    sizes="100%"
+                    className="object-contain"
+                    quality={100}
+                    alt=""
+                  />
+                </div>
+              );
+            })}
           </div>
         </Tab.Panel>
 
@@ -51,9 +59,11 @@ const Tabs = ({ setBody, setHair }) => {
                   onClick={() => setHair(id)}
                 >
                   <Image
-                    src={`/images/2d_thumbs/hair/hair${id}_thumb.png`}
+                    src={`/images/2d_thumbs/hair/${id}.png`}
                     fill
+                    sizes="100%"
                     className="object-contain"
+                    quality={100}
                     alt=""
                   />
                 </div>
