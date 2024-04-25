@@ -14,7 +14,7 @@ const NavLink = ({ href = "", className = "", children }: NavLinkProps) => {
   return (
     <Link
       href={href}
-      className={`xl:text-lg ${
+      className={`xl:text-lg tracking-widest ${
         pathname === href ? "font-bold" : ""
       } ${className}`}
     >
