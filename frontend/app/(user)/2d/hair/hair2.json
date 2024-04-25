@@ -1,4 +1,16 @@
 {
-  "width": 100,
-  "parts": []
+  "width": 200,
+  "top": -10,
+  "left": 38,
+  "z": 10,
+  "parts": [
+    {
+      "position": "absolute",
+      "width": 180,
+      "left": 75,
+      "top": 0,
+      "z": 0,
+      "postfix": "backdrop"
+    }
+  ]
 }

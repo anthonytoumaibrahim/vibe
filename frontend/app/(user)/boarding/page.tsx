@@ -21,15 +21,13 @@ const Boarding = async () => {
       </section>
 
       <div className="w-full h-full bg-slate-100 mt-4 rounded-t-xl flex gap-8">
-        <div className="relative">
-          <HairBg width={180} className="absolute left-[97px] -top-[2px] z-0" />
-          <Hair1 width={200} className="absolute left-[58px] -top-[10px]" />
-
+        <div className="relative z-0">
+          <Part type="hair" absolute={true} id={1} />
           <Part type="face" id={1} center={true} />
           <Part type="eyebrow" id={5} center={true} />
           <Part type="eye" center={true} id={5} />
           <Part type="nose" center={true} id={3} />
-          <Part type="mouth" center={true} id={9} />
+          <Part type="mouth" center={true} id={6} />
           <Body1 width={320} className="mt-[144px]" />
         </div>
       </div>

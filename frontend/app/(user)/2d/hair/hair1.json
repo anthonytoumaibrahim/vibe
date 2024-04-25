@@ -1,8 +1,16 @@
 {
+  "width": 200,
+  "top": -20,
+  "left": 58,
+  "z": 10,
   "parts": [
     {
-      "file": "hair1_backdrop.svg",
-      "position": "BEHIND_HEAD"
+      "position": "absolute",
+      "width": 160,
+      "left": 78,
+      "top": -2,
+      "z": -1,
+      "postfix": "backdrop"
     }
   ]
 }
