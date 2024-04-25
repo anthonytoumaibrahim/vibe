@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 
 interface PartProps {
   type: "body" | "eye" | "eyebrow" | "face" | "hair" | "mouth" | "nose";
-  name?: string | undefined;
   id: number;
   className?: string;
   absolute?: boolean;
@@ -15,12 +14,11 @@ interface PartProps {
 const Part = ({
   id,
   className = "",
-  name,
   type,
   absolute = false,
   center = false,
 }: PartProps) => {
-  const filename = name ? name + id : type + id;
+  const filename = type + id;
   const SvgComponent = dynamic(() => import(`../2d/${type}/${filename}.svg`));
 
   const [json, setJson] = useState<Record<string, any>>({});
@@ -34,7 +32,7 @@ const Part = ({
 
   useEffect(() => {
     loadJson();
-  }, [name, id]);
+  }, [id]);
 
   return (
     <>

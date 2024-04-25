@@ -2,13 +2,7 @@
 
 import Part from "../../2d_components/Part";
 
-const Character = ({
-  body = "male_body",
-  hair = 1,
-}: {
-  body: string;
-  hair: number;
-}) => {
+const Character = ({ body = 1, hair = 1 }: { body: number; hair: number }) => {
   return (
     <>
       <Part type="hair" center={true} id={hair} />
@@ -17,7 +11,7 @@ const Character = ({
       <Part type="eye" center={true} id={5} />
       <Part type="nose" center={true} id={3} />
       <Part type="mouth" center={true} id={6} />
-      <Part type="body" name={body} id={1} />
+      <Part type="body" id={body} />
     </>
   );
 };

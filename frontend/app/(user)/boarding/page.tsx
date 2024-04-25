@@ -6,11 +6,11 @@ import Tabs from "./components/Tabs";
 import Image from "next/image";
 
 const Boarding = () => {
-  const [body, setBody] = useState("female_body");
+  const [body, setBody] = useState(1);
   const [hair, setHair] = useState(1);
 
   const [character, setCharacter] = useState({
-    body: "female_body",
+    body: 1,
     hair: 2,
     eyes: 3,
   });

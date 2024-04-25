@@ -3,8 +3,8 @@
 import { Tab } from "@headlessui/react";
 import TabPanel from "./TabPanel";
 
-import MaleBody from "../../2d/body/male_body1.svg?url";
-import FemaleBody from "../../2d/body/female_body1.svg?url";
+import MaleBody from "../../2d/body/body2.svg?url";
+import FemaleBody from "../../2d/body/body1.svg?url";
 
 import Hair1 from "../../2d/hair/hair1.svg?url";
 import Hair2 from "../../2d/hair/hair2.svg?url";
@@ -22,13 +22,13 @@ const Tabs = ({ setBody, setHair }) => {
           <div className="grid grid-cols-2 gap-4 mt-4">
             <div
               className="bg-slate-200 rounded-lg h-[620px] relative"
-              onClick={() => setBody("male_body")}
+              onClick={() => setBody(2)}
             >
               <Image src={MaleBody} fill alt="Male Body" />
             </div>
             <div
               className="bg-slate-200 rounded-lg h-[620px] relative"
-              onClick={() => setBody("female_body")}
+              onClick={() => setBody(1)}
             >
               <Image src={FemaleBody} fill alt="Female Body" />
             </div>
