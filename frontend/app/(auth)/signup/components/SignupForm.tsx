@@ -1,7 +1,7 @@
 "use client";
 import { Key, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { checkUsername, signup } from "../../actions/auth";
+import { checkUsername, auth } from "../../actions/auth";
 
 // Components
 import Input from "@/components/Input";
@@ -19,7 +19,7 @@ export default function SignupForm() {
   } = useForm();
 
   const submitSignupForm = async (data: object) => {
-    const response = await signup(data);
+    const response = await auth(data, "signup");
     if (response?.success === false) {
       const errors: Record<string, string> = response?.errors;
 
