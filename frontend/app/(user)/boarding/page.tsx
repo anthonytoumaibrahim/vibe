@@ -17,8 +17,8 @@ const Boarding = async () => {
         <Image
           src="/images/boarding_bg.webp"
           alt=""
-          className="object-cover object-left filter blur-md -z-10"
-          sizes="100vw"
+          className="object-cover object-left filter blur-sm -z-10"
+          sizes="100%"
           priority={true}
           fill
         />
