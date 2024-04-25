@@ -3,6 +3,8 @@
 import { Tab } from "@headlessui/react";
 import TabPanel from "./TabPanel";
 
+import { C2DParts } from "../../2d/2d_parts";
+
 import MaleBody from "../../2d/body/body2.svg?url";
 import FemaleBody from "../../2d/body/body1.svg?url";
 
@@ -35,28 +37,28 @@ const Tabs = ({ setBody, setHair }) => {
           </div>
         </Tab.Panel>
 
-        <Tab.Panel>
+        <Tab.Panel className="p-6">
           <h1 className="text-center">Hair</h1>
 
-          <div className="grid grid-cols-3 gap-4 mt-4">
-            <div
-              className="bg-slate-200 rounded-lg h-[320px] relative"
-              onClick={() => setHair(1)}
-            >
-              <Image src={Hair1} fill alt="Male Body" />
-            </div>
-            <div
-              className="bg-slate-200 rounded-lg h-[320px] relative"
-              onClick={() => setHair(2)}
-            >
-              <Image src={Hair2} fill alt="Female Body" />
-            </div>
-            <div
-              className="bg-slate-200 rounded-lg h-[320px] relative"
-              onClick={() => setHair(3)}
-            >
-              <Image src={Hair3} fill alt="Female Body" />
-            </div>
+          <div className="grid grid-cols-3 gap-6 mt-4">
+            {C2DParts.hair.map((body) => {
+              const { id, name } = body;
+
+              return (
+                <div
+                  key={id}
+                  className="bg-slate-200 rounded-lg h-[159px] relative"
+                  onClick={() => setHair(id)}
+                >
+                  <Image
+                    src={`/images/2d_thumbs/hair/hair${id}_thumb.png`}
+                    fill
+                    className="object-contain"
+                    alt=""
+                  />
+                </div>
+              );
+            })}
           </div>
         </Tab.Panel>
       </Tab.Panels>
