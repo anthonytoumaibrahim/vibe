@@ -3,8 +3,6 @@ import { cookies } from "next/headers";
 import { sendRequest } from "@/app/actions";
 import { redirect } from "next/navigation";
 
-export async function auth(jwt: string) {}
-
 export async function checkUsername(username: string) {
   const response = await sendRequest({
     method: "POST",
@@ -16,10 +14,10 @@ export async function checkUsername(username: string) {
   return response;
 }
 
-export async function signup(data: object) {
+export async function auth(data: object, type: "login" | "signup") {
   const response = await sendRequest({
     method: "POST",
-    url: "/auth/signup",
+    url: `/auth/${type}`,
     body: data,
   });
   if (response?.success) {
