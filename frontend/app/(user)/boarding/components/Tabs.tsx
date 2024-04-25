@@ -21,7 +21,7 @@ const Tabs = ({ setBody, setHair }) => {
         <Tab.Panel className="p-6">
           <h1 className="text-center">Body</h1>
 
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-3 gap-4 mt-4">
             {C2DParts.body.map((body) => {
               const { id, name } = body;
 
