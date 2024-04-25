@@ -3,10 +3,10 @@ import UserHeader from "./components/UserHeader";
 
 const UserLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main>
+    <>
       <UserHeader />
-      {children}
-    </main>
+      <main className="container">{children}</main>
+    </>
   );
 };
 
