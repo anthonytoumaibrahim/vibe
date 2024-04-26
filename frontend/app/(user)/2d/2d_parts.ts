@@ -32,6 +32,9 @@ export const C2DParts = {
         id: 3,
         name: "Long Hair",
       },
+      {
+        id: 6,
+      },
     ],
     male: [
       {
