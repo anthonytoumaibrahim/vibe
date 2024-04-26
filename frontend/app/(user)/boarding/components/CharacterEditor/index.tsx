@@ -13,6 +13,8 @@ import Character from "@/app/(user)/2d_components/Character";
 // Tabs
 import BodyTab from "./Tabs/BodyTab";
 import HairTab from "./Tabs/HairTab";
+import FaceTab from "./Tabs/FaceTab";
+import EyeTab from "./Tabs/EyeTab";
 
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
@@ -42,8 +44,19 @@ const CharacterEditor = () => {
               <BodyTab />
             </Tab.Panel>
             <Tab.Panel className={tabClass}>
+              <h1 className="text-center">Face</h1>
+              <FaceTab />
+            </Tab.Panel>
+            <Tab.Panel className={tabClass}>
               <h1 className="text-center">Hair</h1>
               <HairTab />
+            </Tab.Panel>
+            <Tab.Panel className={tabClass}>
+              <h1 className="text-center">Eyebrow</h1>
+            </Tab.Panel>
+            <Tab.Panel className={tabClass}>
+              <h1 className="text-center">Eyes</h1>
+              <EyeTab />
             </Tab.Panel>
           </Tab.Panels>
           <Tab.List className="flex flex-col justify-center gap-6 bg-white min-w-[280px]">

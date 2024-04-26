@@ -14,6 +14,9 @@ export const C2DParts = {
       id: 1,
       name: "Square Face",
     },
+    {
+      id: 2,
+    },
   ],
   hair: [
     {

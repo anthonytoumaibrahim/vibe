@@ -20,6 +20,9 @@ export default function StoreProvider({
           id: 1,
           fill: "#df9777",
         },
+        face: {
+          id: 1,
+        },
         hair: {
           id: 1,
           fill: "#c73030",
@@ -27,6 +30,17 @@ export default function StoreProvider({
         eye: {
           id: 5,
           fill: "#72A0C1",
+        },
+        eyebrow: {
+          id: 5,
+          fill: "#c73030",
+        },
+        nose: {
+          id: 3,
+        },
+        mouth: {
+          id: 6,
+          fill: "red",
         },
       })
     );
