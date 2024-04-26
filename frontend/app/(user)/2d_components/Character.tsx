@@ -16,7 +16,7 @@ const Character = ({ data }: CharacterProps) => {
       <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />
       <Part type="eyebrow" id={data.eyebrow.id} center={true} />
       <Part type="eye" center={true} id={data.eye.id} fill={data.eye.fill} />
-      <Part type="nose" center={true} id={data.nose.id} />
+      <Part type="nose" center={true} id={data.nose.id} fill={data.body.fill} />
       <Part type="mouth" center={true} id={data.mouth.id} />
       <Part type="body" id={data.body.id} fill={data.body.fill} />
     </>
