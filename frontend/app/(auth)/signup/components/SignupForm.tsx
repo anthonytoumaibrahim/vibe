@@ -8,6 +8,8 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import AuthFormTooltip from "../../components/AuthFormTooltip";
 
+import { GoogleLogin } from "@react-oauth/google";
+
 export default function SignupForm() {
   const {
     register,
@@ -33,12 +35,20 @@ export default function SignupForm() {
     }
   };
 
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
+
   return (
     <form
       action=""
       className="flex flex-col w-full gap-4"
       onSubmit={handleSubmit(submitSignupForm)}
     >
+      <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
       <div className="relative">
         <Input
           placeholder="Between 3-16 characters"

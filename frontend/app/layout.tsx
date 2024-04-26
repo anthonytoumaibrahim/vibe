@@ -7,6 +7,8 @@ import { K2D, Caveat } from "next/font/google";
 // Styles
 import "./globals.css";
 
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 const k2d = K2D({
   subsets: ["latin"],
   weight: "400",
@@ -33,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col`}
       >
-        {children}
+        <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
+          {children}
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
