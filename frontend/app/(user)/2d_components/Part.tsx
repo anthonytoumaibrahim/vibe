@@ -51,6 +51,7 @@ const Part = ({
         height={height}
         style={jsonData}
         fill={fill}
+        fill2="red"
         className={`${absolute || center ? "absolute" : ""} ${
           center ? "left-1/2 -translate-x-1/2" : ""
         } ${className}`}
