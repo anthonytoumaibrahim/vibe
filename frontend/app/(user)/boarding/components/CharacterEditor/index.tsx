@@ -34,9 +34,7 @@ const CharacterEditor = () => {
         fill
       />
 
-      <div className="relative z-0 scale-75 mx-auto">
-        <Character data={characterData} />
-      </div>
+      <Character data={characterData} className="mx-auto" scale={0.75} />
 
       <div className="flex gap-10">
         <Tab.Group>

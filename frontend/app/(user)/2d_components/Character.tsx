@@ -7,11 +7,13 @@ interface CharacterProps {
     "body" | "hair" | "face" | "eyebrow" | "eye" | "nose" | "mouth",
     { id: number; fill: string }
   >;
+  className?: string;
+  scale?: number;
 }
 
-const Character = ({ data }: CharacterProps) => {
+const Character = ({ data, scale = 1, className = "" }: CharacterProps) => {
   return (
-    <>
+    <div className={`relative z-0 ${className}`} style={{ scale }}>
       <Part type="hair" center={true} id={data.hair.id} fill={data.hair.fill} />
       <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />
       <Part
@@ -23,8 +25,8 @@ const Character = ({ data }: CharacterProps) => {
       <Part type="eye" center={true} id={data.eye.id} fill={data.eye.fill} />
       <Part type="nose" center={true} id={data.nose.id} fill={data.body.fill} />
       <Part type="mouth" center={true} id={data.mouth.id} />
-      <Part type="body" id={data.body.id} fill={data.body.fill} />
-    </>
+      <Part type="body" center={true} id={data.body.id} fill={data.body.fill} />
+    </div>
   );
 };
 

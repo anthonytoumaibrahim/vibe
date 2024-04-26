@@ -18,28 +18,32 @@ export const C2DParts = {
       id: 2,
     },
   ],
-  hair: [
-    {
-      id: 1,
-      name: "Short Hair",
-    },
-    {
-      id: 2,
-      name: "Short Wavy Hair",
-    },
-    {
-      id: 3,
-      name: "Long Hair",
-    },
-    {
-      id: 4,
-      name: "Long Hair",
-    },
-    {
-      id: 5,
-      name: "Long Hair",
-    },
-  ],
+  hair: {
+    female: [
+      {
+        id: 1,
+        name: "Short Hair",
+      },
+      {
+        id: 2,
+        name: "Short Wavy Hair",
+      },
+      {
+        id: 3,
+        name: "Long Hair",
+      },
+    ],
+    male: [
+      {
+        id: 4,
+        name: "Long Hair",
+      },
+      {
+        id: 5,
+        name: "Long Hair",
+      },
+    ],
+  },
   eyebrow: [
     {
       id: 1,

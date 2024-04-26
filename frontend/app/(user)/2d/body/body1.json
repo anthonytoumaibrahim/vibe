@@ -1,5 +1,6 @@
 {
   "width": 320,
   "height": 953,
-  "marginTop": 146
+  "top": 146,
+  "zIndex": -1
 }
