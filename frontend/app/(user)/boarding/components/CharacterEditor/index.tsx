@@ -15,6 +15,7 @@ import BodyTab from "./Tabs/BodyTab";
 import HairTab from "./Tabs/HairTab";
 import FaceTab from "./Tabs/FaceTab";
 import EyeTab from "./Tabs/EyeTab";
+import NoseTab from "./Tabs/NoseTab";
 
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
@@ -52,11 +53,15 @@ const CharacterEditor = () => {
               <HairTab />
             </Tab.Panel>
             <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Eyebrow</h1>
+              <h1 className="text-center">Eyebrows</h1>
             </Tab.Panel>
             <Tab.Panel className={tabClass}>
               <h1 className="text-center">Eyes</h1>
               <EyeTab />
+            </Tab.Panel>
+            <Tab.Panel className={tabClass}>
+              <h1 className="text-center">Nose</h1>
+              <NoseTab />
             </Tab.Panel>
           </Tab.Panels>
           <Tab.List className="flex flex-col justify-center gap-6 bg-white min-w-[280px]">

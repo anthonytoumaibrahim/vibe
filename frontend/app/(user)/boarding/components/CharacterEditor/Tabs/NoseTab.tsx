@@ -6,23 +6,26 @@ import { C2DParts } from "@/app/(user)/2d/2d_parts";
 
 import PartCard from "../PartCard";
 
-const EyeTab = () => {
-  const eyeSelector = useAppSelector((state) => state.characterEditorSlice.eye);
+const NoseTab = () => {
+  const noseSelector = useAppSelector(
+    (state) => state.characterEditorSlice.nose
+  );
   const dispatch = useAppDispatch();
   return (
     <div className="grid grid-cols-3 gap-4 mt-4">
-      {C2DParts.eye.map((eye) => {
-        const { id } = eye;
+      {C2DParts.nose.map((nose) => {
+        const { id } = nose;
 
         return (
           <PartCard
             key={id}
-            selected={eyeSelector.id === id}
+            height={140}
+            selected={noseSelector.id === id}
             onClick={() =>
               dispatch({
                 type: "characterEditorSlice/updateData",
                 payload: {
-                  type: "eye",
+                  type: "nose",
                   data: {
                     id: id,
                   },
@@ -31,10 +34,9 @@ const EyeTab = () => {
             }
           >
             <Image
-              src={`/images/2d_thumbs/eye/${id}.png`}
-              fill
-              sizes="100%"
-              className="object-contain"
+              src={`/images/2d_thumbs/nose/${id}.png`}
+              width={66}
+              height={66}
               quality={100}
               alt=""
             />
@@ -45,4 +47,4 @@ const EyeTab = () => {
   );
 };
 
-export default EyeTab;
+export default NoseTab;

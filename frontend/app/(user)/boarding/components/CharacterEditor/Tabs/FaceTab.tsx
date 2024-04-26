@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useAppDispatch } from "@/app/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 
 // Data
 import { C2DParts } from "@/app/(user)/2d/2d_parts";
@@ -7,6 +7,9 @@ import { C2DParts } from "@/app/(user)/2d/2d_parts";
 import PartCard from "../PartCard";
 
 const FaceTab = () => {
+  const faceSelector = useAppSelector(
+    (state) => state.characterEditorSlice.face
+  );
   const dispatch = useAppDispatch();
   return (
     <div className="grid grid-cols-3 gap-4 mt-4">
@@ -16,6 +19,7 @@ const FaceTab = () => {
         return (
           <PartCard
             key={id}
+            selected={faceSelector.id === id}
             onClick={() =>
               dispatch({
                 type: "characterEditorSlice/updateData",
