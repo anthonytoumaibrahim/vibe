@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { boardingSlice } from "./Boarding";
+import characterEditorSlice from "./features/characterEditor/characterEditorSlice";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: { characterEditorSlice: characterEditorSlice },
   });
 };
 

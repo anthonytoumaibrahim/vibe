@@ -28,5 +28,30 @@ export const C2DParts = {
       id: 3,
       name: "Long Hair",
     },
+    {
+      id: 4,
+      name: "Long Hair",
+    },
+    {
+      id: 5,
+      name: "Long Hair",
+    },
+  ],
+  eye: [
+    {
+      id: 1,
+    },
+    {
+      id: 2,
+    },
+    {
+      id: 3,
+    },
+    {
+      id: 4,
+    },
+    {
+      id: 5,
+    },
   ],
 };

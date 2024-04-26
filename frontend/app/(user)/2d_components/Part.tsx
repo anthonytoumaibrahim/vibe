@@ -4,12 +4,20 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 interface PartProps {
-  type: "body" | "eye" | "eyebrow" | "face" | "hair" | "mouth" | "nose";
+  type:
+    | "body"
+    | "eye"
+    | "eyebrow"
+    | "face"
+    | "hair"
+    | "beard"
+    | "mouth"
+    | "nose";
   id: number;
   className?: string;
   absolute?: boolean;
   center?: boolean;
-  fill?: string;
+  fill?: string | undefined;
 }
 
 const Part = ({
@@ -20,10 +28,10 @@ const Part = ({
   absolute = false,
   center = false,
 }: PartProps) => {
+  const [json, setJson] = useState<Record<string, any>>({});
+
   const filename = type + id;
   const SvgComponent = dynamic(() => import(`../2d/${type}/${filename}.svg`));
-
-  const [json, setJson] = useState<Record<string, any>>({});
 
   const { width, height, parts, ...jsonData } = json;
 
