@@ -1,5 +1,7 @@
 import CharacterEditor from "./components/CharacterEditor";
 
+import StoreProvider from "./StoreProvider";
+
 const Boarding = () => {
   return (
     <>
@@ -11,7 +13,9 @@ const Boarding = () => {
         </p>
       </section>
 
-      <CharacterEditor />
+      <StoreProvider>
+        <CharacterEditor />
+      </StoreProvider>
     </>
   );
 };

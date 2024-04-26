@@ -1,8 +1,10 @@
 "use client";
 import { useRef } from "react";
+
+// Redux
 import { Provider } from "react-redux";
 import { makeStore, AppStore } from "@/app/lib/store";
-
+import { initializeData } from "@/app/lib/features/characterEditor/characterEditorSlice";
 
 export default function StoreProvider({
   children,
@@ -12,6 +14,22 @@ export default function StoreProvider({
   const storeRef = useRef<AppStore>();
   if (!storeRef.current) {
     storeRef.current = makeStore();
+    storeRef.current.dispatch(
+      initializeData({
+        body: {
+          id: 1,
+          fill: "#df9777",
+        },
+        hair: {
+          id: 1,
+          fill: "#c73030",
+        },
+        eye: {
+          id: 5,
+          fill: "#72A0C1",
+        },
+      })
+    );
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>;

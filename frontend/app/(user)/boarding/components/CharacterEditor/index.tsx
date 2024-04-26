@@ -1,7 +1,7 @@
 "use client";
 
 // Next & React stuff
-import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/app/lib/hooks";
 import Image from "next/image";
 
 // Headless UI
@@ -12,30 +12,8 @@ import { C2DParts } from "@/app/(user)/2d/2d_parts";
 import Character from "@/app/(user)/2d_components/Character";
 
 const CharacterEditor = () => {
-  const [character, updateCharacter] = useState({
-    body: {
-      id: 1,
-      fill: "#df9777",
-    },
-    hair: {
-      id: 1,
-      fill: "#c73030",
-    },
-    eye: {
-      id: 5,
-      fill: "#72A0C1",
-    },
-  });
-
-  const updatePart = (type, value) => {
-    updateCharacter({
-      ...character,
-      [type]: {
-        ...character[type],
-        ...value,
-      },
-    });
-  };
+  const characterData = useAppSelector((state) => state.characterEditorSlice);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="w-full h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden">
@@ -49,7 +27,7 @@ const CharacterEditor = () => {
       />
 
       <div className="relative z-0 scale-75 mx-auto">
-        <Character data={character} />
+        <Character data={characterData} />
       </div>
 
       <div className="flex gap-10">
@@ -67,8 +45,14 @@ const CharacterEditor = () => {
                       key={id}
                       className="bg-slate-200 rounded-lg h-[240px] relative"
                       onClick={() =>
-                        updatePart("body", {
-                          id: id,
+                        dispatch({
+                          type: "characterEditorSlice/updateData",
+                          payload: {
+                            type: "body",
+                            data: {
+                              id: id,
+                            },
+                          },
                         })
                       }
                     >
@@ -121,26 +105,14 @@ const CharacterEditor = () => {
                   className="w-10 h-10 rounded-full"
                   style={{ backgroundColor: "#241c11" }}
                   onClick={() =>
-                    updatePart("hair", {
-                      fill: "#241c11",
-                    })
-                  }
-                ></button>
-                <button
-                  className="w-10 h-10 rounded-full"
-                  style={{ backgroundColor: "#9a3300" }}
-                  onClick={() =>
-                    updatePart("hair", {
-                      fill: "#9a3300",
-                    })
-                  }
-                ></button>
-                <button
-                  className="w-10 h-10 rounded-full"
-                  style={{ backgroundColor: "#c6a969" }}
-                  onClick={() =>
-                    updatePart("hair", {
-                      fill: "#c6a969",
+                    dispatch({
+                      type: "characterEditorSlice/updateData",
+                      payload: {
+                        type: "hair",
+                        data: {
+                          fill: "#241c11",
+                        },
+                      },
                     })
                   }
                 ></button>
