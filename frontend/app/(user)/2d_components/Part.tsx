@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 
 interface PartProps {
@@ -30,16 +30,15 @@ const Part = ({
 }: PartProps) => {
   const [json, setJson] = useState<Record<string, any>>({});
 
-  const filename = type + id;
   const SvgComponent = useMemo(
-    () => dynamic(() => import(`../2d/${type}/${filename}.svg`)),
-    [filename]
+    () => dynamic(() => import(`../2d/${type}/${type + id}.svg`)),
+    [type, id]
   );
 
   const { width, height, parts, ...jsonData } = json;
 
   const loadJson = async () => {
-    const json = await import(`../2d/${type}/${filename}.json`);
+    const json = await import(`../2d/${type}/${type + id}.json`);
     setJson(json);
   };
 
@@ -64,7 +63,7 @@ const Part = ({
           />
         );
       }),
-    [parts]
+    [parts, fill]
   );
 
   return (

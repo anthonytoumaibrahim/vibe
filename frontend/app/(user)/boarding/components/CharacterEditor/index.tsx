@@ -82,8 +82,14 @@ const CharacterEditor = () => {
                       key={id}
                       className="bg-slate-200 rounded-lg h-[159px] relative"
                       onClick={() =>
-                        updatePart("hair", {
-                          id: id,
+                        dispatch({
+                          type: "characterEditorSlice/updateData",
+                          payload: {
+                            type: "hair",
+                            data: {
+                              id: id,
+                            },
+                          },
                         })
                       }
                     >
@@ -131,8 +137,14 @@ const CharacterEditor = () => {
                       key={id}
                       className="bg-slate-200 rounded-lg h-[159px] relative"
                       onClick={() =>
-                        updatePart("eye", {
-                          id: id,
+                        dispatch({
+                          type: "characterEditorSlice/updateData",
+                          payload: {
+                            type: "eye",
+                            data: {
+                              id: id,
+                            },
+                          },
                         })
                       }
                     >
@@ -147,36 +159,6 @@ const CharacterEditor = () => {
                     </div>
                   );
                 })}
-              </div>
-
-              <div className="flex">
-                <button
-                  className="w-10 h-10 rounded-full"
-                  style={{ backgroundColor: "#241c11" }}
-                  onClick={() =>
-                    updatePart("hair", {
-                      fill: "#241c11",
-                    })
-                  }
-                ></button>
-                <button
-                  className="w-10 h-10 rounded-full"
-                  style={{ backgroundColor: "#9a3300" }}
-                  onClick={() =>
-                    updatePart("hair", {
-                      fill: "#9a3300",
-                    })
-                  }
-                ></button>
-                <button
-                  className="w-10 h-10 rounded-full"
-                  style={{ backgroundColor: "#c6a969" }}
-                  onClick={() =>
-                    updatePart("hair", {
-                      fill: "#c6a969",
-                    })
-                  }
-                ></button>
               </div>
             </Tab.Panel>
           </Tab.Panels>
