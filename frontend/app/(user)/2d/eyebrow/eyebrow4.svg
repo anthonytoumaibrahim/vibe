@@ -1,1 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><svg id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160.81 24.77"><defs><linearGradient id="d" x1="131.45" y1="0" x2="131.45" y2="24.77" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#36062c"/><stop offset="1" stop-color="#441b3e"/></linearGradient><linearGradient id="e" x1="29.36" x2="29.36" xlink:href="#d"/></defs><g id="c"><path d="M102.09,22.21s4.71-10.97,11.71-18.14l-2.08,4.99s2.04-2.04,5.13-3.73c3.09-1.69,26.43-4.12,31.12-3.28l-.75-2.06s8.15,6.94,13.59,21.28c0,0-6-6.75-9.93-7.4-3.94-.66-39.83,4.73-48.78,10.89v-2.55Z" style="fill:url(#d); stroke-width:0px;"/><path d="M58.72,22.21s-4.71-10.97-11.71-18.14l2.08,4.99s-2.04-2.04-5.13-3.73c-3.09-1.69-26.43-4.12-31.12-3.28l.75-2.06S5.44,6.94,0,21.28c0,0,6-6.75,9.93-7.4,3.94-.66,39.83,4.73,48.78,10.89v-2.55Z" style="fill:url(#e); stroke-width:0px;"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 160.81 24.77" xmlns="http://www.w3.org/2000/svg">
+  <g id="c" transform="matrix(1, 0, 0, 1, -4.440892098500626e-16, 0)">
+    <path d="M102.09,22.21s4.71-10.97,11.71-18.14l-2.08,4.99s2.04-2.04,5.13-3.73c3.09-1.69,26.43-4.12,31.12-3.28l-.75-2.06s8.15,6.94,13.59,21.28c0,0-6-6.75-9.93-7.4-3.94-.66-39.83,4.73-48.78,10.89v-2.55Z" style="stroke-width: 0px; fill: fillColor;"/>
+    <path d="M58.72,22.21s-4.71-10.97-11.71-18.14l2.08,4.99s-2.04-2.04-5.13-3.73c-3.09-1.69-26.43-4.12-31.12-3.28l.75-2.06S5.44,6.94,0,21.28c0,0,6-6.75,9.93-7.4,3.94-.66,39.83,4.73,48.78,10.89v-2.55Z" style="stroke-width: 0px; fill: fillColor;"/>
+  </g>
+</svg>

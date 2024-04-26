@@ -40,6 +40,23 @@ export const C2DParts = {
       name: "Long Hair",
     },
   ],
+  eyebrow: [
+    {
+      id: 1,
+    },
+    {
+      id: 2,
+    },
+    {
+      id: 3,
+    },
+    {
+      id: 4,
+    },
+    {
+      id: 5,
+    },
+  ],
   eye: [
     {
       id: 1,
