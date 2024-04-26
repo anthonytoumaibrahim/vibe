@@ -35,6 +35,12 @@ export const C2DParts = {
       {
         id: 6,
       },
+      {
+        id: 7,
+      },
+      {
+        id: 8,
+      },
     ],
     male: [
       {
