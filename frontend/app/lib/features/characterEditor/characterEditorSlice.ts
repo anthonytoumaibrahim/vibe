@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {};
+type StateType = {
+  data: Record<
+    "body" | "hair" | "face" | "eyebrow" | "eye" | "nose" | "mouth",
+    { id: number; fill: string }
+  >;
+};
+const initState = <StateType>{};
 
 const characterEditorSlice = createSlice({
   name: "characterEditorSlice",
