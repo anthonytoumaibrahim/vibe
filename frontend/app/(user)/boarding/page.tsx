@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
+
 import CharacterEditor from "./components/CharacterEditor";
 
 import StoreProvider from "./StoreProvider";
+
+export const metadata: Metadata = {
+  title: "Welcome – Vibe",
+};
 
 const Boarding = () => {
   return (

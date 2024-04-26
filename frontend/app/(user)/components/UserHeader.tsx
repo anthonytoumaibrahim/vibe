@@ -19,10 +19,10 @@ const UserHeader = ({ className = "" }: UserHeaderProps) => {
       </Link>
 
       <nav className="flex items-center gap-6">
-        <NavLink href="/" className="!text-black">
+        <NavLink href="/home" className="!text-black">
           Home
         </NavLink>
-        <NavLink href="/" className="!text-black">
+        <NavLink href="/profile" className="!text-black">
           My Profile
         </NavLink>
         <NavLink href="/" className="!text-black">

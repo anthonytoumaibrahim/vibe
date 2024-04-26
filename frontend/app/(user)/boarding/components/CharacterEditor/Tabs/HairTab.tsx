@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useAppDispatch } from "@/app/lib/hooks";
+import { useAppSelector, useAppDispatch } from "@/app/lib/hooks";
 
 // Data
 import { C2DParts } from "@/app/(user)/2d/2d_parts";
@@ -7,6 +7,9 @@ import { C2DParts } from "@/app/(user)/2d/2d_parts";
 import PartCard from "../PartCard";
 
 const HairTab = () => {
+  const hairSelector = useAppSelector(
+    (state) => state.characterEditorSlice.hair
+  );
   const dispatch = useAppDispatch();
   return (
     <div className="grid grid-cols-3 gap-4 mt-4">
@@ -16,6 +19,8 @@ const HairTab = () => {
         return (
           <PartCard
             key={id}
+            height={180}
+            selected={hairSelector.id === id}
             onClick={() =>
               dispatch({
                 type: "characterEditorSlice/updateData",
