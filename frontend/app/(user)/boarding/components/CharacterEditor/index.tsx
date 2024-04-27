@@ -22,7 +22,7 @@ import MouthTab from "./Tabs/MouthTab";
 
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
-  const [zoom, setZoom] = useState(2);
+  const [zoom, setZoom] = useState(0.85);
 
   const tabClass = "p-6";
 
@@ -40,6 +40,7 @@ const CharacterEditor = () => {
       <input
         type="range"
         step={0.01}
+        min={0.85}
         max={2}
         value={zoom}
         onChange={(e) => setZoom(e.target.value)}
