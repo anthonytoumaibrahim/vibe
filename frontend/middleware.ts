@@ -12,20 +12,22 @@ export default async function middleware(req: NextRequest) {
 
   const cookie = cookies().get("token")?.value;
   let isAuthenticated = false;
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/auth/refresh",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${cookie}`,
-        },
-      }
-    );
-    const data = await response.json();
-    isAuthenticated = data?.success === true ? true : false;
-  } catch (error) {}
+  if (cookie) {
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/auth/refresh",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie}`,
+          },
+        }
+      );
+      const data = await response.json();
+      isAuthenticated = data?.success === true ? true : false;
+    } catch (error) {}
+  }
 
   // 5. Redirect to /login if the user is not authenticated
   if (isProtectedRoute && !isAuthenticated) {

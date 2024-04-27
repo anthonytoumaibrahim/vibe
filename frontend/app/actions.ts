@@ -3,6 +3,7 @@
 import axios from "axios";
 import type { AxiosError } from "axios";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -45,6 +46,11 @@ export async function sendRequest({
         unauthorized = true;
       }
     }
+  }
+
+  // Redirect if unauthorized
+  if (unauthorized) {
+    redirect("/login");
   }
 
   return output;
