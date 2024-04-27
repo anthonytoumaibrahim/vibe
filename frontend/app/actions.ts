@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import type { AxiosError } from "axios";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -24,6 +24,9 @@ export async function sendRequest({
     const response = await axios({
       method: method,
       url: url,
+      headers: {
+        Authorization: `Bearer ${cookies().get("token")?.value}`,
+      },
       data: body,
     });
 
@@ -42,11 +45,6 @@ export async function sendRequest({
         unauthorized = true;
       }
     }
-  }
-
-  // Redirect if unauthorized
-  if (unauthorized) {
-    redirect("/login");
   }
 
   return output;

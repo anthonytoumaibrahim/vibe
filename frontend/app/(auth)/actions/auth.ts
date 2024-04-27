@@ -2,7 +2,6 @@
 import { cookies } from "next/headers";
 import { sendRequest } from "@/app/actions";
 import { redirect } from "next/navigation";
-import axios from "axios";
 
 type AuthParams = {
   data?: object;

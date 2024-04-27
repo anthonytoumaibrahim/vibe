@@ -1,15 +1,24 @@
 // Next stuff
 import Link from "next/link";
+import { sendRequest } from "@/app/actions";
 
 // Components
 import Logo from "@/components/Logo";
 import NavLink from "@/components/NavLink";
+import { cookies } from "next/headers";
+import Image from "next/image";
+import axios from "axios";
 
 interface UserHeaderProps {
   className?: string;
 }
 
-const UserHeader = ({ className = "" }: UserHeaderProps) => {
+const UserHeader = async ({ className = "" }: UserHeaderProps) => {
+  const user = await sendRequest({
+    method: "GET",
+    url: "/user-info",
+  });
+
   return (
     <header
       className={`${className} bg-slate-50 border-b-2 px-8 h-16 w-full flex items-center justify-between mb-4`}
@@ -33,7 +42,7 @@ const UserHeader = ({ className = "" }: UserHeaderProps) => {
         </NavLink>
       </nav>
 
-      <div>hello</div>
+      <Image src={user.avatar} width={44} height={44} alt="Profile" />
     </header>
   );
 };
