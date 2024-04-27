@@ -4,6 +4,7 @@ interface PartCardProps {
   children: React.ReactNode;
   height?: number;
   selected?: boolean;
+  premium?: boolean;
 }
 
 const PartCard = ({
@@ -12,6 +13,7 @@ const PartCard = ({
   height = 240,
   onClick = () => {},
   selected = false,
+  premium = false,
 }: PartCardProps) => {
   return (
     <div
@@ -20,6 +22,10 @@ const PartCard = ({
         selected
           ? "bg-primary-main ring-2 ring-offset-2 ring-primary-main"
           : "bg-slate-200 hover:bg-primary-main hover:before:opacity-100 hover:after:opacity-100 before:opacity-0 after:opacity-0 after:transition-opacity after:duration-200 before:transition-opacity before:duration-400"
+      } ${
+        premium
+          ? "bg-emerald-500 hover:bg-emerald-700 before:bg-emerald-200 after:bg-emerald-400 before:opacity-100 after:opacity-100"
+          : ""
       } ${className}`}
       onClick={() => onClick()}
     >

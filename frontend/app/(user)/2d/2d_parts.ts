@@ -36,14 +36,17 @@ export const C2DParts = {
       {
         id: 6,
         tags: "bun",
+        premium: true,
       },
       {
         id: 7,
         tags: "bangs, medium length",
+        premium: true,
       },
       {
         id: 8,
         tags: "wavy, medium length",
+        premium: true,
       },
     ],
     male: [
