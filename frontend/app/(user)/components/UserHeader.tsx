@@ -21,23 +21,23 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
 
   return (
     <header
-      className={`${className} bg-slate-50 border-b-2 px-8 h-16 w-full flex items-center justify-between mb-4`}
+      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 h-16 w-full flex items-center justify-between mb-4`}
     >
       <Link href="/" className="unstyled-link">
-        <Logo width={88} />
+        <Logo width={88} className="dark:fill-white" />
       </Link>
 
       <nav className="flex items-center gap-6">
-        <NavLink href="/home" className="!text-black">
+        <NavLink href="/home" className="!text-black dark:!text-white">
           Home
         </NavLink>
-        <NavLink href="/profile" className="!text-black">
+        <NavLink href="/profile" className="!text-black dark:!text-white">
           My Profile
         </NavLink>
-        <NavLink href="/" className="!text-black">
+        <NavLink href="/" className="!text-black dark:!text-white">
           Chat Rooms
         </NavLink>
-        <NavLink href="/" className="!text-black">
+        <NavLink href="/" className="!text-black dark:!text-white">
           Communities
         </NavLink>
       </nav>

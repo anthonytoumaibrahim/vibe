@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col`}
+        className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col dark:bg-slate-800 dark:text-white`}
       >
         <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
           {children}

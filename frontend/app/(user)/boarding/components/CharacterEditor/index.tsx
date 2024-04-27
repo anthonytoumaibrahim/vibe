@@ -53,7 +53,7 @@ const CharacterEditor = () => {
 
       <div className="flex gap-10">
         <Tab.Group>
-          <Tab.Panels className="bg-white my-20 rounded-lg min-w-[640px] shadow-lg">
+          <Tab.Panels className="bg-white dark:bg-slate-950 my-20 rounded-lg min-w-[640px] shadow-lg">
             <Tab.Panel className={tabClass}>
               <h1 className="text-center">Body</h1>
               <BodyTab />
@@ -83,7 +83,7 @@ const CharacterEditor = () => {
               <MouthTab />
             </Tab.Panel>
           </Tab.Panels>
-          <Tab.List className="flex flex-col justify-center gap-6 bg-white min-w-[280px]">
+          <Tab.List className="flex flex-col justify-center gap-6 bg-white dark:bg-slate-900 min-w-[280px]">
             <Tab>Body</Tab>
             <Tab>Face</Tab>
             <Tab>Hair</Tab>
