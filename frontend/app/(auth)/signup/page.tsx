@@ -6,8 +6,6 @@ import MainLayout from "../../layouts/MainLayout";
 import Link from "next/link";
 import SignupForm from "./components/SignupForm";
 
-import { GoogleLogin } from "@react-oauth/google";
-
 export const metadata: Metadata = {
   title: "Signup – Vibe",
   description:
