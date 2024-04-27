@@ -34,7 +34,7 @@ const NoseTab = () => {
             }
           >
             <Image
-              src={`/images/2d_thumbs/nose/${id}.png`}
+              src={`/images/2d_thumbs/nose/${id}.svg`}
               width={66}
               height={66}
               quality={100}

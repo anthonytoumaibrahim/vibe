@@ -34,7 +34,7 @@ const MouthTab = () => {
             }
           >
             <Image
-              src={`/images/2d_thumbs/mouth/${id}.png`}
+              src={`/images/2d_thumbs/mouth/${id}.svg`}
               width={66}
               height={66}
               quality={100}

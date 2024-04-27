@@ -43,7 +43,7 @@ const HairTab = () => {
                     }
                   >
                     <Image
-                      src={`/images/2d_thumbs/hair/${id}.png`}
+                      src={`/images/2d_thumbs/hair/${id}.svg`}
                       fill
                       sizes="100%"
                       className="object-contain"
@@ -77,7 +77,7 @@ const HairTab = () => {
                     }
                   >
                     <Image
-                      src={`/images/2d_thumbs/hair/${id}.png`}
+                      src={`/images/2d_thumbs/hair/${id}.svg`}
                       fill
                       sizes="100%"
                       className="object-contain"

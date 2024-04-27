@@ -31,7 +31,7 @@ const EyeTab = () => {
             }
           >
             <Image
-              src={`/images/2d_thumbs/eye/${id}.png`}
+              src={`/images/2d_thumbs/eye/${id}.svg`}
               fill
               sizes="100%"
               className="object-contain"

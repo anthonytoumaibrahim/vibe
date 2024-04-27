@@ -33,7 +33,7 @@ const FaceTab = () => {
             }
           >
             <Image
-              src={`/images/2d_thumbs/face/${id}.png`}
+              src={`/images/2d_thumbs/face/${id}.svg`}
               fill
               sizes="100%"
               className="object-contain"
