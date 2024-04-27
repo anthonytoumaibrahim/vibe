@@ -2,6 +2,7 @@
 
 // Next & React stuff
 import { useAppSelector } from "@/app/lib/hooks";
+import { useState } from "react";
 import Image from "next/image";
 
 // Headless UI
@@ -20,6 +21,7 @@ import EyebrowTab from "./Tabs/EyebrowTab";
 
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
+  const [zoom, setZoom] = useState(2);
 
   const tabClass = "p-6";
 
@@ -34,7 +36,19 @@ const CharacterEditor = () => {
         fill
       />
 
-      <Character data={characterData} className="mx-auto mt-10" scale={1} />
+      <input
+        type="range"
+        step={0.01}
+        max={2}
+        value={zoom}
+        onChange={(e) => setZoom(e.target.value)}
+      />
+
+      <Character
+        data={characterData}
+        className="mx-auto origin-top mt-10"
+        scale={zoom}
+      />
 
       <div className="flex gap-10">
         <Tab.Group>
