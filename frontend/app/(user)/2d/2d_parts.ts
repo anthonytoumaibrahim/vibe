@@ -101,4 +101,12 @@ export const C2DParts = {
       id: 4,
     },
   ],
+  mouth: [
+    {
+      id: 1,
+    },
+    {
+      id: 10,
+    },
+  ],
 };

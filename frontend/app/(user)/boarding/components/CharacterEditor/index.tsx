@@ -18,6 +18,7 @@ import FaceTab from "./Tabs/FaceTab";
 import EyeTab from "./Tabs/EyeTab";
 import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
+import MouthTab from "./Tabs/MouthTab";
 
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
@@ -76,6 +77,10 @@ const CharacterEditor = () => {
             <Tab.Panel className={tabClass}>
               <h1 className="text-center">Nose</h1>
               <NoseTab />
+            </Tab.Panel>
+            <Tab.Panel className={tabClass}>
+              <h1 className="text-center">Mouth</h1>
+              <MouthTab />
             </Tab.Panel>
           </Tab.Panels>
           <Tab.List className="flex flex-col justify-center gap-6 bg-white min-w-[280px]">

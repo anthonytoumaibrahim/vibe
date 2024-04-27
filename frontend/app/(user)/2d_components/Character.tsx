@@ -24,7 +24,12 @@ const Character = ({ data, scale = 1, className = "" }: CharacterProps) => {
       />
       <Part type="eye" center={true} id={data.eye.id} fill={data.eye.fill} />
       <Part type="nose" center={true} id={data.nose.id} fill={data.body.fill} />
-      <Part type="mouth" center={true} id={data.mouth.id} />
+      <Part
+        type="mouth"
+        center={true}
+        id={data.mouth.id}
+        fill={data.mouth.fill}
+      />
       <Part type="body" center={true} id={data.body.id} fill={data.body.fill} />
     </div>
   );

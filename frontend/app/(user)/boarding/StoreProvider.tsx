@@ -47,7 +47,7 @@ export default function StoreProvider({
             },
             mouth: {
               id: 6,
-              fill: "red",
+              fill: "#ed7172",
             },
           })
         );

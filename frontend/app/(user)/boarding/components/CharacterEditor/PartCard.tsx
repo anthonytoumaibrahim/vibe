@@ -23,7 +23,7 @@ const PartCard = ({
       } ${className}`}
       onClick={() => onClick()}
     >
-      <div className="group-hover:scale-110 transition-transform duration-150 w-full h-full origin-bottom flex items-center justify-center">
+      <div className="group-hover:scale-110 transition-transform duration-150 w-full h-full origin-bottom flex items-center justify-center relative">
         {children}
       </div>
     </div>
