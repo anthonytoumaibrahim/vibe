@@ -84,6 +84,10 @@ export const C2DParts = {
       id: 5,
       tags: "",
     },
+    {
+      id: 6,
+      tags: "",
+    },
   ],
   eye: [
     {
@@ -102,6 +106,10 @@ export const C2DParts = {
     {
       id: 5,
     },
+    {
+      id: 6,
+      tags: "",
+    },
   ],
   nose: [
     {
@@ -115,6 +123,10 @@ export const C2DParts = {
     },
     {
       id: 4,
+    },
+    {
+      id: 5,
+      tags: "",
     },
   ],
   mouth: [
