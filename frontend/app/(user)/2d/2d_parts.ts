@@ -8,6 +8,10 @@ export const C2DParts = {
       id: 2,
       tags: "male body",
     },
+    {
+      id: 3,
+      tags: "body",
+    },
   ],
   face: [
     {
