@@ -2,18 +2,18 @@
 
 import Part from "./Part";
 
+export type PartsType =
+  | "body"
+  | "hair"
+  | "face"
+  | "eyebrow"
+  | "eye"
+  | "eyeglasses"
+  | "nose"
+  | "mouth";
+
 interface CharacterProps {
-  data: Record<
-    | "body"
-    | "hair"
-    | "face"
-    | "eyebrow"
-    | "eye"
-    | "eyeglasses"
-    | "nose"
-    | "mouth",
-    { id: number; fill: string }
-  >;
+  data: Record<PartsType, { id: number; fill: string }>;
   className?: string;
   scale?: number;
 }
@@ -30,14 +30,14 @@ const Character = ({ data, scale = 1, className = "" }: CharacterProps) => {
         center={true}
       />
       <Part type="eye" center={true} id={data.eye.id} fill={data.eye.fill} />
-      {data.eyeglasses?.id && (
+      {/* {data.eyeglasses?.id && (
         <Part
           type="eyeglasses"
           id={data.eyeglasses?.id}
           fill={data.eyeglasses?.fill}
           center={true}
         />
-      )}
+      )} */}
       <Part type="nose" center={true} id={data.nose.id} fill={data.body.fill} />
       <Part
         type="mouth"

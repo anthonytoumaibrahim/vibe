@@ -3,17 +3,10 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 
+import type { PartsType } from "./Character";
+
 interface PartProps {
-  type:
-    | "body"
-    | "eye"
-    | "eyeglasses"
-    | "eyebrow"
-    | "face"
-    | "hair"
-    | "beard"
-    | "mouth"
-    | "nose";
+  type: PartsType;
   id: number;
   className?: string;
   absolute?: boolean;

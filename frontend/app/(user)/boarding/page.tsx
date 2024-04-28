@@ -4,11 +4,15 @@ import CharacterEditor from "./components/CharacterEditor";
 
 import StoreProvider from "./StoreProvider";
 
+import { getCharacter } from "./actions";
+
 export const metadata: Metadata = {
   title: "Welcome – Vibe",
 };
 
-const Boarding = () => {
+const Boarding = async () => {
+  const characterData = await getCharacter();
+
   return (
     <>
       <section className="flex flex-col items-center gap-4">
@@ -19,7 +23,7 @@ const Boarding = () => {
         </h3>
       </section>
 
-      <StoreProvider>
+      <StoreProvider data={characterData?.data}>
         <CharacterEditor />
       </StoreProvider>
     </>
