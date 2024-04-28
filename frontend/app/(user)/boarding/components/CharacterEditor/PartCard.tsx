@@ -24,7 +24,7 @@ const PartCard = ({
           : "bg-slate-200 hover:bg-primary-main hover:before:opacity-100 hover:after:opacity-100 before:opacity-0 after:opacity-0 after:transition-opacity after:duration-200 before:transition-opacity before:duration-400"
       } ${
         premium
-          ? "bg-emerald-500 hover:bg-emerald-700 before:bg-emerald-200 after:bg-emerald-400 before:opacity-100 after:opacity-100"
+          ? "!bg-premium-500 hover:!bg-premium-700 before:!bg-premium-200 after:!bg-premium-400 before:opacity-100 after:opacity-100"
           : ""
       } ${className}`}
       onClick={() => onClick()}

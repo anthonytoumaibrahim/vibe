@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/app/lib/hooks";
 import PartCard from "./PartCard";
@@ -27,12 +27,8 @@ const Paginator = ({
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = parts.slice(itemOffset, endOffset);
 
-  const handlePageClick = (event) => {
+  const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % parts.length;
-
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
@@ -73,13 +69,16 @@ const Paginator = ({
       </div>
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel=""
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="< previous"
+        pageLabelBuilder={(page) => ""}
+        previousLabel=""
         renderOnZeroPageCount={null}
-        className="mt-auto flex items-center justify-center gap-2"
+        className="flex items-center justify-center gap-2"
+        pageLinkClassName="w-3 h-3 flex bg-slate-300 rounded-full cursor-pointer hover:bg-slate-400 unstyled-link"
+        activeLinkClassName="bg-slate-400"
       />
     </div>
   );

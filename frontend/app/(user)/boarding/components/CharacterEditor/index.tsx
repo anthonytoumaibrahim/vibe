@@ -2,7 +2,7 @@
 
 // Next & React stuff
 import { useAppSelector } from "@/app/lib/hooks";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Image from "next/image";
 
 // Headless UI
@@ -20,11 +20,40 @@ import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
 
+const tabs = [
+  {
+    name: "Body",
+    tab: BodyTab,
+  },
+  {
+    name: "Face",
+    tab: FaceTab,
+  },
+  {
+    name: "Hair",
+    tab: HairTab,
+  },
+  {
+    name: "Eyebrows",
+    tab: EyebrowTab,
+  },
+  {
+    name: "Eyes",
+    tab: EyeTab,
+  },
+  {
+    name: "Nose",
+    tab: NoseTab,
+  },
+  {
+    name: "Mouth",
+    tab: MouthTab,
+  },
+];
+
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
-
-  const tabClass = "p-6";
 
   return (
     <div className="w-full h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
@@ -43,7 +72,9 @@ const CharacterEditor = () => {
         min={0.85}
         max={2}
         value={zoom}
-        onChange={(e) => setZoom(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setZoom(parseInt(e.target.value))
+        }
       />
 
       <Character
@@ -53,45 +84,46 @@ const CharacterEditor = () => {
       />
 
       <div className="flex gap-10">
-        <Tab.Group>
-          <Tab.Panels className="bg-white dark:bg-slate-950 my-20 rounded-lg min-w-[640px] shadow-lg">
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Body</h1>
-              <BodyTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Face</h1>
-              <FaceTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Hair</h1>
-              <HairTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Eyebrows</h1>
-              <EyebrowTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Eyes</h1>
-              <EyeTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Nose</h1>
-              <NoseTab />
-            </Tab.Panel>
-            <Tab.Panel className={tabClass}>
-              <h1 className="text-center">Mouth</h1>
-              <MouthTab />
-            </Tab.Panel>
+        <Tab.Group vertical>
+          <Tab.Panels className="bg-white dark:bg-slate-950 rounded-lg min-w-[640px] my-20 shadow-lg p-6">
+            {tabs.map((tab, tabIndex) => {
+              const { name, tab: PartTab } = tab;
+              return (
+                <Tab.Panel key={tabIndex}>
+                  <h1 className="text-center">{name}</h1>
+                  <PartTab />
+                </Tab.Panel>
+              );
+            })}
           </Tab.Panels>
-          <Tab.List className="flex flex-col justify-center gap-6 bg-white dark:bg-slate-900 min-w-[280px]">
-            <Tab>Body</Tab>
-            <Tab>Face</Tab>
-            <Tab>Hair</Tab>
-            <Tab>Eyebrows</Tab>
-            <Tab>Eyes</Tab>
-            <Tab>Nose</Tab>
-            <Tab>Mouth</Tab>
+          <Tab.List className="flex flex-col p-10 gap-8 bg-black/50 backdrop-blur-md min-w-[280px]">
+            {tabs.map((tab, tabIndex) => {
+              const { name } = tab;
+              return (
+                <Tab key={tabIndex} as={Fragment}>
+                  {({ selected }) => (
+                    <button
+                      className={`${
+                        selected
+                          ? "opacity-100 text-primary-300"
+                          : "opacity-50 hover:opacity-100 text-white"
+                      } text-2xl font-bold flex gap-4 items-center outline-none transition-opacity duration-200`}
+                    >
+                      <svg
+                        width="40"
+                        height="44"
+                        viewBox="0 0 40 44"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M18.3828 0.333212C19.1625 -0.111075 20.1232 -0.111075 20.903 0.333237L38.0256 10.0896C38.8054 10.5339 39.2857 11.355 39.2857 12.2437V31.7565C39.2857 32.6449 38.8054 33.4659 38.0256 33.9104L20.903 43.6667C20.1232 44.1111 19.1625 44.1111 18.3828 43.6667L1.26009 33.9104C0.480347 33.4659 0 32.6449 0 31.7562V12.2435C0 11.355 0.480347 10.5339 1.26009 10.0896L18.3828 0.333212Z" />
+                      </svg>
+                      {name}
+                    </button>
+                  )}
+                </Tab>
+              );
+            })}
           </Tab.List>
         </Tab.Group>
       </div>
