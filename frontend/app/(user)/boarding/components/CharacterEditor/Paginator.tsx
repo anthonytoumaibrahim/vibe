@@ -8,9 +8,10 @@ import ReactPaginate from "react-paginate";
 interface PaginatorProps {
   parts: Array<{ id: number; premium?: boolean }>;
   type: string;
-  selector: number;
+  selector: { id: number; fill?: string };
   className?: string;
   colors?: Array<string>;
+  selectedColor?: string;
   optional?: boolean;
 }
 
@@ -45,9 +46,10 @@ const Paginator = ({
             <PartCard
               key={id}
               height={180}
-              selected={selector === id}
+              selected={selector?.id === id}
               premium={premium}
               colors={colors}
+              selectedColor={selector?.fill}
               onClick={(data?: { fill?: string }) =>
                 dispatch({
                   type: "characterEditorSlice/updateData",
@@ -56,7 +58,7 @@ const Paginator = ({
                     data: data?.fill
                       ? data
                       : {
-                          id: optional && selector === id ? 0 : id,
+                          id: optional && selector?.id === id ? 0 : id,
                         },
                   },
                 })

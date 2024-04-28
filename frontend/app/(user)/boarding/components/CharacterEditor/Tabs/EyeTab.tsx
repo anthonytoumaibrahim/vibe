@@ -8,7 +8,12 @@ import Paginator from "../Paginator";
 const EyeTab = () => {
   const eyeSelector = useAppSelector((state) => state.characterEditorSlice.eye);
   return (
-    <Paginator parts={C2DParts.eye} selector={eyeSelector.id} type="eye" />
+    <Paginator
+      parts={C2DParts.eye.parts}
+      selector={eyeSelector}
+      type="eye"
+      colors={C2DParts.eye.colors}
+    />
   );
 };
 

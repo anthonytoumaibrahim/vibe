@@ -11,9 +11,10 @@ const MouthTab = () => {
   );
   return (
     <Paginator
-      parts={C2DParts.mouth}
-      selector={mouthSelector.id}
+      parts={C2DParts.mouth.parts}
+      selector={mouthSelector}
       type="mouth"
+      colors={C2DParts.mouth.colors}
     />
   );
 };

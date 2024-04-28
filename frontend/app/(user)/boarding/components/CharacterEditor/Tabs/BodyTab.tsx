@@ -11,8 +11,9 @@ const BodyTab = () => {
   return (
     <Paginator
       parts={C2DParts.body.parts}
-      selector={bodySelector.id}
+      selector={bodySelector}
       type="body"
+      colors={C2DParts.body.colors}
     />
   );
 };

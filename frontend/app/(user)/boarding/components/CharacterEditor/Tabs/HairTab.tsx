@@ -37,7 +37,7 @@ const HairTab = () => {
           <Tab.Panel>
             <Paginator
               parts={C2DParts.hair.parts.female}
-              selector={hairSelector.id}
+              selector={hairSelector}
               type="hair"
               colors={C2DParts.hair.colors}
             />
@@ -45,7 +45,7 @@ const HairTab = () => {
           <Tab.Panel>
             <Paginator
               parts={C2DParts.hair.parts.male}
-              selector={hairSelector.id}
+              selector={hairSelector}
               type="hair"
               colors={C2DParts.hair.colors}
             />

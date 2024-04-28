@@ -11,9 +11,10 @@ const EyebrowTab = () => {
   );
   return (
     <Paginator
-      parts={C2DParts.eyebrow}
-      selector={eyebrowSelector.id}
+      parts={C2DParts.eyebrow.parts}
+      selector={eyebrowSelector}
       type="eyebrow"
+      colors={C2DParts.eyebrow.colors}
     />
   );
 };
