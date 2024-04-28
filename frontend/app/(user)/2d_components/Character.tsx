@@ -13,7 +13,7 @@ export type PartsType =
   | "mouth";
 
 interface CharacterProps {
-  data: Record<PartsType, { id: number; fill: string }>;
+  data: Record<PartsType, { id: number; fill: string }> | any;
   className?: string;
   scale?: number;
 }

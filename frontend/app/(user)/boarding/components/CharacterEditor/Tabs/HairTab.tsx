@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Tab } from "@headlessui/react";
 import { useAppSelector } from "@/app/lib/hooks";
 
@@ -6,6 +7,8 @@ import { C2DParts } from "@/app/(user)/2d/2d_parts";
 
 import Paginator from "../Paginator";
 
+const tabs = ["Feminine", "Masculine", "Facial"];
+
 const HairTab = () => {
   const hairSelector = useAppSelector(
     (state) => state.characterEditorSlice.hair
@@ -13,10 +16,22 @@ const HairTab = () => {
   return (
     <div>
       <Tab.Group>
-        <Tab.List className="w-full grid grid-cols-3">
-          <Tab className="py-4">Feminine</Tab>
-          <Tab className="py-4">Masculine</Tab>
-          <Tab className="py-4">Facial</Tab>
+        <Tab.List className="w-full grid grid-cols-3 relative">
+          {tabs.map((tab, tabIndex) => (
+            <Tab key={tabIndex} as={Fragment}>
+              {({ selected }) => (
+                <button
+                  className={`py-4 ${
+                    selected
+                      ? "border-b-4 border-primary-main font-bold text-primary-main"
+                      : ""
+                  }`}
+                >
+                  {tab}
+                </button>
+              )}
+            </Tab>
+          ))}
         </Tab.List>
         <Tab.Panels>
           <Tab.Panel>
