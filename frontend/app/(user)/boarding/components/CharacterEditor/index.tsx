@@ -1,8 +1,10 @@
 "use client";
 
+import { toPng } from "html-to-image";
+
 // Next & React stuff
 import { useAppSelector } from "@/app/lib/hooks";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import Image from "next/image";
 import { saveCharacter } from "../../actions";
 
@@ -62,9 +64,16 @@ const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
 
+  const characterRef = useRef<HTMLDivElement>(null);
+
   const save = async () => {
-    const response = await saveCharacter(characterData);
-    console.log(response);
+    // const response = await saveCharacter(characterData);
+    toPng(characterRef.current, {
+      cacheBust: true,
+      filter: (node: HTMLElement) => {
+        return !node.classList.contains("2d-body");
+      },
+    }).then((url) => console.log(url));
   };
 
   return (
@@ -93,6 +102,7 @@ const CharacterEditor = () => {
         data={characterData}
         className="mx-auto origin-top mt-10"
         scale={zoom}
+        ref={characterRef}
       />
 
       <div className="flex gap-10">

@@ -42,7 +42,9 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         </NavLink>
       </nav>
 
-      <Image src={user.avatar} width={44} height={44} alt="Profile" />
+      {user?.avatar && (
+        <Image src={user?.avatar} width={44} height={44} alt="Profile" />
+      )}
     </header>
   );
 };

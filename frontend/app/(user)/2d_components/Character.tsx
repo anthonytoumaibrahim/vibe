@@ -1,5 +1,7 @@
 "use client";
 
+import { forwardRef } from "react";
+
 import Part from "./Part";
 
 export type PartsType =
@@ -18,9 +20,9 @@ interface CharacterProps {
   scale?: number;
 }
 
-const Character = ({ data, scale = 1, className = "" }: CharacterProps) => {
-  return (
-    <div className={`relative z-0 ${className}`} style={{ scale }}>
+const Character = forwardRef(
+  ({ data, scale = 1, className = "" }: CharacterProps, ref) => (
+    <div className={`relative z-0 ${className}`} style={{ scale }} ref={ref}>
       <Part type="hair" center={true} id={data.hair.id} fill={data.hair.fill} />
       <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />
       <Part
@@ -45,9 +47,17 @@ const Character = ({ data, scale = 1, className = "" }: CharacterProps) => {
         id={data.mouth.id}
         fill={data.mouth.fill}
       />
-      <Part type="body" center={true} id={data.body.id} fill={data.body.fill} />
+      <Part
+        type="body"
+        center={true}
+        id={data.body.id}
+        fill={data.body.fill}
+        className="2d-body"
+      />
     </div>
-  );
-};
+  )
+);
+
+Character.displayName = "Character";
 
 export default Character;

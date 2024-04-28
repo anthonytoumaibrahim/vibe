@@ -15,7 +15,15 @@ const HairTab = () => {
   );
   return (
     <div>
-      <Tab.Group>
+      <Tab.Group
+        defaultIndex={
+          C2DParts.hair.parts.male.filter(
+            (hair) => hair.id === hairSelector?.id
+          ).length !== 0
+            ? 1
+            : 0
+        }
+      >
         <Tab.List className="w-full grid grid-cols-3 relative">
           {tabs.map((tab, tabIndex) => (
             <Tab key={tabIndex} as={Fragment}>
