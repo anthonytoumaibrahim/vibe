@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\User\CharacterController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,8 @@ Route::prefix('/auth')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user-info', [UserController::class, 'getUserInfo']);
+
+    Route::prefix('/user')->group(function () {
+        Route::post('/save-character', [CharacterController::class, 'save']);
+    });
 });

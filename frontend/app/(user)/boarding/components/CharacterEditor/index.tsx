@@ -4,12 +4,14 @@
 import { useAppSelector } from "@/app/lib/hooks";
 import { Fragment, useState } from "react";
 import Image from "next/image";
+import { saveCharacter } from "../../actions";
 
 // Headless UI
 import { Tab } from "@headlessui/react";
 
 // Components
 import Character from "@/app/(user)/2d_components/Character";
+import Button from "@/components/Button";
 
 // Tabs
 import BodyTab from "./Tabs/BodyTab";
@@ -59,6 +61,11 @@ const tabs = [
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
+
+  const save = async () => {
+    const response = await saveCharacter(characterData);
+    console.log(response);
+  };
 
   return (
     <div className="w-full h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
@@ -129,6 +136,9 @@ const CharacterEditor = () => {
                 </Tab>
               );
             })}
+            <Button className="mt-auto" onClick={() => save()}>
+              Save
+            </Button>
           </Tab.List>
         </Tab.Group>
       </div>
