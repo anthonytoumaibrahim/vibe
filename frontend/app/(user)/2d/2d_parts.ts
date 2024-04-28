@@ -43,7 +43,21 @@ export const C2DParts = {
     },
   ],
   hair: {
-    colors: ["#241c11", "#aa8866", "#401639", "#fe8db9", "#5dbcd2", "#c73030"],
+    colors: [
+      "#aa8866",
+      "#debe99",
+      "#241c11",
+      "#1c1712",
+      "#4f1a00",
+      "#9a3300",
+      "#c73030",
+      "#5dbcd2",
+      "#fe8db9",
+      "#dddddd",
+      "#4e0e7b",
+      "#b73170",
+      "#a1f263",
+    ],
     parts: {
       female: [
         {
@@ -91,7 +105,21 @@ export const C2DParts = {
     },
   },
   eyebrow: {
-    colors: ["#241c11", "#aa8866", "#401639", "#fe8db9", "#5dbcd2", "#c73030"],
+    colors: [
+      "#aa8866",
+      "#debe99",
+      "#241c11",
+      "#1c1712",
+      "#4f1a00",
+      "#9a3300",
+      "#c73030",
+      "#5dbcd2",
+      "#fe8db9",
+      "#dddddd",
+      "#4e0e7b",
+      "#b73170",
+      "#a1f263",
+    ],
     parts: [
       {
         id: 1,
