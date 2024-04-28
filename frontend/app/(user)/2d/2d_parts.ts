@@ -212,7 +212,24 @@ export const C2DParts = {
     },
   ],
   mouth: {
-    colors: ["#a31a57"],
+    colors: [
+      "#eec1ad",
+      "#dbac98",
+      "#d29985",
+      "#ff6563",
+      "#d93f57",
+      "#c98276",
+      "#e35d6a",
+      "#d76b78",
+      "#6b353c",
+      "#a31a57",
+      "#7f206b",
+      "#41ff69",
+      "#007a1a",
+      "#deb8ff",
+      "#8d66b6",
+      "#d41a1a",
+    ],
     parts: [
       {
         id: 1,

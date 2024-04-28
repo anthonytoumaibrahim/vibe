@@ -39,7 +39,9 @@ const Paginator = ({
 
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className={`grid grid-cols-3 gap-4 mt-4 ${className}`}>
+      <div
+        className={`grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4 ${className}`}
+      >
         {currentItems.map((part) => {
           const { id, premium } = part;
           return (

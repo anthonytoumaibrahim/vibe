@@ -57,7 +57,7 @@ const PartCard = ({
             </Menu.Button>
           )}
 
-          <Menu.Items className="absolute left-0 top-full z-10 bg-white shadow-lg shadow-black/20 p-1 rounded w-full flex items-center justify-center flex-wrap gap-1 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white before:border-r-[8px] before:border-r-transparent">
+          <Menu.Items className="absolute left-0 top-full z-20 bg-white shadow-lg shadow-black/20 p-1 rounded w-full flex items-center justify-center flex-wrap gap-1 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white before:border-r-[8px] before:border-r-transparent">
             {colors?.map((color, colorIndex) => (
               <Menu.Item
                 as="button"
