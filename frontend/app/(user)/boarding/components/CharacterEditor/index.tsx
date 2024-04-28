@@ -19,6 +19,7 @@ import EyeTab from "./Tabs/EyeTab";
 import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
+import EyeglassesTab from "./Tabs/EyeglassesTab";
 
 const tabs = [
   {
@@ -48,6 +49,10 @@ const tabs = [
   {
     name: "Mouth",
     tab: MouthTab,
+  },
+  {
+    name: "Accessories",
+    tab: EyeglassesTab,
   },
 ];
 

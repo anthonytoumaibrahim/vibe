@@ -16,13 +16,14 @@ export default function StoreProvider({
     storeRef.current = makeStore();
     storeRef.current.dispatch(
       initializeData({
-        body: { id: 2, fill: "#df9777" },
+        body: { id: 3, fill: "#df9777" },
         face: { id: 1 },
-        hair: { id: 9, fill: "#c73030" },
+        hair: { id: 3, fill: "#c73030" },
         eye: { id: 5, fill: "#72A0C1" },
-        eyebrow: { id: 6, fill: "#c73030" },
-        nose: { id: 5 },
-        mouth: { id: 10, fill: "#ed7172" },
+        eyebrow: { id: 5, fill: "#c73030" },
+        nose: { id: 4 },
+        mouth: { id: 6, fill: "#ed7172" },
+        eyeglasses: { id: 1 },
       })
     );
     // if (typeof window !== "undefined") {

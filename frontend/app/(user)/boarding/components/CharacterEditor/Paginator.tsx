@@ -11,6 +11,7 @@ interface PaginatorProps {
   selector: number;
   className?: string;
   colors?: Array<string>;
+  optional?: boolean;
 }
 
 const itemsPerPage = 9;
@@ -21,6 +22,7 @@ const Paginator = ({
   selector,
   className = "",
   colors = [],
+  optional = false,
 }: PaginatorProps) => {
   const dispatch = useAppDispatch();
 
@@ -54,7 +56,7 @@ const Paginator = ({
                     data: data?.fill
                       ? data
                       : {
-                          id: id,
+                          id: optional && selector === id ? 0 : id,
                         },
                   },
                 })

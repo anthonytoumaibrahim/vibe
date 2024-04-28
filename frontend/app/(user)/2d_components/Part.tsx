@@ -7,6 +7,7 @@ interface PartProps {
   type:
     | "body"
     | "eye"
+    | "eyeglasses"
     | "eyebrow"
     | "face"
     | "hair"
@@ -21,7 +22,7 @@ interface PartProps {
 }
 
 const Part = ({
-  id,
+  id = 0,
   className = "",
   fill,
   type,
@@ -31,7 +32,8 @@ const Part = ({
   const [json, setJson] = useState<Record<string, any>>({});
 
   const SvgComponent = useMemo(
-    () => dynamic(() => import(`../2d/${type}/${type + id}.svg`)),
+    () =>
+      id !== 0 ? dynamic(() => import(`../2d/${type}/${type + id}.svg`)) : null,
     [type, id]
   );
 
@@ -43,7 +45,9 @@ const Part = ({
   };
 
   useEffect(() => {
-    loadJson();
+    if (id !== 0) {
+      loadJson();
+    }
   }, [id]);
 
   const subparts = useMemo(
@@ -67,18 +71,20 @@ const Part = ({
   );
 
   return (
-    <>
-      <SvgComponent
-        width={width}
-        height={height}
-        style={jsonData}
-        fill={fill}
-        className={`${absolute || center ? "absolute" : ""} ${
-          center ? "left-1/2 -translate-x-1/2" : ""
-        } ${className}`}
-      />
-      {subparts}
-    </>
+    id !== 0 && (
+      <>
+        <SvgComponent
+          width={width}
+          height={height}
+          style={jsonData}
+          fill={fill}
+          className={`${absolute || center ? "absolute" : ""} ${
+            center ? "left-1/2 -translate-x-1/2" : ""
+          } ${className}`}
+        />
+        {subparts}
+      </>
+    )
   );
 };
 

@@ -27,7 +27,7 @@ export const C2DParts = {
     },
   ],
   hair: {
-    colors: ["#241c11", "#aa8866", "#4d3047", "#fe8db9", "#5dbcd2"],
+    colors: ["#241c11", "#aa8866", "#401639", "#fe8db9", "#5dbcd2", "#c73030"],
     parts: {
       female: [
         {
@@ -121,6 +121,14 @@ export const C2DParts = {
       tags: "",
     },
   ],
+  eyeglasses: {
+    colors: [],
+    parts: [
+      {
+        id: 1,
+      },
+    ],
+  },
   nose: [
     {
       id: 1,
