@@ -68,4 +68,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function get2DCharacter($asArray = true)
+    {
+        $data = $this->character_data;
+        return $asArray ? json_decode($data, true) : $data;
+    }
 }

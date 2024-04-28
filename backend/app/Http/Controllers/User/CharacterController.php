@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
+    public function get()
+    {
+        $user = User::find(Auth::id());
+        return response()->json([
+            'data' => $user->get2DCharacter()
+        ]);
+    }
+
     public function save(Request $request)
     {
         $user = User::find(Auth::id());

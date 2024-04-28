@@ -22,5 +22,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('/user')->group(function () {
         Route::post('/save-character', [CharacterController::class, 'save']);
+        Route::get('/get-character', [CharacterController::class, 'get']);
     });
 });
