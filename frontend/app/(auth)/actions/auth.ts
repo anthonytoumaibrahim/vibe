@@ -21,31 +21,31 @@ export async function checkUsername(username: string) {
 }
 
 export async function auth({ data = {}, token, type }: AuthParams) {
-  if (token) {
-    const response = await sendRequest({
+  let shouldRedirect = false;
+  let reqResponse: any;
+  try {
+    const body = token ? { access_token: token } : data;
+    const response: any = await sendRequest({
       method: "POST",
-      url: `/auth/oauth`,
-      body: {
-        access_token: token,
-      },
+      url: `/auth/${token ? "oauth" : type}`,
+      body,
     });
     if (response?.success) {
       const { token, type } = response?.authorization;
       cookies().set("token", token, { httpOnly: true });
-      redirect("/home");
+      shouldRedirect = true;
     }
-    return response;
+    reqResponse = response;
+  } catch (error) {
+    return {
+      success: false,
+      message: "Sorry, something went wrong.",
+    };
   }
 
-  const response = await sendRequest({
-    method: "POST",
-    url: `/auth/${type}`,
-    body: data,
-  });
-  if (response?.success) {
-    const { token, type } = response?.authorization;
-    cookies().set("token", token, { httpOnly: true });
+  if (redirect) {
     redirect("/home");
   }
-  return response;
+
+  return reqResponse;
 }

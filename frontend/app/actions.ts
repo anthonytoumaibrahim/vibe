@@ -18,7 +18,7 @@ export async function sendRequest({
   url,
   body,
 }: RequestParams) {
-  let output: any = {};
+  let output: object | string;
   let unauthorized: boolean = false;
 
   try {
@@ -33,19 +33,12 @@ export async function sendRequest({
 
     output = response.data;
   } catch (error: any) {
-    output = {
-      success: false,
-      message: "Sorry, something went wrong.",
-    };
     if (axios.isAxiosError(error)) {
-      output = {
-        success: false,
-        ...error?.response?.data,
-      };
       if (error.response?.status === 401) {
         unauthorized = true;
       }
     }
+    throw error;
   }
 
   // Redirect if unauthorized
