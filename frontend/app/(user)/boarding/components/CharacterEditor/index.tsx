@@ -96,7 +96,7 @@ const CharacterEditor = () => {
               );
             })}
           </Tab.Panels>
-          <Tab.List className="flex flex-col p-10 gap-8 bg-black/50 backdrop-blur-md min-w-[280px]">
+          <Tab.List className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 backdrop-blur-md min-w-[280px]">
             {tabs.map((tab, tabIndex) => {
               const { name } = tab;
               return (
@@ -105,9 +105,9 @@ const CharacterEditor = () => {
                     <button
                       className={`${
                         selected
-                          ? "opacity-100 text-primary-300"
-                          : "opacity-50 hover:opacity-100 text-white"
-                      } text-2xl font-bold flex gap-4 items-center outline-none transition-opacity duration-200`}
+                          ? "text-primary-main scale-110"
+                          : "text-black/40 hover:text-black"
+                      } text-2xl font-bold flex gap-4 items-center outline-none transition-colors duration-200`}
                     >
                       <svg
                         width="40"
