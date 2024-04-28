@@ -21,16 +21,18 @@ const HairTab = () => {
         <Tab.Panels>
           <Tab.Panel>
             <Paginator
-              parts={C2DParts.hair.female}
+              parts={C2DParts.hair.parts.female}
               selector={hairSelector.id}
               type="hair"
+              colors={C2DParts.hair.colors}
             />
           </Tab.Panel>
           <Tab.Panel>
             <Paginator
-              parts={C2DParts.hair.male}
+              parts={C2DParts.hair.parts.male}
               selector={hairSelector.id}
               type="hair"
+              colors={C2DParts.hair.colors}
             />
           </Tab.Panel>
           <Tab.Panel>Content 3</Tab.Panel>

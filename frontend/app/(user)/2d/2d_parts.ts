@@ -1,18 +1,21 @@
 export const C2DParts = {
-  body: [
-    {
-      id: 1,
-      tags: "female body",
-    },
-    {
-      id: 2,
-      tags: "male body",
-    },
-    {
-      id: 3,
-      tags: "body",
-    },
-  ],
+  body: {
+    colors: [],
+    parts: [
+      {
+        id: 1,
+        tags: "female body",
+      },
+      {
+        id: 2,
+        tags: "male body",
+      },
+      {
+        id: 3,
+        tags: "body",
+      },
+    ],
+  },
   face: [
     {
       id: 1,
@@ -24,49 +27,52 @@ export const C2DParts = {
     },
   ],
   hair: {
-    female: [
-      {
-        id: 1,
-        tags: "short, straight",
-      },
-      {
-        id: 2,
-        tags: "short, messy, wavy",
-      },
-      {
-        id: 3,
-        tags: "long, behind ears, behind abdomen",
-      },
-      {
-        id: 6,
-        tags: "bun",
-        premium: true,
-      },
-      {
-        id: 7,
-        tags: "bangs, medium length",
-        premium: true,
-      },
-      {
-        id: 8,
-        tags: "wavy, medium length",
-        premium: true,
-      },
-    ],
-    male: [
-      {
-        id: 4,
-        tags: "short, neat cut",
-      },
-      {
-        id: 5,
-        tags: "undercut, buzz cut",
-      },
-      {
-        id: 9,
-        tags: "normal",
-      },
-    ],
+    colors: ["#241c11", "#aa8866", "#4d3047", "#fe8db9", "#5dbcd2"],
+    parts: {
+      female: [
+        {
+          id: 1,
+          tags: "short, straight",
+        },
+        {
+          id: 2,
+          tags: "short, messy, wavy",
+        },
+        {
+          id: 3,
+          tags: "long, behind ears, behind abdomen",
+        },
+        {
+          id: 6,
+          tags: "bun",
+          premium: true,
+        },
+        {
+          id: 7,
+          tags: "bangs, medium length",
+          premium: true,
+        },
+        {
+          id: 8,
+          tags: "wavy, medium length",
+          premium: true,
+        },
+      ],
+      male: [
+        {
+          id: 4,
+          tags: "short, neat cut",
+        },
+        {
+          id: 5,
+          tags: "undercut, buzz cut",
+        },
+        {
+          id: 9,
+          tags: "normal",
+        },
+      ],
+    },
   },
   eyebrow: [
     {

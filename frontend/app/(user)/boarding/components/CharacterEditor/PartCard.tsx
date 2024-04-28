@@ -1,3 +1,5 @@
+import { Popover } from "@headlessui/react";
+
 interface PartCardProps {
   className?: string;
   onClick?: () => void;
@@ -5,6 +7,7 @@ interface PartCardProps {
   height?: number;
   selected?: boolean;
   premium?: boolean;
+  colors?: Array<string>;
 }
 
 const PartCard = ({
@@ -14,6 +17,7 @@ const PartCard = ({
   onClick = () => {},
   selected = false,
   premium = false,
+  colors = [],
 }: PartCardProps) => {
   return (
     <div
@@ -31,6 +35,16 @@ const PartCard = ({
     >
       <div className="group-hover:scale-105 transition-transform duration-150 w-full h-full origin-bottom flex items-center justify-center relative">
         {children}
+      </div>
+      <div className="absolute bottom-0">
+        {colors.map((color, colorIndex) => (
+          <button
+            key={colorIndex}
+            className="w-8 h-8 rounded-full"
+            style={{ backgroundColor: color }}
+            onClick={() => onClick({ fill: color })}
+          ></button>
+        ))}
       </div>
     </div>
   );

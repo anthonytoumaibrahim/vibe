@@ -10,6 +10,7 @@ interface PaginatorProps {
   type: string;
   selector: number;
   className?: string;
+  colors?: Array<string>;
 }
 
 const itemsPerPage = 9;
@@ -19,6 +20,7 @@ const Paginator = ({
   type,
   selector,
   className = "",
+  colors = [],
 }: PaginatorProps) => {
   const dispatch = useAppDispatch();
 
@@ -43,14 +45,17 @@ const Paginator = ({
               height={180}
               selected={selector === id}
               premium={premium}
-              onClick={() =>
+              colors={colors}
+              onClick={(data?: { fill?: string }) =>
                 dispatch({
                   type: "characterEditorSlice/updateData",
                   payload: {
                     type: type,
-                    data: {
-                      id: id,
-                    },
+                    data: data?.fill
+                      ? data
+                      : {
+                          id: id,
+                        },
                   },
                 })
               }

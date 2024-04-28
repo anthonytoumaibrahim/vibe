@@ -66,7 +66,7 @@ const CharacterEditor = () => {
         fill
       />
 
-      <input
+      {/* <input
         type="range"
         step={0.01}
         min={0.85}
@@ -75,7 +75,7 @@ const CharacterEditor = () => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setZoom(parseInt(e.target.value))
         }
-      />
+      /> */}
 
       <Character
         data={characterData}

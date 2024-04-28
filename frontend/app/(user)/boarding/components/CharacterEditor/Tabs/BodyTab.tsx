@@ -9,7 +9,11 @@ const BodyTab = () => {
     (state) => state.characterEditorSlice.body
   );
   return (
-    <Paginator parts={C2DParts.body} selector={bodySelector.id} type="body" />
+    <Paginator
+      parts={C2DParts.body.parts}
+      selector={bodySelector.id}
+      type="body"
+    />
   );
 };
 
