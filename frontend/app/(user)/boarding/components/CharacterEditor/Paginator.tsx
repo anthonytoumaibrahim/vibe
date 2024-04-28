@@ -21,7 +21,7 @@ const Paginator = ({
   type,
   selector,
   className = "",
-  colors = [],
+  colors,
   optional = false,
 }: PaginatorProps) => {
   const dispatch = useAppDispatch();
@@ -67,7 +67,6 @@ const Paginator = ({
                 fill
                 sizes="100%"
                 className="object-contain"
-                quality={100}
                 alt=""
               />
             </PartCard>
