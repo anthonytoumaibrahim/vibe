@@ -18,9 +18,9 @@ Route::prefix('/auth')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/user-info', [UserController::class, 'getUserInfo']);
-
     Route::prefix('/user')->group(function () {
+        Route::get('/info', [UserController::class, 'getInfo']);
+        Route::get('/profile/{id?}', [UserController::class, 'getProfile']);
         Route::post('/save-character', [CharacterController::class, 'save']);
         Route::get('/get-character', [CharacterController::class, 'get']);
     });

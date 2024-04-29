@@ -14,7 +14,7 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
         return response()->json([
-            'data' => $user->get2DCharacter()
+            'data' => $user->character_data
         ]);
     }
 

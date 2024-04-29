@@ -34,6 +34,8 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
+        'character_data',
+        'oauth_id'
     ];
 
     /**
@@ -46,6 +48,7 @@ class User extends Authenticatable implements JWTSubject
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'character_data' => 'array'
         ];
     }
 
@@ -67,12 +70,6 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function get2DCharacter($asArray = true)
-    {
-        $data = $this->character_data;
-        return $asArray ? json_decode($data, true) : $data;
     }
 
     public function friends()
