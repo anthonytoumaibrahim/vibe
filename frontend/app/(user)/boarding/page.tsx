@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const Boarding = async () => {
-  const characterData = await getCharacter();
+  const characterData: any = await getCharacter();
 
   return (
     <>

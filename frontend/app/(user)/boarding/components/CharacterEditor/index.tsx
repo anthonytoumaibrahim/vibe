@@ -110,7 +110,7 @@ const CharacterEditor = () => {
 
       <div className="flex gap-10">
         <Tab.Group vertical>
-          <Tab.Panels className="bg-white dark:bg-slate-950 rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
+          <Tab.Panels className="bg-white dark:bg-slate-950 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
             {tabs.map((tab, tabIndex) => {
               const { name, tab: PartTab } = tab;
               return (

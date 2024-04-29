@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { sendRequest } from "@/app/actions";
 import axios from "axios";
+import { getCharacter } from "../boarding/actions";
+import Character from "../2d_components/Character";
 
 export const metadata: Metadata = {
   title: "Profile – Vibe",
 };
 
 const Profile = async () => {
-  const users = await axios.get("https://jsonplaceholder.typicode.com/users");
-  const response = await users.data;
+  const characterData: any = await getCharacter();
 
-  return <div>{response.map((u) => u.name)}</div>;
+  return <Character data={characterData?.data} scale={0.5} />;
 };
 
 export default Profile;

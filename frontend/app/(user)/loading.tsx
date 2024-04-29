@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
 
-const BoardingLoading = () => {
+const UserLoading = () => {
   return (
     <div className="flex flex-col items-center gap-4 text-center">
       <Logo width={256} />
@@ -9,4 +9,4 @@ const BoardingLoading = () => {
   );
 };
 
-export default BoardingLoading;
+export default UserLoading;

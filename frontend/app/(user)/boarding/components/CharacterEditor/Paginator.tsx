@@ -5,6 +5,9 @@ import { useAppDispatch } from "@/app/lib/hooks";
 import PartCard from "./PartCard";
 import ReactPaginate from "react-paginate";
 
+// Icons
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+
 interface PaginatorProps {
   parts: Array<{ id: number; premium?: boolean }>;
   type: string;
@@ -79,12 +82,15 @@ const Paginator = ({
       </div>
       <ReactPaginate
         breakLabel="..."
+        // nextLabel={<FaChevronRight size={32} />}
+        // nextLinkClassName="unstyled-link absolute top-6 right-6"
+        // previousLabel={<FaChevronLeft size={32} />}
         nextLabel=""
+        previousLabel=""
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
         pageLabelBuilder={(page) => ""}
-        previousLabel=""
         renderOnZeroPageCount={null}
         className="flex items-center justify-center gap-2"
         pageLinkClassName="w-3 h-3 flex bg-slate-300 rounded-full cursor-pointer hover:bg-slate-400 unstyled-link"
