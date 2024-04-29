@@ -71,10 +71,13 @@ const CharacterEditor = () => {
     setIsLoading(true);
 
     await toPng(characterRef.current, {
-      height: 480,
-      filter: (node: HTMLElement) => {
-        return !node.classList.contains("2d-body");
-      },
+      // filter: (node: HTMLElement) => {
+      //   return !node.classList.contains("2d-body");
+      // },
+      width: 380 * zoom,
+      height: 1100 * zoom,
+      canvasWidth: 380 * zoom,
+      canvasHeight: 1100 * zoom,
     })
       .then(async (url) => {
         const response = await saveCharacter({
@@ -109,13 +112,8 @@ const CharacterEditor = () => {
         }
       /> */}
 
-      <div className="w-full h-full flex items-center justify-center pt-10">
-        <Character
-          data={characterData}
-          scale={zoom}
-          ref={characterRef}
-          className="m-auto"
-        />
+      <div className="w-full h-full flex items-center justify-center pt-40">
+        <Character data={characterData} scale={zoom} ref={characterRef} />
       </div>
 
       <div className="flex gap-10">

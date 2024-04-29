@@ -17,7 +17,7 @@ interface UserHeaderProps {
 const UserHeader = async ({ className = "" }: UserHeaderProps) => {
   const user: any = await sendRequest({
     method: "GET",
-    url: "/user-info",
+    url: "/user/info",
   });
 
   return (
@@ -55,7 +55,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
             width={44}
             height={44}
             alt="Profile"
-            className="rounded-full"
+            className="rounded-full object-cover"
           />
         )}
       </div>
