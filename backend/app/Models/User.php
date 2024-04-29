@@ -74,4 +74,9 @@ class User extends Authenticatable implements JWTSubject
         $data = $this->character_data;
         return $asArray ? json_decode($data, true) : $data;
     }
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user1_id', 'user2_id');
+    }
 }
