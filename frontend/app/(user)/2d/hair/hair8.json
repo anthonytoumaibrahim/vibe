@@ -1,7 +1,7 @@
 {
   "width": 230,
   "top": -13,
-  "left": -3,
+  "marginLeft": -3,
   "zIndex": 10,
   "parts": [
     {

@@ -25,7 +25,11 @@ const Character = forwardRef(
     { data, scale = 1, className = "" }: CharacterProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => (
-    <div className={`relative z-0 ${className}`} style={{ scale }} ref={ref}>
+    <div
+      className={`relative z-0 ${className} w-[380px] h-[1100px]`}
+      style={{ scale }}
+      ref={ref}
+    >
       <Part type="hair" center={true} id={data.hair.id} fill={data.hair.fill} />
       <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />
       <Part

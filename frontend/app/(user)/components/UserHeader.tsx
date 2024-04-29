@@ -5,23 +5,24 @@ import { sendRequest } from "@/app/actions";
 // Components
 import Logo from "@/components/Logo";
 import NavLink from "@/components/NavLink";
-import { cookies } from "next/headers";
 import Image from "next/image";
-import axios from "axios";
+
+// Images
+import { FaBell, FaMessage } from "react-icons/fa6";
 
 interface UserHeaderProps {
   className?: string;
 }
 
 const UserHeader = async ({ className = "" }: UserHeaderProps) => {
-  const user = await sendRequest({
+  const user: any = await sendRequest({
     method: "GET",
     url: "/user-info",
   });
 
   return (
     <header
-      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 h-16 w-full flex items-center justify-between mb-4`}
+      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 h-16 w-full flex items-center justify-around mb-4`}
     >
       <Link href="/" className="unstyled-link">
         <Logo width={88} className="dark:fill-white" />
@@ -45,9 +46,19 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         </NavLink>
       </nav>
 
-      {user?.avatar && (
-        <Image src={user?.avatar} width={44} height={44} alt="Profile" />
-      )}
+      <div className="flex items-center gap-6">
+        <FaBell size={24} />
+        <FaMessage size={24} />
+        {user?.avatar && (
+          <Image
+            src={user?.avatar}
+            width={44}
+            height={44}
+            alt="Profile"
+            className="rounded-full"
+          />
+        )}
+      </div>
     </header>
   );
 };

@@ -68,15 +68,18 @@ const CharacterEditor = () => {
   const characterRef = useRef<any>(null);
 
   const save = async () => {
-    setIsLoading(true);
-    const response = await saveCharacter(characterData);
-    setIsLoading(false);
-    // toPng(characterRef.current, {
-    //   cacheBust: true,
-    //   filter: (node: HTMLElement) => {
-    //     return !node.classList.contains("2d-body");
-    //   },
-    // }).then((url) => console.log(url));
+    // setIsLoading(true);
+    // const response = await saveCharacter(characterData);
+    // setIsLoading(false);
+    toPng(characterRef.current, {
+      height: 480,
+      filter: (node: HTMLElement) => {
+        return !node.classList.contains("2d-body");
+      },
+    }).then((url) => {
+      const win: any = window.open("", "_blank");
+      win.document.body.innerHTML = `<img src="${url}" />`;
+    });
   };
 
   return (
@@ -101,12 +104,9 @@ const CharacterEditor = () => {
         }
       /> */}
 
-      <Character
-        data={characterData}
-        className="mx-auto origin-top mt-10"
-        scale={zoom}
-        ref={characterRef}
-      />
+      <div className="w-full h-full flex items-center justify-center">
+        <Character data={characterData} scale={zoom} ref={characterRef} />
+      </div>
 
       <div className="flex gap-10">
         <Tab.Group vertical>
