@@ -26,7 +26,7 @@ const Character = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ) => (
     <div
-      className={`relative z-0 ${className} w-[380px] h-[1100px]`}
+      className={`relative z-0 ${className} w-[380px] h-[1100px] origin-top`}
       style={{ scale }}
       ref={ref}
     >

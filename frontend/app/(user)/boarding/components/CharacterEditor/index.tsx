@@ -68,18 +68,23 @@ const CharacterEditor = () => {
   const characterRef = useRef<any>(null);
 
   const save = async () => {
-    // setIsLoading(true);
-    // const response = await saveCharacter(characterData);
-    // setIsLoading(false);
-    toPng(characterRef.current, {
+    setIsLoading(true);
+
+    await toPng(characterRef.current, {
       height: 480,
       filter: (node: HTMLElement) => {
         return !node.classList.contains("2d-body");
       },
-    }).then((url) => {
-      const win: any = window.open("", "_blank");
-      win.document.body.innerHTML = `<img src="${url}" />`;
-    });
+    })
+      .then(async (url) => {
+        const response = await saveCharacter({
+          data: characterData,
+          avatar: url,
+        });
+      })
+      .catch((error) => alert(error));
+
+    setIsLoading(false);
   };
 
   return (
@@ -104,8 +109,13 @@ const CharacterEditor = () => {
         }
       /> */}
 
-      <div className="w-full h-full flex items-center justify-center">
-        <Character data={characterData} scale={zoom} ref={characterRef} />
+      <div className="w-full h-full flex items-center justify-center pt-10">
+        <Character
+          data={characterData}
+          scale={zoom}
+          ref={characterRef}
+          className="m-auto"
+        />
       </div>
 
       <div className="flex gap-10">
