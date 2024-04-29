@@ -34,7 +34,10 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <NavLink href="/profile" className="!text-black dark:!text-white">
           My Profile
         </NavLink>
-        <NavLink href="/" className="!text-black dark:!text-white">
+        <NavLink href="/boarding" className="!text-black dark:!text-white">
+          Editor
+        </NavLink>
+        <NavLink href="/chatrooms" className="!text-black dark:!text-white">
           Chat Rooms
         </NavLink>
         <NavLink href="/" className="!text-black dark:!text-white">

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 
 import Part from "./Part";
 
@@ -21,7 +21,10 @@ interface CharacterProps {
 }
 
 const Character = forwardRef(
-  ({ data, scale = 1, className = "" }: CharacterProps, ref) => (
+  (
+    { data, scale = 1, className = "" }: CharacterProps,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => (
     <div className={`relative z-0 ${className}`} style={{ scale }} ref={ref}>
       <Part type="hair" center={true} id={data.hair.id} fill={data.hair.fill} />
       <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />

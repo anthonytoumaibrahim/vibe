@@ -11,6 +11,7 @@ interface ButtonProps {
   href?: string;
   className?: string;
   onClick?: () => void;
+  loading?: boolean;
   readonly children?: any;
 }
 
@@ -46,6 +47,7 @@ const Button = ({
   variant = "filled",
   color = "primary",
   disabled = false,
+  loading = false,
   className = "",
   href = undefined,
   onClick,
@@ -61,7 +63,7 @@ const Button = ({
   ) : (
     <button
       className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
-      disabled={disabled}
+      disabled={loading ? true : disabled}
       onClick={onClick}
     >
       {children}

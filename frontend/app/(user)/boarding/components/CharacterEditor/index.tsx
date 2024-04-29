@@ -63,17 +63,20 @@ const tabs = [
 const CharacterEditor = () => {
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const characterRef = useRef<HTMLDivElement>(null);
+  const characterRef = useRef<any>(null);
 
   const save = async () => {
-    // const response = await saveCharacter(characterData);
-    toPng(characterRef.current, {
-      cacheBust: true,
-      filter: (node: HTMLElement) => {
-        return !node.classList.contains("2d-body");
-      },
-    }).then((url) => console.log(url));
+    setIsLoading(true);
+    const response = await saveCharacter(characterData);
+    setIsLoading(false);
+    // toPng(characterRef.current, {
+    //   cacheBust: true,
+    //   filter: (node: HTMLElement) => {
+    //     return !node.classList.contains("2d-body");
+    //   },
+    // }).then((url) => console.log(url));
   };
 
   return (
@@ -147,7 +150,11 @@ const CharacterEditor = () => {
                 </Tab>
               );
             })}
-            <Button className="mt-auto" onClick={() => save()}>
+            <Button
+              className="mt-auto"
+              onClick={() => save()}
+              loading={isLoading}
+            >
               Save
             </Button>
           </Tab.List>

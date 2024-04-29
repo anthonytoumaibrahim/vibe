@@ -6,6 +6,7 @@ export const C2DParts = {
       "#ffceb4",
       "#ffc3aa",
       "#f0b8a0",
+      "#df9777",
       "#ffdbac",
       "#d4aa78",
       "#e0ac69",
