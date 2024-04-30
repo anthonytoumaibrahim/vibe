@@ -4,7 +4,7 @@ import { toPng } from "html-to-image";
 
 // Next & React stuff
 import { useAppSelector } from "@/app/lib/hooks";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { saveCharacter } from "../../actions";
 
@@ -24,6 +24,7 @@ import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
 import EyeglassesTab from "./Tabs/EyeglassesTab";
+import Zoom from "./Zoom";
 
 const tabs = [
   {
@@ -90,6 +91,23 @@ const CharacterEditor = () => {
     setIsLoading(false);
   };
 
+  const handleZoom = (type: string) => {
+    setZoom((prev) => {
+      let val = type === "+" ? prev + 0.15 : prev - 0.15;
+      localStorage.setItem("editor_zoom", val.toString());
+      return val;
+    });
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const lsZoom = localStorage.getItem("editor_zoom");
+      if (lsZoom) {
+        setZoom(parseFloat(lsZoom));
+      }
+    }
+  }, []);
+
   return (
     <div className="w-full h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
       <Image
@@ -111,6 +129,8 @@ const CharacterEditor = () => {
           setZoom(parseInt(e.target.value))
         }
       /> */}
+
+      <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
 
       <div className="w-full h-full flex items-center justify-center pt-40">
         <Character data={characterData} scale={zoom} ref={characterRef} />
