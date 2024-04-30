@@ -1,8 +1,5 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { getProfile } from "./actions";
-import { getCharacter } from "../../boarding/actions";
-import Character from "../../2d_components/Character";
 import AboutMe from "./components/AboutMe";
 import Showcase from "./components/Showcase";
 
@@ -20,8 +17,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
 
       <section className="flex gap-6">
         <div className="p-6 rounded-lg bg-slate-50 w-full">
-          <h4 className="text-center">About Me</h4>
-          <AboutMe bio={profileData?.bio} />
+          <AboutMe bio={profileData?.bio} isOwner={isOwner} />
         </div>
         <div className="w-1/4">{params?.username}</div>
       </section>
