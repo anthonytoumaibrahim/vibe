@@ -217,6 +217,7 @@ export const C2DParts = {
       "#eec1ad",
       "#dbac98",
       "#d29985",
+      "#ed7172",
       "#ff6563",
       "#d93f57",
       "#c98276",
@@ -230,6 +231,7 @@ export const C2DParts = {
       "#deb8ff",
       "#8d66b6",
       "#d41a1a",
+      "#22201e",
     ],
     parts: [
       {

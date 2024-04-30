@@ -10,7 +10,7 @@ const FaceTab = () => {
     (state) => state.characterEditorSlice.face
   );
   return (
-    <Paginator parts={C2DParts.face} selector={faceSelector.id} type="face" />
+    <Paginator parts={C2DParts.face} selector={faceSelector} type="face" />
   );
 };
 

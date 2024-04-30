@@ -10,7 +10,7 @@ const NoseTab = () => {
     (state) => state.characterEditorSlice.nose
   );
   return (
-    <Paginator parts={C2DParts.nose} selector={noseSelector.id} type="nose" />
+    <Paginator parts={C2DParts.nose} selector={noseSelector} type="nose" />
   );
 };
 

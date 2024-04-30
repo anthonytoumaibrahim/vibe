@@ -49,6 +49,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
       <div className="flex items-center gap-6">
         <FaBell size={24} />
         <FaMessage size={24} />
+        {user?.balance}
         {user?.avatar && (
           <Image
             src={user?.avatar}
