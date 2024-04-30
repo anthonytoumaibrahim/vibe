@@ -42,6 +42,10 @@ export const C2DParts = {
       id: 2,
       tags: "square, masculine",
     },
+    {
+      id: 3,
+      tags: "square, masculine",
+    },
   ],
   hair: {
     colors: [
