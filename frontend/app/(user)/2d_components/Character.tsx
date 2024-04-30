@@ -53,14 +53,17 @@ const Character = forwardRef(
         center={true}
         id={data?.eye?.id ?? 5}
         fill={data?.eye?.fill ?? "#72A0C1"}
+        color={data?.body?.fill ?? "#df9777"}
       />
-      {/* {data.eyeglasses?.id && (
+      {/* {data?.eyeglasses?.id ? (
         <Part
           type="eyeglasses"
           id={data.eyeglasses?.id}
           fill={data.eyeglasses?.fill}
           center={true}
         />
+      ) : (
+        ""
       )} */}
       <Part
         type="nose"

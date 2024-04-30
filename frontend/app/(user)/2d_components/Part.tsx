@@ -12,12 +12,14 @@ interface PartProps {
   absolute?: boolean;
   center?: boolean;
   fill?: string | undefined;
+  color?: string | undefined;
 }
 
 const Part = ({
   id = 0,
   className = "",
   fill,
+  color,
   type,
   absolute = false,
   center = false,
@@ -54,7 +56,7 @@ const Part = ({
           <SubSvgComponent
             key={index}
             width={width}
-            style={{ ...jsonData, color: fill }}
+            style={{ ...jsonData, color: color ? color : fill }}
             fill={fill}
             className={`${center ? "left-1/2 -translate-x-1/2" : ""}`}
           />
@@ -69,7 +71,7 @@ const Part = ({
         <SvgComponent
           width={width}
           height={height}
-          style={{ ...jsonData, color: fill }}
+          style={{ ...jsonData, color: color ? color : fill }}
           fill={fill}
           className={`${absolute || center ? "absolute" : ""} ${
             center ? "left-1/2 -translate-x-1/2" : ""

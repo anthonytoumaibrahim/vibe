@@ -14,10 +14,7 @@
     </linearGradient>
     <linearGradient id="j" x1="292.2" y1="-35.64" x2="335.22" y2="-35.64" gradientTransform="translate(-290.35 18.11) rotate(5.12)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fa9b76"/>
-      <stop offset="0.11" stop-color="#f89b7c"/>
-      <stop offset="0.43" stop-color="#f69e8a"/>
-      <stop offset="0.65" stop-color="#fb9783"/>
-      <stop offset="1" stop-color="#ff937f"/>
+      <stop offset="1" stop-color="currentColor"/>
     </linearGradient>
     <linearGradient id="k" x1="-8745.28" y1="59.46" x2="-8745.28" y2="36.73" gradientTransform="translate(8834.31 -810.2) rotate(-5.12)" xlink:href="#d"/>
     <clipPath id="l">
@@ -42,7 +39,7 @@
         <path d="M46.6,23.52s3.76,6.12,3.14,7.67-6.18-.22-6.18-.22c0,0,3.27-1.35,3.33-2.37.06-1.02-.29-5.08-.29-5.08Z" style="fill: rgb(222, 136, 149); stroke-width: 0px; mix-blend-mode: screen;"/>
         <path d="M1.71,15.2s1.95-5.74,3.7-7.34c1.75-1.6,12.03-4.3,23.21-1.9,11.18,2.41,16.14,12.03,18.29,18.23,0,0-8.25-14.28-23.19-15.39C8.78,7.69,1.71,15.2,1.71,15.2Z" style="fill:#270039; stroke-width:0px;"/>
         <path d="M21.9,16.8c.48.46-7.95,1.63-8.32.89-.37-.74,7.25-1.92,8.32-.89Z" style="fill:#fff; stroke-width:0px;"/>
-        <path d="M.44,19.93c-1.21.76.2,6.27,2.88,7.7,2.68,1.43,8.37,1.99,7.94.77-.43-1.21-9.44-9.34-10.82-8.47Z" style="fill: rgb(237, 113, 114); stroke-width: 0px; mix-blend-mode: screen;"/>
+        <path d="M.44,19.93c-1.21.76.2,6.27,2.88,7.7,2.68,1.43,8.37,1.99,7.94.77-.43-1.21-9.44-9.34-10.82-8.47Z" style="fill: currentColor; stroke-width: 0px; mix-blend-mode: screen;"/>
         <path d="M40.7,9.08S29.9-3.67,14.87,3.15c0,0,5.62-5,14.35-2.4,7.63,2.27,11.49,8.33,11.49,8.33Z" style="fill: rgb(218, 107, 124); stroke-width: 0px; mix-blend-mode: screen;"/>
         <path d="M152.58,16.55s-3.23,6.79-15,10.58-24.62,5.03-32.68,3.13c0,0,.14-2.2,1.26-5.27,0,0,0,0,0-.01,1.95-5.32,6.88-13.23,19.22-16.81,17.12-4.96,25.15,5.27,26.85,7.82.23.36.34.56.34.56Z" style="fill:url(#k); stroke-width:0px;"/>
         <g style="clip-path:url(#l);">
@@ -57,7 +54,7 @@
         <path d="M106.77,23.52s-3.76,6.12-3.14,7.67c.62,1.55,6.18-.22,6.18-.22,0,0-3.27-1.35-3.33-2.37s.29-5.08.29-5.08Z" style="fill: rgb(222, 136, 149); stroke-width: 0px; mix-blend-mode: screen;"/>
         <path d="M151.67,15.2s-1.95-5.74-3.7-7.34c-1.75-1.6-12.03-4.3-23.21-1.9-11.18,2.41-16.14,12.03-18.29,18.23,0,0,8.25-14.28,23.19-15.39,14.94-1.11,22.01,6.4,22.01,6.4Z" style="fill:#270039; stroke-width:0px;"/>
         <path d="M131.47,16.8c-.48.46,7.95,1.63,8.32.89.37-.74-7.25-1.92-8.32-.89Z" style="fill:#fff; stroke-width:0px;"/>
-        <path d="M152.94,19.93c1.21.76-.2,6.27-2.88,7.7-2.68,1.43-8.37,1.99-7.94.77s9.44-9.34,10.82-8.47Z" style="fill: rgb(237, 113, 114); stroke-width: 0px; mix-blend-mode: screen;"/>
+        <path d="M152.94,19.93c1.21.76-.2,6.27-2.88,7.7-2.68,1.43-8.37,1.99-7.94.77s9.44-9.34,10.82-8.47Z" style="fill: currentColor; stroke-width: 0px; mix-blend-mode: screen;"/>
         <path d="M112.67,9.08s10.8-12.75,25.84-5.93c0,0-5.62-5-14.35-2.4-7.63,2.27-11.49,8.33-11.49,8.33Z" style="fill: rgb(218, 107, 124); stroke-width: 0px; mix-blend-mode: screen;"/>
       </g>
     </g>

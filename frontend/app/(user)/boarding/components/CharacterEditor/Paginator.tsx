@@ -55,15 +55,16 @@ const Paginator = ({
               premium={premium}
               colors={colors}
               selectedColor={selector?.fill}
-              onClick={(data?: { fill?: string }) =>
+              optional={optional}
+              onClick={(data?: { fill?: string; id?: number }) =>
                 dispatch({
                   type: "characterEditorSlice/updateData",
                   payload: {
                     type: type,
-                    data: data?.fill
+                    data: data
                       ? data
                       : {
-                          id: optional && selector?.id === id ? 0 : id,
+                          id: id,
                         },
                   },
                 })

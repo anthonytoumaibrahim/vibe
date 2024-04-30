@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react";
-import { FaPalette } from "react-icons/fa6";
+import { FaPalette, FaTrash } from "react-icons/fa6";
 
 interface PartCardProps {
   className?: string;
@@ -10,6 +10,7 @@ interface PartCardProps {
   premium?: boolean;
   colors?: Array<string>;
   selectedColor?: string;
+  optional?: boolean;
 }
 
 const PartCard = ({
@@ -21,6 +22,7 @@ const PartCard = ({
   premium = false,
   colors,
   selectedColor,
+  optional = false,
 }: PartCardProps) => {
   return (
     <Menu
@@ -44,6 +46,14 @@ const PartCard = ({
           >
             {children}
           </button>
+          {optional && selected && (
+            <button
+              className="absolute top-2 left-2 text-red-500"
+              onClick={() => onClick({ id: 0 })}
+            >
+              <FaTrash size={22} />
+            </button>
+          )}
           {colors && (
             <Menu.Button
               className={`absolute top-2 right-2 ${

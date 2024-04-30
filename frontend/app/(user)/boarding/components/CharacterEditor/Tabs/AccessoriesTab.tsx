@@ -12,6 +12,7 @@ const EyeglassesTab = () => {
   return (
     <Paginator
       parts={C2DParts.eyeglasses.parts}
+      colors={C2DParts.eyeglasses.colors}
       selector={eyeglassesSelector}
       type="eyeglasses"
       optional={true}

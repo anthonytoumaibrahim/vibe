@@ -23,7 +23,7 @@ import EyeTab from "./Tabs/EyeTab";
 import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
-import EyeglassesTab from "./Tabs/EyeglassesTab";
+import AccessoriesTab from "./Tabs/AccessoriesTab";
 import Zoom from "./Zoom";
 import { removeTransparentBg } from "@/app/lib/utils";
 
@@ -58,7 +58,7 @@ const tabs = [
   },
   {
     name: "Accessories",
-    tab: EyeglassesTab,
+    tab: AccessoriesTab,
   },
 ];
 

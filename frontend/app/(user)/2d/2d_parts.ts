@@ -191,7 +191,7 @@ export const C2DParts = {
     ],
   },
   eyeglasses: {
-    colors: [],
+    colors: ["#000000", "#ffffff"],
     parts: [
       {
         id: 1,
