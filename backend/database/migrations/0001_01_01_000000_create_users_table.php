@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->json('character_data')->nullable();
+            $table->json('profile_data')->nullable();
             $table->string('country')->nullable();
             $table->string('oauth_id')->nullable();
             $table->string('avatar')->nullable();

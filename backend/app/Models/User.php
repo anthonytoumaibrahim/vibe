@@ -3,14 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+
+    protected $appends = ['balance'];
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
         'character_data',
+        'profile_data',
         'oauth_id'
     ];
 
@@ -48,7 +52,8 @@ class User extends Authenticatable implements JWTSubject
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'character_data' => 'array'
+            'character_data' => 'array',
+            'profile_data' => 'array'
         ];
     }
 
@@ -80,5 +85,17 @@ class User extends Authenticatable implements JWTSubject
     public function commentsOnProfile()
     {
         return $this->belongsToMany(User::class, 'profile_comments', 'profile_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function balance(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->transactions()->sum('amount'),
+        );
     }
 }

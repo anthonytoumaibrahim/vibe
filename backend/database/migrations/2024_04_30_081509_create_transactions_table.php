@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('operation')->nullable();
             $table->integer('amount')->default(0);
-            $table->boolean('expense')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

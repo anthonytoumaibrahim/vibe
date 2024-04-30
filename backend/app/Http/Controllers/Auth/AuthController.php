@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,6 +42,13 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->saveOrFail();
+
+        $transaction = new Transaction();
+        $transaction->operation = "Welcome Gift";
+        $transaction->amount = 1000;
+        $transaction->user_id = $user->id;
+        $transaction->save();
+
 
         $token = Auth::login($user);
 

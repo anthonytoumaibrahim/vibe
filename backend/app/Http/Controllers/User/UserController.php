@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function getInfo(Request $request)
     {
-        $user = Auth::user();
+        $user = User::find(Auth::id());
         return response()->json($user);
     }
 
