@@ -74,7 +74,7 @@ const CharacterEditor = () => {
 
     await toCanvas(characterRef.current, {
       filter: (node: HTMLElement) => {
-        return !node.classList.contains("2d-body");
+        return !node.classList?.contains("2d-body");
       },
     })
       .then(async (canvas) => {

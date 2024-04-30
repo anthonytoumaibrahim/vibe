@@ -88,6 +88,11 @@ export const C2DParts = {
           tags: "wavy, medium length",
           premium: true,
         },
+        {
+          id: 10,
+          tags: "",
+          premium: true,
+        },
       ],
       male: [
         {
