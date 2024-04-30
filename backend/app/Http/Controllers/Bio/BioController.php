@@ -12,5 +12,11 @@ class BioController extends Controller
     public function save(Request $request)
     {
         $user = User::find(Auth::id());
+        $user->bio = $request->bio;
+        $user->saveOrFail();
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
