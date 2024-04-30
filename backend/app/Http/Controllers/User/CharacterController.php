@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,9 +26,12 @@ class CharacterController extends Controller
         $user->character_data = $request->json('data');
 
         if ($avatar_2d) {
-            $filename = $user->id . ".png";
+            // Delete old avatar
+            Storage::disk('public')->delete("/user_avatars/{$user->avatar}");
+
+            $filename = Str::random(12) . ".png";
             Storage::disk('public')->putFileAs("/user_avatars", $avatar_2d, $filename);
-            $user->avatar = config("app.url") . "/storage/user_avatars/{$filename}";
+            $user->avatar = "/user_avatars/{$filename}";
         }
         $user->saveOrFail();
 

@@ -13,7 +13,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-    protected $appends = ['balance'];
+    protected $appends = ['balance', 'avatar_full'];
 
     /**
      * The attributes that are mass assignable.
@@ -39,7 +39,8 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
         'character_data',
         'profile_data',
-        'oauth_id'
+        'oauth_id',
+        'avatar'
     ];
 
     /**
@@ -96,6 +97,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return new Attribute(
             get: fn () => $this->transactions()->sum('amount'),
+        );
+    }
+
+    public function avatarFull(): Attribute
+    {
+        return new Attribute(
+            get: fn () => config('app.url') . "/storage" . $this->avatar,
         );
     }
 }
