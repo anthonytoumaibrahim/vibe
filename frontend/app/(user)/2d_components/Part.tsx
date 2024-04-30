@@ -54,7 +54,7 @@ const Part = ({
           <SubSvgComponent
             key={index}
             width={width}
-            style={jsonData}
+            style={{ ...jsonData, color: fill }}
             fill={fill}
             className={`${center ? "left-1/2 -translate-x-1/2" : ""}`}
           />
@@ -69,7 +69,7 @@ const Part = ({
         <SvgComponent
           width={width}
           height={height}
-          style={jsonData}
+          style={{ ...jsonData, color: fill }}
           fill={fill}
           className={`${absolute || center ? "absolute" : ""} ${
             center ? "left-1/2 -translate-x-1/2" : ""

@@ -74,6 +74,10 @@ export const C2DParts = {
           tags: "long, behind ears, behind abdomen",
         },
         {
+          id: 10,
+          tags: "",
+        },
+        {
           id: 6,
           tags: "bun",
           premium: true,
@@ -86,11 +90,6 @@ export const C2DParts = {
         {
           id: 8,
           tags: "wavy, medium length",
-          premium: true,
-        },
-        {
-          id: 10,
-          tags: "",
           premium: true,
         },
       ],
