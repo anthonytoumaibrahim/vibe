@@ -50,9 +50,14 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <FaBell size={24} />
         <FaMessage size={24} />
         {user?.balance}
-        {user?.avatar && (
+        {user?.avatar_full && (
           <div className="w-14 h-14 rounded-full bg-slate-100 overflow-hidden">
-            <Image src={user?.avatar} width={64} height={185} alt="Profile" />
+            <Image
+              src={user?.avatar_full}
+              width={56}
+              height={56}
+              alt="Profile"
+            />
           </div>
         )}
       </div>
