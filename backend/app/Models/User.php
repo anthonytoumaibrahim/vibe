@@ -76,4 +76,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(User::class, 'friends', 'user1_id', 'user2_id');
     }
+
+    public function commentsOnProfile()
+    {
+        return $this->belongsToMany(User::class, 'profile_comments', 'profile_id');
+    }
 }
