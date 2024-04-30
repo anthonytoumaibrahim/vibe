@@ -30,15 +30,30 @@ const Character = forwardRef(
       style={{ scale }}
       ref={ref}
     >
-      <Part type="hair" center={true} id={data.hair.id} fill={data.hair.fill} />
-      <Part type="face" id={data.face.id} center={true} fill={data.body.fill} />
+      <Part
+        type="hair"
+        center={true}
+        id={data?.hair?.id ?? 3}
+        fill={data?.hair?.fill ?? "#c73030"}
+      />
+      <Part
+        type="face"
+        id={data?.face?.id ?? 1}
+        center={true}
+        fill={data?.body?.fill ?? "#df9777"}
+      />
       <Part
         type="eyebrow"
-        id={data.eyebrow.id}
-        fill={data.eyebrow.fill}
+        id={data?.eyebrow?.id ?? 5}
+        fill={data?.eyebrow?.fill ?? "#c73030"}
         center={true}
       />
-      <Part type="eye" center={true} id={data.eye.id} fill={data.eye.fill} />
+      <Part
+        type="eye"
+        center={true}
+        id={data?.eye?.id ?? 5}
+        fill={data?.eye?.fill ?? "#72A0C1"}
+      />
       {/* {data.eyeglasses?.id && (
         <Part
           type="eyeglasses"
@@ -47,18 +62,23 @@ const Character = forwardRef(
           center={true}
         />
       )} */}
-      <Part type="nose" center={true} id={data.nose.id} fill={data.body.fill} />
+      <Part
+        type="nose"
+        center={true}
+        id={data?.nose?.id ?? 4}
+        fill={data?.body?.fill ?? "#df9777"}
+      />
       <Part
         type="mouth"
         center={true}
-        id={data.mouth.id}
-        fill={data.mouth.fill}
+        id={data?.mouth?.id ?? 6}
+        fill={data?.mouth?.fill ?? "#ed7172"}
       />
       <Part
         type="body"
         center={true}
-        id={data.body.id}
-        fill={data.body.fill}
+        id={data?.body?.id ?? 3}
+        fill={data?.body?.fill ?? "#df9777"}
         className="2d-body"
       />
     </div>
