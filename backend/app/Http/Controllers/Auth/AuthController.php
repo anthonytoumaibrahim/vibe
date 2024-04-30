@@ -11,22 +11,22 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function checkUsername(Request $request)
+    public function checkUsername(Request $request, $username = "")
     {
-        $request->validate([
-            'username' => 'min:3|max:16|regex:/^[a-zA-Z][a-zA-Z0-9\._-]+$/i'
-        ]);
-        $username = $request->username;
-        $query = User::where('username', $username)->first();
-        if ($query) {
+        if ($username) {
+            $user = User::where('username', $username)->first();
+            if ($user) {
+                return false;
+            }
+            return true;
+        } else {
+            $request->validate([
+                'username' => 'min:3|max:16|unique:users|regex:/^[a-zA-Z][a-zA-Z0-9\._-]+$/i'
+            ]);
             return response()->json([
-                'success' => false,
-                'message' => 'This username is already taken, please try another.'
+                'success' => true
             ]);
         }
-        return response()->json([
-            'success' => true
-        ]);
     }
 
     public function register(Request $request)

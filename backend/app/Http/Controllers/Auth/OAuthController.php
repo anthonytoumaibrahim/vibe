@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-class OAuthController extends Controller
+class OAuthController extends AuthController
 {
     public function OAuth(Request $request)
     {
@@ -50,6 +50,9 @@ class OAuthController extends Controller
         // New user
         $user = new User();
         $user->username = Str::of($oAuthEmail)->before('@')->substr(0, 15);
+        if ($this->checkUsername($request, $user->username)) {
+            $user->username = Str::of(uniqid('vibe_'))->substr(0, 15);
+        }
         $user->email = $oAuthEmail;
         $user->avatar = $oAuthPicture;
         $user->oauth_id = $oAuthId;
