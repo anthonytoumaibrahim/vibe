@@ -1,6 +1,6 @@
 "use client";
 
-import { toPng } from "html-to-image";
+import { toCanvas } from "html-to-image";
 
 // Next & React stuff
 import { useAppSelector } from "@/app/lib/hooks";
@@ -25,6 +25,7 @@ import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
 import EyeglassesTab from "./Tabs/EyeglassesTab";
 import Zoom from "./Zoom";
+import { removeTransparentBg } from "@/app/lib/utils";
 
 const tabs = [
   {
@@ -71,16 +72,13 @@ const CharacterEditor = () => {
   const save = async () => {
     setIsLoading(true);
 
-    await toPng(characterRef.current, {
-      // filter: (node: HTMLElement) => {
-      //   return !node.classList.contains("2d-body");
-      // },
-      width: 380 * zoom,
-      height: 1100 * zoom,
-      canvasWidth: 380 * zoom,
-      canvasHeight: 1100 * zoom,
+    await toCanvas(characterRef.current, {
+      filter: (node: HTMLElement) => {
+        return !node.classList.contains("2d-body");
+      },
     })
-      .then(async (url) => {
+      .then(async (canvas) => {
+        const url = removeTransparentBg(canvas);
         const response = await saveCharacter({
           data: characterData,
           avatar: url,
