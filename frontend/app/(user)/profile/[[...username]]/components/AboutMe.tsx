@@ -8,8 +8,10 @@ import {
   BubbleMenu,
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-// tiptap extentions
+// tiptap extensions
 import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
+import ListItem from "@tiptap/extension-list-item";
 
 import { saveBio } from "../actions";
 
@@ -22,10 +24,11 @@ import {
   BsTypeItalic,
   BsTypeBold,
   BsTypeUnderline,
+  BsListUl,
 } from "react-icons/bs";
 import Button from "@/components/Button";
 
-const extensions = [StarterKit, Underline];
+const extensions = [StarterKit, Underline, Link, ListItem];
 
 const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
   const content = bio;
@@ -92,6 +95,16 @@ const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
             }`}
           >
             <BsTypeUnderline size={20} />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            className={`${
+              editor.isActive("bulletList")
+                ? "text-primary-main"
+                : "hover:text-primary-400"
+            }`}
+          >
+            <BsListUl size={20} />
           </button>
         </BubbleMenu>
       )}

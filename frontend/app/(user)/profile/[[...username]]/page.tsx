@@ -4,6 +4,7 @@ import { getProfile } from "./actions";
 import { getCharacter } from "../../boarding/actions";
 import Character from "../../2d_components/Character";
 import AboutMe from "./components/AboutMe";
+import Showcase from "./components/Showcase";
 
 export const metadata: Metadata = {
   title: "Profile – Vibe",
@@ -15,20 +16,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="w-full relative h-[640px] rounded-lg overflow-hidden">
-        <Image
-          src="/images/profile_bg/1.webp"
-          fill
-          alt=""
-          className="object-cover"
-          sizes="100%"
-        />
-        <Character
-          data={profileData?.character_data}
-          scale={0.65}
-          className="mt-10"
-        />
-      </section>
+      <Showcase character_data={profileData?.character_data} />
 
       <section className="flex gap-6">
         <div className="p-6 rounded-lg bg-slate-50 w-full">
