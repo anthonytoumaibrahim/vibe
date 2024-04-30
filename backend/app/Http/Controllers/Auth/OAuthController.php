@@ -48,11 +48,13 @@ class OAuthController extends AuthController
         }
 
         // New user
-        $user = new User();
-        $user->username = Str::of($oAuthEmail)->before('@')->substr(0, 15);
-        if ($this->checkUsername($request, $user->username)) {
-            $user->username = Str::of(uniqid('vibe_'))->substr(0, 15);
+        $username = Str::of($oAuthEmail)->before('@')->substr(0, 15);
+        if ($this->checkUsername($request, $username)) {
+            $username = Str::of(uniqid('vibe_'))->substr(0, 15);
         }
+
+        $user = new User();
+        $user->username = $username;
         $user->email = $oAuthEmail;
         $user->avatar = $oAuthPicture;
         $user->oauth_id = $oAuthId;

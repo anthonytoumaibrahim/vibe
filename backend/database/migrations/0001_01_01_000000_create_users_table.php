@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->json('character_data')->nullable();
             $table->json('profile_data')->nullable();
+            $table->text('bio')->nullable();
             $table->string('country')->nullable();
             $table->string('oauth_id')->nullable();
             $table->string('avatar')->nullable();

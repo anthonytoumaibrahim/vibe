@@ -16,9 +16,9 @@ class AuthController extends Controller
         if ($username) {
             $user = User::where('username', $username)->first();
             if ($user) {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         } else {
             $request->validate([
                 'username' => 'min:3|max:16|unique:users|regex:/^[a-zA-Z][a-zA-Z0-9\._-]+$/i'
