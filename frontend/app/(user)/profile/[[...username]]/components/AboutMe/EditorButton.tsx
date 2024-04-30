@@ -12,9 +12,9 @@ const EditorButton = ({
   return (
     <button
       onClick={() => onClick()}
-      className={`${isActive ? "text-primary-main" : "hover:text-primary-400"}`}
+      className={`${isActive ? "text-primary-main" : "hover:text-primary-500"}`}
     >
-      <Icon size={20} />
+      <Icon size={24} />
     </button>
   );
 };

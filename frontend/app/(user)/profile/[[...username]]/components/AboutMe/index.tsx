@@ -19,25 +19,33 @@ import Button from "@/components/Button";
 import EditorButton from "./EditorButton";
 
 // Icons
-import {
-  BsTypeH1,
-  BsTypeH2,
-  BsTypeH3,
-  BsTypeH4,
-  BsTypeItalic,
-  BsTypeBold,
-  BsTypeUnderline,
-  BsListUl,
-  BsListOl,
-} from "react-icons/bs";
-import { CgUndo, CgRedo } from "react-icons/cg";
-import {
-  GrTextAlignCenter,
-  GrTextAlignLeft,
-  GrTextAlignRight,
-} from "react-icons/gr";
+import { BsTypeItalic, BsTypeBold, BsTypeUnderline } from "react-icons/bs";
 
-const extensions = [StarterKit, Underline, Link, TextAlign];
+import {
+  PiTextAUnderlineBold,
+  PiTextBBold,
+  PiTextItalicBold,
+  PiTextAlignCenterBold,
+  PiTextAlignLeftBold,
+  PiTextAlignRightBold,
+  PiTextHOneBold,
+  PiTextHTwoBold,
+  PiTextHThreeBold,
+  PiTextHFourBold,
+  PiListBulletsBold,
+  PiListNumbersBold,
+  PiArrowArcLeftBold,
+  PiArrowArcRightBold,
+} from "react-icons/pi";
+
+const extensions = [
+  StarterKit,
+  Underline,
+  Link,
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+  }),
+];
 
 const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
   const content = bio;
@@ -46,7 +54,8 @@ const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
     content,
     editorProps: {
       attributes: {
-        class: "prose dark:prose-invert prose-base m-5 focus:outline-none",
+        class:
+          "prose dark:prose-invert prose-base p-5 focus:outline-none max-w-none",
       },
     },
   });
@@ -61,74 +70,74 @@ const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
     <>
       {editor && (
         <div className="bg-slate-300 p-2 w-full rounded-t-lg flex items-center gap-2">
-          <div>
+          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
             <EditorButton
-              icon={CgUndo}
+              icon={PiArrowArcLeftBold}
               onClick={() => editor.chain().focus().undo().run()}
             />
             <EditorButton
-              icon={CgRedo}
+              icon={PiArrowArcRightBold}
               onClick={() => editor.chain().focus().redo().run()}
             />
           </div>
-          <div>
+          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
             <EditorButton
               isActive={editor.isActive("heading", { level: 1 })}
-              icon={BsTypeH1}
+              icon={PiTextHOneBold}
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 1 }).run()
               }
             />
             <EditorButton
               isActive={editor.isActive("heading", { level: 2 })}
-              icon={BsTypeH2}
+              icon={PiTextHTwoBold}
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 2 }).run()
               }
             />
             <EditorButton
               isActive={editor.isActive("heading", { level: 3 })}
-              icon={BsTypeH3}
+              icon={PiTextHThreeBold}
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 3 }).run()
               }
             />
             <EditorButton
               isActive={editor.isActive("heading", { level: 4 })}
-              icon={BsTypeH4}
+              icon={PiTextHFourBold}
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 4 }).run()
               }
             />
           </div>
-          <div>
+          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
             <EditorButton
               isActive={editor.isActive({ textAlign: "left" })}
-              icon={GrTextAlignLeft}
+              icon={PiTextAlignLeftBold}
               onClick={() => editor.chain().focus().setTextAlign("left").run()}
             />
             <EditorButton
               isActive={editor.isActive({ textAlign: "center" })}
-              icon={GrTextAlignCenter}
+              icon={PiTextAlignCenterBold}
               onClick={() =>
                 editor.chain().focus().setTextAlign("center").run()
               }
             />
             <EditorButton
               isActive={editor.isActive({ textAlign: "right" })}
-              icon={GrTextAlignRight}
+              icon={PiTextAlignRightBold}
               onClick={() => editor.chain().focus().setTextAlign("right").run()}
             />
           </div>
-          <div>
+          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
             <EditorButton
               isActive={editor.isActive("bulletList")}
-              icon={BsListUl}
+              icon={PiListBulletsBold}
               onClick={() => editor.chain().focus().toggleBulletList().run()}
             />
             <EditorButton
               isActive={editor.isActive("orderedList")}
-              icon={BsListOl}
+              icon={PiListNumbersBold}
               onClick={() => editor.chain().focus().toggleOrderedList().run()}
             />
           </div>
@@ -137,6 +146,7 @@ const AboutMe = ({ bio = "" }: { bio: string | undefined }) => {
       <EditorContent
         editor={editor}
         className="bg-slate-100 rounded-b-lg p-2"
+        width="100%"
       />
       {/* {editor && (
         <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
