@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getProfile } from "./actions";
-import AboutMe from "./components/AboutMe";
 import Showcase from "./components/Showcase";
 
 export const metadata: Metadata = {
@@ -12,16 +11,11 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
   const isOwner = params?.username ? false : true;
 
   return (
-    <div className="flex flex-col gap-6">
-      <Showcase character_data={profileData?.character_data} />
-
-      <section className="flex gap-6">
-        <div className="p-6 rounded-lg bg-slate-50 w-full">
-          <AboutMe bio={profileData?.bio} isOwner={isOwner} />
-        </div>
-        <div className="w-1/4">{params?.username}</div>
-      </section>
-    </div>
+    <Showcase
+      bio={profileData?.bio}
+      characterData={profileData?.character_data}
+      isOwner={isOwner}
+    />
   );
 };
 
