@@ -2,11 +2,11 @@
 <svg viewBox="0 0 155.04 52.88" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="d" x1="77.52" y1="22.03" x2="77.52" y2="27.58" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#cedbd8"/>
-      <stop offset="0.99" stop-color="currentColor"/>
+      <stop offset="0" style="stop-color: currentColor;"/>
+      <stop offset="0.264" style="stop-color: currentColor;"/>
     </linearGradient>
     <linearGradient id="e" x1="77.53" y1="23.42" x2="77.53" y2="27.55" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffe9ea"/>
+      <stop offset="0" style="stop-color: rgb(201, 201, 201);"/>
       <stop offset="0.99" stop-color="#de5777"/>
     </linearGradient>
     <linearGradient id="f" x1="120.34" y1="0" x2="120.34" y2="52.88" xlink:href="#d"/>
@@ -16,7 +16,7 @@
     <linearGradient id="j" x1="5.64" y1="4.25" x2="5.64" y2="20.35" xlink:href="#e"/>
     <linearGradient id="k" x1="149.44" y1="4.25" x2="149.44" y2="20.24" xlink:href="#e"/>
   </defs>
-  <g style="isolation:isolate;">
+  <g style="isolation:isolate;" transform="matrix(1, 0, 0, 1, -4.440892098500626e-16, 1.7763568394002505e-15)">
     <g id="b">
       <g id="c">
         <path d="M68.88,27.58c5.79-4.15,11.55-4.15,17.29,0v-3.09c-5.87-3.26-11.57-3.31-17.09,0l-.2,3.09Z" style="fill:url(#d); stroke-width:0px;"/>

@@ -10,7 +10,6 @@ interface PartCardProps {
   premium?: boolean;
   colors?: Array<string>;
   selectedColor?: string;
-  optional?: boolean;
 }
 
 const PartCard = ({
@@ -22,15 +21,9 @@ const PartCard = ({
   premium = false,
   colors,
   selectedColor,
-  optional = false,
 }: PartCardProps) => {
   return (
-    <Menu
-      as="div"
-      style={{ height }}
-      onClick={() => onClick()}
-      className="relative group"
-    >
+    <Menu as="div" style={{ height }} className="relative group">
       {({ open }) => (
         <>
           <button
@@ -43,17 +36,10 @@ const PartCard = ({
                 ? "!bg-premium-500 hover:!bg-premium-700 before:!bg-premium-200 after:!bg-premium-400 before:opacity-100 after:opacity-100"
                 : ""
             } ${className}`}
+            onClick={() => onClick()}
           >
             {children}
           </button>
-          {optional && selected && (
-            <button
-              className="absolute top-2 left-2 text-red-500"
-              onClick={() => onClick({ id: 0 })}
-            >
-              <FaTrash size={22} />
-            </button>
-          )}
           {colors && (
             <Menu.Button
               className={`absolute top-2 right-2 ${
