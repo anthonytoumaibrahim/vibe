@@ -7,6 +7,8 @@ import { useAppSelector } from "@/app/lib/hooks";
 import { Fragment, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { saveCharacter } from "../../actions";
+import { removeTransparentBg } from "@/app/lib/utils";
+import { toast } from "react-toastify";
 
 // Headless UI
 import { Tab } from "@headlessui/react";
@@ -14,6 +16,7 @@ import { Tab } from "@headlessui/react";
 // Components
 import Character from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
+import Zoom from "./Zoom";
 
 // Tabs
 import BodyTab from "./Tabs/BodyTab";
@@ -24,8 +27,6 @@ import NoseTab from "./Tabs/NoseTab";
 import EyebrowTab from "./Tabs/EyebrowTab";
 import MouthTab from "./Tabs/MouthTab";
 import AccessoriesTab from "./Tabs/AccessoriesTab";
-import Zoom from "./Zoom";
-import { removeTransparentBg } from "@/app/lib/utils";
 
 const tabs = [
   {
@@ -84,7 +85,7 @@ const CharacterEditor = () => {
           avatar: url,
         });
       })
-      .catch((error) => alert(error));
+      .catch((error) => toast.error("Could not save. Please try again."));
 
     setIsLoading(false);
   };

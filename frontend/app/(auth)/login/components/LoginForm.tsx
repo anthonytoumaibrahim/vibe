@@ -18,15 +18,16 @@ const LoginForm = () => {
   } = useForm();
 
   const submitLoginForm = async (data: object) => {
-    const response = await auth({ data, type: "login" });
-    if (response?.success === false) {
-      const errorMessage: string = response?.message;
-      setError("username", {
-        type: "custom",
-        message: errorMessage,
-      });
-    }
-    if (!response) {
+    try {
+      const response = await auth({ data, type: "login" });
+      if (response?.success === false) {
+        const errorMessage: string = response?.message;
+        setError("username", {
+          type: "custom",
+          message: errorMessage,
+        });
+      }
+    } catch (error) {
       toast.error("Sorry, something went wrong.");
     }
   };
@@ -37,12 +38,20 @@ const LoginForm = () => {
       expires_in: number;
       scope: string;
     }) => {
-      const response = await auth({
-        token: tokenResponse.access_token,
-        type: "oauth",
-      });
-      if (response?.success === false) {
-        const errorMessage: string = response?.message;
+      try {
+        const response = await auth({
+          token: tokenResponse.access_token,
+          type: "oauth",
+        });
+        if (response?.success === false) {
+          const errorMessage: string = response?.message;
+          toast.error(
+            errorMessage ??
+              "We can't sign you in with Google. Please sign in using your username instead."
+          );
+        }
+      } catch (error: any) {
+        const errorMessage: any = error?.message;
         toast.error(
           errorMessage ??
             "Sorry, couldn't sign in with Google. Please try again later."

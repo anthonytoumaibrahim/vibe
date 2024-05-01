@@ -36,10 +36,10 @@ export async function auth({ data = {}, token, type }: AuthParams) {
       shouldRedirect = true;
     }
     reqResponse = response;
-  } catch (error) {
+  } catch (error: any) {
     return {
       success: false,
-      message: "Sorry, something went wrong.",
+      message: error?.response?.data?.message,
     };
   }
 
