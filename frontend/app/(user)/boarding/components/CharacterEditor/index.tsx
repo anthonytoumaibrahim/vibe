@@ -128,7 +128,10 @@ const CharacterEditor = ({
           id: data?.mouth?.id ?? 6,
           fill: data?.mouth?.fill ?? "#ed7172",
         },
-        eyeglasses: { id: data?.eyeglasses?.id ?? 1 },
+        eyeglasses: {
+          id: data?.eyeglasses?.id ?? 1,
+          fill: data?.eyeglasses?.fill,
+        },
       },
     });
     setIs2DLoading(false);

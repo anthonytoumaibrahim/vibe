@@ -66,6 +66,20 @@ const Showcase = ({
         </Button>
         {isEditingBio ? (
           <AboutMeEditor />
+        ) : !bioSelector.content ? (
+          <div className="text-white h-full flex flex-col gap-4 items-center justify-center text-center">
+            <h3>Your biography is empty!</h3>
+            <p>Write something cool here to introduce yourself to others.</p>
+            <Button
+              icon={MdEdit}
+              variant="filled"
+              color="primary"
+              size="regular"
+              onClick={() => setIsEditingBio(!isEditingBio)}
+            >
+              Start editing now
+            </Button>
+          </div>
         ) : (
           <div
             dangerouslySetInnerHTML={{ __html: bioSelector.content }}

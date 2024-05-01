@@ -86,7 +86,7 @@ const Button = ({
     </Link>
   ) : (
     <button
-      className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} ${buttonSizeClass[size]} rounded flex items-center gap-2 ${className}`}
+      className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} ${buttonSizeClass[size]} rounded flex items-center justify-center gap-2 ${className}`}
       disabled={loading ? true : disabled}
       onClick={onClick}
     >
