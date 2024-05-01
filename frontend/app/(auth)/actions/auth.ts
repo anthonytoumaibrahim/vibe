@@ -24,11 +24,11 @@ export async function auth({ data = {}, token, type }: AuthParams) {
   let shouldRedirect = false;
   let reqResponse: any;
   try {
-    const body = token ? { access_token: token } : data;
+    const body = token ? { access_token: token } : { ...data };
     const response: any = await sendRequest({
       method: "POST",
       url: `/auth/${token ? "oauth" : type}`,
-      body,
+      body: body,
     });
     if (response?.success) {
       const { token, type } = response?.authorization;
@@ -43,7 +43,7 @@ export async function auth({ data = {}, token, type }: AuthParams) {
     };
   }
 
-  if (redirect) {
+  if (shouldRedirect) {
     redirect("/home");
   }
 

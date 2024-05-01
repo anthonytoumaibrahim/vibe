@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { auth } from "../../actions/auth";
 import { useGoogleLogin } from "@react-oauth/google";
+import { toast } from "react-toastify";
 
 // Components
 import Input from "@/components/Input";
@@ -25,6 +26,9 @@ const LoginForm = () => {
         message: errorMessage,
       });
     }
+    if (!response) {
+      toast.error("Sorry, something went wrong.");
+    }
   };
 
   const gLogin = useGoogleLogin({
@@ -37,6 +41,13 @@ const LoginForm = () => {
         token: tokenResponse.access_token,
         type: "oauth",
       });
+      if (response?.success === false) {
+        const errorMessage: string = response?.message;
+        toast.error(
+          errorMessage ??
+            "Sorry, couldn't sign in with Google. Please try again later."
+        );
+      }
     },
   });
 

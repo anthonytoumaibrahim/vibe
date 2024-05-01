@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { checkUsername, auth } from "../../actions/auth";
 import { useGoogleLogin } from "@react-oauth/google";
 
-import axios from "axios";
+import { toast } from "react-toastify";
 
 // Components
 import Input from "@/components/Input";
@@ -45,6 +45,13 @@ export default function SignupForm() {
         token: tokenResponse.access_token,
         type: "oauth",
       });
+      if (response?.success === false) {
+        const errorMessage: string = response?.message;
+        toast.error(
+          errorMessage ??
+            "Sorry, couldn't sign in with Google. Please try again later."
+        );
+      }
     },
   });
 
