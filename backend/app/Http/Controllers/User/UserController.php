@@ -15,10 +15,16 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function getProfile($id = null)
+    public function getProfile($username = null)
     {
-        $id = $id ? $id : Auth::id();
+        if ($username) {
+            $visitedUser = User::where('username', $username)->firstOrFail();
+            $id = $visitedUser->id;
+        } else {
+            $id = Auth::id();
+        }
         $user = User::find($id)->makeVisible('character_data');
+        $user->is_owner = $id === Auth::id();
         return response()->json($user);
     }
 }

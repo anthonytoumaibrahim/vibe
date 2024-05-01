@@ -21,7 +21,7 @@ Route::prefix('/auth')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
         Route::get('/info', [UserController::class, 'getInfo']);
-        Route::get('/profile/{id?}', [UserController::class, 'getProfile']);
+        Route::get('/profile/{username?}', [UserController::class, 'getProfile']);
         Route::post('/save-character', [CharacterController::class, 'save']);
         Route::get('/get-character', [CharacterController::class, 'get']);
         Route::post('/save-bio', [BioController::class, 'save']);
