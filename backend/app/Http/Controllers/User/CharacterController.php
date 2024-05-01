@@ -27,7 +27,10 @@ class CharacterController extends Controller
 
         if ($avatar_2d) {
             // Delete old avatar
-            Storage::disk('public')->delete($user->avatar);
+            try {
+                Storage::disk('public')->delete($user->avatar);
+            } catch (\RunTimeException $e) {
+            }
 
             $filename = Str::random(12) . ".png";
             Storage::disk('public')->putFileAs("/user_avatars", $avatar_2d, $filename);
