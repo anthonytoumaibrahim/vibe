@@ -72,6 +72,7 @@ const CharacterEditor = ({
   const dispatch = useAppDispatch();
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
+  const [is2DLoading, setIs2DLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const characterRef = useRef<any>(null);
@@ -130,6 +131,7 @@ const CharacterEditor = ({
         eyeglasses: { id: data?.eyeglasses?.id ?? 1 },
       },
     });
+    setIs2DLoading(false);
   }, []);
 
   return (
@@ -157,7 +159,9 @@ const CharacterEditor = ({
       <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
 
       <div className="w-full h-full flex items-center justify-center pt-40">
-        <Character data={characterData} scale={zoom} ref={characterRef} />
+        {!is2DLoading && (
+          <Character data={characterData} scale={zoom} ref={characterRef} />
+        )}
       </div>
 
       <div className="flex gap-10">

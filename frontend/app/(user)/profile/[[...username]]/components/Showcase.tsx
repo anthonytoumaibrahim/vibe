@@ -18,16 +18,13 @@ const Showcase = ({ character_data }: { character_data: object }) => {
         sizes="100%"
       />
       <Draggable
-        bounds="parent"
+        axis="both"
         nodeRef={characterRef}
         defaultPosition={{ x: 0, y: 0 }}
-        onMouseDown={() => console.log("mousedown")}
       >
-        <Character
-          data={character_data}
-          className="!absolute mt-10 handle"
-          ref={characterRef}
-        />
+        <div ref={characterRef}>
+          <Character data={character_data} />
+        </div>
       </Draggable>
     </section>
   );
