@@ -69,6 +69,17 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('username', 'password');
 
+        // Check if user doesn't have password (oauth)
+        $user = User::where('username', $credentials['username'])->first();
+        if ($user) {
+            if (!$user->password) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please sign in with Google.',
+                ]);
+            }
+        }
+
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
