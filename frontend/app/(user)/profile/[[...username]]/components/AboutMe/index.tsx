@@ -22,7 +22,12 @@ import TextAlign from "@tiptap/extension-text-align";
 const extensions = [
   StarterKit,
   Underline,
-  Link,
+  Link.configure({
+    openOnClick: false,
+    HTMLAttributes: {
+      class: "unstyled-link",
+    },
+  }),
   TextAlign.configure({
     types: ["heading", "paragraph"],
   }),
@@ -34,9 +39,7 @@ import Button from "@/components/Button";
 import EditorButton from "./EditorButton";
 
 // Icons
-import { BsTypeItalic, BsTypeBold, BsTypeUnderline } from "react-icons/bs";
 import {
-  PiTextAUnderlineBold,
   PiTextBBold,
   PiTextItalicBold,
   PiTextAlignCenterBold,
@@ -50,7 +53,9 @@ import {
   PiListNumbersBold,
   PiArrowArcLeftBold,
   PiArrowArcRightBold,
+  PiTextUnderlineBold,
 } from "react-icons/pi";
+import { toast } from "react-toastify";
 
 const AboutMe = ({ bio = "", isOwner = false }: AboutMeProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -71,6 +76,7 @@ const AboutMe = ({ bio = "", isOwner = false }: AboutMeProps) => {
     const response = await saveBio({
       bio: editor?.getHTML(),
     });
+    toast.success("Saved");
   };
 
   return (
@@ -169,51 +175,38 @@ const AboutMe = ({ bio = "", isOwner = false }: AboutMeProps) => {
             className="bg-slate-100 rounded-b-lg p-2"
             width="100%"
           />
-          {/* {editor && (
-        <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
-      )} */}
           {editor && (
             <BubbleMenu
               editor={editor}
               className="bg-black rounded text-white flex gap-2 items-center px-2 py-1"
             >
-              <button
-                onClick={() => editor.chain().focus().toggleBold().run()}
-                className={`${
-                  editor.isActive("bold")
-                    ? "text-primary-main"
-                    : "hover:text-primary-400"
-                }`}
-              >
-                <BsTypeBold size={20} />
-              </button>
-              <button
-                onClick={() => editor.chain().focus().toggleItalic().run()}
-                className={`${
-                  editor.isActive("italic")
-                    ? "text-primary-main"
-                    : "hover:text-primary-400"
-                }`}
-              >
-                <BsTypeItalic size={20} />
-              </button>
-              <button
-                onClick={() => editor.chain().focus().toggleUnderline().run()}
-                className={`${
-                  editor.isActive("underline")
-                    ? "text-primary-main"
-                    : "hover:text-primary-400"
-                }`}
-              >
-                <BsTypeUnderline size={20} />
-              </button>
+              <div>
+                <EditorButton
+                  isActive={editor.isActive("bold")}
+                  icon={PiTextBBold}
+                  onClick={() => editor.chain().focus().toggleBold().run()}
+                />
+                <EditorButton
+                  isActive={editor.isActive("italic")}
+                  icon={PiTextItalicBold}
+                  onClick={() => editor.chain().focus().toggleItalic().run()}
+                />
+                <EditorButton
+                  isActive={editor.isActive("underline")}
+                  icon={PiTextUnderlineBold}
+                  onClick={() => editor.chain().focus().toggleUnderline().run()}
+                />
+              </div>
             </BubbleMenu>
           )}
           <Button onClick={save}>Save</Button>
           <Button onClick={() => setIsEditing(false)}>Cancel</Button>
         </div>
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div
+          className="prose dark:prose-invert prose-base p-5 focus:outline-none max-w-none"
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
       )}
     </>
   );

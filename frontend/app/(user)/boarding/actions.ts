@@ -1,6 +1,7 @@
 "use server";
 
 import { sendRequest } from "@/app/actions";
+import { revalidatePath } from "next/cache";
 
 export async function getCharacter() {
   const response = await sendRequest({
@@ -16,5 +17,6 @@ export async function saveCharacter(data: object) {
     url: "/user/save-character",
     body: data,
   });
+  revalidatePath("/profile");
   return response;
 }

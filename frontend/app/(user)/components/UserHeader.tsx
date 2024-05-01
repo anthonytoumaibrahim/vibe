@@ -58,7 +58,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
               sizes="56px"
               alt="Profile"
               quality={100}
-              className="object-cover object-top"
+              className="object-contain object-top"
             />
           </div>
         )}

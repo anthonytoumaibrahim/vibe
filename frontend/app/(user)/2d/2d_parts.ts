@@ -108,7 +108,7 @@ export const C2DParts = {
         },
         {
           id: 9,
-          tags: "normal",
+          tags: "",
         },
       ],
     },
