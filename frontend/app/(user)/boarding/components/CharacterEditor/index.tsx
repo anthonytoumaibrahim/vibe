@@ -129,7 +129,7 @@ const CharacterEditor = ({
           fill: data?.mouth?.fill ?? "#ed7172",
         },
         eyeglasses: {
-          id: data?.eyeglasses?.id ?? 1,
+          id: data?.eyeglasses?.id ?? 0,
           fill: data?.eyeglasses?.fill,
         },
       },

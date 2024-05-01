@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
 
 import { TypeAnimation } from "react-type-animation";
@@ -10,6 +10,7 @@ import Character from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
 import AboutMeEditor from "./AboutMeEditor";
 import { MdEdit } from "react-icons/md";
+import { Transition } from "@headlessui/react";
 
 interface ShowcaseProps {
   characterData: object;
@@ -68,7 +69,7 @@ const Showcase = ({
         )}
         {isEditingBio ? (
           <AboutMeEditor />
-        ) : !bio ? (
+        ) : !bioSelector.content ? (
           <div className="text-white h-full flex flex-col gap-4 items-center justify-center text-center">
             {isOwner ? (
               <>
@@ -93,10 +94,19 @@ const Showcase = ({
             )}
           </div>
         ) : (
-          <div
-            dangerouslySetInnerHTML={{ __html: bioSelector.content }}
-            className="prose prose-invert prose-base p-5 focus:outline-none max-w-none"
-          ></div>
+          <Transition
+            appear={true}
+            show={true}
+            enter="transition-transform transition-opacity duration-700"
+            enterFrom="opacity-0 -translate-x-1/2"
+            enterTo="opacity-100 translate-x-none"
+            as={Fragment}
+          >
+            <div
+              dangerouslySetInnerHTML={{ __html: bioSelector.content }}
+              className="prose prose-invert prose-base p-5 focus:outline-none max-w-none"
+            ></div>
+          </Transition>
         )}
       </div>
     </div>
