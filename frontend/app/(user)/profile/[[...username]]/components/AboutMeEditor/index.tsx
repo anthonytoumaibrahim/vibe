@@ -1,9 +1,7 @@
 "use client";
 
-interface AboutMeEditorProps {
-  bio: string | undefined;
-  isOwner?: boolean;
-}
+import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 
 // tiptap
 import {
@@ -52,10 +50,12 @@ import {
   PiArrowArcRightBold,
   PiTextUnderlineBold,
 } from "react-icons/pi";
-import { toast } from "react-toastify";
 
-const AboutMeEditor = ({ bio = "", isOwner = false }: AboutMeEditorProps) => {
-  const content = bio;
+const AboutMeEditor = () => {
+  const dispatch = useAppDispatch();
+  const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
+
+  const content = bioSelector?.content;
   const editor = useEditor({
     extensions,
     content,
@@ -70,6 +70,10 @@ const AboutMeEditor = ({ bio = "", isOwner = false }: AboutMeEditorProps) => {
   const save = async () => {
     const response = await saveBio({
       bio: editor?.getHTML(),
+    });
+    dispatch({
+      type: "aboutMeEditorSlice/updateData",
+      payload: editor?.getHTML(),
     });
     toast.success("Saved");
   };

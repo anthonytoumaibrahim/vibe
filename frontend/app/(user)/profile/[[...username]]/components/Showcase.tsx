@@ -1,12 +1,15 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/lib/store";
+
+import { TypeAnimation } from "react-type-animation";
+import Image from "next/image";
+import Draggable from "react-draggable";
 import Character from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
-import Image from "next/image";
-import { useRef, useState } from "react";
-import Draggable from "react-draggable";
-import { MdEdit } from "react-icons/md";
 import AboutMeEditor from "./AboutMeEditor";
+import { MdEdit } from "react-icons/md";
 
 interface ShowcaseProps {
   characterData: object;
@@ -19,9 +22,19 @@ const Showcase = ({
   isOwner = false,
   bio = "",
 }: ShowcaseProps) => {
+  const dispatch = useAppDispatch();
+  const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
+
   const [isEditingBio, setIsEditingBio] = useState(false);
 
   const characterRef = useRef(null);
+
+  useEffect(() => {
+    dispatch({
+      type: "aboutMeEditorSlice/updateData",
+      payload: bio,
+    });
+  }, []);
 
   return (
     <section className="w-full relative z-0 h-[640px] rounded-lg overflow-hidden flex p-12">
@@ -40,7 +53,7 @@ const Showcase = ({
         <Character data={characterData} ref={characterRef} />
       </Draggable>
 
-      <div className="p-6 py-10 bg-white/35 backdrop-blur-sm rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
+      <div className="p-6 py-10 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
         <Button
           icon={MdEdit}
           variant="link"
@@ -52,10 +65,10 @@ const Showcase = ({
           Edit
         </Button>
         {isEditingBio ? (
-          <AboutMeEditor bio={bio} />
+          <AboutMeEditor />
         ) : (
           <div
-            dangerouslySetInnerHTML={{ __html: bio }}
+            dangerouslySetInnerHTML={{ __html: bioSelector.content }}
             className="prose prose-invert prose-base p-5 focus:outline-none max-w-none"
           ></div>
         )}

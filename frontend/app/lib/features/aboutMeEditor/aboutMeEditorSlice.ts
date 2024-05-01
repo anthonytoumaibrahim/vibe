@@ -10,7 +10,7 @@ const aboutMeEditorSlice = createSlice({
   initialState: initState,
   reducers: {
     updateData: (state, action) => {
-      return (state.content = action.payload);
+      state.content = action.payload;
     },
   },
 });
