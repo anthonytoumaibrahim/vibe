@@ -37,7 +37,7 @@ const Showcase = ({
   }, []);
 
   return (
-    <section className="w-full relative z-0 h-[640px] rounded-lg overflow-hidden flex p-12">
+    <div className="w-full relative z-0 h-[640px] rounded-lg overflow-hidden flex p-12">
       <Image
         src="/images/profile_bg/1.webp"
         fill
@@ -99,7 +99,7 @@ const Showcase = ({
           ></div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ import Image from "next/image";
 
 // Images
 import { FaBell, FaMessage } from "react-icons/fa6";
+import Avatar from "./Avatar";
 
 interface UserHeaderProps {
   className?: string;
@@ -50,18 +51,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <FaBell size={24} />
         <FaMessage size={24} />
         {user?.balance}
-        {user?.avatar_full && (
-          <div className="w-14 h-14 rounded-full bg-slate-100 overflow-hidden relative">
-            <Image
-              src={user?.avatar_full}
-              fill
-              sizes="56px"
-              alt="Profile"
-              quality={100}
-              className="object-contain object-top"
-            />
-          </div>
-        )}
+        {user?.avatar_full && <Avatar url={user?.avatar_full} />}
       </div>
     </header>
   );
