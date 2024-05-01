@@ -28,11 +28,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-        });
-
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
@@ -55,7 +50,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('roles');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
