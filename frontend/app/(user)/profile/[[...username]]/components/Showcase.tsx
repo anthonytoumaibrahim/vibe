@@ -54,31 +54,43 @@ const Showcase = ({
       </Draggable>
 
       <div className="p-6 py-10 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
-        <Button
-          icon={MdEdit}
-          variant="link"
-          color="white"
-          size="small"
-          className="text-sm !absolute top-2 right-2"
-          onClick={() => setIsEditingBio(!isEditingBio)}
-        >
-          Edit
-        </Button>
+        {isOwner && (
+          <Button
+            icon={MdEdit}
+            variant="link"
+            color="white"
+            size="small"
+            className="text-sm !absolute top-2 right-2"
+            onClick={() => setIsEditingBio(!isEditingBio)}
+          >
+            Edit
+          </Button>
+        )}
         {isEditingBio ? (
           <AboutMeEditor />
-        ) : !bioSelector.content ? (
+        ) : !bio ? (
           <div className="text-white h-full flex flex-col gap-4 items-center justify-center text-center">
-            <h3>Your biography is empty!</h3>
-            <p>Write something cool here to introduce yourself to others.</p>
-            <Button
-              icon={MdEdit}
-              variant="filled"
-              color="primary"
-              size="regular"
-              onClick={() => setIsEditingBio(!isEditingBio)}
-            >
-              Start editing now
-            </Button>
+            {isOwner ? (
+              <>
+                <h3>Your biography is empty!</h3>
+                <p>
+                  Write something cool here to introduce yourself to others.
+                </p>
+                <Button
+                  icon={MdEdit}
+                  variant="filled"
+                  color="primary"
+                  size="regular"
+                  onClick={() => setIsEditingBio(!isEditingBio)}
+                >
+                  Start editing now
+                </Button>
+              </>
+            ) : (
+              <>
+                <h3>This user hasn&apos;t written their biography yet.</h3>
+              </>
+            )}
           </div>
         ) : (
           <div

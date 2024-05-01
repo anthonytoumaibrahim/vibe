@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 };
 
 const Profile = async ({ params }: { params: { username?: string } }) => {
-  const profileData: any = await getProfile();
-  const isOwner = params?.username ? false : true;
+  const profileData: any = await getProfile(params.username);
+  const isOwner = profileData?.is_owner;
 
   return (
     <Showcase
