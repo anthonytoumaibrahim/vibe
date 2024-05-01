@@ -7,6 +7,7 @@ import { K2D, Caveat } from "next/font/google";
 // Styles
 import "./globals.css";
 
+import StoreProvider from "./lib/StoreProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 // Toastify
@@ -40,19 +41,21 @@ export default function RootLayout({
         className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col dark:bg-slate-800 dark:text-white`}
       >
         <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          {children}
+          <StoreProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            {children}
+          </StoreProvider>
         </GoogleOAuthProvider>
       </body>
     </html>

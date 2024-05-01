@@ -3,9 +3,9 @@
 import { toCanvas } from "html-to-image";
 
 // Next & React stuff
-import { useAppSelector } from "@/app/lib/hooks";
 import { Fragment, useRef, useState, useEffect } from "react";
-import Image from "next/image";
+import { useAppDispatch } from "@/app/lib/store";
+import { useAppSelector } from "@/app/lib/hooks";
 import { saveCharacter } from "../../actions";
 import { removeTransparentBg } from "@/app/lib/utils";
 import { toast } from "react-toastify";
@@ -14,7 +14,8 @@ import { toast } from "react-toastify";
 import { Tab } from "@headlessui/react";
 
 // Components
-import Character from "@/app/(user)/2d_components/Character";
+import Image from "next/image";
+import Character, { PartsType } from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
 import Zoom from "./Zoom";
 
@@ -63,7 +64,12 @@ const tabs = [
   },
 ];
 
-const CharacterEditor = () => {
+const CharacterEditor = ({
+  data,
+}: {
+  data?: Record<PartsType, { id: number; fill?: string }> | undefined;
+}) => {
+  const dispatch = useAppDispatch();
   const characterData = useAppSelector((state) => state.characterEditorSlice);
   const [zoom, setZoom] = useState(0.85);
   const [isLoading, setIsLoading] = useState(false);
@@ -105,6 +111,25 @@ const CharacterEditor = () => {
         setZoom(parseFloat(lsZoom));
       }
     }
+    dispatch({
+      type: "characterEditorSlice/initializeData",
+      payload: {
+        body: { id: data?.body?.id ?? 3, fill: data?.body?.fill ?? "#df9777" },
+        face: { id: data?.face?.id ?? 1 },
+        hair: { id: data?.hair?.id ?? 3, fill: data?.hair?.fill ?? "#c73030" },
+        eye: { id: data?.eye?.id ?? 5, fill: data?.eye?.fill ?? "#72A0C1" },
+        eyebrow: {
+          id: data?.eyebrow?.id ?? 5,
+          fill: data?.eyebrow?.fill ?? "#c73030",
+        },
+        nose: { id: data?.nose?.id ?? 4 },
+        mouth: {
+          id: data?.mouth?.id ?? 6,
+          fill: data?.mouth?.fill ?? "#ed7172",
+        },
+        eyeglasses: { id: data?.eyeglasses?.id ?? 1 },
+      },
+    });
   }, []);
 
   return (

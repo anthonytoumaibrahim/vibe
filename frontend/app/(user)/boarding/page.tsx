@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 
 import CharacterEditor from "./components/CharacterEditor";
 
-import StoreProvider from "./StoreProvider";
-
 import { getCharacter } from "./actions";
 
 export const metadata: Metadata = {
@@ -23,9 +21,7 @@ const Boarding = async () => {
         </h3>
       </section>
 
-      <StoreProvider data={characterData?.data}>
-        <CharacterEditor />
-      </StoreProvider>
+      <CharacterEditor data={characterData?.data} />
     </>
   );
 };
