@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Achievements\SavedAvatar;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -97,9 +98,11 @@ class CharacterController extends Controller
 
         if ($avatar_2d) {
             // Delete old avatar
-            try {
-                Storage::disk('public')->delete($user->avatar);
-            } catch (\RunTimeException $e) {
+            if ($user->avatar) {
+                try {
+                    Storage::disk('public')->delete($user->avatar);
+                } catch (\RunTimeException $e) {
+                }
             }
 
             $filename = Str::random(12) . ".png";
@@ -107,6 +110,8 @@ class CharacterController extends Controller
             $user->avatar = "/user_avatars/{$filename}";
         }
         $user->saveOrFail();
+
+        $user->unlock(new SavedAvatar());
 
         return response()->json([
             'success' => true
