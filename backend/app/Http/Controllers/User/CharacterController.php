@@ -18,7 +18,9 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
 
-        $parts = CharacterPart::all()->sortBy('premium');
+        $isPremium = $user->hasRole('premium');
+
+        $parts = CharacterPart::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
 
         $purchasedPartIds = PurchasedCharacterPart::where('user_id', $user->id)
             ->pluck('part_id')
@@ -27,12 +29,14 @@ class CharacterController extends Controller
         $purchasedPartIds = new Collection($purchasedPartIds);
 
         $parts->transform(function ($characterPart) use ($purchasedPartIds) {
-            $characterPart->is_purchased = $purchasedPartIds->contains($characterPart->id);
+            if (!$characterPart->default) {
+                $characterPart->is_purchased = $purchasedPartIds->contains($characterPart->id);
+            }
             return $characterPart;
         });
 
         return response()->json([
-            'is_premium' => $user->hasRole('premium'),
+            'is_premium' => $isPremium,
             'data' => $user->character_data,
             'parts' => $parts->groupBy('type'),
             'colors' => config('character_builder.colors')
