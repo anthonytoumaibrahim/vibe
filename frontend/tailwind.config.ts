@@ -20,7 +20,7 @@ const config: Config = {
         display: ["var(--font-caveat)"],
       },
       colors: {
-        premium: colors.emerald,
+        premium: colors.yellow,
         primary: {
           "50": "#faf6fe",
           "100": "#f3eafd",
