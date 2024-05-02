@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CharacterPart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,9 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
         return response()->json([
-            'data' => $user->character_data
+            'data' => $user->character_data,
+            'parts' => CharacterPart::get()->groupBy('type'),
+            'colors' => config('character_builder.colors')
         ]);
     }
 

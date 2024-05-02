@@ -94,6 +94,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Transaction::class);
     }
 
+    public function purchasedCharacterParts()
+    {
+        return $this->hasMany(PurchasedCharacterPart::class);
+    }
+
     public function balance(): Attribute
     {
         return new Attribute(
