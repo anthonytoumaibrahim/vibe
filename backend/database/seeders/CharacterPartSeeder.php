@@ -317,5 +317,12 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => '',
             'default' => true
         ]);
+        // Eyeglasses
+        CharacterPart::create([
+            'client_id' => 1,
+            'type' => 'eyeglasses',
+            'ai_description' => '',
+            'default' => true
+        ]);
     }
 }
