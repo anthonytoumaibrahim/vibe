@@ -1,17 +1,13 @@
 import { useAppSelector } from "@/app/lib/hooks";
 
-// Data
-import { C2DParts } from "@/app/(user)/2d/2d_parts";
-
 import Paginator from "../Paginator";
+import { TabProps } from "./BodyTab";
 
-const FaceTab = () => {
+const FaceTab = ({ parts }: TabProps) => {
   const faceSelector = useAppSelector(
     (state) => state.characterEditorSlice.face
   );
-  return (
-    <Paginator parts={C2DParts.face} selector={faceSelector} type="face" />
-  );
+  return <Paginator parts={parts} selector={faceSelector} type="face" />;
 };
 
 export default FaceTab;

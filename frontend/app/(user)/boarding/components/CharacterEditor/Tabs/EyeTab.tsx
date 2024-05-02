@@ -1,18 +1,16 @@
 import { useAppSelector } from "@/app/lib/hooks";
 
-// Data
-import { C2DParts } from "@/app/(user)/2d/2d_parts";
-
 import Paginator from "../Paginator";
+import { TabProps } from "./BodyTab";
 
-const EyeTab = () => {
+const EyeTab = ({ parts, colors }: TabProps) => {
   const eyeSelector = useAppSelector((state) => state.characterEditorSlice.eye);
   return (
     <Paginator
-      parts={C2DParts.eye.parts}
+      parts={parts}
       selector={eyeSelector}
       type="eye"
-      colors={C2DParts.eye.colors}
+      colors={colors}
     />
   );
 };

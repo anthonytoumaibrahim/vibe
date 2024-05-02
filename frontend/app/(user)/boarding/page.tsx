@@ -21,7 +21,11 @@ const Boarding = async () => {
         </h3>
       </section>
 
-      <CharacterEditor data={characterData?.data} />
+      <CharacterEditor
+        data={characterData?.data}
+        parts={characterData?.parts}
+        colors={characterData?.colors}
+      />
     </>
   );
 };

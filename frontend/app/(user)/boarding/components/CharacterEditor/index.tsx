@@ -32,42 +32,49 @@ import AccessoriesTab from "./Tabs/AccessoriesTab";
 const tabs = [
   {
     name: "Body",
+    type: "body",
     tab: BodyTab,
   },
   {
     name: "Face",
+    type: "face",
     tab: FaceTab,
   },
   {
     name: "Hair",
+    type: "hair",
     tab: HairTab,
   },
   {
     name: "Eyebrows",
+    type: "eyebrow",
     tab: EyebrowTab,
   },
   {
     name: "Eyes",
+    type: "eye",
     tab: EyeTab,
   },
   {
     name: "Nose",
+    type: "nose",
     tab: NoseTab,
   },
   {
     name: "Mouth",
+    type: "mouth",
     tab: MouthTab,
-  },
-  {
-    name: "Accessories",
-    tab: AccessoriesTab,
   },
 ];
 
 const CharacterEditor = ({
   data,
+  parts,
+  colors = [],
 }: {
   data?: Record<PartsType, { id: number; fill?: string }> | undefined;
+  parts: any;
+  colors?: any;
 }) => {
   const dispatch = useAppDispatch();
   const characterData = useAppSelector((state) => state.characterEditorSlice);
@@ -171,11 +178,11 @@ const CharacterEditor = ({
         <Tab.Group vertical>
           <Tab.Panels className="bg-white dark:bg-slate-950 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
             {tabs.map((tab, tabIndex) => {
-              const { name, tab: PartTab } = tab;
+              const { name, type, tab: PartTab } = tab;
               return (
                 <Tab.Panel key={tabIndex}>
                   <h1 className="text-center">{name}</h1>
-                  <PartTab />
+                  <PartTab parts={parts?.[type]} colors={colors?.[type]} />
                 </Tab.Panel>
               );
             })}

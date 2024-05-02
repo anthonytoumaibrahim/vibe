@@ -1,17 +1,13 @@
 import { useAppSelector } from "@/app/lib/hooks";
 
-// Data
-import { C2DParts } from "@/app/(user)/2d/2d_parts";
-
 import Paginator from "../Paginator";
+import { TabProps } from "./BodyTab";
 
-const NoseTab = () => {
+const NoseTab = ({ parts }: TabProps) => {
   const noseSelector = useAppSelector(
     (state) => state.characterEditorSlice.nose
   );
-  return (
-    <Paginator parts={C2DParts.nose} selector={noseSelector} type="nose" />
-  );
+  return <Paginator parts={parts} selector={noseSelector} type="nose" />;
 };
 
 export default NoseTab;
