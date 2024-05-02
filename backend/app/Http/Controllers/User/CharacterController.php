@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CharacterPart;
+use App\Models\PurchasedCharacterPart;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,10 +17,24 @@ class CharacterController extends Controller
     public function get()
     {
         $user = User::find(Auth::id());
+
+        $parts = CharacterPart::all();
+
+        $purchasedPartIds = PurchasedCharacterPart::where('user_id', $user->id)
+            ->pluck('part_id')
+            ->toArray();
+
+        $purchasedPartIds = new Collection($purchasedPartIds);
+
+        $parts->transform(function ($characterPart) use ($purchasedPartIds) {
+            $characterPart->is_purchased = $purchasedPartIds->contains($characterPart->id);
+            return $characterPart;
+        });
+
         return response()->json([
             'is_premium' => $user->hasRole('premium'),
             'data' => $user->character_data,
-            'parts' => CharacterPart::get()->groupBy('type'),
+            'parts' => $parts->groupBy('type'),
             'colors' => config('character_builder.colors')
         ]);
     }
