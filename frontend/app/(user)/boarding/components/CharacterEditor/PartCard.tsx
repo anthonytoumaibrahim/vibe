@@ -56,7 +56,7 @@ const PartCard = ({
           size={ModalSize.xxl}
           className="p-0 flex gap-6 items-center overflow-hidden"
         >
-          <div className="relative z-0 w-64 h-64 p-6 overflow-hidden bg-premium-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-premium-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-premium-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
+          <div className="relative z-0 w-72 h-72 overflow-hidden bg-premium-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-premium-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-premium-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
             <Image
               src={`/images/2d_thumbs/${type}/${id}.svg`}
               fill
@@ -66,7 +66,7 @@ const PartCard = ({
             />
           </div>
 
-          <div className="p-6 text-center w-full flex flex-col items-center gap-3">
+          <div className="text-center w-full flex flex-col items-center gap-3">
             <h1 className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text uppercase">
               Premium Item
             </h1>
