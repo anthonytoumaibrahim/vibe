@@ -6,7 +6,17 @@ interface ModalProps {
   handleClose: () => void;
   title?: string;
   description?: string;
+  className?: string;
+  size?: ModalSize;
   children: React.ReactNode;
+}
+
+export enum ModalSize {
+  "medium" = "max-w-md",
+  "large" = "max-w-lg",
+  "small" = "max-w-sm",
+  "xl" = "max-w-xl",
+  "xxl" = "max-w-2xl",
 }
 
 const Modal = ({
@@ -14,6 +24,8 @@ const Modal = ({
   handleClose = () => {},
   title,
   description,
+  className = "",
+  size = ModalSize.large,
   children,
 }: ModalProps) => {
   return (
@@ -35,7 +47,9 @@ const Modal = ({
         />
 
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <Dialog.Panel className="bg-white max-w-lg w-full p-6 rounded-xl shadow-2xl">
+          <Dialog.Panel
+            className={`bg-white ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
+          >
             {title && <Dialog.Title>{title}</Dialog.Title>}
             {description && (
               <Dialog.Description>{description}</Dialog.Description>

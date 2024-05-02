@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAppSelector } from "@/app/lib/store";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import PartCard from "./PartCard";
@@ -14,10 +13,6 @@ interface PartTabProps {
 const itemsPerPage = 9;
 
 const PartTab = ({ type, parts, colors, is_premium = false }: PartTabProps) => {
-  const selector = useAppSelector(
-    (state) => state.characterEditorSlice?.[type]
-  );
-
   const [itemOffset, setItemOffset] = useState(0);
   const pageCount = Math.ceil(parts.length / itemsPerPage);
   const endOffset = itemOffset + itemsPerPage;
@@ -39,10 +34,9 @@ const PartTab = ({ type, parts, colors, is_premium = false }: PartTabProps) => {
               id={id}
               type={type}
               height={180}
-              selected={selector?.id === id}
               premium={premium}
+              is_premium={is_premium}
               colors={colors}
-              selectedColor={selector?.fill}
             >
               <Image
                 src={`/images/2d_thumbs/${type}/${id}.svg`}
