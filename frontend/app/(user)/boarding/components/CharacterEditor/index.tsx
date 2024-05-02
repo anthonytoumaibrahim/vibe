@@ -32,10 +32,12 @@ const tabs = [
   {
     name: "Hair",
     type: "hair",
+    optional: true,
   },
   {
     name: "Eyebrows",
     type: "eyebrow",
+    optional: true,
   },
   {
     name: "Eyes",
@@ -48,6 +50,11 @@ const tabs = [
   {
     name: "Mouth",
     type: "mouth",
+  },
+  {
+    name: "Eyeglasses",
+    type: "eyeglasses",
+    optional: true,
   },
 ];
 
@@ -153,7 +160,7 @@ const CharacterEditor = ({
         <Tab.Group vertical>
           <Tab.Panels className="bg-white dark:bg-slate-950 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
             {tabs.map((tab, tabIndex) => {
-              const { name, type } = tab;
+              const { name, type, optional } = tab;
               return (
                 <Tab.Panel key={tabIndex}>
                   <h1 className="text-center">{name}</h1>
@@ -161,6 +168,8 @@ const CharacterEditor = ({
                     parts={parts?.[type]}
                     colors={colors?.[type]}
                     type={type}
+                    is_premium={is_premium}
+                    optional={optional}
                   />
                 </Tab.Panel>
               );

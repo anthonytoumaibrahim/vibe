@@ -15,6 +15,7 @@ interface PartCardProps {
   colors?: Array<string>;
   id: number;
   type: string;
+  optional?: boolean;
 }
 
 const PartCard = ({
@@ -25,6 +26,7 @@ const PartCard = ({
   height = 240,
   premium = false,
   is_premium = false,
+  optional = false,
   colors,
 }: PartCardProps) => {
   const dispatch = useAppDispatch();
@@ -107,7 +109,7 @@ const PartCard = ({
               } ${className}`}
               onClick={() =>
                 handleUpdate({
-                  id: id,
+                  id: optional && selector?.id === id ? 0 : id,
                 })
               }
             >

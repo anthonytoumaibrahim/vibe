@@ -8,11 +8,18 @@ interface PartTabProps {
   parts: Array<any>;
   colors: Array<string>;
   is_premium?: boolean;
+  optional?: boolean;
 }
 
 const itemsPerPage = 9;
 
-const PartTab = ({ type, parts, colors, is_premium = false }: PartTabProps) => {
+const PartTab = ({
+  type,
+  parts,
+  colors,
+  is_premium = false,
+  optional = false,
+}: PartTabProps) => {
   const [itemOffset, setItemOffset] = useState(0);
   const pageCount = Math.ceil(parts.length / itemsPerPage);
   const endOffset = itemOffset + itemsPerPage;
@@ -37,6 +44,7 @@ const PartTab = ({ type, parts, colors, is_premium = false }: PartTabProps) => {
               premium={premium}
               is_premium={is_premium}
               colors={colors}
+              optional={optional}
             >
               <Image
                 src={`/images/2d_thumbs/${type}/${id}.svg`}

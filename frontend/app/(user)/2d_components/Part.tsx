@@ -24,6 +24,7 @@ const Part = ({
   absolute = false,
   center = false,
 }: PartProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [json, setJson] = useState<Record<string, any>>({});
 
   const SvgComponent = useMemo(
@@ -37,6 +38,7 @@ const Part = ({
   const loadJson = async () => {
     const json = await import(`../2d/${type}/${type + id}.json`);
     setJson(json);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -66,7 +68,8 @@ const Part = ({
   );
 
   return (
-    id !== 0 && (
+    id !== 0 &&
+    !isLoading && (
       <>
         <SvgComponent
           width={width}
