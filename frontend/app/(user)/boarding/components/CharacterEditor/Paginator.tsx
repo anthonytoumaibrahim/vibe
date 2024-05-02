@@ -16,6 +16,7 @@ interface PaginatorProps {
   colors?: Array<string>;
   selectedColor?: string;
   optional?: boolean;
+  is_premium?: boolean;
 }
 
 const itemsPerPage = 9;
@@ -27,6 +28,7 @@ const Paginator = ({
   className = "",
   colors,
   optional = false,
+  is_premium = false,
 }: PaginatorProps) => {
   const dispatch = useAppDispatch();
 

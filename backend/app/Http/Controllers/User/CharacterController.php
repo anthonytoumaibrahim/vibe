@@ -16,6 +16,7 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
         return response()->json([
+            'is_premium' => $user->hasRole('premium'),
             'data' => $user->character_data,
             'parts' => CharacterPart::get()->groupBy('type'),
             'colors' => config('character_builder.colors')

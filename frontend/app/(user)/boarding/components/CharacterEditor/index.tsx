@@ -18,52 +18,36 @@ import Image from "next/image";
 import Character, { PartsType } from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
 import Zoom from "./Zoom";
-
-// Tabs
-import BodyTab from "./Tabs/BodyTab";
-import HairTab from "./Tabs/HairTab";
-import FaceTab from "./Tabs/FaceTab";
-import EyeTab from "./Tabs/EyeTab";
-import NoseTab from "./Tabs/NoseTab";
-import EyebrowTab from "./Tabs/EyebrowTab";
-import MouthTab from "./Tabs/MouthTab";
-import AccessoriesTab from "./Tabs/AccessoriesTab";
+import PartTab from "./PartTab";
 
 const tabs = [
   {
     name: "Body",
     type: "body",
-    tab: BodyTab,
   },
   {
     name: "Face",
     type: "face",
-    tab: FaceTab,
   },
   {
     name: "Hair",
     type: "hair",
-    tab: HairTab,
   },
   {
     name: "Eyebrows",
     type: "eyebrow",
-    tab: EyebrowTab,
   },
   {
     name: "Eyes",
     type: "eye",
-    tab: EyeTab,
   },
   {
     name: "Nose",
     type: "nose",
-    tab: NoseTab,
   },
   {
     name: "Mouth",
     type: "mouth",
-    tab: MouthTab,
   },
 ];
 
@@ -71,10 +55,12 @@ const CharacterEditor = ({
   data,
   parts,
   colors = [],
+  is_premium = false,
 }: {
   data?: Record<PartsType, { id: number; fill?: string }> | undefined;
   parts: any;
   colors?: any;
+  is_premium?: boolean;
 }) => {
   const dispatch = useAppDispatch();
   const characterData = useAppSelector((state) => state.characterEditorSlice);
@@ -178,11 +164,15 @@ const CharacterEditor = ({
         <Tab.Group vertical>
           <Tab.Panels className="bg-white dark:bg-slate-950 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
             {tabs.map((tab, tabIndex) => {
-              const { name, type, tab: PartTab } = tab;
+              const { name, type } = tab;
               return (
                 <Tab.Panel key={tabIndex}>
                   <h1 className="text-center">{name}</h1>
-                  <PartTab parts={parts?.[type]} colors={colors?.[type]} />
+                  <PartTab
+                    parts={parts?.[type]}
+                    colors={colors?.[type]}
+                    type={type}
+                  />
                 </Tab.Panel>
               );
             })}
