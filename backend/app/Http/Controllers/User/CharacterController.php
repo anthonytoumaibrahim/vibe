@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CharacterPart;
 use App\Models\PurchasedCharacterPart;
+use App\Models\Transaction;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +41,41 @@ class CharacterController extends Controller
             'data' => $user->character_data,
             'parts' => $parts->groupBy('type'),
             'colors' => config('character_builder.colors')
+        ]);
+    }
+
+    public function buyPart(Request $request)
+    {
+        $part = CharacterPart::findOrFail($request->id);
+        if ($part->default) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You cannot purchase this part.'
+            ]);
+        }
+        // Did user already purchase it?
+        $checkIfPurchased = PurchasedCharacterPart::where('user_id', Auth::id())->where('part_id', $part->id)->first();
+        if ($checkIfPurchased) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You already purchased this part.'
+            ]);
+        }
+
+        $newPart = new PurchasedCharacterPart();
+        $newPart->user_id = Auth::id();
+        $newPart->part_id = $part->id;
+        $newPart->saveOrFail();
+
+        $transaction = new Transaction();
+        $transaction = new Transaction();
+        $transaction->operation = "Purchased Character Part";
+        $transaction->amount = -$part->price;
+        $transaction->user_id = Auth::id();
+        $transaction->save();
+
+        return response()->json([
+            'success' => true
         ]);
     }
 

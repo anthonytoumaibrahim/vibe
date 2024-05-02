@@ -22,8 +22,12 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
         Route::get('/info', [UserController::class, 'getInfo']);
         Route::get('/profile/{username?}', [UserController::class, 'getProfile']);
-        Route::post('/save-character', [CharacterController::class, 'save']);
-        Route::get('/get-character', [CharacterController::class, 'get']);
         Route::post('/save-bio', [BioController::class, 'save']);
+
+        Route::controller(CharacterController::class)->group(function () {
+            Route::post('/save-character', 'save');
+            Route::get('/get-character', 'get');
+            Route::post('/buy-part', 'buyPart');
+        });
     });
 });

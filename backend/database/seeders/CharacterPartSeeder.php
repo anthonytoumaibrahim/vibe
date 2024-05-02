@@ -143,13 +143,15 @@ class CharacterPartSeeder extends Seeder
             'client_id' => 15,
             'type' => 'hair',
             'ai_description' => '',
-            'premium' => true
+            'premium' => true,
+            'default' => true,
         ]);
         CharacterPart::create([
             'client_id' => 16,
             'type' => 'hair',
             'ai_description' => '',
-            'premium' => true
+            'premium' => true,
+            'default' => true,
         ]);
         // Brows
         CharacterPart::create([

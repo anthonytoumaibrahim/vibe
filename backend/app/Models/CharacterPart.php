@@ -19,6 +19,7 @@ class CharacterPart extends Model
     public function toArray()
     {
         $array = parent::toArray();
+        $array['server_id'] = $array['id'];
         $array['id'] = $array['client_id'];
         unset($array['client_id']);
 
