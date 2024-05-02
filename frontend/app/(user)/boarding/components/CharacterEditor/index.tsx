@@ -134,6 +134,10 @@ const CharacterEditor = ({
         },
       },
     });
+    dispatch({
+      type: "characterPartsSlice/initializeData",
+      payload: parts,
+    });
     setIs2DLoading(false);
   }, []);
 
@@ -165,7 +169,6 @@ const CharacterEditor = ({
                 <Tab.Panel key={tabIndex}>
                   <h1 className="text-center">{name}</h1>
                   <PartTab
-                    parts={parts?.[type]}
                     colors={colors?.[type]}
                     type={type}
                     is_premium={is_premium}

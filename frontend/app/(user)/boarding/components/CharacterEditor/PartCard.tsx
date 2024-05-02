@@ -19,6 +19,7 @@ interface PartCardProps {
   optional?: boolean;
   is_purchased?: boolean;
   price?: number;
+  server_id?: number;
 }
 
 const PartCard = ({
@@ -33,6 +34,7 @@ const PartCard = ({
   is_purchased = true,
   colors,
   price = 0,
+  server_id,
 }: PartCardProps) => {
   const dispatch = useAppDispatch();
   const selector = useAppSelector(
@@ -71,6 +73,7 @@ const PartCard = ({
         <ShopModal
           show={shopModal}
           id={id}
+          server_id={server_id}
           type={type}
           price={price}
           handleClose={() => showShopModal(false)}
@@ -81,6 +84,8 @@ const PartCard = ({
           <>
             <button
               className={`group focus:outline-2 w-full h-full z-0 rounded-lg relative overflow-hidden transition-colors duration-200 cursor-pointer before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-primary-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-primary-400 after:transition after:filter after:blur-xl before:-z-[1] after:-z-[2] ${
+                !is_purchased ? "opacity-50" : ""
+              } ${
                 selector?.id === id
                   ? "bg-primary-main ring-2 ring-offset-2 ring-primary-main"
                   : "bg-slate-200 hover:bg-primary-main hover:before:opacity-100 hover:after:opacity-100 before:opacity-0 after:opacity-0 after:transition-opacity after:duration-200 before:transition-opacity before:duration-400"

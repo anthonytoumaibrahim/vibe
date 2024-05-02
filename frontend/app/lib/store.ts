@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import characterEditorSlice from "./features/characterEditor/characterEditorSlice";
 import aboutMeEditorSlice from "./features/aboutMeEditor/aboutMeEditorSlice";
+import characterPartsSlice from "./features/characterParts/characterPartsSlice";
 
 export const store = configureStore({
   reducer: {
     characterEditorSlice: characterEditorSlice,
     aboutMeEditorSlice: aboutMeEditorSlice,
+    characterPartsSlice: characterPartsSlice,
   },
 });
 

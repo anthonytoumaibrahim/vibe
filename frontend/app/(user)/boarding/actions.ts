@@ -11,6 +11,18 @@ export async function getCharacter() {
   return response;
 }
 
+export async function purchasePart(id: number) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/buy-part",
+    body: {
+      id: id,
+    },
+  });
+  revalidatePath("/boarding");
+  return response;
+}
+
 export async function saveCharacter(data: object) {
   const response = await sendRequest({
     method: "POST",
