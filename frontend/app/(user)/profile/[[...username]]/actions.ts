@@ -1,13 +1,18 @@
 "use server";
 
 import { sendRequest } from "@/app/actions";
+import { notFound } from "next/navigation";
 
 export async function getProfile(username?: string) {
-  const response = await sendRequest({
-    method: "GET",
-    url: `/user/profile/${username ? username : ""}`,
-  });
-  return response;
+  try {
+    const response = await sendRequest({
+      method: "GET",
+      url: `/user/profile/${username ? username : ""}`,
+    });
+    return response;
+  } catch (error) {
+    notFound();
+  }
 }
 
 export async function saveBio(data: { bio?: string }) {

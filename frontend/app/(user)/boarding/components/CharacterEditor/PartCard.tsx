@@ -45,18 +45,18 @@ const PartCard = ({
   const [premiumModal, showPremiumModal] = useState(false);
   const handleUpdate = (data: any) => {
     if (premium && !is_premium) {
-      showPremiumModal(true);
-    } else if (!is_purchased) {
-      showShopModal(true);
-    } else {
-      dispatch({
-        type: "characterEditorSlice/updateData",
-        payload: {
-          type: type,
-          data: { ...data },
-        },
-      });
+      return showPremiumModal(true);
     }
+    if (!is_purchased) {
+      return showShopModal(true);
+    }
+    dispatch({
+      type: "characterEditorSlice/updateData",
+      payload: {
+        type: type,
+        data: { ...data },
+      },
+    });
   };
 
   return (
@@ -69,7 +69,7 @@ const PartCard = ({
           handleClose={() => showPremiumModal(false)}
         />
       )}
-      {shopModal && !is_premium && (
+      {shopModal && (
         <ShopModal
           show={shopModal}
           id={id}

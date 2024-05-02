@@ -25,6 +25,7 @@ const Boarding = async () => {
         data={characterData?.data}
         parts={characterData?.parts}
         colors={characterData?.colors}
+        is_premium={characterData?.is_premium}
       />
     </>
   );
