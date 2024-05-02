@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Menu } from "@headlessui/react";
 import { FaPalette } from "react-icons/fa6";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
-import Modal, { ModalSize } from "@/components/Modal";
-import Image from "next/image";
-import Button from "@/components/Button";
+
+// Modals
 import PremiumModal from "./PremiumModal";
+import ShopModal from "./ShopModal";
 
 interface PartCardProps {
   className?: string;
@@ -18,6 +18,7 @@ interface PartCardProps {
   type: string;
   optional?: boolean;
   is_purchased?: boolean;
+  price?: number;
 }
 
 const PartCard = ({
@@ -31,16 +32,20 @@ const PartCard = ({
   optional = false,
   is_purchased = true,
   colors,
+  price = 0,
 }: PartCardProps) => {
   const dispatch = useAppDispatch();
   const selector = useAppSelector(
     (state: any) => state.characterEditorSlice?.[type]
   );
 
+  const [shopModal, showShopModal] = useState(false);
   const [premiumModal, showPremiumModal] = useState(false);
   const handleUpdate = (data: any) => {
     if (premium && !is_premium) {
       showPremiumModal(true);
+    } else if (!is_purchased) {
+      showShopModal(true);
     } else {
       dispatch({
         type: "characterEditorSlice/updateData",
@@ -60,6 +65,15 @@ const PartCard = ({
           id={id}
           type={type}
           handleClose={() => showPremiumModal(false)}
+        />
+      )}
+      {shopModal && !is_premium && (
+        <ShopModal
+          show={shopModal}
+          id={id}
+          type={type}
+          price={price}
+          handleClose={() => showShopModal(false)}
         />
       )}
       <Menu as="div" style={{ height }} className="relative group">

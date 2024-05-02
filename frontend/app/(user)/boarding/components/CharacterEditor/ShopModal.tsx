@@ -2,19 +2,21 @@ import Button from "@/components/Button";
 import Modal, { ModalSize } from "@/components/Modal";
 import Image from "next/image";
 
-interface PremiumModalProps {
+interface ShopModalProps {
   type?: string;
   id?: number;
   show?: boolean;
+  price?: number;
   handleClose?: () => void;
 }
 
-const PremiumModal = ({
+const ShopModal = ({
   type,
   id,
   show = false,
+  price = 0,
   handleClose = () => {},
-}: PremiumModalProps) => {
+}: ShopModalProps) => {
   return (
     <Modal
       isOpen={show}
@@ -22,7 +24,7 @@ const PremiumModal = ({
       size={ModalSize.xxl}
       className="!p-0 flex items-center overflow-hidden"
     >
-      <div className="relative z-0 w-72 h-72 overflow-hidden bg-premium-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-premium-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-premium-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
+      <div className="relative z-0 w-72 h-72 overflow-hidden bg-primary-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-primary-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-primary-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
         <Image
           src={`/images/2d_thumbs/${type}/${id}.svg`}
           fill
@@ -33,18 +35,18 @@ const PremiumModal = ({
       </div>
 
       <div className="text-center w-full flex flex-col items-center gap-3 px-6">
-        <h1 className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text uppercase">
-          Premium Item
+        <h1 className="bg-gradient-to-t from-primary-main to-primary-400 text-transparent bg-clip-text uppercase">
+          Buy Item
         </h1>
         <p>
-          This item is only available to{" "}
-          <strong className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text">
-            Premium
-          </strong>{" "}
-          users. Upgrade now to add it to your character.
+          This item costs{" "}
+          <strong className="bg-gradient-to-t from-primary-main to-primary-400 text-transparent bg-clip-text">
+            {price} VC
+          </strong>
+          . Do you want to purchase it?
         </p>
-        <Button href="/premium" variant="gradient" color="premium">
-          Upgrade now
+        <Button variant="gradient" color="primary">
+          Purchase
         </Button>
         <Button
           size="small"
@@ -60,4 +62,4 @@ const PremiumModal = ({
   );
 };
 
-export default PremiumModal;
+export default ShopModal;

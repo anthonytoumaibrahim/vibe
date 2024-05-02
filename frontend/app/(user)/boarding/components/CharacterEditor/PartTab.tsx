@@ -34,7 +34,7 @@ const PartTab = ({
     <div className="flex flex-col h-full gap-4">
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
         {currentItems.map((part) => {
-          const { id, premium, is_purchased } = part;
+          const { id, premium, price, is_purchased } = part;
           return (
             <PartCard
               key={id}
@@ -46,6 +46,7 @@ const PartTab = ({
               colors={colors}
               optional={optional}
               is_purchased={is_purchased}
+              price={price}
             >
               <Image
                 src={`/images/2d_thumbs/${type}/${id}.svg`}

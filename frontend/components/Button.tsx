@@ -50,12 +50,14 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
       white: "text-white",
       premium:
         "bg-premium-600 hover:bg-premium-700 active:bg-gradient-to-t active:from-premium-400 active:to-premium-600 text-white",
+      muted: "",
     },
   },
   gradient: {
     class: "active:shadow-inner",
     colors: {
-      primary: "",
+      primary:
+        "bg-gradient-to-t from-primary-main to-primary-500 hover:from-primary-600 hover:to-primary-400 active:from-primary-500 active:to-primary-main text-white",
       secondary: "",
       error: "",
       success: "",

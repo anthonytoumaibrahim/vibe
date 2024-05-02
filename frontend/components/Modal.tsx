@@ -17,6 +17,7 @@ export enum ModalSize {
   "small" = "max-w-sm",
   "xl" = "max-w-xl",
   "xxl" = "max-w-2xl",
+  "xxxl" = "max-w-3xl",
 }
 
 const Modal = ({
