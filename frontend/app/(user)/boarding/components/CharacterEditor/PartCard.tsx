@@ -16,6 +16,7 @@ interface PartCardProps {
   id: number;
   type: string;
   optional?: boolean;
+  is_purchased?: boolean;
 }
 
 const PartCard = ({
@@ -27,6 +28,7 @@ const PartCard = ({
   premium = false,
   is_premium = false,
   optional = false,
+  is_purchased = true,
   colors,
 }: PartCardProps) => {
   const dispatch = useAppDispatch();
@@ -79,7 +81,7 @@ const PartCard = ({
               </strong>{" "}
               users. Upgrade now to add it to your character.
             </p>
-            <Button href="/upgrade" variant="gradient" color="premium">
+            <Button href="/premium" variant="gradient" color="premium">
               Upgrade now
             </Button>
             <Button
