@@ -18,7 +18,7 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
 
-        $parts = CharacterPart::all();
+        $parts = CharacterPart::all()->sortBy('premium');
 
         $purchasedPartIds = PurchasedCharacterPart::where('user_id', $user->id)
             ->pluck('part_id')
