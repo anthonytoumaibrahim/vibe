@@ -3,6 +3,8 @@ import { Menu } from "@headlessui/react";
 import { FaPalette } from "react-icons/fa6";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
 import Modal, { ModalSize } from "@/components/Modal";
+import Image from "next/image";
+import Button from "@/components/Button";
 
 interface PartCardProps {
   className?: string;
@@ -32,13 +34,17 @@ const PartCard = ({
 
   const [premiumModal, showPremiumModal] = useState(false);
   const handleUpdate = (data: any) => {
-    dispatch({
-      type: "characterEditorSlice/updateData",
-      payload: {
-        type: type,
-        data: { ...data },
-      },
-    });
+    if (premium && !is_premium) {
+      showPremiumModal(true);
+    } else {
+      dispatch({
+        type: "characterEditorSlice/updateData",
+        payload: {
+          type: type,
+          data: { ...data },
+        },
+      });
+    }
   };
 
   return (
@@ -48,8 +54,42 @@ const PartCard = ({
           isOpen={premiumModal}
           handleClose={() => showPremiumModal(false)}
           size={ModalSize.xxl}
+          className="p-0 flex gap-6 items-center overflow-hidden"
         >
-          Premium only!
+          <div className="relative z-0 w-64 h-64 p-6 overflow-hidden bg-premium-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-premium-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-premium-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
+            <Image
+              src={`/images/2d_thumbs/${type}/${id}.svg`}
+              fill
+              sizes="100%"
+              className="object-contain"
+              alt=""
+            />
+          </div>
+
+          <div className="p-6 text-center w-full flex flex-col items-center gap-3">
+            <h1 className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text uppercase">
+              Premium Item
+            </h1>
+            <p>
+              This item is only available to{" "}
+              <strong className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text">
+                Premium
+              </strong>{" "}
+              users. Upgrade now to add it to your character.
+            </p>
+            <Button href="/upgrade" variant="gradient" color="premium">
+              Upgrade now
+            </Button>
+            <Button
+              size="small"
+              variant="link"
+              color="muted"
+              className="font-normal text-sm"
+              onClick={() => showPremiumModal(false)}
+            >
+              No thanks
+            </Button>
+          </div>
         </Modal>
       )}
       <Menu as="div" style={{ height }} className="relative group">

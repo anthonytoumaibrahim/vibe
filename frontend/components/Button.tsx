@@ -1,7 +1,14 @@
 import Link from "next/link";
 
-type ButtonVariants = "filled" | "outlined" | "link";
-type ButtonColors = "primary" | "secondary" | "error" | "success" | "white";
+type ButtonVariants = "filled" | "outlined" | "link" | "gradient";
+type ButtonColors =
+  | "primary"
+  | "secondary"
+  | "error"
+  | "success"
+  | "white"
+  | "muted"
+  | "premium";
 type ButtonSize = "small" | "regular" | "large";
 
 import type { IconType } from "react-icons";
@@ -41,6 +48,21 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
       error: "",
       success: "",
       white: "text-white",
+      premium:
+        "bg-premium-600 hover:bg-premium-700 active:bg-gradient-to-t active:from-premium-400 active:to-premium-600 text-white",
+    },
+  },
+  gradient: {
+    class: "active:shadow-inner",
+    colors: {
+      primary: "",
+      secondary: "",
+      error: "",
+      success: "",
+      white: "",
+      muted: "",
+      premium:
+        "bg-gradient-to-t from-premium-600 to-premium-400 hover:from-premium-500 hover:to-premium-300 active:from-premium-400 active:to-premium-600 text-white",
     },
   },
   outlined: {
@@ -51,6 +73,8 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
       error: "",
       success: "",
       white: "text-white",
+      muted: "",
+      premium: "",
     },
   },
   link: {
@@ -61,6 +85,8 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
       error: "",
       success: "",
       white: "!text-white",
+      muted: "!text-slate-400",
+      premium: "",
     },
   },
 };
