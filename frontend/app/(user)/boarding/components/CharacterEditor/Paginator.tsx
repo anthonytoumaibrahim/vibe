@@ -52,24 +52,13 @@ const Paginator = ({
           return (
             <PartCard
               key={id}
+              id={id}
+              type={type}
               height={180}
               selected={selector?.id === id}
               premium={premium}
               colors={colors}
               selectedColor={selector?.fill}
-              onClick={(data?: { fill?: string; id?: number }) =>
-                dispatch({
-                  type: "characterEditorSlice/updateData",
-                  payload: {
-                    type: type,
-                    data: data
-                      ? data
-                      : {
-                          id: optional && selector?.id === id ? 0 : id,
-                        },
-                  },
-                })
-              }
             >
               <Image
                 src={`/images/2d_thumbs/${type}/${id}.svg`}

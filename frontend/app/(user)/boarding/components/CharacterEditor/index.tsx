@@ -141,17 +141,6 @@ const CharacterEditor = ({
         fill
       />
 
-      {/* <input
-        type="range"
-        step={0.01}
-        min={0.85}
-        max={2}
-        value={zoom}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setZoom(parseInt(e.target.value))
-        }
-      /> */}
-
       <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
 
       <div className="w-full h-full flex items-center justify-center pt-40">

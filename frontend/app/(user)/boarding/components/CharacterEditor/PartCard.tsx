@@ -1,27 +1,42 @@
 import { Menu } from "@headlessui/react";
 import { FaPalette, FaTrash } from "react-icons/fa6";
+import { useAppDispatch } from "@/app/lib/store";
 
 interface PartCardProps {
   className?: string;
-  onClick?: () => void;
   children: React.ReactNode;
   height?: number;
   selected?: boolean;
   premium?: boolean;
   colors?: Array<string>;
   selectedColor?: string;
+  id: number;
+  type: string;
 }
 
 const PartCard = ({
+  id,
+  type,
   children,
   className = "",
   height = 240,
-  onClick = () => {},
   selected = false,
   premium = false,
   colors,
   selectedColor,
 }: PartCardProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleUpdate = (data: any) => {
+    dispatch({
+      type: "characterEditorSlice/updateData",
+      payload: {
+        type: type,
+        data: { ...data },
+      },
+    });
+  };
+
   return (
     <Menu as="div" style={{ height }} className="relative group">
       {({ open }) => (
@@ -36,7 +51,11 @@ const PartCard = ({
                 ? "!bg-premium-500 hover:!bg-premium-700 before:!bg-premium-200 after:!bg-premium-400 before:opacity-100 after:opacity-100"
                 : ""
             } ${className}`}
-            onClick={() => onClick()}
+            onClick={() =>
+              handleUpdate({
+                id: id,
+              })
+            }
           >
             {children}
           </button>
@@ -62,7 +81,7 @@ const PartCard = ({
                   selectedColor === color ? "ring-2 ring-primary-main" : ""
                 }`}
                 style={{ backgroundColor: color }}
-                onClick={() => onClick({ fill: color })}
+                onClick={() => handleUpdate({ id: id, fill: color })}
               ></Menu.Item>
             ))}
           </Menu.Items>
