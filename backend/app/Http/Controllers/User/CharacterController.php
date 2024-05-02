@@ -62,6 +62,16 @@ class CharacterController extends Controller
             ]);
         }
 
+        // Enough balance?
+        $balance = Auth::user()->balance;
+        if ($balance - $part->price < 0) {
+            return response()->json([
+                'success' => false,
+                'balance_error' => true,
+                'message' => 'Not enough balance'
+            ]);
+        }
+
         $newPart = new PurchasedCharacterPart();
         $newPart->user_id = Auth::id();
         $newPart->part_id = $part->id;

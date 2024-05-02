@@ -25,6 +25,7 @@ const ShopModal = ({
 }: ShopModalProps) => {
   const dispatch = useAppDispatch();
 
+  const [noBalance, setNoBalance] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,8 +42,12 @@ const ShopModal = ({
         },
       });
     } else {
-      toast.error("Oops, couldn't purchase this part.");
+      toast.error(response?.message ?? "Oops, couldn't purchase this part.");
+      if (response?.balance_error) {
+        setNoBalance(true);
+      }
     }
+    setIsLoading(false);
   };
 
   return (
@@ -56,6 +61,8 @@ const ShopModal = ({
         className={`relative z-0 w-72 h-72 overflow-hidden ${
           purchaseSuccess
             ? "bg-green-700 before:bg-green-200 after:bg-green-400"
+            : noBalance
+            ? "bg-red-700 before:bg-red-200 after:bg-red-400"
             : "bg-primary-700 before:bg-primary-200 after:bg-primary-400"
         } before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0`}
       >
@@ -73,13 +80,21 @@ const ShopModal = ({
           className={`bg-gradient-to-t ${
             purchaseSuccess
               ? "from-green-800 to-green-400"
+              : noBalance
+              ? "from-red-800 to-red-400"
               : "from-primary-main to-primary-400"
           } text-transparent bg-clip-text uppercase`}
         >
-          {purchaseSuccess ? "Purchased!" : "Buy Item"}
+          {purchaseSuccess
+            ? "Purchased!"
+            : noBalance
+            ? "Not enough VC"
+            : "Buy Item"}
         </h1>
         {purchaseSuccess ? (
           <p>Item has been successfully purchased.</p>
+        ) : noBalance ? (
+          <p>You don&apos;t have enough VC balance.</p>
         ) : (
           <p>
             This item costs{" "}
@@ -94,6 +109,10 @@ const ShopModal = ({
         {purchaseSuccess ? (
           <Button variant="gradient" color="success" onClick={handleClose}>
             Check out your new item
+          </Button>
+        ) : noBalance ? (
+          <Button variant="gradient" color="error" href="/premium">
+            Buy VC
           </Button>
         ) : (
           <Button
