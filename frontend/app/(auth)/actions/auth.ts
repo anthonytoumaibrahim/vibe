@@ -44,7 +44,7 @@ export async function auth({ data = {}, token, type }: AuthParams) {
   }
 
   if (shouldRedirect) {
-    redirect("/home");
+    redirect(type === "signup" ? "/boarding" : "/home");
   }
 
   return reqResponse;
