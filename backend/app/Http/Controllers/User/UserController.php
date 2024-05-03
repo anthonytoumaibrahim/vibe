@@ -23,7 +23,7 @@ class UserController extends Controller
         } else {
             $id = Auth::id();
         }
-        $user = User::with('achievements')->find($id)->makeVisible('character_data');
+        $user = User::find($id)->makeVisible('character_data');
         $user->is_owner = $id === Auth::id();
         return response()->json($user);
     }
