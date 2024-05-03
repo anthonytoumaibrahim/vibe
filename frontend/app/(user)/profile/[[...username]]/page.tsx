@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getProfile } from "./actions";
 import Showcase from "./components/Showcase";
-import Avatar from "../../components/Avatar";
+import UserCard from "./components/UserCard";
 
 export const metadata: Metadata = {
   title: "Profile – Vibe",
@@ -20,15 +20,12 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           isOwner={isOwner}
         />
         <div className="w-1/4">
-          <div className="p-4 rounded-lg bg-slate-100">
-            <div className="flex items-start gap-4">
-              <Avatar url={profileData?.avatar_full} />
-              <div>
-                <h4>{profileData?.username}</h4>
-                <p>Online</p>
-              </div>
-            </div>
-          </div>
+          <UserCard
+            username={profileData?.username}
+            avatar={profileData?.avatar_full}
+            isFriend={profileData?.is_friend}
+            isOwner={isOwner}
+          />
         </div>
       </section>
 
