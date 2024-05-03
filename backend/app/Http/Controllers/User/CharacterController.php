@@ -20,7 +20,7 @@ class CharacterController extends Controller
     {
         $user = User::find(Auth::id());
 
-        $isPremium = $user->hasRole('premium');
+        $isPremium = $user->is_premium;
 
         $parts = CharacterPart::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
 

@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, HasRoles, Achiever;
 
-    protected $appends = ['balance', 'avatar_full'];
+    protected $appends = ['balance', 'avatar_full', 'is_premium'];
 
     /**
      * The attributes that are mass assignable.
@@ -99,6 +99,18 @@ class User extends Authenticatable implements JWTSubject
     public function purchasedCharacterParts()
     {
         return $this->hasMany(PurchasedCharacterPart::class);
+    }
+
+    public function purchasedBackgrounds()
+    {
+        return $this->hasMany(PurchasedBackground::class);
+    }
+
+    public function isPremium(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->hasRole('premium'),
+        );
     }
 
     public function balance(): Attribute

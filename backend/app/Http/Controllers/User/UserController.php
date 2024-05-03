@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Background;
+use App\Models\PurchasedBackground;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -25,6 +28,23 @@ class UserController extends Controller
         }
         $user = User::with('achievements')->find($id)->makeVisible('character_data');
         $user->is_owner = $id === Auth::id();
+        // Backgrounds
+        $isPremium = $user->is_premium;
+
+        $backgrounds = Background::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
+
+        $purchasedBackgroundsIds = PurchasedBackground::where('user_id', $user->id)
+            ->pluck('background_id')
+            ->toArray();
+
+        $purchasedBackgroundsIds = new Collection($purchasedBackgroundsIds);
+
+        $backgrounds->transform(function ($background) use ($purchasedBackgroundsIds) {
+            $background->is_purchased = $purchasedBackgroundsIds->contains($background->id);
+            return $background;
+        });
+
+        $user->backgrounds = $backgrounds;
         return response()->json($user);
     }
 }
