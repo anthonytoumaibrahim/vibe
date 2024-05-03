@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 // Components
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import GLoginButton from "../../components/GLoginButton";
 
 const LoginForm = () => {
   const {
@@ -32,40 +33,10 @@ const LoginForm = () => {
     }
   };
 
-  const gLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse: {
-      access_token: string;
-      expires_in: number;
-      scope: string;
-    }) => {
-      try {
-        const response = await auth({
-          token: tokenResponse.access_token,
-          type: "oauth",
-        });
-        if (response?.success === false) {
-          const errorMessage: string = response?.message;
-          toast.error(
-            errorMessage ??
-              "We can't sign you in with Google. Please sign in using your username instead."
-          );
-        }
-      } catch (error: any) {
-        const errorMessage: any = error?.message;
-        toast.error(
-          errorMessage ??
-            "Sorry, couldn't sign in with Google. Please try again later."
-        );
-      }
-    },
-  });
-
   return (
     <div className="flex flex-col w-full gap-2">
       <div className="flex w-full items-center justify-center">
-        <button onClick={() => gLogin()} className="p-2 border rounded-lg">
-          sign in with google
-        </button>
+        <GLoginButton type="login" />
       </div>
       <form
         action=""
