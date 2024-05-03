@@ -26,7 +26,6 @@ class OAuthController extends AuthController
         $oAuthId = $response['id'];
         $oAuthName = $response['name'];
         $oAuthEmail = $response['email'];
-        $oAuthPicture = $response['picture'];
 
         $userExists = User::where('email', $oAuthEmail)->first();
         if ($userExists) {
@@ -56,7 +55,6 @@ class OAuthController extends AuthController
         $user = new User();
         $user->username = $username;
         $user->email = $oAuthEmail;
-        $user->avatar = $oAuthPicture;
         $user->oauth_id = $oAuthId;
         $user->name = $oAuthName;
         $user->saveOrFail();

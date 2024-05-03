@@ -111,7 +111,7 @@ class User extends Authenticatable implements JWTSubject
     public function avatarFull(): Attribute
     {
         return new Attribute(
-            get: fn () => config('app.url') . "/storage" . $this->avatar,
+            get: fn () => $this->avatar ? config('app.url') . "/storage" . $this->avatar : null,
         );
     }
 }
