@@ -55,7 +55,7 @@ const GLoginButton = ({ type = "signup" }: GLoginButtonProps) => {
 
   return (
     <button
-      className="flex px-4 py-2 items-center gap-4 border rounded-lg hover:bg-primary-50 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex px-4 py-2 items-center gap-4 border dark:border-slate-600 rounded-lg bg-white dark:bg-black hover:bg-primary-50 dark:hover:bg-slate-900 disabled:opacity-50 disabled:cursor-not-allowed"
       onClick={() => handleLogin()}
       disabled={isLoading}
     >

@@ -21,7 +21,7 @@ const UserCard = ({
   const [friend, setFriend] = useState(isFriend);
 
   return (
-    <div className="p-4 rounded-lg bg-slate-100">
+    <div className="p-4 rounded-lg bg-slate-100 dark:bg-black">
       <div className="flex items-center gap-4">
         <Avatar url={avatar} />
         <div>

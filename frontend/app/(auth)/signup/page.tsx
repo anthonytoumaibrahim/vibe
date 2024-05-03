@@ -14,27 +14,14 @@ export const metadata: Metadata = {
 
 export default function Signup() {
   return (
-    <MainLayout transparentHeader={true} showFooter={false}>
-      <main className="h-screen w-full relative flex items-center justify-center">
-        <Image
-          src="/images/auth/signup_bg.webp"
-          alt=""
-          className="-z-10 object-cover"
-          quality={100}
-          fill
-          priority={true}
-        />
+    <>
+      <h1>Join Vibe</h1>
 
-        <section className="bg-white rounded-lg w-full max-w-md p-10 flex flex-col gap-4 items-center shadow-xl">
-          <h1>Join Vibe</h1>
+      <SignupForm />
 
-          <SignupForm />
-
-          <p className="text-slate-500">
-            Already a member? <Link href="/login">Login now</Link>
-          </p>
-        </section>
-      </main>
-    </MainLayout>
+      <p className="text-slate-500 dark:text-slate-400">
+        Already a member? <Link href="/login">Login now</Link>
+      </p>
+    </>
   );
 }

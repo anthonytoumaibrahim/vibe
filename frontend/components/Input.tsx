@@ -42,7 +42,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       )}
       <input
         type={type}
-        className={`p-3 bg-gray-100 rounded-md placeholder:text-gray-400/80 outline-none focus:ring-2 focus:ring-primary-main ${className} ${
+        className={`p-3 bg-gray-100 dark:bg-black rounded-md placeholder:text-gray-400/80 outline-none focus:ring-2 focus:ring-primary-main ${className} ${
           error
             ? "bg-red-50 text-red-600 placeholder:text-red-400 focus:ring-red-600"
             : ""
