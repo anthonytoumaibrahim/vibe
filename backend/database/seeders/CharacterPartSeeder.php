@@ -326,5 +326,12 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => 'Rounded eyeglasses, thin frame',
             'default' => true
         ]);
+        // Beards
+        CharacterPart::create([
+            'client_id' => 1,
+            'type' => 'beard',
+            'ai_description' => '',
+            'price' => 70
+        ]);
     }
 }
