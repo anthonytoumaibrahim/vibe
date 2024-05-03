@@ -4,12 +4,11 @@ import { sendRequest } from "@/app/actions";
 
 // Components
 import Logo from "@/components/Logo";
-import NavLink from "@/components/NavLink";
-import Image from "next/image";
+import NavLink from "./NavLink";
 
 // Images
 import { FaBell, FaMessage } from "react-icons/fa6";
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
 
 interface UserHeaderProps {
   className?: string;
@@ -30,21 +29,11 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
       </Link>
 
       <nav className="flex items-center gap-6">
-        <NavLink href="/home" className="!text-black dark:!text-white">
-          Home
-        </NavLink>
-        <NavLink href="/profile" className="!text-black dark:!text-white">
-          My Profile
-        </NavLink>
-        <NavLink href="/boarding" className="!text-black dark:!text-white">
-          Editor
-        </NavLink>
-        <NavLink href="/chatrooms" className="!text-black dark:!text-white">
-          Chat Rooms
-        </NavLink>
-        <NavLink href="/" className="!text-black dark:!text-white">
-          Communities
-        </NavLink>
+        <NavLink href="/home">Home</NavLink>
+        <NavLink href="/profile">My Profile</NavLink>
+        <NavLink href="/boarding">Editor</NavLink>
+        <NavLink href="/chatrooms">Chat Rooms</NavLink>
+        <NavLink href="/">Communities</NavLink>
       </nav>
 
       <div className="flex items-center gap-6">

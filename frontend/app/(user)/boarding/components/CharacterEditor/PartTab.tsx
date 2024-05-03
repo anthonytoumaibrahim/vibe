@@ -69,7 +69,7 @@ const PartTab = ({
         previousLabel=""
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pageCount}
+        pageCount={pageCount || 1}
         pageLabelBuilder={(page) => ""}
         renderOnZeroPageCount={null}
         className="flex items-center justify-center gap-2"
