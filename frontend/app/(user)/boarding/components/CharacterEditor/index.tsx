@@ -162,7 +162,7 @@ const CharacterEditor = ({
 
       <div className="flex gap-10">
         <Tab.Group vertical>
-          <Tab.Panels className="bg-white dark:bg-slate-950 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
+          <Tab.Panels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
             {tabs.map((tab, tabIndex) => {
               const { name, type, optional } = tab;
               return (
@@ -178,7 +178,7 @@ const CharacterEditor = ({
               );
             })}
           </Tab.Panels>
-          <Tab.List className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 backdrop-blur-md xl:min-w-[280px]">
+          <Tab.List className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 dark:bg-black/75 backdrop-blur-md xl:min-w-[280px]">
             {tabs.map((tab, tabIndex) => {
               const { name } = tab;
               return (
@@ -187,8 +187,8 @@ const CharacterEditor = ({
                     <button
                       className={`${
                         selected
-                          ? "text-primary-main scale-110"
-                          : "text-black/40 hover:text-black"
+                          ? "text-primary-main dark:text-white scale-110"
+                          : "text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
                       } text-lg md:text-xl xl:text-2xl font-bold flex gap-4 items-center outline-none transition-colors duration-200`}
                     >
                       <svg

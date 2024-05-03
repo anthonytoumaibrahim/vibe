@@ -50,7 +50,7 @@ const Modal = ({
 
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <Dialog.Panel
-            className={`bg-white ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
+            className={`bg-white dark:bg-slate-900 ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
           >
             {title && <Dialog.Title>{title}</Dialog.Title>}
             {description && (
