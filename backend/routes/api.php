@@ -12,6 +12,7 @@ Route::prefix('/auth')->group(function () {
     Route::middleware('auth:api')->get('/refresh', [AuthController::class, 'refresh']);
     Route::post('/signup', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/logout', [AuthController::class, 'logout']);
     Route::post('/oauth', [OAuthController::class, 'OAuth']);
     Route::post('/check-username', [AuthController::class, 'checkUsername']);
     Route::post('/forgot-password', [PasswordController::class, 'reset']);

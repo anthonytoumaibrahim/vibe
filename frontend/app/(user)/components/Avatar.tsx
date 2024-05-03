@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface AvatarProps {
-  url: string;
+  url: string | null;
   size?: number;
   username?: string;
   className?: string;
@@ -19,7 +19,7 @@ const Avatar = ({ url, size = 56, username, className = "" }: AvatarProps) => {
       style={{ width: size, height: size }}
     >
       <Image
-        src={src}
+        src={src ? src : "/images/avatar.svg"}
         fill
         sizes={`${size}px`}
         className={`object-contain object-top ${className}`}

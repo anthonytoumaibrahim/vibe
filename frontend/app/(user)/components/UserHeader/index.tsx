@@ -8,7 +8,7 @@ import NavLink from "./NavLink";
 
 // Images
 import { FaBell, FaMessage } from "react-icons/fa6";
-import Avatar from "../Avatar";
+import HeaderAvatar from "./HeaderAvatar";
 
 interface UserHeaderProps {
   className?: string;
@@ -40,7 +40,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <FaBell size={24} />
         <FaMessage size={24} />
         {user?.balance}
-        {user?.avatar_full && <Avatar url={user?.avatar_full} />}
+        <HeaderAvatar avatar={user?.avatar_full} />
       </div>
     </header>
   );

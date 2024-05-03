@@ -32,7 +32,7 @@ interface VariantClass {
 }
 
 const buttonSizeClass = {
-  small: "",
+  small: "px-5 py-2",
   regular: "px-10 py-3",
   large: "",
 };
@@ -72,9 +72,9 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
   outlined: {
     class: "border-2",
     colors: {
-      primary: "bg-primary-main",
-      secondary: "bg-secondary-main",
-      error: "",
+      primary: "",
+      secondary: "",
+      error: "border-red-600 text-red-600 hover:bg-red-600 hover:text-white",
       success: "",
       white: "text-white",
       muted: "",
