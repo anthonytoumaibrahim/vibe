@@ -86,7 +86,7 @@ const CharacterEditor = ({
   const [zoom, setZoom] = useState(0.85);
   const [is2DLoading, setIs2DLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [boardingModal, showBoardingModal] = useState(true);
+  const [boardingModal, showBoardingModal] = useState(false);
 
   const characterRef = useRef<any>(null);
 
