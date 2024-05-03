@@ -1,12 +1,20 @@
 "use client";
 
-import { logout } from "../../actions";
+import { LegacyRef, useRef } from "react";
 import { Popover } from "@headlessui/react";
-import Avatar from "../Avatar";
+import { logout } from "../../actions";
 import Button from "@/components/Button";
+import Avatar from "../Avatar";
 import ThemeToggler from "./ThemeToggler";
 
 const HeaderAvatar = ({ avatar }: { avatar?: string | undefined | null }) => {
+  const logoutBtnRef: LegacyRef<HTMLButtonElement> = useRef(null);
+
+  const handleLogout = async () => {
+    logoutBtnRef!.current!.disabled = true;
+    await logout();
+  };
+
   return (
     <Popover className="relative">
       <Popover.Button className="outline-none">
@@ -19,7 +27,8 @@ const HeaderAvatar = ({ avatar }: { avatar?: string | undefined | null }) => {
           variant="outlined"
           color="error"
           size="small"
-          onClick={() => logout()}
+          onClick={() => handleLogout()}
+          ref={logoutBtnRef}
         >
           Logout
         </Button>

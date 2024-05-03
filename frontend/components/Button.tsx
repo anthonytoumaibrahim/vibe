@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LegacyRef, forwardRef } from "react";
 
 type ButtonVariants = "filled" | "outlined" | "link" | "gradient";
 type ButtonColors =
@@ -95,35 +96,44 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
   },
 };
 
-const Button = ({
-  variant = "filled",
-  color = "primary",
-  disabled = false,
-  loading = false,
-  className = "",
-  href = undefined,
-  onClick,
-  icon: ButtonIcon,
-  size = "regular",
-  children,
-}: ButtonProps) => {
-  return href ? (
-    <Link
-      href={href}
-      className={`unstyled-link font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
-    >
-      {children}
-    </Link>
-  ) : (
-    <button
-      className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} ${buttonSizeClass[size]} rounded flex items-center justify-center gap-2 ${className}`}
-      disabled={loading ? true : disabled}
-      onClick={onClick}
-    >
-      {ButtonIcon && <ButtonIcon size={24} />}
-      {children}
-    </button>
-  );
-};
+const Button = forwardRef(
+  (
+    {
+      variant = "filled",
+      color = "primary",
+      disabled = false,
+      loading = false,
+      className = "",
+      href = undefined,
+      onClick,
+      icon: ButtonIcon,
+      size = "regular",
+      children,
+    }: ButtonProps,
+    ref?: LegacyRef<any>
+  ) => {
+    return href ? (
+      <Link
+        href={href}
+        className={`unstyled-link font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
+        ref={ref}
+      >
+        {children}
+      </Link>
+    ) : (
+      <button
+        className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} ${buttonSizeClass[size]} rounded flex items-center justify-center gap-2 ${className}`}
+        disabled={loading ? true : disabled}
+        onClick={onClick}
+        ref={ref}
+      >
+        {ButtonIcon && <ButtonIcon size={24} />}
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 export default Button;
