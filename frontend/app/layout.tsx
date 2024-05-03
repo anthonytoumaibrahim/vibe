@@ -7,11 +7,9 @@ import { K2D, Caveat } from "next/font/google";
 // Styles
 import "./globals.css";
 
-import StoreProvider from "./lib/StoreProvider";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
 // Toaster
 import { Toaster } from "react-hot-toast";
+import { Providers } from "./providers";
 
 const k2d = K2D({
   subsets: ["latin"],
@@ -35,16 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${k2d.variable} ${caveat.variable} font-sans min-h-screen flex flex-col dark:bg-slate-800 dark:text-white`}
       >
-        <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
-          <StoreProvider>
-            <Toaster />
-            {children}
-          </StoreProvider>
-        </GoogleOAuthProvider>
+        <Providers>
+          <Toaster />
+          {children}
+        </Providers>
       </body>
     </html>
   );
