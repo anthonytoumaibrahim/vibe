@@ -26,8 +26,10 @@ class UserController extends Controller
         } else {
             $id = Auth::id();
         }
-        $user = User::with('achievements')->find($id)->makeVisible('character_data');
+        $user = User::with('achievements')->find($id)->makeVisible('character_data')->makeHidden('email', 'email_verified_at', 'balance');
         $user->is_owner = $id === Auth::id();
+        $user->is_friend = $user->friends->contains('id', Auth::id());
+
         // Backgrounds
         $isPremium = $user->is_premium;
 
