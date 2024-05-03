@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'openai_key' => env('OPENAI_API_SECRET'),
+    'gemini_key' => env('GEMINI_API_KEY')
+
 ];

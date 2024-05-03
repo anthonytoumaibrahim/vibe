@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AI\AICharacterGeneratorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
@@ -18,6 +19,8 @@ Route::prefix('/auth')->group(function () {
     Route::post('/forgot-password', [PasswordController::class, 'reset']);
     Route::get('/forgot-password/{token}', [PasswordController::class, 'generate'])->name('password.reset');
 });
+
+Route::post('/ai', [AICharacterGeneratorController::class, 'generate']);
 
 Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
