@@ -1,6 +1,6 @@
 "use client";
 
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 
 // tiptap

@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import Modal, { ModalSize } from "@/components/Modal";
 import Image from "next/image";
 import { purchasePart } from "../../actions";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 interface ShopModalProps {
   type?: string;

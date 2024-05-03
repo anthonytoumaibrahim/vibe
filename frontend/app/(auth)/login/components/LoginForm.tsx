@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { auth } from "../../actions/auth";
 import { useGoogleLogin } from "@react-oauth/google";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 // Components
 import Input from "@/components/Input";

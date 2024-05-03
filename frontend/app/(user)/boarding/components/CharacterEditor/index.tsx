@@ -8,7 +8,7 @@ import { useAppDispatch } from "@/app/lib/store";
 import { useAppSelector } from "@/app/lib/hooks";
 import { saveCharacter } from "../../actions";
 import { removeTransparentBg } from "@/app/lib/utils";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 // Headless UI
 import { Tab } from "@headlessui/react";

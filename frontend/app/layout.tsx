@@ -10,9 +10,8 @@ import "./globals.css";
 import StoreProvider from "./lib/StoreProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-// Toastify
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// Toaster
+import { Toaster } from "react-hot-toast";
 
 const k2d = K2D({
   subsets: ["latin"],
@@ -42,18 +41,7 @@ export default function RootLayout({
       >
         <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
           <StoreProvider>
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
+            <Toaster />
             {children}
           </StoreProvider>
         </GoogleOAuthProvider>
