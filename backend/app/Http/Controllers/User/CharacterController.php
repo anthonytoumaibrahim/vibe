@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Achievements\SavedAvatar;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -109,6 +110,8 @@ class CharacterController extends Controller
             $user->avatar = "/user_avatars/{$filename}";
         }
         $user->saveOrFail();
+
+        $user->unlock(new SavedAvatar());
 
         return response()->json([
             'success' => true
