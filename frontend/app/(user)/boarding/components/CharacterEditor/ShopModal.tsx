@@ -13,6 +13,7 @@ interface ShopModalProps {
   show?: boolean;
   price?: number;
   handleClose?: () => void;
+  equipItem?: () => void;
 }
 
 const ShopModal = ({
@@ -22,12 +23,18 @@ const ShopModal = ({
   show = false,
   price = 0,
   handleClose = () => {},
+  equipItem = () => {},
 }: ShopModalProps) => {
   const dispatch = useAppDispatch();
 
   const [noBalance, setNoBalance] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleEquip = () => {
+    equipItem();
+    handleClose();
+  };
 
   const handlePurchase = async () => {
     setIsLoading(true);
@@ -107,8 +114,8 @@ const ShopModal = ({
           </p>
         )}
         {purchaseSuccess ? (
-          <Button variant="gradient" color="success" onClick={handleClose}>
-            Check out your new item
+          <Button variant="gradient" color="success" onClick={handleEquip}>
+            Equip your new item
           </Button>
         ) : noBalance ? (
           <Button variant="gradient" color="error" href="/premium">

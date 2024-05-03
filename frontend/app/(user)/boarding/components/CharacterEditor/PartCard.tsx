@@ -34,7 +34,7 @@ const PartCard = ({
   is_purchased = true,
   colors,
   price = 0,
-  server_id,
+  server_id = 1,
 }: PartCardProps) => {
   const dispatch = useAppDispatch();
   const selector = useAppSelector(
@@ -77,6 +77,11 @@ const PartCard = ({
           type={type}
           price={price}
           handleClose={() => showShopModal(false)}
+          equipItem={() =>
+            handleUpdate({
+              id: id,
+            })
+          }
         />
       )}
       <Menu as="div" style={{ height }} className="relative group">
