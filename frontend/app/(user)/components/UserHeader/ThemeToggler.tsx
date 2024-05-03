@@ -16,7 +16,7 @@ const ThemeToggler = () => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center gap-6 justify-between">
       <p>Dark Mode</p>
       <Toggle
         active={theme === "dark"}

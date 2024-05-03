@@ -15,7 +15,7 @@ const Avatar = ({ url, size = 56, username, className = "" }: AvatarProps) => {
 
   return (
     <div
-      className="rounded-full bg-slate-100 overflow-hidden relative"
+      className="rounded-full bg-slate-100 dark:bg-black overflow-hidden relative"
       style={{ width: size, height: size }}
     >
       <Image
