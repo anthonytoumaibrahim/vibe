@@ -1,9 +1,10 @@
 "use client";
 
+import { logout } from "../../actions";
 import { Popover } from "@headlessui/react";
 import Avatar from "../Avatar";
 import Button from "@/components/Button";
-import { logout } from "../../actions";
+import ThemeToggler from "./ThemeToggler";
 
 const HeaderAvatar = ({ avatar }: { avatar?: string | undefined | null }) => {
   return (
@@ -12,7 +13,8 @@ const HeaderAvatar = ({ avatar }: { avatar?: string | undefined | null }) => {
         <Avatar url={avatar ? avatar : null} />
       </Popover.Button>
 
-      <Popover.Panel className="absolute -left-1/2 top-full z-50 bg-white p-4 rounded-lg shadow-lg">
+      <Popover.Panel className="absolute top-full z-50 bg-white dark:bg-slate-900 py-4 px-6 rounded-lg shadow-lg -left-[80px] translate-x-[40px] w-[160px] flex flex-col gap-2">
+        <ThemeToggler />
         <Button
           variant="outlined"
           color="error"

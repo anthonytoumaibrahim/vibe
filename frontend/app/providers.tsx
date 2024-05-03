@@ -8,7 +8,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
       <StoreProvider>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" enableSystem={false}>
           {children}
         </ThemeProvider>
       </StoreProvider>
