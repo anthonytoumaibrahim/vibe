@@ -7,6 +7,7 @@ import Part from "./Part";
 export type PartsType =
   | "body"
   | "hair"
+  | "beard"
   | "face"
   | "eyebrow"
   | "eye"
@@ -36,6 +37,17 @@ const Character = forwardRef(
         id={data?.hair?.id ?? 3}
         fill={data?.hair?.fill ?? "#c73030"}
       />
+      {data?.beard?.id ? (
+        <Part
+          type="beard"
+          id={data?.beard?.id}
+          fill={data?.beard?.fill}
+          color={data?.beard?.fill}
+          center={true}
+        />
+      ) : (
+        ""
+      )}
       <Part
         type="face"
         id={data?.face?.id ?? 1}

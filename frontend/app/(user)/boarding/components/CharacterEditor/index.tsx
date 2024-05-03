@@ -35,6 +35,11 @@ const tabs = [
     optional: true,
   },
   {
+    name: "Beard",
+    type: "beard",
+    optional: true,
+  },
+  {
     name: "Eyebrows",
     type: "eyebrow",
     optional: true,
