@@ -45,6 +45,11 @@ import {
   PiArrowArcLeftBold,
   PiArrowArcRightBold,
   PiTextUnderlineBold,
+  PiQuotesBold,
+  PiCodeBold,
+  PiImageBold,
+  PiTextStrikethroughBold,
+  PiCodeBlockBold,
 } from "react-icons/pi";
 
 interface MDEditorProps {
@@ -71,8 +76,8 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
   return (
     <div key="editor">
       {editor && (
-        <div className="bg-slate-300 p-2 w-full rounded-t-lg flex items-center gap-2">
-          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
+        <div className="bg-slate-300 dark:bg-black p-2 w-full rounded-t-lg flex items-center gap-2 divide-x-2 divide-slate-400">
+          <div className="flex items-center gap-1 px-2">
             <EditorButton
               icon={PiArrowArcLeftBold}
               onClick={() => editor.chain().focus().undo().run()}
@@ -82,7 +87,29 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
               onClick={() => editor.chain().focus().redo().run()}
             />
           </div>
-          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
+          <div className="flex items-center gap-1 px-2">
+            <EditorButton
+              isActive={editor.isActive("bold")}
+              icon={PiTextBBold}
+              onClick={() => editor.chain().focus().toggleBold().run()}
+            />
+            <EditorButton
+              isActive={editor.isActive("italic")}
+              icon={PiTextItalicBold}
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+            />
+            <EditorButton
+              isActive={editor.isActive("underline")}
+              icon={PiTextUnderlineBold}
+              onClick={() => editor.chain().focus().toggleUnderline().run()}
+            />
+            <EditorButton
+              isActive={editor.isActive("strike")}
+              icon={PiTextStrikethroughBold}
+              onClick={() => editor.chain().focus().toggleStrike().run()}
+            />
+          </div>
+          <div className="flex items-center gap-1 px-2">
             <EditorButton
               isActive={editor.isActive("heading", { level: 1 })}
               icon={PiTextHOneBold}
@@ -112,7 +139,7 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
               }
             />
           </div>
-          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
+          <div className="flex items-center gap-1 px-2">
             <EditorButton
               isActive={editor.isActive({ textAlign: "left" })}
               icon={PiTextAlignLeftBold}
@@ -131,7 +158,7 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
               onClick={() => editor.chain().focus().setTextAlign("right").run()}
             />
           </div>
-          <div className="flex items-center gap-1 pr-2 border-r-2 border-slate-500">
+          <div className="flex items-center gap-1 px-2">
             <EditorButton
               isActive={editor.isActive("bulletList")}
               icon={PiListBulletsBold}
@@ -141,6 +168,23 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
               isActive={editor.isActive("orderedList")}
               icon={PiListNumbersBold}
               onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            />
+          </div>
+          <div className="flex items-center gap-2 px-2">
+            <EditorButton
+              isActive={editor.isActive("blockquote")}
+              icon={PiQuotesBold}
+              onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            />
+            <EditorButton
+              isActive={editor.isActive("code")}
+              icon={PiCodeBold}
+              onClick={() => editor.chain().focus().toggleCode().run()}
+            />
+            <EditorButton
+              isActive={editor.isActive("codeBlock")}
+              icon={PiCodeBlockBold}
+              onClick={() => editor.chain().focus().toggleCodeBlock().run()}
             />
           </div>
         </div>
