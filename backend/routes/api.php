@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Bio\BioController;
+use App\Http\Controllers\Post\PostCommentController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\User\CharacterController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +22,6 @@ Route::prefix('/auth')->group(function () {
     Route::get('/forgot-password/{token}', [PasswordController::class, 'generate'])->name('password.reset');
 });
 
-Route::post('/ai', [AICharacterGeneratorController::class, 'generate']);
-
 Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
         Route::get('/info', [UserController::class, 'getInfo']);
@@ -33,5 +33,12 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/get-character', 'get');
             Route::post('/buy-part', 'buyPart');
         });
+
+        Route::controller(PostController::class)->group(function () {
+            Route::get('/posts/{id?}', 'getPosts');
+            Route::post('/post', 'create');
+        });
+
+        Route::post('/post-comment', [PostCommentController::class, 'create']);
     });
 });
