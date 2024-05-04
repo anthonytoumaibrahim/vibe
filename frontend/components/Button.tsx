@@ -88,7 +88,7 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
     colors: {
       primary: "text-primary-main",
       secondary: "",
-      error: "",
+      error: "!text-red-600",
       success: "",
       white: "!text-white",
       muted: "!text-slate-400",

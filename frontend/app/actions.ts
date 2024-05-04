@@ -18,7 +18,7 @@ export async function sendRequest({
   url,
   body,
 }: RequestParams) {
-  let output: object | string;
+  let output: object | string = "";
   let unauthorized: boolean = false;
 
   try {

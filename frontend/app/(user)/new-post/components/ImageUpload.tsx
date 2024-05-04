@@ -3,14 +3,15 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Modal from "@/components/Modal";
-import Image from "next/image";
 import Button from "@/components/Button";
+import PostImage from "./PostImage";
 
 interface ImageUploadProps {
   handleClose: () => void;
+  handleConfirm: (images: any) => void;
 }
 
-const ImageUpload = ({ handleClose }: ImageUploadProps) => {
+const ImageUpload = ({ handleClose, handleConfirm }: ImageUploadProps) => {
   const [images, setImages] = useState([]);
 
   const onDrop = useCallback((acceptedFiles: any) => {
@@ -24,8 +25,9 @@ const ImageUpload = ({ handleClose }: ImageUploadProps) => {
       maxSize: 6291456,
     });
 
-  const removeImages = () => {
-    setImages([]);
+  const confirm = () => {
+    handleConfirm(images);
+    handleClose();
   };
 
   return (
@@ -39,24 +41,12 @@ const ImageUpload = ({ handleClose }: ImageUploadProps) => {
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {images?.map((image, index) => {
             const blobUrl = URL.createObjectURL(image);
-            return (
-              <div
-                key={index}
-                className="size-40 border border-slate-300 rounded-lg overflow-hidden relative"
-              >
-                <Image
-                  src={blobUrl}
-                  fill
-                  alt="Uploaded Image"
-                  className="object-cover"
-                />
-              </div>
-            );
+            return <PostImage key={index} src={blobUrl} />;
           })}
         </div>
       )}
       <div
-        className={`px-4 py-6 border-2 border-dashed dark:bg-slate-950 flex flex-col gap-2 text-center items-center hover:border-primary-main ${
+        className={`px-4 py-6 border-2 border-dashed rounded-lg dark:bg-slate-950 flex flex-col gap-2 text-center items-center hover:border-primary-main ${
           isDragActive
             ? "border-primary-main bg-primary-50 dark:bg-primary-950"
             : "border-slate-300 bg-slate-50 dark:border-slate-700"
@@ -66,6 +56,9 @@ const ImageUpload = ({ handleClose }: ImageUploadProps) => {
         <input {...getInputProps()} />
         <h3>Drop images here</h3>
         <p>Or click here to upload</p>
+        <small className="text-slate-400">
+          Upload only up to 4 image files. Max file size is 6MB
+        </small>
         {isDragReject && (
           <p className="text-red-600 font-bold">
             Only image files are accepted.
@@ -76,7 +69,7 @@ const ImageUpload = ({ handleClose }: ImageUploadProps) => {
         <Button color="muted" onClick={() => handleClose()}>
           Cancel
         </Button>
-        <Button>Confirm</Button>
+        <Button onClick={() => confirm()}>Confirm</Button>
       </div>
     </Modal>
   );
