@@ -126,4 +126,9 @@ class User extends Authenticatable implements JWTSubject
             get: fn () => $this->avatar ? config('app.url') . "/storage" . $this->avatar : null,
         );
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

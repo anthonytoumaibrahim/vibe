@@ -10,6 +10,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    public $with = ['images', 'likes'];
+
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
