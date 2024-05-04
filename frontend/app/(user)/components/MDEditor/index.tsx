@@ -1,8 +1,5 @@
 "use client";
 
-import { toast } from "react-hot-toast";
-import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
-
 // tiptap
 import {
   useEditor,
@@ -29,7 +26,6 @@ const extensions = [
 ];
 
 // Actions & Components
-import { saveBio } from "../../actions";
 import Button from "@/components/Button";
 import EditorButton from "./EditorButton";
 
@@ -51,11 +47,12 @@ import {
   PiTextUnderlineBold,
 } from "react-icons/pi";
 
-const AboutMeEditor = () => {
-  const dispatch = useAppDispatch();
-  const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
+interface MDEditorProps {
+  content?: string;
+  onSave: (html: string | undefined) => void;
+}
 
-  const content = bioSelector?.content;
+const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
   const editor = useEditor({
     extensions,
     content,
@@ -67,15 +64,8 @@ const AboutMeEditor = () => {
     },
   });
 
-  const save = async () => {
-    const response = await saveBio({
-      bio: editor?.getHTML(),
-    });
-    dispatch({
-      type: "aboutMeEditorSlice/updateData",
-      payload: editor?.getHTML(),
-    });
-    toast.success("Saved");
+  const handleSave = () => {
+    onSave(editor?.getHTML());
   };
 
   return (
@@ -184,9 +174,9 @@ const AboutMeEditor = () => {
           </div>
         </BubbleMenu>
       )}
-      <Button onClick={save}>Save</Button>
+      <Button onClick={handleSave}>Save</Button>
     </div>
   );
 };
 
-export default AboutMeEditor;
+export default MDEditor;

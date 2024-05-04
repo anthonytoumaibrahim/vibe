@@ -10,6 +10,9 @@ const postsSlice = createSlice({
     initializeData: (state, action) => {
       return action.payload;
     },
+    addPost: (state, action) => {
+      return state.push(action.payload);
+    },
   },
 });
 

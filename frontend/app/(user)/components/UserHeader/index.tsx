@@ -31,7 +31,6 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <NavLink href="/profile">My Profile</NavLink>
         <NavLink href="/editor">Editor</NavLink>
         <NavLink href="/chatrooms">Chat Rooms</NavLink>
-        <NavLink href="/">Communities</NavLink>
       </nav>
 
       <div className="flex items-center gap-6">

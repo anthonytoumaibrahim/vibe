@@ -9,12 +9,12 @@ const Post = ({ id }: { id: number }) => {
   );
 
   return (
-    <div className="overflow-hidden rounded-lg border bg-white">
-      <div className="flex items-center gap-4 bg-slate-100 p-4">
+    <div className="overflow-hidden rounded-lg border dark:border-black bg-white dark:bg-black">
+      <div className="flex items-center gap-4 bg-slate-100 dark:bg-slate-900 p-4">
         <Avatar size={40} url={postSelector?.user?.avatar_full} />
         <p className="font-bold">{postSelector?.user?.username}</p>
         <small className="ml-auto text-slate-600">
-          {postSelector?.created_at}
+          {postSelector?.time_ago}
         </small>
       </div>
 
@@ -28,7 +28,7 @@ const Post = ({ id }: { id: number }) => {
         <p>{postSelector?.content}</p>
       </div>
 
-      <div className="p-4 bg-slate-50 flex justify-between">
+      <div className="p-4 bg-slate-50 dark:bg-slate-800 flex justify-between">
         <div className="flex items-center gap-2">
           <FaThumbsUp size={26} />
           <h5>11</h5>

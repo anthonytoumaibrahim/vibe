@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
 import Post from "./Post";
+import Button from "@/components/Button";
 
 interface MyPostsProps {
   posts: Array<any>;
@@ -21,7 +22,9 @@ const MyPosts = ({ posts = [] }: MyPostsProps) => {
 
   return (
     <>
-      <div className="w-1/4 shrink-0">filters</div>
+      <div className="w-1/4 shrink-0">
+        <Button href="/new-post">Create new Post</Button>
+      </div>
       <div className="flex flex-col gap-6 w-full">
         {postsSelector.map((post: any) => {
           const { id } = post;
