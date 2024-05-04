@@ -68,7 +68,7 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert prose-base p-5 focus:outline-none max-w-none",
+          "prose dark:prose-invert prose-base p-5 focus:outline-none max-w-none h-80",
       },
     },
   });
