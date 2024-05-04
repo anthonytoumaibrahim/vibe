@@ -52,9 +52,13 @@ const Modal = ({
           <Dialog.Panel
             className={`bg-white dark:bg-slate-900 ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
           >
-            {title && <Dialog.Title>{title}</Dialog.Title>}
+            {title && (
+              <Dialog.Title className="mb-2 text-center">{title}</Dialog.Title>
+            )}
             {description && (
-              <Dialog.Description>{description}</Dialog.Description>
+              <Dialog.Description className="mb-2 text-center">
+                {description}
+              </Dialog.Description>
             )}
             {children}
           </Dialog.Panel>

@@ -73,7 +73,8 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
   outlined: {
     class: "border-2",
     colors: {
-      primary: "",
+      primary:
+        "border-primary-main text-primary-main hover:bg-primary-main hover:text-white",
       secondary: "",
       error: "border-red-600 text-red-600 hover:bg-red-600 hover:text-white",
       success: "",
