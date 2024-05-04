@@ -9,6 +9,7 @@ import HeaderAvatar from "./HeaderAvatar";
 import MessagesPopover from "./MessagesPopover";
 import MobileMenu from "./MobileMenu";
 import Nav from "./Nav";
+import VC from "./VC";
 
 interface UserHeaderProps {
   className?: string;
@@ -32,7 +33,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
 
       <div className="hidden md:flex items-center gap-6">
         <MessagesPopover />
-        {user?.balance}
+        <VC balance={user?.balance} />
         <HeaderAvatar avatar={user?.avatar_full} />
       </div>
 
