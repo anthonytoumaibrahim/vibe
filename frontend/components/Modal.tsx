@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { FaX } from "react-icons/fa6";
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,6 +9,7 @@ interface ModalProps {
   description?: string;
   className?: string;
   size?: ModalSize;
+  showX?: boolean;
   children: React.ReactNode;
 }
 
@@ -27,6 +29,7 @@ const Modal = ({
   description,
   className = "",
   size = ModalSize.large,
+  showX = false,
   children,
 }: ModalProps) => {
   return (
@@ -52,6 +55,14 @@ const Modal = ({
           <Dialog.Panel
             className={`bg-white dark:bg-slate-900 ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
           >
+            {showX && (
+              <button
+                onClick={handleClose}
+                className="opacity-50 hover:opacity-100 absolute top-4 right-4"
+              >
+                <FaX size={20} />
+              </button>
+            )}
             {title && (
               <Dialog.Title className="mb-2 text-center">{title}</Dialog.Title>
             )}

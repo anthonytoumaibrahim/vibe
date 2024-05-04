@@ -7,6 +7,8 @@ import Logo from "@/components/Logo";
 import NavLink from "./NavLink";
 import HeaderAvatar from "./HeaderAvatar";
 import MessagesPopover from "./MessagesPopover";
+import MobileMenu from "./MobileMenu";
+import Nav from "./Nav";
 
 interface UserHeaderProps {
   className?: string;
@@ -20,24 +22,21 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
 
   return (
     <header
-      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 py-2 w-full flex items-center justify-around mb-4`}
+      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 py-2 w-full flex items-center justify-between md:justify-around mb-4`}
     >
       <Link href="/" className="unstyled-link">
         <Logo width={88} className="dark:fill-white" />
       </Link>
 
-      <nav className="flex items-center gap-6">
-        <NavLink href="/home">Home</NavLink>
-        <NavLink href="/profile">My Profile</NavLink>
-        <NavLink href="/editor">Editor</NavLink>
-        <NavLink href="/chatrooms">Chat Rooms</NavLink>
-      </nav>
+      <Nav />
 
-      <div className="flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-6">
         <MessagesPopover />
         {user?.balance}
         <HeaderAvatar avatar={user?.avatar_full} />
       </div>
+
+      <MobileMenu />
     </header>
   );
 };
