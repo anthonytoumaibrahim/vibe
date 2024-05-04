@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface AvatarProps {
-  url: string | null;
+  url?: string | null;
   size?: number;
   username?: string;
   className?: string;
 }
 
-const Avatar = ({ url, size = 56, username, className = "" }: AvatarProps) => {
+const Avatar = ({
+  url = null,
+  size = 56,
+  username,
+  className = "",
+}: AvatarProps) => {
   const [src, setSrc] = useState(url);
 
   return (

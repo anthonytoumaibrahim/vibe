@@ -32,7 +32,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
 
       <section className="flex gap-6">
         <MyPosts />
-        <div className="w-1/4"></div>
+        <div className="w-1/3 shrink-0"></div>
       </section>
     </div>
   );
