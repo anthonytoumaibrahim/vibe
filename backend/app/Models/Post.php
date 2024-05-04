@@ -10,7 +10,12 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $with = ['images', 'likes'];
+    public $with = ['images', 'likes', 'user:id,username,avatar'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function images(): MorphMany
     {
