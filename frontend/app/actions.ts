@@ -36,6 +36,8 @@ export async function sendRequest({
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         unauthorized = true;
+      } else {
+        return error?.response?.data;
       }
     } else {
       throw error;

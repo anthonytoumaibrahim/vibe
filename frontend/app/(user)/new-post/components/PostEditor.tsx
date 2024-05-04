@@ -1,15 +1,32 @@
 "use client";
 
 import { useState } from "react";
+import { savePost } from "../actions";
 import MDEditor from "../../components/MDEditor";
 import PostImage from "./PostImage";
 import Button from "@/components/Button";
 import ImageUpload from "./ImageUpload";
 import { FaImage, FaTrash } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const PostEditor = () => {
-  const [images, setImages] = useState([]);
+  const [content, setContent] = useState("");
+  const [images, setImages] = useState<any>([]);
   const [imageModal, showImageModal] = useState(false);
+
+  const save = async (content) => {
+    const formData = new FormData();
+    formData.append("content", content);
+    images?.forEach((img) => formData.append("images[]", img));
+    const response = await savePost(formData);
+    if (response?.success) {
+      setImages([]);
+      setContent("");
+      toast.success(response?.message);
+    } else {
+      toast.error(response?.message ?? "Sorry, something went wrong!");
+    }
+  };
 
   return (
     <>
@@ -48,7 +65,7 @@ const PostEditor = () => {
           })}
         </div>
       )}
-      <MDEditor content="" />
+      <MDEditor content={content} onSave={(content) => save(content)} />
     </>
   );
 };
