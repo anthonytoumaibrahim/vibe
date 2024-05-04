@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import MDEditor from "../components/MDEditor";
+import PostEditor from "./components/PostEditor";
 
 export const metadata: Metadata = {
   title: "New Post – Vibe",
@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 const NewPost = () => {
   return (
     <>
-      <h1>Create Post</h1>
+      <h1 className="mb-4">Create Post</h1>
 
-      <MDEditor content="" />
+      <PostEditor />
     </>
   );
 };

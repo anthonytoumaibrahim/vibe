@@ -1,6 +1,5 @@
 "use client";
 
-import { LegacyRef, useRef, useState } from "react";
 // tiptap
 import {
   useEditor,
@@ -12,7 +11,6 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
-import Image from "@tiptap/extension-image";
 const extensions = [
   StarterKit,
   Underline,
@@ -51,9 +49,7 @@ import {
   PiCodeBold,
   PiTextStrikethroughBold,
   PiCodeBlockBold,
-  PiImageBold,
 } from "react-icons/pi";
-import ImageUpload from "./ImageUpload";
 
 interface MDEditorProps {
   content?: string;
@@ -61,7 +57,6 @@ interface MDEditorProps {
 }
 
 const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
-  const [imageModal, showImageModal] = useState(false);
   const editor = useEditor({
     extensions,
     content,
@@ -77,14 +72,11 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
     onSave(editor?.getHTML());
   };
 
-  const handleImageUpload = () => {};
-
   return (
     <>
-      {imageModal && <ImageUpload handleClose={() => showImageModal(false)} />}
       <div key="editor">
         {editor && (
-          <div className="bg-slate-300 dark:bg-black p-2 w-full rounded-t-lg flex items-center gap-2 divide-x-2 divide-slate-400">
+          <div className="bg-slate-300 dark:bg-black p-2 w-full rounded-t-lg flex flex-wrap items-center gap-2 divide-x-2 divide-slate-400">
             <div className="flex items-center gap-1 px-2">
               <EditorButton
                 icon={PiArrowArcLeftBold}
@@ -198,16 +190,12 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
                 icon={PiCodeBlockBold}
                 onClick={() => editor.chain().focus().toggleCodeBlock().run()}
               />
-              <EditorButton
-                icon={PiImageBold}
-                onClick={() => showImageModal(true)}
-              />
             </div>
           </div>
         )}
         <EditorContent
           editor={editor}
-          className="bg-slate-100 rounded-b-lg p-2"
+          className="bg-slate-100 dark:bg-slate-700 rounded-b-lg p-2"
           width="100%"
         />
         {editor && (
