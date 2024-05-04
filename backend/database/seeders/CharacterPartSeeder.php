@@ -190,6 +190,13 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => 'Regular eyebrow shape',
             'default' => true
         ]);
+        CharacterPart::create([
+            'client_id' => 7,
+            'type' => 'eyebrow',
+            'ai_description' => '',
+            'default' => true,
+            'premium' => true
+        ]);
         // Eyes
         CharacterPart::create([
             'client_id' => 1,
@@ -226,6 +233,12 @@ class CharacterPartSeeder extends Seeder
             'type' => 'eye',
             'ai_description' => 'Normal eye shape, slightly closed',
             'default' => true
+        ]);
+        CharacterPart::create([
+            'client_id' => 7,
+            'type' => 'eye',
+            'ai_description' => '',
+            'price' => 75
         ]);
         // Nose
         CharacterPart::create([
