@@ -1,12 +1,34 @@
+"use client";
+
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/lib/store";
 import Post from "./Post";
 
-const MyPosts = () => {
+interface MyPostsProps {
+  posts: Array<any>;
+}
+
+const MyPosts = ({ posts = [] }: MyPostsProps) => {
+  const dispatch = useAppDispatch();
+  const postsSelector = useAppSelector((state) => state.postsSlice);
+
+  useEffect(() => {
+    dispatch({
+      type: "postsSlice/initializeData",
+      payload: posts,
+    });
+  }, [posts]);
+
   return (
-    <div className="grid grid-cols-1 gap-6 w-full">
-      <Post />
-      <Post />
-      <Post />
-    </div>
+    <>
+      <div className="w-1/4 shrink-0">filters</div>
+      <div className="flex flex-col gap-6 w-full">
+        {postsSelector.map((post: any) => {
+          const { id } = post;
+          return <Post key={id} id={id} />;
+        })}
+      </div>
+    </>
   );
 };
 

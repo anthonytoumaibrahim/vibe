@@ -1,13 +1,21 @@
+"use client";
 import Avatar from "@/app/(user)/components/Avatar";
+import { useAppSelector } from "@/app/lib/store";
 import { FaComment, FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
 
-const Post = () => {
+const Post = ({ id }: { id: number }) => {
+  const postSelector = useAppSelector(
+    (state) => state.postsSlice.filter((post: any) => post.id === id)?.[0]
+  );
+
   return (
     <div className="overflow-hidden rounded-lg border bg-white">
       <div className="flex items-center gap-4 bg-slate-100 p-4">
-        <Avatar size={40} />
-        <p className="font-bold">username123</p>
-        <small className="ml-auto text-slate-600">4 days ago</small>
+        <Avatar size={40} url={postSelector?.user?.avatar_full} />
+        <p className="font-bold">{postSelector?.user?.username}</p>
+        <small className="ml-auto text-slate-600">
+          {postSelector?.created_at}
+        </small>
       </div>
 
       <div className="p-4 flex flex-col gap-4">
@@ -17,7 +25,7 @@ const Post = () => {
             className="w-full h-80 object-cover rounded-lg"
           />
         </div>
-        <p>The content of the post.</p>
+        <p>{postSelector?.content}</p>
       </div>
 
       <div className="p-4 bg-slate-50 flex justify-between">

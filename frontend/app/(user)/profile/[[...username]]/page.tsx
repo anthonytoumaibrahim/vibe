@@ -20,7 +20,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           characterData={profileData?.character_data}
           isOwner={isOwner}
         />
-        <div className="w-1/4">
+        <div className="w-1/5 shrink-0">
           <UserCard
             username={profileData?.username}
             avatar={profileData?.avatar_full}
@@ -31,8 +31,8 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
       </section>
 
       <section className="flex gap-6">
-        <MyPosts />
-        <div className="w-1/3 shrink-0"></div>
+        <MyPosts posts={profileData?.posts} />
+        <div className="w-1/5 shrink-0"></div>
       </section>
     </div>
   );
