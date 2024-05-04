@@ -8,7 +8,7 @@ const postsSlice = createSlice({
   initialState: initState,
   reducers: {
     initializeData: (state, action) => {
-      return (state = action.payload);
+      return action.payload;
     },
   },
 });

@@ -37,8 +37,9 @@ export async function sendRequest({
       if (error.response?.status === 401) {
         unauthorized = true;
       }
+    } else {
+      throw error;
     }
-    throw error;
   }
 
   // Redirect if unauthorized
