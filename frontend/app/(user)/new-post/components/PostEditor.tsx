@@ -13,8 +13,10 @@ const PostEditor = () => {
   const [content, setContent] = useState("");
   const [images, setImages] = useState<any>([]);
   const [imageUpload, showImageUpload] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const save = async (content, truncated) => {
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("content", content);
     formData.append("truncated", truncated);
@@ -27,6 +29,7 @@ const PostEditor = () => {
     } else {
       toast.error(response?.message ?? "Sorry, something went wrong!");
     }
+    setIsLoading(false);
   };
 
   const deleteImage = (index: number) => {
@@ -76,6 +79,7 @@ const PostEditor = () => {
       <MDEditor
         content={content}
         onSave={(content, truncated) => save(content, truncated)}
+        loading={isLoading}
       />
     </>
   );

@@ -53,10 +53,19 @@ import {
 
 interface MDEditorProps {
   content?: string;
+  className?: string;
+  buttonClassName?: string;
+  loading?: boolean;
   onSave: (html: string | undefined, truncated: string | undefined) => void;
 }
 
-const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
+const MDEditor = ({
+  content = "",
+  className = "",
+  buttonClassName = "",
+  loading = false,
+  onSave,
+}: MDEditorProps) => {
   const editor = useEditor({
     extensions,
     content,
@@ -195,7 +204,7 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
         )}
         <EditorContent
           editor={editor}
-          className="bg-slate-100 dark:bg-slate-700 rounded-b-lg p-2"
+          className="bg-slate-100 dark:bg-slate-700 rounded-b-lg overflow-auto"
           width="100%"
         />
         {editor && (
@@ -222,7 +231,13 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
             </div>
           </BubbleMenu>
         )}
-        <Button onClick={handleSave}>Save</Button>
+        <Button
+          onClick={handleSave}
+          className={`${buttonClassName} mx-auto mt-2`}
+          loading={loading}
+        >
+          Save
+        </Button>
       </div>
     </>
   );

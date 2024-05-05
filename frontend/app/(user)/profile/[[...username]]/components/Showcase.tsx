@@ -54,7 +54,7 @@ const Showcase = ({
         <Character data={characterData} ref={characterRef} />
       </Draggable>
 
-      <div className="p-6 py-10 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
+      <div className="p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
         {isOwner && (
           <Button
             icon={MdEdit}
