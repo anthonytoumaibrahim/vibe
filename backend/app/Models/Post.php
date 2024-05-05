@@ -12,7 +12,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago', 'likes_count', 'dislikes_count'];
+    public $appends = ['time_ago', 'likes_count', 'dislikes_count', 'comments_count'];
 
     public $with = ['images', 'user:id,username,avatar'];
 
@@ -32,6 +32,13 @@ class Post extends Model
     {
         return new Attribute(
             get: fn () => $this->likes()->where('dislike', false)->count(),
+        );
+    }
+
+    public function commentsCount(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->comments()->count(),
         );
     }
 
