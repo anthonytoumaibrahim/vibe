@@ -37,7 +37,11 @@ export async function sendRequest({
       if (error.response?.status === 401) {
         unauthorized = true;
       } else {
-        return error?.response?.data;
+        return {
+          success: false,
+          status: error?.status,
+          ...error?.response?.data,
+        };
       }
     } else {
       return {

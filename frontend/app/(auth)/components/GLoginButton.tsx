@@ -23,7 +23,7 @@ const GLoginButton = ({ type = "signup" }: GLoginButtonProps) => {
           token: tokenResponse.access_token,
           type: "oauth",
         });
-        if (!response?.success) {
+        if (response?.success === false) {
           const errorMessage: string = response?.message;
           toast.error(
             errorMessage ??

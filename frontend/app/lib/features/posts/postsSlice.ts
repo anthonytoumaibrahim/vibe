@@ -13,8 +13,20 @@ const postsSlice = createSlice({
     addPost: (state, action) => {
       return state.push(action.payload);
     },
+    likePost: (state, action) => {
+      return state.map((post) => {
+        const { likes_count, liked_by_user } = post;
+        return post.id === action.payload
+          ? {
+              ...post,
+              liked_by_user: !liked_by_user,
+              likes_count: liked_by_user ? likes_count - 1 : likes_count + 1,
+            }
+          : post;
+      });
+    },
   },
 });
 
-export const { initializeData } = postsSlice.actions;
+export const { initializeData, likePost } = postsSlice.actions;
 export default postsSlice.reducer;
