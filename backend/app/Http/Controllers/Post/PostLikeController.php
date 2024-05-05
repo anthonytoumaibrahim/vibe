@@ -16,10 +16,17 @@ class PostLikeController extends Controller
             'post_id' => 'required|exists:posts,id'
         ]);
         $post = Post::find($request->post_id);
-        $like = new Like();
-        $like->user_id = Auth::id();
-        $like->dislike = false;
-        $post->likes()->save($like);
+
+        $likeExists = $post->likes()->where('user_id', Auth::id())->first();
+        if ($likeExists) {
+            $post->likes()->delete($likeExists);
+        } else {
+            $like = new Like();
+            $like->user_id = Auth::id();
+            $like->dislike = false;
+            $post->likes()->save($like);
+        }
+
 
         return response()->json([
             'success' => true
