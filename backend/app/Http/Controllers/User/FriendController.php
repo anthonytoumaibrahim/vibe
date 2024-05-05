@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FriendController extends Controller
 {
-    public function friendRequest(Request $request)
+    public function sendFriendRequest(Request $request)
     {
     }
 }
