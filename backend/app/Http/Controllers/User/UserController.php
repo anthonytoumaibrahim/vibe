@@ -35,14 +35,13 @@ class UserController extends Controller
 
         $backgrounds = Background::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
 
-        $purchasedBackgroundsIds = PurchasedBackground::where('user_id', $user->id)
-            ->pluck('background_id')
-            ->toArray();
-
-        $purchasedBackgroundsIds = new Collection($purchasedBackgroundsIds);
-
-        $backgrounds->transform(function ($background) use ($purchasedBackgroundsIds) {
-            $background->is_purchased = $purchasedBackgroundsIds->contains($background->id);
+        $backgrounds->map(function ($background) use ($user) {
+            if (!$background->default) {
+                $background->is_purchased = $user->purchases()
+                    ->where('purchasable_type', 'App\Models\Background')
+                    ->where('purchasable_id', $background->id)
+                    ->exists();
+            }
             return $background;
         });
 
