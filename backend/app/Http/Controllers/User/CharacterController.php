@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CharacterPart;
+use App\Models\Purchase;
 use App\Models\PurchasedCharacterPart;
 use App\Models\Transaction;
 use Illuminate\Support\Collection;
@@ -24,15 +25,12 @@ class CharacterController extends Controller
 
         $parts = CharacterPart::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
 
-        $purchasedPartIds = PurchasedCharacterPart::where('user_id', $user->id)
-            ->pluck('part_id')
-            ->toArray();
-
-        $purchasedPartIds = new Collection($purchasedPartIds);
-
-        $parts->transform(function ($characterPart) use ($purchasedPartIds) {
+        $parts->map(function ($characterPart) use ($user) {
             if (!$characterPart->default) {
-                $characterPart->is_purchased = $purchasedPartIds->contains($characterPart->id);
+                $characterPart->is_purchased = $user->purchases()
+                    ->where('purchasable_type', 'App\Models\CharacterPart')
+                    ->where('purchasable_id', $characterPart->id)
+                    ->exists();
             }
             return $characterPart;
         });
@@ -48,6 +46,7 @@ class CharacterController extends Controller
     public function buyPart(Request $request)
     {
         $part = CharacterPart::findOrFail($request->id);
+        $user = User::find(Auth::id());
         if ($part->default) {
             return response()->json([
                 'success' => false,
@@ -55,7 +54,10 @@ class CharacterController extends Controller
             ]);
         }
         // Did user already purchase it?
-        $checkIfPurchased = PurchasedCharacterPart::where('user_id', Auth::id())->where('part_id', $part->id)->first();
+        $checkIfPurchased = $user->purchases()
+            ->where('purchasable_type', 'App\Models\CharacterPart')
+            ->where('purchasable_id', $part->id)
+            ->exists();
         if ($checkIfPurchased) {
             return response()->json([
                 'success' => false,
@@ -64,7 +66,7 @@ class CharacterController extends Controller
         }
 
         // Enough balance?
-        $balance = Auth::user()->balance;
+        $balance = $user->balance;
         if ($balance - $part->price < 0) {
             return response()->json([
                 'success' => false,
@@ -73,12 +75,12 @@ class CharacterController extends Controller
             ]);
         }
 
-        $newPart = new PurchasedCharacterPart();
-        $newPart->user_id = Auth::id();
-        $newPart->part_id = $part->id;
-        $newPart->saveOrFail();
+        $purchase = new Purchase();
+        $purchase->user_id = Auth::id();
+        $purchase->purchasable_type = CharacterPart::class;
+        $purchase->purchasable_id = $part->id;
+        $user->purchases()->save($purchase);
 
-        $transaction = new Transaction();
         $transaction = new Transaction();
         $transaction->operation = "Purchased Character Part";
         $transaction->amount = -$part->price;

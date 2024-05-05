@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class CharacterPart extends Model
 {
@@ -24,5 +25,10 @@ class CharacterPart extends Model
         unset($array['client_id']);
 
         return $array;
+    }
+
+    public function purchases(): MorphMany
+    {
+        return $this->morphMany(Purchase::class, 'purchasable');
     }
 }
