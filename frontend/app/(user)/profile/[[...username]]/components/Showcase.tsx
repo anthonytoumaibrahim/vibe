@@ -9,6 +9,7 @@ import Draggable from "react-draggable";
 import Character from "@/app/(user)/2d_components/Character";
 import Button from "@/components/Button";
 import AboutMeEditor from "./AboutMeEditor";
+import BackgroundPicker from "./BackgroundPicker";
 import { MdEdit } from "react-icons/md";
 import { Transition } from "@headlessui/react";
 
@@ -16,12 +17,14 @@ interface ShowcaseProps {
   characterData: object;
   isOwner: boolean;
   bio?: string;
+  backgrounds: Array<any>;
 }
 
 const Showcase = ({
   characterData,
   isOwner = false,
   bio = "",
+  backgrounds,
 }: ShowcaseProps) => {
   const dispatch = useAppDispatch();
   const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
@@ -39,6 +42,7 @@ const Showcase = ({
 
   return (
     <div className="w-full relative z-0 h-[640px] rounded-lg overflow-hidden flex p-12">
+      {isOwner && <BackgroundPicker backgrounds={backgrounds} />}
       <Image
         src="/images/profile_bg/1.webp"
         fill

@@ -19,6 +19,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           bio={profileData?.bio}
           characterData={profileData?.character_data}
           isOwner={isOwner}
+          backgrounds={profileData?.backgrounds}
         />
         <div className="w-1/5 shrink-0">
           <UserCard
