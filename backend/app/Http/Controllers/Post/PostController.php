@@ -29,6 +29,18 @@ class PostController extends Controller
         ]);
     }
 
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'post_id' => 'required|exists:posts,id'
+        ]);
+        $post = Post::where('id', $request->post_id)->where('user_id', Auth::id())->deleteOrFail();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
     public function create(Request $request)
     {
         $request->validate([

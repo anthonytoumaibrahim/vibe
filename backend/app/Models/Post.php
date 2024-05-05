@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago', 'likes_count', 'dislikes_count', 'comments_count'];
+    public $appends = ['time_ago', 'likes_count', 'comments_count', 'liked_by_user'];
 
     public $with = ['images', 'comments', 'user:id,username,avatar'];
 
@@ -25,6 +26,13 @@ class Post extends Model
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->created_at)->diffForHumans(),
+        );
+    }
+
+    public function likedByUser(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->likes()->where('user_id', Auth::id())->exists(),
         );
     }
 
@@ -42,12 +50,12 @@ class Post extends Model
         );
     }
 
-    public function dislikesCount(): Attribute
-    {
-        return new Attribute(
-            get: fn () => $this->likes()->where('dislike', true)->count(),
-        );
-    }
+    // public function dislikesCount(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn () => $this->likes()->where('dislike', true)->count(),
+    //     );
+    // }
 
     public function images(): MorphMany
     {
