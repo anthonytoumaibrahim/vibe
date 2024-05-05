@@ -53,7 +53,7 @@ import {
 
 interface MDEditorProps {
   content?: string;
-  onSave: (html: string | undefined) => void;
+  onSave: (html: string | undefined, truncated: string | undefined) => void;
 }
 
 const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
@@ -69,7 +69,7 @@ const MDEditor = ({ content = "", onSave }: MDEditorProps) => {
   });
 
   const handleSave = () => {
-    onSave(editor?.getHTML());
+    onSave(editor?.getHTML(), editor?.getText().substring(0, 64));
   };
 
   return (

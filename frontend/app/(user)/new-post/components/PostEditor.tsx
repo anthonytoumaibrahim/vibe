@@ -14,9 +14,10 @@ const PostEditor = () => {
   const [images, setImages] = useState<any>([]);
   const [imageUpload, showImageUpload] = useState(false);
 
-  const save = async (content) => {
+  const save = async (content, truncated) => {
     const formData = new FormData();
     formData.append("content", content);
+    formData.append("truncated", truncated);
     images?.forEach((img) => formData.append("images[]", img));
     const response = await savePost(formData);
     if (response?.success) {
@@ -72,7 +73,10 @@ const PostEditor = () => {
           })}
         </div>
       )}
-      <MDEditor content={content} onSave={(content) => save(content)} />
+      <MDEditor
+        content={content}
+        onSave={(content, truncated) => save(content, truncated)}
+      />
     </>
   );
 };

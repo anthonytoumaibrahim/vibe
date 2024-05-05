@@ -1,6 +1,9 @@
 "use client";
-import Avatar from "@/app/(user)/components/Avatar";
 import { useAppSelector } from "@/app/lib/store";
+import Image from "next/image";
+import Avatar from "@/app/(user)/components/Avatar";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 import { FaComment, FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
 
 const Post = ({ id }: { id: number }) => {
@@ -18,13 +21,29 @@ const Post = ({ id }: { id: number }) => {
         </small>
       </div>
 
+      {postSelector?.images && (
+        <Carousel
+          className="flex flex-wrap gap-2 relative h-60"
+          showStatus={false}
+          showThumbs={false}
+        >
+          {postSelector?.images?.map((image) => {
+            const { id, src } = image;
+            return (
+              <Image
+                key={id}
+                src={src}
+                width={760}
+                height={240}
+                className="object-cover"
+                alt="Post Image"
+              />
+            );
+          })}
+        </Carousel>
+      )}
+
       <div className="p-4 flex flex-col gap-4">
-        <div className="flex flex-wrap gap-2">
-          <img
-            src="https://placehold.co/400"
-            className="w-full h-80 object-cover rounded-lg"
-          />
-        </div>
         <p>{postSelector?.content}</p>
       </div>
 
