@@ -14,7 +14,7 @@ class Post extends Model
 
     public $appends = ['time_ago', 'likes_count', 'dislikes_count', 'comments_count'];
 
-    public $with = ['images', 'user:id,username,avatar'];
+    public $with = ['images', 'comments', 'user:id,username,avatar'];
 
     public function user()
     {

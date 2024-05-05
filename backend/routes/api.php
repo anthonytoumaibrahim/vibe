@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Bio\BioController;
 use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Post\PostLikeController;
 use App\Http\Controllers\User\CharacterController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/posts/{id?}', 'getPosts');
             Route::post('/post', 'create');
         });
+
+        Route::post('/post/like', [PostLikeController::class, 'addLike']);
 
         Route::post('/post-comment', [PostCommentController::class, 'create']);
     });
