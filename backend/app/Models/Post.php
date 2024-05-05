@@ -12,9 +12,9 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago'];
+    public $appends = ['time_ago', 'likes_count'];
 
-    public $with = ['images', 'likes', 'user:id,username,avatar'];
+    public $with = ['images', 'user:id,username,avatar'];
 
     public function user()
     {
@@ -25,6 +25,13 @@ class Post extends Model
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->created_at)->diffForHumans(),
+        );
+    }
+
+    public function likesCount(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->likes()->count(),
         );
     }
 
