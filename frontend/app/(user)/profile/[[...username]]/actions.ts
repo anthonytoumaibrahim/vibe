@@ -37,3 +37,12 @@ export async function likePost(id: number) {
   revalidatePath("/");
   return response;
 }
+
+export async function deletePost(id: number) {
+  const response = await sendRequest({
+    method: "DELETE",
+    url: `/user/post/${id}`,
+  });
+  revalidatePath("/");
+  return response;
+}

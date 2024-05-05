@@ -1,11 +1,12 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
+import { deletePost, likePost } from "../../actions";
 import Image from "next/image";
+import Link from "next/link";
 import Avatar from "@/app/(user)/components/Avatar";
+import { FaComment, FaThumbsDown, FaThumbsUp, FaTrash } from "react-icons/fa6";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { FaComment, FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
-import { likePost } from "../../actions";
 
 const Post = ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
@@ -21,14 +22,35 @@ const Post = ({ id }: { id: number }) => {
     const response = await likePost(id);
   };
 
+  const removePost = async () => {
+    const response = await deletePost(id);
+    dispatch({
+      type: "postsSlice/deletePost",
+      payload: id,
+    });
+  };
+
   return (
     <div className="overflow-hidden rounded-lg border dark:border-black bg-white dark:bg-black">
-      <div className="flex items-center gap-4 bg-slate-100 dark:bg-slate-900 p-4">
-        <Avatar size={40} url={postSelector?.user?.avatar_full} />
-        <p className="font-bold">{postSelector?.user?.username}</p>
-        <small className="ml-auto text-slate-600">
-          {postSelector?.time_ago}
-        </small>
+      <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-900 p-4">
+        <Link
+          href={`/profile/${postSelector?.user?.username}`}
+          className="flex items-center gap-4 unstyled-link"
+        >
+          <Avatar size={40} url={postSelector?.user?.avatar_full} />
+          <p className="font-bold">{postSelector?.user?.username}</p>
+        </Link>
+        <div className="flex items-center gap-2">
+          <small className="text-slate-600">{postSelector?.time_ago}</small>
+          {postSelector?.is_owner && (
+            <button
+              className="text-red-600 hover:text-red-400"
+              onClick={() => removePost()}
+            >
+              <FaTrash size={16} />
+            </button>
+          )}
+        </div>
       </div>
 
       {postSelector?.images && (

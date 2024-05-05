@@ -13,6 +13,9 @@ const postsSlice = createSlice({
     addPost: (state, action) => {
       return state.push(action.payload);
     },
+    deletePost: (state, action) => {
+      return state.filter((post) => post.id !== action.payload);
+    },
     likePost: (state, action) => {
       return state.map((post) => {
         const { likes_count, liked_by_user } = post;
