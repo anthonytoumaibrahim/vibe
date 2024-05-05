@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, HasRoles, Achiever, Billable;
 
-    protected $appends = ['balance', 'avatar_full', 'is_premium'];
+    protected $appends = ['avatar_full', 'is_premium'];
 
     /**
      * The attributes that are mass assignable.
