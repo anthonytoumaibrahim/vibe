@@ -37,6 +37,7 @@ Route::middleware('auth:api')->group(function () {
 
         Route::controller(PostController::class)->group(function () {
             Route::get('/posts/{id?}', 'getPosts');
+            Route::delete('/post/{id}', 'delete');
             Route::post('/post', 'create');
         });
 

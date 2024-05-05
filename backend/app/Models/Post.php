@@ -13,7 +13,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago', 'likes_count', 'comments_count', 'liked_by_user'];
+    public $appends = ['time_ago', 'likes_count', 'comments_count', 'liked_by_user', 'is_owner'];
 
     public $with = ['images', 'comments', 'user:id,username,avatar'];
 
@@ -26,6 +26,13 @@ class Post extends Model
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->created_at)->diffForHumans(),
+        );
+    }
+
+    public function isOwner(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->user_id === Auth::id(),
         );
     }
 
