@@ -25,9 +25,9 @@ const VC = ({ balance }: { balance: number }) => {
             y2="175.5"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#944ACE" />
-            <stop offset="0.504654" stop-color="#953CD8" />
-            <stop offset="1" stop-color="#270F39" />
+            <stop stopColor="#944ACE" />
+            <stop offset="0.504654" stopColor="#953CD8" />
+            <stop offset="1" stopColor="#270F39" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_98_6"
@@ -37,8 +37,8 @@ const VC = ({ balance }: { balance: number }) => {
             y2="156.5"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.47" stop-color="white" />
-            <stop offset="1" stop-color="#9E26E8" />
+            <stop offset="0.47" stopColor="white" />
+            <stop offset="1" stopColor="#9E26E8" />
           </linearGradient>
         </defs>
       </svg>

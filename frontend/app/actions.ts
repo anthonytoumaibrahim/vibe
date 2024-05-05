@@ -40,7 +40,10 @@ export async function sendRequest({
         return error?.response?.data;
       }
     } else {
-      throw error;
+      return {
+        success: false,
+        message: "Unknown error.",
+      };
     }
   }
 

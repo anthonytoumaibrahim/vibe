@@ -2,13 +2,20 @@ import Image from "next/image";
 
 interface PostImageProps {
   src?: any;
+  handleDelete?: () => void;
 }
 
-const PostImage = ({ src }: PostImageProps) => {
+const PostImage = ({ src, handleDelete }: PostImageProps) => {
   return (
-    <div className="size-40 border border-slate-300 rounded-lg overflow-hidden relative">
+    <button
+      className="size-40 border border-slate-300 rounded-lg overflow-hidden relative group"
+      onClick={handleDelete}
+    >
       <Image src={src} fill alt="Uploaded Image" className="object-cover" />
-    </div>
+      <span className="z-10 relative bg-black p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-100">
+        Click to remove
+      </span>
+    </button>
   );
 };
 

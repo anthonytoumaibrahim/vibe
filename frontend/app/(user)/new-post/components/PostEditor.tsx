@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 const PostEditor = () => {
   const [content, setContent] = useState("");
   const [images, setImages] = useState<any>([]);
-  const [imageModal, showImageModal] = useState(false);
+  const [imageUpload, showImageUpload] = useState(false);
 
   const save = async (content) => {
     const formData = new FormData();
@@ -28,12 +28,16 @@ const PostEditor = () => {
     }
   };
 
+  const deleteImage = (index: number) => {
+    setImages(images.filter((image, imageIndex) => imageIndex !== index));
+  };
+
   return (
     <>
       <div className="flex gap-2">
         <Button
           icon={FaImage}
-          onClick={() => showImageModal(true)}
+          onClick={() => showImageUpload(!imageUpload)}
           variant="link"
           className="mb-4"
         >
@@ -51,17 +55,20 @@ const PostEditor = () => {
           </Button>
         )}
       </div>
-      {imageModal && (
-        <ImageUpload
-          handleClose={() => showImageModal(false)}
-          handleConfirm={(images) => setImages(images)}
-        />
+      {imageUpload && (
+        <ImageUpload handleConfirm={(images) => setImages(images)} />
       )}
       {images?.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-4">
           {images?.map((image, index) => {
             const blobUrl = URL.createObjectURL(image);
-            return <PostImage key={index} src={blobUrl} />;
+            return (
+              <PostImage
+                key={index}
+                src={blobUrl}
+                handleDelete={() => deleteImage(index)}
+              />
+            );
           })}
         </div>
       )}
