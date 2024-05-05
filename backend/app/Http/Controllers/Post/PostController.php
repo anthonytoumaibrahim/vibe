@@ -32,11 +32,13 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'content' => 'required|min:4|max:6000'
+            'content' => 'required|max:6000',
+            'truncated' => 'required'
         ]);
 
         $post = new Post();
         $post->content = $request->content;
+        $post->truncated = Str::of($request->truncated)->substr(0, 64);
         $post->user_id = Auth::id();
         $post->saveOrFail();
 
