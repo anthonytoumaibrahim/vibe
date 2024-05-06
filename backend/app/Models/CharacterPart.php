@@ -12,11 +12,6 @@ class CharacterPart extends Model
 
     protected $fillable = ['client_id', 'type', 'ai_description', 'premium', 'price', 'default'];
 
-    public function purchasedBy()
-    {
-        return $this->hasMany(PurchasedCharacterPart::class, 'part_id');
-    }
-
     public function toArray()
     {
         $array = parent::toArray();

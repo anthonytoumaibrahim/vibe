@@ -55,9 +55,9 @@ class UserController extends Controller
             'background_id' => 'required|exists:backgrounds,id'
         ]);
         $user = User::find(Auth::id());
-        $user->profile_data = json_encode([
+        $user->profile_data = [
             'background' => $request->background_id
-        ]);
+        ];
         $user->saveOrFail();
         return response()->json([
             'success' => true
