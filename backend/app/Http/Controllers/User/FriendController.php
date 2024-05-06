@@ -37,9 +37,18 @@ class FriendController extends Controller
         $user = User::find(Auth::id());
         $requestId = $request->id;
         $accepted = $request->boolean('accepted');
-        $friendRequest = $user->receivedFriendRequests()->where('requester_id', $requestId)->first();
+        $friendRequest = FriendRequest::where('requester_id', $requestId)->where('requested_id', $user->id)->first();
         $friendRequest->accepted = $accepted ? true : false;
         $friendRequest->save();
+
+        // Already friends?
+        $checkRelationship = $user->friends()->where('user2_id', $requestId)->exists();
+        if ($checkRelationship) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You\'re already friends with this user.'
+            ]);
+        }
 
         // Add friend
         $friend = new Friend();

@@ -10,4 +10,14 @@ class Friend extends Model
     use HasFactory;
 
     protected $fillable = ['user1_id', 'user2_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user1_id');
+    }
+
+    public function friend()
+    {
+        return $this->belongsTo(User::class, 'user2_id');
+    }
 }
