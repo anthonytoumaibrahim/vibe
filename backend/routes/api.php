@@ -46,5 +46,6 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/post-comment', [PostCommentController::class, 'create']);
 
         Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
+        Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
     });
 });

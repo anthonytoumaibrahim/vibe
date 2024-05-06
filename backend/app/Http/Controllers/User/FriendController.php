@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Friend;
 use App\Models\FriendRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,6 +29,26 @@ class FriendController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Your friend request has been sent.'
+        ]);
+    }
+
+    public function handleFriendRequest(Request $request)
+    {
+        $user = User::find(Auth::id());
+        $requestId = $request->id;
+        $accepted = $request->boolean('accepted');
+        $friendRequest = $user->receivedFriendRequests()->where('requester_id', $requestId)->first();
+        $friendRequest->accepted = $accepted ? true : false;
+        $friendRequest->save();
+
+        // Add friend
+        $friend = new Friend();
+        $friend->user1_id = $user->id;
+        $friend->user2_id = $friendRequest->requester_id;
+        $friend->saveOrFail();
+
+        return response()->json([
+            'success' => true
         ]);
     }
 }
