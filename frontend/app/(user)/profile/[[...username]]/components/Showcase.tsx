@@ -38,7 +38,7 @@ const Showcase = ({
   const characterRef = useRef(null);
 
   const [background, setBackground] = useState(backgroundId ?? 1);
-  const backgroundObject = backgrounds.filter(
+  const backgroundObject = backgrounds?.filter(
     (bg) => bg.id === background
   )?.[0];
 

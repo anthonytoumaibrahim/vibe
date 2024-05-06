@@ -15,6 +15,14 @@ export async function getProfile(username?: string) {
   return response;
 }
 
+export async function sendFriendRequest(id: number) {
+  const response = await sendRequest({
+    method: "GET",
+    url: `/user/send-request/${id}`,
+  });
+  return response;
+}
+
 export async function saveBio(data: { bio?: string }) {
   const response = await sendRequest({
     method: "POST",
