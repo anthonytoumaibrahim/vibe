@@ -16,6 +16,7 @@ import { Transition } from "@headlessui/react";
 interface ShowcaseProps {
   characterData: object;
   isOwner: boolean;
+  isPremium?: boolean;
   bio?: string;
   backgrounds: Array<any>;
 }
@@ -23,6 +24,7 @@ interface ShowcaseProps {
 const Showcase = ({
   characterData,
   isOwner = false,
+  isPremium = false,
   bio = "",
   backgrounds,
 }: ShowcaseProps) => {
@@ -50,13 +52,7 @@ const Showcase = ({
         className="object-cover"
         sizes="100%"
       />
-      <Draggable
-        bounds="parent"
-        nodeRef={characterRef}
-        defaultPosition={{ x: 0, y: 0 }}
-      >
-        <Character data={characterData} ref={characterRef} />
-      </Draggable>
+      <Character data={characterData} ref={characterRef} />
 
       <div className="p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
         {isOwner && (
