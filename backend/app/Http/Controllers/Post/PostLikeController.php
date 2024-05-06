@@ -19,7 +19,7 @@ class PostLikeController extends Controller
 
         $likeExists = $post->likes()->where('user_id', Auth::id())->first();
         if ($likeExists) {
-            $post->likes()->delete($likeExists);
+            $post->likes()->where('user_id', Auth::id())->delete();
         } else {
             $like = new Like();
             $like->user_id = Auth::id();

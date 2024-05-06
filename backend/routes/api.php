@@ -9,6 +9,7 @@ use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostLikeController;
 use App\Http\Controllers\User\CharacterController;
+use App\Http\Controllers\User\FriendController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,9 +42,9 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('/post/{id}', 'delete');
             Route::post('/post', 'create');
         });
-
         Route::post('/post/like', [PostLikeController::class, 'addLike']);
-
         Route::post('/post-comment', [PostCommentController::class, 'create']);
+
+        Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
     });
 });

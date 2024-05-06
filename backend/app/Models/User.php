@@ -88,14 +88,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(User::class, 'friends', 'user1_id', 'user2_id');
     }
 
-    public function friendRequests()
+    public function receivedFriendRequests()
     {
         return $this->belongsToMany(User::class, 'friend_requests', 'requested_id', 'requester_id');
     }
 
-    public function commentsOnProfile()
+    public function sentFriendRequests()
     {
-        return $this->belongsToMany(User::class, 'profile_comments', 'profile_id');
+        return $this->belongsToMany(User::class, 'friend_requests', 'requester_id', 'requested_id');
     }
 
     public function transactions()
