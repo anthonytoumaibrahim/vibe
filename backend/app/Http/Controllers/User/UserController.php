@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function getInfo(Request $request)
     {
-        $user = User::with('received_friend_requests')->find(Auth::id())->append('balance');
+        $user = User::with('receivedFriendRequests')->find(Auth::id())->append('balance');
         return response()->json($user);
     }
 
@@ -26,7 +26,7 @@ class UserController extends Controller
         } else {
             $id = Auth::id();
         }
-        $user = User::with('achievements', 'posts')->find($id)->makeVisible('character_data', 'profile_data')->makeHidden('email', 'email_verified_at', 'balance')->append('is_friend');
+        $user = User::with('achievements', 'posts')->find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance')->append('is_friend');
         $user->is_owner = $id === Auth::id();
         $user->is_friend = $user->friends->contains('id', Auth::id());
 

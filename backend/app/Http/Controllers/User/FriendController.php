@@ -13,7 +13,7 @@ class FriendController extends Controller
     public function sendFriendRequest($id)
     {
         $user = User::find(Auth::id());
-        $alreadySent = $user->receivedFriendRequests()->where('requested_id', $id)->first();
+        $alreadySent = $user->sentFriendRequests()->where('requested_id', $id)->first();
         if ($alreadySent) {
             return response()->json([
                 'success' => false,

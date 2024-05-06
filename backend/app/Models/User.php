@@ -45,7 +45,12 @@ class User extends Authenticatable implements JWTSubject
         'character_data',
         'profile_data',
         'oauth_id',
-        'avatar'
+        'avatar',
+        'stripe_id',
+        'pm_type',
+        'pm_last_four',
+        'trial_ends_at',
+        'bio'
     ];
 
     /**
