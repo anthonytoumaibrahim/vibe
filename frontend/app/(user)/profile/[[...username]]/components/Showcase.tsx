@@ -19,6 +19,7 @@ interface ShowcaseProps {
   isPremium?: boolean;
   bio?: string;
   backgrounds: Array<any>;
+  backgroundId?: number;
 }
 
 const Showcase = ({
@@ -27,6 +28,7 @@ const Showcase = ({
   isPremium = false,
   bio = "",
   backgrounds,
+  backgroundId,
 }: ShowcaseProps) => {
   const dispatch = useAppDispatch();
   const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
@@ -34,6 +36,11 @@ const Showcase = ({
   const [isEditingBio, setIsEditingBio] = useState(false);
 
   const characterRef = useRef(null);
+
+  const [background, setBackground] = useState(backgroundId ?? 1);
+  const backgroundObject = backgrounds.filter(
+    (bg) => bg.id === background
+  )?.[0];
 
   useEffect(() => {
     dispatch({
@@ -44,9 +51,14 @@ const Showcase = ({
 
   return (
     <div className="w-full relative z-0 h-[640px] rounded-lg overflow-hidden flex p-12">
-      {isOwner && <BackgroundPicker backgrounds={backgrounds} />}
+      {isOwner && (
+        <BackgroundPicker
+          backgrounds={backgrounds}
+          handleBackgroundUpdate={(id) => setBackground(id)}
+        />
+      )}
       <Image
-        src="/images/profile_bg/1.webp"
+        src={`/images/2d_backgrounds/${backgroundObject?.image_url}`}
         fill
         alt=""
         className="object-cover"

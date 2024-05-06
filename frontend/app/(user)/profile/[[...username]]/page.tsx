@@ -20,6 +20,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           characterData={profileData?.character_data}
           isOwner={isOwner}
           backgrounds={profileData?.backgrounds}
+          backgroundId={profileData?.profile_data?.background}
         />
         <div className="w-1/5 shrink-0">
           <UserCard

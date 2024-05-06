@@ -26,6 +26,17 @@ export async function saveBio(data: { bio?: string }) {
   return response;
 }
 
+export async function updateBackground(id: number) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/update-background",
+    body: {
+      background_id: id,
+    },
+  });
+  return response;
+}
+
 export async function likePost(id: number) {
   const response = await sendRequest({
     method: "POST",

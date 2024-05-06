@@ -1,21 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import Modal, { ModalSize } from "@/components/Modal";
-import { FaImage, FaX } from "react-icons/fa6";
+import { updateBackground } from "../../actions";
 import Image from "next/image";
+import Button from "@/components/Button";
+import { FaImage, FaX } from "react-icons/fa6";
 
 interface BackgroundPickerProps {
   backgrounds: Array<any>;
   isPremium?: boolean;
+  handleBackgroundUpdate: (bgid) => void;
 }
 
 const BackgroundPicker = ({
   backgrounds,
   isPremium = false,
+  handleBackgroundUpdate,
 }: BackgroundPickerProps) => {
-  const [selectedBackground, setSelectedBackground] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedBackground, setSelectedBackground] = useState<any>(null);
+
+  const chooseNewBg = async (id) => {
+    handleBackgroundUpdate(id);
+    setIsOpen(false);
+    await updateBackground(id);
+  };
 
   return (
     <>
@@ -26,7 +35,7 @@ const BackgroundPicker = ({
         <FaImage size={24} />
       </button>
       {isOpen && (
-        <div className="absolute inset-0 w-full h-full z-10 bg-white/70 dark:bg-black/70 backdrop-blur-md flex gap-4 p-6">
+        <div className="absolute inset-0 w-full h-full z-10 bg-white/70 dark:bg-black/70 backdrop-blur-md flex gap-6 p-10">
           <button
             className="absolute top-4 right-4 z-10 hover:text-primary-main"
             onClick={() => setIsOpen(false)}
@@ -62,15 +71,35 @@ const BackgroundPicker = ({
             </div>
           </div>
           {selectedBackground && (
-            <div className="w-1/3 shrink-0">
-              <Image
-                src={`/images/2d_backgrounds/${selectedBackground?.image_url}`}
-                width={256}
-                height={180}
-                className="object-cover"
-                alt={selectedBackground?.name}
-              />
+            <div className="w-1/3 shrink-0 text-center flex flex-col gap-2">
+              <div className="h-48 rounded-lg overflow-hidden">
+                <Image
+                  src={`/images/2d_backgrounds/${selectedBackground?.image_url}`}
+                  width={0}
+                  height={0}
+                  sizes="320px"
+                  className="w-auto h-full object-cover"
+                  alt={selectedBackground?.name}
+                />
+              </div>
               <h4>{selectedBackground?.name}</h4>
+              <div className="mt-auto">
+                {selectedBackground?.premium && !isPremium ? (
+                  <div className="flex flex-col gap-2">
+                    <p>This background is Premium only.</p>
+                    <Button href="/premium" variant="gradient" color="premium">
+                      Upgrade now
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    className="mx-auto"
+                    onClick={() => chooseNewBg(selectedBackground?.id)}
+                  >
+                    Choose Background
+                  </Button>
+                )}
+              </div>
             </div>
           )}
         </div>
