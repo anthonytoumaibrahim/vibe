@@ -8,6 +8,7 @@ interface AvatarProps {
   size?: number;
   username?: string;
   className?: string;
+  isPremium?: boolean;
 }
 
 const Avatar = ({
@@ -15,6 +16,7 @@ const Avatar = ({
   size = 56,
   username,
   className = "",
+  isPremium = false,
 }: AvatarProps) => {
   const [src, setSrc] = useState(url);
 
