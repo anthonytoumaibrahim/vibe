@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/info', [UserController::class, 'getInfo']);
         Route::get('/profile/{username?}', [UserController::class, 'getProfile']);
         Route::post('/save-bio', [BioController::class, 'save']);
+        Route::post('/update-background', [UserController::class, 'updateBackground']);
 
         Route::controller(CharacterController::class)->group(function () {
             Route::post('/save-character', 'save');

@@ -48,4 +48,19 @@ class UserController extends Controller
         $user->backgrounds = $backgrounds;
         return response()->json($user);
     }
+
+    public function updateBackground(Request $request)
+    {
+        $request->validate([
+            'background_id' => 'required|exists:backgrounds,id'
+        ]);
+        $user = User::find(Auth::id());
+        $user->profile_data = json_encode([
+            'background' => $request->background_id
+        ]);
+        $user->saveOrFail();
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }
