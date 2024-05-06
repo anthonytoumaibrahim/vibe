@@ -90,17 +90,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function friends()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user1_id', 'user2_id');
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')->wherePivot('status', 'accepted');
     }
 
-    public function receivedFriendRequests()
+    public function friendRequests()
     {
-        return $this->belongsToMany(User::class, 'friend_requests', 'requested_id', 'requester_id');
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')->wherePivot('status', 'pending');
     }
 
     public function sentFriendRequests()
     {
-        return $this->belongsToMany(User::class, 'friend_requests', 'requester_id', 'requested_id');
+        return $this->hasMany(Friend::class, 'user_id')->where('status', 'pending');
     }
 
     public function transactions()
@@ -125,7 +125,7 @@ class User extends Authenticatable implements JWTSubject
     public function isFriend(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->friends()->where('user1_id', Auth::id())->orWhere('user2_id', Auth::id())->exists(),
+            get: fn () => $this->friends->contains(Auth::id()),
         );
     }
 
