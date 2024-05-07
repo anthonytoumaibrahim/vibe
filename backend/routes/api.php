@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/get-character', 'get');
             Route::post('/buy-part', 'buyPart');
         });
+        Route::post('/generate-character', [AICharacterGeneratorController::class, 'generate']);
 
         Route::controller(PostController::class)->group(function () {
             Route::get('/posts/{id?}', 'getPosts');
