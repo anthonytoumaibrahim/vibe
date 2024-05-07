@@ -32,3 +32,14 @@ export async function saveCharacter(data: object) {
   revalidatePath("/profile");
   return response;
 }
+
+export async function generateCharacterAI(message: string) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/generate-character",
+    body: {
+      message: message,
+    },
+  });
+  return response;
+}

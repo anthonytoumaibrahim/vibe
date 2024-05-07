@@ -6,9 +6,15 @@ import AISvg from "./svg/ai.svg";
 import Input from "@/components/Input";
 import { useForm } from "react-hook-form";
 import Button from "@/components/Button";
+import { generateCharacterAI } from "../../actions";
 
-const AI = () => {
+interface AIProps {
+  handleCharacterUpdate: (data) => void;
+}
+
+const AI = ({ handleCharacterUpdate }: AIProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -19,7 +25,13 @@ const AI = () => {
   } = useForm();
 
   const aiRequest = async (data) => {
-    console.log(data);
+    setIsLoading(true);
+    const response = await generateCharacterAI(data.user_desc);
+    if (response?.success === true) {
+      handleCharacterUpdate(JSON.parse(response?.data));
+      setIsOpen(false);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -53,7 +65,9 @@ const AI = () => {
               },
             })}
           />
-          <Button className="mx-auto">Generate</Button>
+          <Button className="mx-auto" loading={isLoading}>
+            Generate
+          </Button>
         </form>
       </Modal>
     </>

@@ -162,6 +162,13 @@ const CharacterEditor = ({
     setIs2DLoading(false);
   }, []);
 
+  const updateCharacterAI = (data) => {
+    dispatch({
+      type: "characterEditorSlice/initializeData",
+      payload: data,
+    });
+  };
+
   return (
     <>
       {boardingModal && (
@@ -181,7 +188,7 @@ const CharacterEditor = ({
           fill
         />
         <div className="flex flex-col gap-4 absolute top-4 left-4 z-10 items-center">
-          <AI />
+          <AI handleCharacterUpdate={(data) => updateCharacterAI(data)} />
           <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
         </div>
         <div className="w-full h-full flex items-center justify-center pt-40">
