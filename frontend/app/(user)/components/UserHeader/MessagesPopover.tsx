@@ -3,11 +3,11 @@
 import { Popover } from "@headlessui/react";
 import { FaMessage } from "react-icons/fa6";
 
-import Pusher from "pusher-js";
-if (typeof window !== "undefined") {
-  window.Pusher = Pusher;
-}
-import Echo from "laravel-echo";
+// import Pusher from "pusher-js";
+// if (typeof window !== "undefined") {
+//   window.Pusher = Pusher;
+// }
+// import Echo from "laravel-echo";
 
 const MessagesPopover = () => {
   // const chat = new Echo({
@@ -15,6 +15,7 @@ const MessagesPopover = () => {
   //   key: "1015fd935276a6a14082",
   //   cluster: "ap1",
   //   forceTLS: true,
+  //   authEndPoint: "",
   // });
 
   // const channel = chat.channel("my-channel");
