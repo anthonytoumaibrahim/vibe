@@ -21,6 +21,7 @@ import Button from "@/components/Button";
 import Zoom from "./Zoom";
 import PartTab from "./PartTab";
 import BoardingModal from "./BoardingModal";
+import AI from "./AI";
 
 interface CharacterEditorProps {
   data?: Record<PartsType, { id: number; fill?: string }> | undefined;
@@ -179,7 +180,10 @@ const CharacterEditor = ({
           priority={true}
           fill
         />
-        <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
+        <div className="flex flex-col gap-4 absolute top-4 left-4 z-10 items-center">
+          <AI />
+          <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
+        </div>
         <div className="w-full h-full flex items-center justify-center pt-40">
           {!is2DLoading && (
             <Character data={characterData} scale={zoom} ref={characterRef} />

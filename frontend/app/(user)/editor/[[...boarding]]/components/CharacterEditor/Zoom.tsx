@@ -7,7 +7,7 @@ interface ZoomProps {
 
 const Zoom = ({ handleZoom, zoom = 1 }: ZoomProps) => {
   return (
-    <div className="absolute top-4 left-4 text-white z-10 flex flex-col">
+    <div className="text-white flex flex-col">
       <button
         className="bg-slate-300 rounded-t border-b-2 border-slate-400 p-2 disabled:opacity-50 hover:bg-primary-main"
         onClick={() => handleZoom("+")}
