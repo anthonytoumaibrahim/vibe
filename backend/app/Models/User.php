@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Billable;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelMergedRelations\Eloquent\HasMergedRelationships;
@@ -153,13 +154,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return new Attribute(
             get: fn () => $this->transactions()->sum('amount'),
-        );
-    }
-
-    public function isFriend(): Attribute
-    {
-        return new Attribute(
-            get: fn () => $this->friends->contains($this->id),
         );
     }
 
