@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use App\Models\Background;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Assada\Achievements\Achievement;
@@ -25,10 +26,16 @@ class UserController extends Controller
         } else {
             $id = Auth::id();
         }
-        $user = User::with('achievements', 'posts')->find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
+        $user = User::with('posts')->find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
         $user->is_owner = $id === Auth::id();
         $user->is_friend = $user->friends->contains(Auth::id());
-        $user->ach = Achievement::all();
+
+        // Badges
+        $userAchievements = $user->achievements()->with('details')->get();
+        $userAchievements->each(function ($achievement) {
+            $achievement->details->slug = Str::of($achievement->details->name)->slug();
+        });
+        $user->badges = $userAchievements;
 
         // Backgrounds
         $isPremium = $user->is_premium;
