@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Billable;
 use Spatie\Permission\Traits\HasRoles;
+use Staudenmeir\LaravelMergedRelations\Eloquent\HasMergedRelationships;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable, HasRoles, Achiever, Billable;
+    use HasFactory, Notifiable, HasRoles, Achiever, Billable, HasMergedRelationships;
 
     protected $appends = ['avatar_full', 'is_premium'];
 
@@ -88,19 +88,53 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function friends()
+    public function friendsTo()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')->wherePivot('status', 'accepted');
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+            ->withPivot('accepted')
+            ->withTimestamps();
+    }
+
+    public function friendsFrom()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
+            ->withPivot('accepted')
+            ->withTimestamps();
+    }
+
+    public function pendingFriendsTo()
+    {
+        return $this->friendsTo()->wherePivot('accepted', false);
+    }
+
+    public function pendingFriendsFrom()
+    {
+        return $this->friendsFrom()->wherePivot('accepted', false);
+    }
+
+    public function acceptedFriendsTo()
+    {
+        return $this->friendsTo()->wherePivot('accepted', true);
+    }
+
+    public function acceptedFriendsFrom()
+    {
+        return $this->friendsFrom()->wherePivot('accepted', true);
     }
 
     public function friendRequests()
     {
-        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')->wherePivot('status', 'pending');
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')->wherePivot('accepted', false);
     }
 
     public function sentFriendRequests()
     {
-        return $this->hasMany(Friend::class, 'user_id')->where('status', 'pending');
+        return $this->hasMany(Friend::class, 'user_id')->where('accepted', false);
+    }
+
+    public function friends()
+    {
+        return $this->mergedRelationWithModel(User::class, 'friends_view');
     }
 
     public function transactions()
@@ -125,7 +159,7 @@ class User extends Authenticatable implements JWTSubject
     public function isFriend(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->friends->contains(Auth::id()),
+            get: fn () => $this->friends->contains($this->id),
         );
     }
 

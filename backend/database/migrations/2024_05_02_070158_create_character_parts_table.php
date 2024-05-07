@@ -21,16 +21,6 @@ return new class extends Migration
             $table->boolean('default')->default(false);
             $table->timestamps();
         });
-
-        Schema::create('purchased_character_parts', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('part_id');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-
-            $table->foreign('part_id')->references('id')->on('character_parts')->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Friend;
-use App\Models\FriendRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +21,7 @@ class FriendController extends Controller
             ]);
         }
         // Already sent request?
-        if ($user->sentFriendRequests->contains('friend_id', $id)) {
+        if ($user->sentFriendRequests->contains($id)) {
             return response()->json([
                 'success' => false,
                 'message' => 'You already sent a request to this user.'
@@ -32,7 +31,7 @@ class FriendController extends Controller
         $newFriend = new Friend();
         $newFriend->user_id = $user->id;
         $newFriend->friend_id = $id;
-        $newFriend->status = 'pending';
+        $newFriend->accepted = false;
         $user->sentFriendRequests()->save($newFriend);
 
 
@@ -51,7 +50,7 @@ class FriendController extends Controller
         if ($accepted) {
             Friend::where('user_id', $id)
                 ->where('friend_id', $user->id)
-                ->update(['status' => 'accepted']);
+                ->update(['accepted' => true]);
         } else {
             Friend::where('user_id', $id)
                 ->where('friend_id', $user->id)

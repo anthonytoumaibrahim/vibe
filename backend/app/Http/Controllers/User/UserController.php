@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function getInfo(Request $request)
     {
-        $user = User::with('friendRequests')->find(Auth::id())->append('balance');
+        $user = User::with('friendRequests', 'friends')->find(Auth::id())->append('balance');
         return response()->json($user);
     }
 

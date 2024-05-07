@@ -19,16 +19,6 @@ return new class extends Migration
             $table->integer('price')->default(0);
             $table->timestamps();
         });
-
-        Schema::create('purchased_backgrounds', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('background_id');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-
-            $table->foreign('background_id')->references('id')->on('backgrounds')->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
     }
 
     /**
@@ -37,6 +27,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('backgrounds');
-        Schema::dropIfExists('purchased_backgrounds');
     }
 };
