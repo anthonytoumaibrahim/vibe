@@ -33,7 +33,7 @@ class UserController extends Controller
         // Backgrounds
         $isPremium = $user->is_premium;
 
-        $backgrounds = Background::all()->sortBy('price')->sortBy('premium', descending: $isPremium);
+        $backgrounds = Background::orderBy('price')->orderBy('premium', $isPremium ? 'DESC' : 'ASC')->get();
 
         $backgrounds->map(function ($background) use ($user) {
             if (!$background->default) {
