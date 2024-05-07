@@ -25,7 +25,7 @@ class SavedAvatar extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = 'Congratulations! You saved your Avatar for the first time.';
+    public $description = 'You look great!';
 
     public function whenUnlocked($progress)
     {
