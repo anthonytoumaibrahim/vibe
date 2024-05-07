@@ -18,7 +18,7 @@ class CreatedFirstPost extends Achievement
     /*
      * The achievement name
      */
-    public $name = 'Created Your First Post';
+    public $name = 'Created First Post';
 
     public $slug = 'created-first-post';
 

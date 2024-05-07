@@ -18,9 +18,11 @@ class Created10Posts extends Achievement
     /*
      * The achievement name
      */
-    public $name = 'Created10Posts';
+    public $name = 'Created 10 Posts';
 
     public $slug = 'created-ten-posts';
+
+    public $points = 10;
 
     /*
      * A small description for the achievement

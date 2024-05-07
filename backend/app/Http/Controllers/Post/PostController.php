@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Post;
 
+use App\Achievements\Created10Posts;
+use App\Achievements\CreatedFirstPost;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Image;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -45,10 +48,12 @@ class PostController extends Controller
             'truncated' => 'required'
         ]);
 
+        $user = User::find(Auth::id());
+
         $post = new Post();
         $post->content = $request->content;
         $post->truncated = Str::of($request->truncated)->substr(0, 64);
-        $post->user_id = Auth::id();
+        $post->user_id = $user->id;
         $post->saveOrFail();
 
         // Add images
@@ -68,6 +73,8 @@ class PostController extends Controller
             }
         }
 
+        $user->unlock(new CreatedFirstPost());
+        $user->addProgress(new Created10Posts(), 1);
 
         return response()->json([
             'success' => true,
