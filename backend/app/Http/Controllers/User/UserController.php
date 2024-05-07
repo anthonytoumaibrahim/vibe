@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\MessageSent;
 use App\Models\User;
 use App\Models\Background;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Assada\Achievements\Achievement;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function getInfo()
     {
-        $user = User::with('friendRequests', 'friends')->find(Auth::id())->append('balance');
+        $user = User::with('friendRequests')->find(Auth::id())->append('balance');
         return response()->json($user);
     }
 
