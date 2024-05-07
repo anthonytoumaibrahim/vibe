@@ -13,6 +13,7 @@ interface UserCardProps {
   isFriend?: boolean;
   isOwner?: boolean;
   id: number;
+  isPremium?: boolean;
 }
 
 const UserCard = ({
@@ -21,6 +22,7 @@ const UserCard = ({
   id,
   isFriend = false,
   isOwner = false,
+  isPremium = false,
 }: UserCardProps) => {
   const [friend, setFriend] = useState(isFriend);
 
@@ -36,7 +38,7 @@ const UserCard = ({
   return (
     <div className="p-4 rounded-lg bg-slate-100 dark:bg-black">
       <div className="flex items-center gap-4">
-        <Avatar url={avatar} />
+        <Avatar url={avatar} isPremium={isPremium} />
         <div>
           <h4>{username}</h4>
           <p>Online</p>

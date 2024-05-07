@@ -27,7 +27,7 @@ const FriendRequests = ({ requests }: FriendRequestsProps) => {
   };
 
   return (
-    <Popover className="relative">
+    <Popover className="relative flex">
       <Popover.Button className="outline-none hover:text-primary-main relative">
         <FaUserGroup size={24} />
         {allRequests?.length > 0 && (

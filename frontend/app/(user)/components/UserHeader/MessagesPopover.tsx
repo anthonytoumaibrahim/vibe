@@ -3,9 +3,11 @@
 import { Popover } from "@headlessui/react";
 import { FaMessage } from "react-icons/fa6";
 
+import Echo from "laravel-echo";
+
 const MessagesPopover = () => {
   return (
-    <Popover className="relative">
+    <Popover className="relative flex">
       <Popover.Button className="outline-none hover:text-primary-main">
         <FaMessage size={24} />
       </Popover.Button>

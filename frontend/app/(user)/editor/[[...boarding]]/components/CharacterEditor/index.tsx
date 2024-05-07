@@ -135,7 +135,7 @@ const CharacterEditor = ({
         face: { id: data?.face?.id ?? 1 },
         hair: { id: data?.hair?.id ?? 3, fill: data?.hair?.fill ?? "#c73030" },
         beard: {
-          id: data?.beard?.id ?? 3,
+          id: data?.beard?.id ?? 0,
           fill: data?.beard?.fill ?? "#c73030",
         },
         eye: { id: data?.eye?.id ?? 5, fill: data?.eye?.fill ?? "#72A0C1" },

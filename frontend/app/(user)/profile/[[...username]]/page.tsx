@@ -29,6 +29,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
             avatar={profileData?.avatar_full}
             isFriend={profileData?.is_friend}
             isOwner={isOwner}
+            isPremium={profileData?.is_premium}
           />
         </div>
       </section>
