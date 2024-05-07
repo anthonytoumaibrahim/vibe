@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Background;
-use App\Models\PurchasedBackground;
 use App\Models\User;
+use App\Models\Background;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
+use Assada\Achievements\Achievement;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getInfo(Request $request)
+    public function getInfo()
     {
         $user = User::with('friendRequests', 'friends')->find(Auth::id())->append('balance');
         return response()->json($user);
@@ -29,6 +28,7 @@ class UserController extends Controller
         $user = User::with('achievements', 'posts')->find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
         $user->is_owner = $id === Auth::id();
         $user->is_friend = $user->friends->contains(Auth::id());
+        $user->ach = Achievement::all();
 
         // Backgrounds
         $isPremium = $user->is_premium;
