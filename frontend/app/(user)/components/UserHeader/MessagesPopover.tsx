@@ -3,9 +3,25 @@
 import { Popover } from "@headlessui/react";
 import { FaMessage } from "react-icons/fa6";
 
+import Pusher from "pusher-js";
+if (typeof window !== "undefined") {
+  window.Pusher = Pusher;
+}
 import Echo from "laravel-echo";
 
 const MessagesPopover = () => {
+  // const chat = new Echo({
+  //   broadcaster: "pusher",
+  //   key: "1015fd935276a6a14082",
+  //   cluster: "ap1",
+  //   forceTLS: true,
+  // });
+
+  // const channel = chat.channel("my-channel");
+  // channel.listen(".my-event", function (data) {
+  //   alert(JSON.stringify(data));
+  // });
+
   return (
     <Popover className="relative flex">
       <Popover.Button className="outline-none hover:text-primary-main">

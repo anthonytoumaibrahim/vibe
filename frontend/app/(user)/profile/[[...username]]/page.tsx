@@ -3,6 +3,7 @@ import { getProfile } from "./actions";
 import Showcase from "./components/Showcase";
 import UserCard from "./components/UserCard";
 import MyPosts from "./components/MyPosts";
+import Badges from "./components/Badges";
 
 export const metadata: Metadata = {
   title: "Profile – Vibe",
@@ -21,8 +22,9 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           isOwner={isOwner}
           backgrounds={profileData?.backgrounds}
           backgroundId={profileData?.profile_data?.background}
+          isPremium={profileData?.is_premium}
         />
-        <div className="w-1/5 shrink-0">
+        <div className="w-1/5 shrink-0 flex flex-col gap-6">
           <UserCard
             username={profileData?.username}
             id={profileData?.id}
@@ -31,6 +33,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
             isOwner={isOwner}
             isPremium={profileData?.is_premium}
           />
+          <Badges badgesData={profileData?.badges} />
         </div>
       </section>
 
