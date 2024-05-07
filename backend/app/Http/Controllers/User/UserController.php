@@ -31,7 +31,7 @@ class UserController extends Controller
         $user->is_friend = $user->friends->contains(Auth::id());
 
         // Badges
-        $userAchievements = $user->achievements()->with('details')->get();
+        $userAchievements = $user->unlockedAchievements();
         $userAchievements->each(function ($achievement) {
             $achievement->details->slug = Str::of($achievement->details->name)->slug();
         });
