@@ -10,8 +10,8 @@ interface RoomProps {
 
 const Room = ({ id, name, username }: RoomProps) => {
   return (
-    <div className="rounded-lg overflow-hidden bg-slate-200">
-      <div className="h-44 bg-slate-500 relative">
+    <div className="rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-900">
+      <div className="h-44 relative">
         <Image src="/images/chatrooms/bg1.webp" fill sizes="480px" alt="" />
       </div>
       <div className="p-4 flex justify-between items-center">
