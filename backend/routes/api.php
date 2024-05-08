@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->group(function () {
     Route::middleware('auth:api')->get('/refresh', [AuthController::class, 'refresh']);
+    Route::middleware('auth:api')->get('/check-auth', [AuthController::class, 'checkAuth']);
     Route::post('/signup', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/logout', [AuthController::class, 'logout']);

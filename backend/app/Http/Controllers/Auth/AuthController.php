@@ -106,6 +106,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function checkAuth()
+    {
+        $user = User::find(Auth::id());
+        return response()->json([
+            'success' => true,
+            'is_premium' => $user->hasRole('premium'),
+            'is_admin' => $user->hasRole('admin')
+        ]);
+    }
+
     public function refresh()
     {
         return response()->json([
