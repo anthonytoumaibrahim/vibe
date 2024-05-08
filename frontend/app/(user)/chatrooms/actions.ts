@@ -8,6 +8,14 @@ export async function getChatroom(id: number) {
   return response;
 }
 
+export async function getAllChatrooms() {
+  const response = await sendRequest({
+    method: "GET",
+    url: "/user/chatrooms",
+  });
+  return response;
+}
+
 export async function createChatroom(name?: string) {
   const response = await sendRequest({
     method: "POST",

@@ -36,7 +36,7 @@ const AI = ({ handleCharacterUpdate }: AIProps) => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>
+      <button onClick={() => setIsOpen(true)} className="animate-pulse">
         <AISvg width={54} height={54} />
       </button>
       <Modal

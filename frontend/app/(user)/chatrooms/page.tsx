@@ -2,19 +2,22 @@ import { Metadata } from "next";
 
 import Rooms from "./components/Rooms";
 import NewChat from "./components/NewChat";
+import { getAllChatrooms } from "./actions";
 
 export const metadata: Metadata = {
   title: "Chat Rooms – Vibe",
 };
 
-const Chatrooms = () => {
+const Chatrooms = async () => {
+  const allChatrooms = await getAllChatrooms();
+
   return (
     <>
       <div className="flex justify-between items-center mb-4">
         <h1>Chat Rooms</h1>
         <NewChat />
       </div>
-      <Rooms />
+      <Rooms rooms={allChatrooms} />
     </>
   );
 };
