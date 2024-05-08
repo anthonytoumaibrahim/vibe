@@ -41,3 +41,11 @@ export async function joinChatroom(chatroomId: number) {
   });
   return response;
 }
+
+export async function getParticipant(id: number) {
+  const response = await sendRequest({
+    method: "GET",
+    url: "/user/get-participant/" + id,
+  });
+  return response;
+}
