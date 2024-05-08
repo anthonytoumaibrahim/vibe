@@ -23,4 +23,10 @@ class ChatroomController extends Controller
             'chatroom_id' => $chatroom->id
         ]);
     }
+
+    public function get($id)
+    {
+        $chatroom = Chatroom::findOrFail($id);
+        return response()->json($chatroom);
+    }
 }
