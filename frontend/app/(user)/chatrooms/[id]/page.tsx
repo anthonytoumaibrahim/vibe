@@ -1,5 +1,15 @@
-const Chatroom = ({ params }: { params: { id?: number } }) => {
-  return <div>{params.id}</div>;
+import { Metadata } from "next";
+import { getChatroom } from "../actions";
+import ChatroomContainer from "./components/ChatroomContainer";
+
+export const metadata: Metadata = {
+  title: "Chatroom – Vibe",
+};
+
+const Chatroom = async ({ params }: { params: { id: number } }) => {
+  const chatroom = await getChatroom(params.id);
+
+  return <ChatroomContainer id={chatroom?.id} />;
 };
 
 export default Chatroom;
