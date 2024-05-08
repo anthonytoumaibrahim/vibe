@@ -65,7 +65,7 @@ const AI = ({ handleCharacterUpdate }: AIProps) => {
               },
             })}
           />
-          <Button className="mx-auto" loading={isLoading}>
+          <Button className="mx-auto" loading={isLoading} type="submit">
             Generate
           </Button>
         </form>

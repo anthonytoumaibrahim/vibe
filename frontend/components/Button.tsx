@@ -110,7 +110,7 @@ const Button = forwardRef(
       onClick,
       icon: ButtonIcon,
       size = "regular",
-      type = "button",
+      type,
       children,
     }: ButtonProps,
     ref?: LegacyRef<any>
