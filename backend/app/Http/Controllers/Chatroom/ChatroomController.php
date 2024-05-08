@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Chatroom;
 
+use App\Events\JoinChatroom;
+use App\Events\SendMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Chatroom;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -28,5 +31,29 @@ class ChatroomController extends Controller
     {
         $chatroom = Chatroom::findOrFail($id);
         return response()->json($chatroom);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+        $chatroomId = $request->chatroom_id;
+        $message = $request->message;
+        broadcast(new SendMessage($chatroomId, $message))->toOthers();
+    }
+
+    public function joinChatroom(Request $request)
+    {
+        $chatroomId = $request->chatroom_id;
+        broadcast(new JoinChatroom($chatroomId, Auth::id(), Auth::user()->username))->toOthers();
+    }
+
+    public function getParticipant($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json([
+            'id' => $user->id,
+            'username' => $user->username,
+            'character' => $user->character_data
+        ]);
     }
 }

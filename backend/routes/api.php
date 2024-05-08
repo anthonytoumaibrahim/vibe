@@ -50,7 +50,12 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
         Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
 
-        Route::post('/create-chatroom', [ChatroomController::class, 'create']);
-        Route::get('/chatroom/{id}', [ChatroomController::class, 'get']);
+        Route::controller(ChatroomController::class)->group(function () {
+            Route::post('/create-chatroom', 'create');
+            Route::get('/chatroom/{id}', 'get');
+            Route::post('/message-chatroom', 'sendMessage');
+            Route::post('/join-chatroom', 'joinChatroom');
+            Route::get('/get-participant/{id}', 'getParticipant');
+        });
     });
 });

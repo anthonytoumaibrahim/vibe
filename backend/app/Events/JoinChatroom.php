@@ -2,26 +2,32 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageSent implements ShouldBroadcast
+class JoinChatroom implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
+    public $chatroomId;
+    public $userId;
+    public $username;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($message)
+    public function __construct($chatroomId, $userId, $username)
     {
-        $this->message = $message;
+        $this->chatroomId = $chatroomId;
+        $this->userId = $userId;
+        $this->username = $username;
     }
 
     /**
@@ -31,11 +37,19 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        return ['my-channel'];
+        return ['chat_' . $this->chatroomId];
     }
 
     public function broadcastAs()
     {
-        return 'my-event';
+        return 'chatroom-presence';
+    }
+
+    public function broadcastWith(): array
+    {
+        return [
+            'id' => $this->userId,
+            'username' => $this->username
+        ];
     }
 }
