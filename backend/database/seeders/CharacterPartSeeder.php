@@ -57,6 +57,12 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => 'Round face, slighly large',
             'default' => true
         ]);
+        CharacterPart::create([
+            'client_id' => 5,
+            'type' => 'face',
+            'ai_description' => 'Rounded face, with slight blush',
+            'default' => true
+        ]);
         // Hair
         CharacterPart::create([
             'client_id' => 1,
