@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Bio\BioController;
+use App\Http\Controllers\Chatroom\ChatroomController;
 use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostLikeController;
@@ -48,5 +49,7 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
         Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
+
+        Route::post('/create-chatroom', [ChatroomController::class, 'create']);
     });
 });
