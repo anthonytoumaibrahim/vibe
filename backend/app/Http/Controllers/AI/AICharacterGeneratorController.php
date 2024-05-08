@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\AI;
 
+use App\Achievements\UsedAI;
 use App\Http\Controllers\Controller;
 use App\Models\CharacterPart;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class AICharacterGeneratorController extends Controller
@@ -46,6 +49,8 @@ class AICharacterGeneratorController extends Controller
 
         $response = $response->json();
         if ($response['choices']) {
+            $user = User::find(Auth::id());
+            $user->unlock(new UsedAI());
             return response()->json([
                 'success' => true,
                 'data' => $response['choices'][0]['message']['content']
