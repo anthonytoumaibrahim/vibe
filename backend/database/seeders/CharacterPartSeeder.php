@@ -17,19 +17,19 @@ class CharacterPartSeeder extends Seeder
         CharacterPart::create([
             'client_id' => 1,
             'type' => 'body',
-            'ai_description' => 'Woman\'s body, curvy shape',
+            'ai_description' => 'Well-defined waist, fuller hips, rounded buttocks, ample bust, hourglass silhouette. Suitable for characters who are females.',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 2,
             'type' => 'body',
-            'ai_description' => 'Man\'s muscly body',
+            'ai_description' => 'Broad shoulders, narrow hips, muscular build, defined chest and abdominal muscles. Conveys strength, athleticism, and masculinity. Suitable for characters who are males.',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 3,
             'type' => 'body',
-            'ai_description' => 'Unisex body, more feminine',
+            'ai_description' => 'Lean and toned body, slender waist, slight curves, toned arms and legs. Strikes a balance between femininity and athleticism, with a versatile appeal. Mostly suitable for female characters.',
             'default' => true
         ]);
         // Face
@@ -42,19 +42,19 @@ class CharacterPartSeeder extends Seeder
         CharacterPart::create([
             'client_id' => 2,
             'type' => 'face',
-            'ai_description' => 'Oval face shape, masculine, with skin details',
+            'ai_description' => 'Oval face shape, masculine, with skin details and shine',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 3,
             'type' => 'face',
-            'ai_description' => 'Oval face shape, masculine appearance',
+            'ai_description' => 'Oval face shape, best pick for masculine appearance',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 4,
             'type' => 'face',
-            'ai_description' => 'Round face, slighly large, feminine',
+            'ai_description' => 'Round face, slighly large',
             'default' => true
         ]);
         // Hair
@@ -237,7 +237,7 @@ class CharacterPartSeeder extends Seeder
         CharacterPart::create([
             'client_id' => 7,
             'type' => 'eye',
-            'ai_description' => '',
+            'ai_description' => 'Big rounded eyes, suitable for anime characters',
             'price' => 75
         ]);
         // Nose
