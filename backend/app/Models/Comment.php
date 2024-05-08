@@ -11,6 +11,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $with = ['user:id,username,avatar'];
+
     public function commentable(): MorphTo
     {
         return $this->morphTo();
@@ -19,5 +21,10 @@ class Comment extends Model
     public function likes(): MorphMany
     {
         return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
