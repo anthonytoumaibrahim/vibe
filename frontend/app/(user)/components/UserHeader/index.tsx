@@ -5,7 +5,6 @@ import { sendRequest } from "@/app/actions";
 // Components
 import Logo from "@/components/Logo";
 import HeaderAvatar from "./HeaderAvatar";
-import MessagesPopover from "./MessagesPopover";
 import MobileMenu from "./MobileMenu";
 import Nav from "./Nav";
 import VC from "./VC";
@@ -32,7 +31,6 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
       <Nav />
 
       <div className="hidden md:flex items-center gap-6">
-        <MessagesPopover />
         <FriendRequests requests={user?.friend_requests} />
         <VC balance={user?.balance} />
         <HeaderAvatar avatar={user?.avatar_full} />

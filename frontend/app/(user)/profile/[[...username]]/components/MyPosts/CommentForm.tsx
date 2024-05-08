@@ -40,7 +40,9 @@ const CommentForm = ({ post_id }: CommentFormProps) => {
           },
         })}
       />
-      <Button type="submit">Post</Button>
+      <Button type="submit" className="ml-auto">
+        Post
+      </Button>
     </form>
   );
 };

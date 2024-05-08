@@ -11,7 +11,7 @@ const Badges = ({ badgesData }) => {
           return (
             <div
               key={id}
-              className="transition-transform duration-150 hover:scale-110 relative flex items-center justify-center group"
+              className="transition-transform duration-150 hover:scale-110 flex items-center justify-center group relative hover:z-10"
             >
               <Image
                 src={`/images/badges/${details?.slug}.svg`}
@@ -19,7 +19,7 @@ const Badges = ({ badgesData }) => {
                 height={64}
                 alt={details?.name}
               />
-              <div className="absolute translate-y-3 top-full left-1/2 -translate-x-1/2 w-max max-w-[320px] z-50 bg-gradient-to-t from-primary-100 via-primary-50 to-white dark:bg-black p-4 rounded-lg shadow-lg flex-col gap-2 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white dark:before:border-b-black before:border-r-[8px] before:border-r-transparent hidden group-hover:flex text-center">
+              <div className="absolute translate-y-3 top-full left-1/2 -translate-x-1/2 w-max max-w-[320px] bg-gradient-to-t from-primary-100 via-primary-50 to-white dark:bg-black p-4 rounded-lg shadow-lg flex-col gap-2 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white dark:before:border-b-black before:border-r-[8px] before:border-r-transparent hidden group-hover:flex text-center">
                 <h4>{details?.name}</h4>
                 <p>{details?.description}</p>
               </div>
