@@ -20,12 +20,9 @@ class PostController extends Controller
     public function getPosts($id = null)
     {
         $id = $id ? $id : Auth::id();
-        $posts = Post::with('comments', 'images')->where('user_id', $id)->get();
+        $posts = Post::with('comments', 'images')->where('user_id', $id)->paginate(10);
         if ($posts) {
-            return response()->json([
-                'success' => true,
-                'posts' => $posts
-            ]);
+            return response()->json($posts);
         }
         return response()->json([
             'success' => false

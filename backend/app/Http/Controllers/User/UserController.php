@@ -26,9 +26,10 @@ class UserController extends Controller
         } else {
             $id = Auth::id();
         }
-        $user = User::with('posts')->find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
+        $user = User::find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
         $user->is_owner = $id === Auth::id();
         $user->is_friend = $user->friends->contains(Auth::id());
+        $user->posts = $user->posts()->paginate(10);
 
         // Badges
         $userAchievements = $user->unlockedAchievements();
