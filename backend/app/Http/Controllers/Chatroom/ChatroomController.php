@@ -27,6 +27,12 @@ class ChatroomController extends Controller
         ]);
     }
 
+    public function getChatrooms()
+    {
+        $chatrooms = Chatroom::with('host:id,username')->get();
+        return response()->json($chatrooms);
+    }
+
     public function get($id)
     {
         $chatroom = Chatroom::findOrFail($id);

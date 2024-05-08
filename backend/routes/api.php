@@ -51,6 +51,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
 
         Route::controller(ChatroomController::class)->group(function () {
+            Route::get('/chatrooms', 'getChatrooms');
             Route::post('/create-chatroom', 'create');
             Route::get('/chatroom/{id}', 'get');
             Route::post('/message-chatroom', 'sendMessage');
