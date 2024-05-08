@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Chatroom;
 use App\Http\Controllers\Controller;
 use App\Models\Chatroom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ChatroomController extends Controller
 {
@@ -12,6 +14,8 @@ class ChatroomController extends Controller
     {
         $chatroom = new Chatroom();
         $chatroom->name = $request->name;
+        $chatroom->host_id = Auth::id();
+        $chatroom->expires_at = Carbon::now()->addHours(4);
         $chatroom->saveOrFail();
 
         return response()->json([
