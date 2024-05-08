@@ -105,7 +105,7 @@ const Post = ({ id }: { id: number }) => {
       </div>
 
       {comments && (
-        <div className="p-4 bg-slate-200">
+        <div className="p-4 bg-slate-200 space-y-4">
           <h4>Comments ({postSelector?.comments_count})</h4>
           <CommentForm post_id={id} />
           <Comments post_id={id} />

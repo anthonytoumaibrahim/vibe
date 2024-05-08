@@ -65,3 +65,16 @@ export async function deletePost(id: number) {
   revalidatePath("/");
   return response;
 }
+
+export async function createComment(post_id: number, comment: string) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/post-comment",
+    body: {
+      post_id: post_id,
+      comment: comment,
+    },
+  });
+  revalidatePath("/");
+  return response;
+}

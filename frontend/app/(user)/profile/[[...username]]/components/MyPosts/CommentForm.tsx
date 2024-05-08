@@ -3,6 +3,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useForm } from "react-hook-form";
+import { createComment } from "../../actions";
+import toast from "react-hot-toast";
 
 interface CommentFormProps {
   post_id: number;
@@ -15,10 +17,17 @@ const CommentForm = ({ post_id }: CommentFormProps) => {
     formState: { errors },
   } = useForm();
 
-  const addComment = (data) => {};
+  const addComment = async (data) => {
+    const res = await createComment(post_id, data.comment);
+    if (res?.success === true) {
+      toast.success("Your comment has been added!");
+    } else {
+      toast.error("Sorry, your comment couldn't be added.");
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit(addComment)}>
+    <form onSubmit={handleSubmit(addComment)} className="space-y-2">
       <Input
         textarea={true}
         placeholder="Write your comment..."
