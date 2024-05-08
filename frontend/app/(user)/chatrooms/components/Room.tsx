@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import Image from "next/image";
 import Link from "next/link";
 
 interface RoomProps {
@@ -10,7 +11,9 @@ interface RoomProps {
 const Room = ({ id, name, username }: RoomProps) => {
   return (
     <div className="rounded-lg overflow-hidden bg-slate-200">
-      <div className="h-44 bg-slate-500"></div>
+      <div className="h-44 bg-slate-500 relative">
+        <Image src="/images/chatrooms/bg1.webp" fill sizes="480px" alt="" />
+      </div>
       <div className="p-4 flex justify-between items-center">
         <div className="space-y-2">
           <h3>{name}</h3>
