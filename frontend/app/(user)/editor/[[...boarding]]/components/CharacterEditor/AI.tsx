@@ -37,7 +37,7 @@ const AI = ({ handleCharacterUpdate }: AIProps) => {
   return (
     <>
       <button onClick={() => setIsOpen(true)}>
-        <AISvg />
+        <AISvg width={54} height={54} />
       </button>
       <Modal
         isOpen={isOpen}

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import Rooms from "./components/Rooms";
+import NewChat from "./components/NewChat";
 
 export const metadata: Metadata = {
   title: "Chat Rooms – Vibe",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 const Chatrooms = () => {
   return (
     <>
-      <h1 className="mb-4">Chat Rooms</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1>Chat Rooms</h1>
+        <NewChat />
+      </div>
       <Rooms />
     </>
   );
