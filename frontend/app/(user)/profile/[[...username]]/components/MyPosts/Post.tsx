@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/app/lib/store";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import { deletePost, likePost } from "../../actions";
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Link from "next/link";
 import Avatar from "@/app/(user)/components/Avatar";
+import CommentForm from "./CommentForm";
+import Comments from "./Comments";
 import { FaComment, FaThumbsDown, FaThumbsUp, FaTrash } from "react-icons/fa6";
 
 const Post = ({ id }: { id: number }) => {
@@ -102,7 +104,13 @@ const Post = ({ id }: { id: number }) => {
         </button>
       </div>
 
-      {comments && <div>hello</div>}
+      {comments && (
+        <div className="p-4 bg-slate-200">
+          <h4>Comments ({postSelector?.comments_count})</h4>
+          <CommentForm post_id={id} />
+          <Comments post_id={id} />
+        </div>
+      )}
     </div>
   );
 };

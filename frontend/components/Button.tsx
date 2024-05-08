@@ -25,6 +25,7 @@ interface ButtonProps {
   icon?: IconType;
   size?: ButtonSize;
   readonly children?: any;
+  type?: "button" | "submit";
 }
 
 interface VariantClass {
@@ -109,6 +110,7 @@ const Button = forwardRef(
       onClick,
       icon: ButtonIcon,
       size = "regular",
+      type = "button",
       children,
     }: ButtonProps,
     ref?: LegacyRef<any>
@@ -127,6 +129,7 @@ const Button = forwardRef(
         disabled={loading ? true : disabled}
         onClick={onClick}
         ref={ref}
+        type={type}
       >
         {ButtonIcon && <ButtonIcon size={24} />}
         {children}
