@@ -38,7 +38,11 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
       </section>
 
       <section className="flex gap-6">
-        <MyPosts posts={profileData?.posts} />
+        <MyPosts
+          user_id={profileData?.id}
+          posts={profileData?.posts?.data}
+          page_links={profileData?.posts?.links}
+        />
         <div className="w-1/5 shrink-0"></div>
       </section>
     </div>

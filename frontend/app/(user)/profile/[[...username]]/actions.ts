@@ -15,6 +15,14 @@ export async function getProfile(username?: string) {
   return response;
 }
 
+export async function getPosts(user_id: number, page: number = 1) {
+  const response = await sendRequest({
+    method: "GET",
+    url: `/user/posts/${user_id}?page=${page}`,
+  });
+  return response;
+}
+
 export async function sendFriendRequest(id: number) {
   const response = await sendRequest({
     method: "GET",
