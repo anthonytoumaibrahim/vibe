@@ -1,17 +1,13 @@
 "use client";
 
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
 import { useEffect, useState } from "react";
+import { pusher } from "@/app/lib/pusher";
 import { getParticipant, joinChatroom, sendMessage } from "../../actions";
 import Character from "@/app/(user)/2d_components/Character";
 
 interface ChatroomContainerProps {
   id: number;
 }
-
-const pusherKey = process.env.NEXT_PUBLIC_PUSHER_KEY ?? "";
-const pusherCluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER ?? "";
 
 const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState<Array<any>>([]);
@@ -29,9 +25,6 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
   };
 
   useEffect(() => {
-    const pusher = new Pusher(pusherKey, {
-      cluster: pusherCluster,
-    });
     const channel = pusher.subscribe(`chat_${id}`);
     channel.bind("chatroom-message", function (data) {
       console.log(JSON.stringify(data));
