@@ -202,8 +202,7 @@ const CharacterEditor = ({
               {tabs.map((tab, tabIndex) => {
                 const { name, type, optional } = tab;
                 return (
-                  <Tab.Panel key={tabIndex}>
-                    <h1 className="text-center">{name}</h1>
+                  <Tab.Panel key={tabIndex} className="h-full">
                     <PartTab
                       colors={colors?.[type]}
                       type={type}
