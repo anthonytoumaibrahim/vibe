@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-// 1. Specify protected and public routes
 const protectedRoutes = ["/home", "/boarding", "/profile"];
+const adminRoutes = ["/admin"];
 const publicRoutes = ["/login", "/signup", "/"];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
+  const isAdminRoute = adminRoutes.includes(path);
 
   const cookie = cookies().get("token")?.value;
   let isAuthenticated = false;
+  let isAdmin = false;
+
   if (cookie) {
     try {
       const response = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/auth/refresh",
+        process.env.NEXT_PUBLIC_API_URL + "/auth/check-auth",
         {
           method: "GET",
           headers: {
@@ -26,15 +29,15 @@ export default async function middleware(req: NextRequest) {
       );
       const data = await response.json();
       isAuthenticated = data?.success === true ? true : false;
+      isAdmin = data?.is_admin === true ? true : false;
     } catch (error) {}
   }
-
-  // 5. Redirect to /login if the user is not authenticated
+  if (isAdminRoute && !isAdmin) {
+    return NextResponse.redirect(new URL("/", req.nextUrl));
+  }
   if (isProtectedRoute && !isAuthenticated) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
-
-  // 6. Redirect to /dashboard if the user is authenticated
   if (
     isPublicRoute &&
     isAuthenticated &&

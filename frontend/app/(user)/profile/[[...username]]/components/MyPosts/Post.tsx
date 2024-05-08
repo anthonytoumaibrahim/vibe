@@ -1,18 +1,21 @@
 "use client";
+
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
 import { deletePost, likePost } from "../../actions";
 import Image from "next/image";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 import Link from "next/link";
 import Avatar from "@/app/(user)/components/Avatar";
 import { FaComment, FaThumbsDown, FaThumbsUp, FaTrash } from "react-icons/fa6";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 
 const Post = ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
   const postSelector = useAppSelector(
     (state) => state.postsSlice.filter((post: any) => post.id === id)?.[0]
   );
+  const [comments, showComments] = useState(false);
 
   const like = async () => {
     dispatch({
@@ -81,7 +84,7 @@ const Post = ({ id }: { id: number }) => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => like()}
-            className={`flex gap-2 items-center ${
+            className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main ${
               postSelector?.liked_by_user ? "text-primary-main" : ""
             }`}
           >
@@ -90,11 +93,16 @@ const Post = ({ id }: { id: number }) => {
           </button>
           {/* <FaThumbsDown size={26} /> */}
         </div>
-        <div className="flex gap-2 items-center">
+        <button
+          className="flex gap-2 items-center transition-colors duration-150 hover:text-primary-main"
+          onClick={() => showComments(!comments)}
+        >
           <FaComment size={24} />
           <h5>{postSelector?.comments_count}</h5>
-        </div>
+        </button>
       </div>
+
+      {comments && <div>hello</div>}
     </div>
   );
 };
