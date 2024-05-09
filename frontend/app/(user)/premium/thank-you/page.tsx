@@ -14,7 +14,7 @@ const ThankYou = async () => {
         </span>
       </h1>
       <h4 className="flex justify-center items-center gap-2">
-        Thank you for your purchase! You are now a Premium membership.{" "}
+        Thank you for your purchase! You are now a Premium member.{" "}
         <VC balance={1000} className="inline-flex" /> were added to your
         account.
       </h4>

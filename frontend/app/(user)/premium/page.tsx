@@ -33,6 +33,10 @@ const Premium = () => {
             <PremiumBullet width={24} />
             Boost the Visibility of your Posts on Other Users&apos; Pages
           </li>
+          <li className="flex items-center gap-2">
+            <PremiumBullet width={24} />
+            Unlock the AI Generator
+          </li>
         </ul>
         <PremiumButton />
       </div>
