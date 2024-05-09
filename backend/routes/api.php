@@ -56,6 +56,7 @@ Route::middleware('auth:api')->group(function () {
             Route::post('/create-chatroom', 'create');
             Route::get('/chatroom/{id}', 'get');
             Route::post('/message-chatroom', 'sendMessage');
+            Route::post('/move-avatar', 'moveAvatar');
             Route::post('/join-chatroom', 'joinChatroom');
             Route::get('/get-participant/{id}', 'getParticipant');
         });

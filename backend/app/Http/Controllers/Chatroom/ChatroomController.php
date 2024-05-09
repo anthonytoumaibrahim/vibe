@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Chatroom;
 
 use App\Events\JoinChatroom;
+use App\Events\MoveAvatar;
 use App\Events\SendMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Chatroom;
+use App\Models\ChatroomParticipant;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,7 +47,7 @@ class ChatroomController extends Controller
 
     public function get($id)
     {
-        $chatroom = Chatroom::findOrFail($id);
+        $chatroom = Chatroom::with('participants')->findOrFail($id);
         return response()->json($chatroom);
     }
 
@@ -60,7 +62,33 @@ class ChatroomController extends Controller
     public function joinChatroom(Request $request)
     {
         $chatroomId = $request->chatroom_id;
-        broadcast(new JoinChatroom($chatroomId, Auth::id(), Auth::user()->username))->toOthers();
+        $userId = Auth::id();
+        $chatroom = Chatroom::findOrFail($chatroomId);
+
+        if (!$chatroom->participants()->where('user_id', $userId)->exists()) {
+            $participant = new ChatroomParticipant();
+            $participant->user_id = Auth::id();
+            $participant->chatroom_id = $chatroomId;
+            $participant->save();
+        }
+
+        broadcast(new JoinChatroom($chatroomId, $userId, Auth::user()->username))->toOthers();
+    }
+
+    public function moveAvatar(Request $request)
+    {
+        $chatroomId = $request->chatroom_id;
+        $x = $request->x;
+        $y = $request->y;
+        $userId = Auth::id();
+        $chatroom = Chatroom::findOrFail($chatroomId);
+
+        $participant = $chatroom->participants()->where('user_id', $userId)->first();
+        $participant->x = $x;
+        $participant->y = $y;
+        $participant->save();
+
+        broadcast(new MoveAvatar($chatroomId, $userId, $x, $y))->toOthers();
     }
 
     public function getParticipant($id)
