@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Achievements\BecomePremium;
 use Stripe\Stripe;
 use Stripe\Webhook;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
@@ -47,7 +49,15 @@ class PaymentController extends Controller
     {
         $user = User::find(Auth::id());
         $user->attachRole('premium');
+        $user->unlock(new BecomePremium());
         $user->save();
+
+        // Add VC
+        $transaction = new Transaction();
+        $transaction->operation = "Purchased Premium";
+        $transaction->amount = 1000;
+        $transaction->user_id = Auth::id();
+        $transaction->save();
 
         return response()->json([
             'success' => true
