@@ -5,6 +5,7 @@ import { pusher } from "@/app/lib/pusher";
 import { getParticipant, joinChatroom, sendMessage } from "../../actions";
 import Character from "@/app/(user)/2d_components/Character";
 import Image from "next/image";
+import ChatroomLoading from "./ChatroomLoading";
 
 interface ChatroomContainerProps {
   id: number;
@@ -54,6 +55,7 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
   return (
     <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden">
       <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />
+      {isLoading && <ChatroomLoading />}
       {!isError &&
         participants?.map((user) => {
           const { id, username, character } = user;
