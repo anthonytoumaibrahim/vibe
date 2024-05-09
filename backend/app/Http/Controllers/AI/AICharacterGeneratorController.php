@@ -14,6 +14,16 @@ class AICharacterGeneratorController extends Controller
 {
     public function generate(Request $request)
     {
+        $user = User::find(Auth::id());
+
+        // Check if user is premium
+        if (!$user->hasRole('premium')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You need to be Premium to use the AI Generator.'
+            ]);
+        }
+
         $colors = config('character_builder.colors');
         $parts = CharacterPart::all()->groupBy('type')->map(function ($items, $type) use ($colors) {
             return [
@@ -49,7 +59,6 @@ class AICharacterGeneratorController extends Controller
 
         $response = $response->json();
         if ($response['choices']) {
-            $user = User::find(Auth::id());
             $user->unlock(new UsedAI());
             return response()->json([
                 'success' => true,
