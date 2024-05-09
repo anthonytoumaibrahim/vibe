@@ -33,7 +33,10 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
       <div className="hidden md:flex items-center gap-6">
         <FriendRequests requests={user?.friend_requests} />
         <VC balance={user?.balance} />
-        <HeaderAvatar avatar={user?.avatar_full} />
+        <HeaderAvatar
+          avatar={user?.avatar_full}
+          is_premium={user?.is_premium}
+        />
       </div>
 
       <MobileMenu />
