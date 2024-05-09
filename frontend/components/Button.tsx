@@ -119,9 +119,10 @@ const Button = forwardRef(
     return href ? (
       <Link
         href={href}
-        className={`unstyled-link font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded ${className}`}
+        className={`unstyled-link font-bold text-center ${buttonSizeClass[size]} ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} px-10 py-3 rounded flex items-center justify-center gap-2 ${className}`}
         ref={ref}
       >
+        {ButtonIcon && <ButtonIcon size={24} />}
         {children}
       </Link>
     ) : (
