@@ -14,7 +14,7 @@ const ImageUpload = ({ handleConfirm }: ImageUploadProps) => {
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
       onDrop,
-      accept: { "image/*": [] },
+      accept: { "image/*": [], "video/*": [] },
       maxFiles: 4,
       maxSize: 6291456,
     });
@@ -29,10 +29,10 @@ const ImageUpload = ({ handleConfirm }: ImageUploadProps) => {
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <h3>Drop images here</h3>
+      <h3>Drop images & videos here</h3>
       <p>Or click here to upload</p>
       <small className="text-slate-400">
-        Upload only up to 4 image files. Max file size is 6MB
+        Upload only up to 4 image and/or video files. Max file size is 6MB
       </small>
       {isDragReject && (
         <p className="text-red-600 font-bold">Only image files are accepted.</p>

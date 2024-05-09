@@ -62,15 +62,23 @@ const Post = ({ id }: { id: number }) => {
         <Carousel showStatus={false} showThumbs={false}>
           {postSelector?.images?.map((image) => {
             const { id, src } = image;
+            const extension = src.split(".").pop();
             return (
               <div key={id} className="w-full h-80 relative">
-                <Image
-                  src={src}
-                  sizes="760px"
-                  fill
-                  className="object-cover"
-                  alt="Post Image"
-                />
+                {["mp4", "ogg", "mpeg"].includes(extension) ? (
+                  <video className="w-full h-full" controls>
+                    <source src={src} type={`video/${extension}`} />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <Image
+                    src={src}
+                    sizes="760px"
+                    fill
+                    className="object-cover"
+                    alt="Post Image"
+                  />
+                )}
               </div>
             );
           })}
