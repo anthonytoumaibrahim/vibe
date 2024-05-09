@@ -10,6 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class SendMessage implements ShouldBroadcastNow
 {
@@ -17,14 +18,16 @@ class SendMessage implements ShouldBroadcastNow
 
     public $chatroomId;
     public $message;
+    public $userId;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($chatroomId, $message)
+    public function __construct($chatroomId, $message, $userId)
     {
         $this->chatroomId = $chatroomId;
         $this->message = $message;
+        $this->userId = $userId;
     }
 
     /**
