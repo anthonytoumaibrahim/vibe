@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
-import { deletePost, likePost } from "../../actions";
+import { deletePost, likePost } from "../../profile/[[...username]]/actions";
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";

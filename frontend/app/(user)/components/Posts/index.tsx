@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
-import { getPosts } from "../../actions";
+import { getPosts } from "../../profile/[[...username]]/actions";
 import Post from "./Post";
 import Button from "@/components/Button";
 import { FaPencil } from "react-icons/fa6";
@@ -13,7 +13,7 @@ interface MyPostsProps {
   page_links: Array<{ url: string; label: string; active: boolean }>;
 }
 
-const MyPosts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
+const Posts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
   const dispatch = useAppDispatch();
   const postsSelector = useAppSelector((state) => state.postsSlice);
 
@@ -75,4 +75,4 @@ const MyPosts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
   );
 };
 
-export default MyPosts;
+export default Posts;

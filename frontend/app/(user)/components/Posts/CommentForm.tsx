@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useForm } from "react-hook-form";
-import { createComment } from "../../actions";
+import { createComment } from "../../profile/[[...username]]/actions";
 import toast from "react-hot-toast";
 
 interface CommentFormProps {

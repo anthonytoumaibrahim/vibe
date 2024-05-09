@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { getProfile } from "./actions";
 import Showcase from "./components/Showcase";
 import UserCard from "./components/UserCard";
-import MyPosts from "./components/MyPosts";
 import Badges from "./components/Badges";
+import Posts from "../../components/Posts";
 
 export const metadata: Metadata = {
   title: "Profile – Vibe",
@@ -38,7 +38,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
       </section>
 
       <section className="flex flex-col lg:flex-row gap-6">
-        <MyPosts
+        <Posts
           user_id={profileData?.id}
           posts={profileData?.posts?.data}
           page_links={profileData?.posts?.links}
