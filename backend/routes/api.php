@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
 
         Route::get('/premium-checkout', [PaymentController::class, 'premiumCheckout']);
+        Route::get('/checkout-success', [PaymentController::class, 'checkoutSuccess']);
 
         Route::get('/info', [UserController::class, 'getInfo']);
         Route::get('/profile/{username?}', [UserController::class, 'getProfile']);

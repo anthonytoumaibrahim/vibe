@@ -41,29 +41,42 @@ class PaymentController extends Controller
         }
     }
 
-    public function webhook(Request $request)
+    // TODO: This function is meant for local testing only. In the future we can use webhooks (see below)
+    public function checkoutSuccess(Request $request)
     {
-        $payload = $request->getContent();
-        $sigHeader = $request->header('Stripe-Signature');
-        $event = null;
+        $user = User::find(Auth::id());
+        $user->attachRole('premium');
+        $user->save();
 
-        try {
-            $event = Webhook::constructEvent(
-                $payload,
-                $sigHeader,
-                config('services.stripe.webhook_secret')
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Webhook signature verification failed'], 403);
-        }
-
-        if ($event->type === 'checkout.session.completed') {
-            $session = $event->data->object;
-            $user = User::find($session->client_reference_id);
-            $user->attachRole('premium');
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false, 'error' => 'Event not handled']);
+        return response()->json([
+            'success' => true
+        ]);
     }
+
+    // TODO: In the future, we can use a webhook to determine if the subscription has been added
+    // public function webhook(Request $request)
+    // {
+    //     $payload = $request->getContent();
+    //     $sigHeader = $request->header('Stripe-Signature');
+    //     $event = null;
+
+    //     try {
+    //         $event = Webhook::constructEvent(
+    //             $payload,
+    //             $sigHeader,
+    //             config('services.stripe.webhook_secret')
+    //         );
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => 'Webhook signature verification failed'], 403);
+    //     }
+
+    //     if ($event->type === 'checkout.session.completed') {
+    //         $session = $event->data->object;
+    //         $user = User::find($session->client_reference_id);
+    //         $user->attachRole('premium');
+    //         return response()->json(['success' => true]);
+    //     }
+
+    //     return response()->json(['success' => false, 'error' => 'Event not handled']);
+    // }
 }
