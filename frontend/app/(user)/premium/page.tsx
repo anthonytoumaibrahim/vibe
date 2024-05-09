@@ -1,7 +1,7 @@
-import Button from "@/components/Button";
+import { Metadata } from "next";
 import Image from "next/image";
 import PremiumBullet from "./components/svg/premium_bullet.svg";
-import { Metadata } from "next";
+import PremiumButton from "./components/PremiumButton";
 
 export const metadata: Metadata = {
   title: "Premium – Vibe",
@@ -34,9 +34,7 @@ const Premium = () => {
             Boost the Visibility of your Posts on Other Users&apos; Pages
           </li>
         </ul>
-        <Button variant="gradient" color="premium">
-          Upgrade Now
-        </Button>
+        <PremiumButton />
       </div>
     </div>
   );
