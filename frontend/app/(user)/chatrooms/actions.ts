@@ -39,6 +39,20 @@ export async function sendMessage(chatroomId: number, message: string) {
   return response;
 }
 
+export async function moveAvatar(chatroomId: number, userId: number, x, y) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/move-avatar",
+    body: {
+      chatroom_id: chatroomId,
+      userId: userId,
+      x: x,
+      y: y,
+    },
+  });
+  return response;
+}
+
 export async function joinChatroom(chatroomId: number) {
   const response = await sendRequest({
     method: "POST",

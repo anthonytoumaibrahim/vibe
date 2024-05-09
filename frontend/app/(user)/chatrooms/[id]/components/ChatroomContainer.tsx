@@ -14,7 +14,7 @@ interface ChatroomContainerProps {
 
 const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState<Array<any>>([]);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -23,10 +23,19 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
     setParticipants((prevParticipants) => [...prevParticipants, res]);
   };
 
+  const handleNewMessage = async (userId, message) => {
+    const newMsg = {
+      userId: userId,
+      message: message,
+    };
+    setMessages((prevMessages) => [...prevMessages, newMsg]);
+  };
+
   useEffect(() => {
     const channel = pusher.subscribe(`chat_${id}`);
     channel.bind("chatroom-message", function (data) {
-      console.log(JSON.stringify(data));
+      const { userId, message } = data;
+      handleNewMessage(userId, message);
     });
     channel.bind("chatroom-presence", (data) => {
       const { id } = data;
@@ -41,6 +50,8 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
     });
 
     channel.bind("pusher:subscription_error", (error) => {
+      console.log(error);
+
       setIsError(true);
     });
 
@@ -55,8 +66,18 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
       {isLoading && <ChatroomLoading />}
       {!isError &&
         participants?.map((user) => {
-          const { id, username, character } = user;
-          return <ChatroomAvatar key={id} data={character} />;
+          const { username, character } = user;
+          return (
+            <ChatroomAvatar
+              chatroomId={user?.id}
+              userId={id}
+              key={user?.id}
+              data={character}
+              messages={messages?.filter(
+                (msg: any) => msg?.userId === user?.id
+              )}
+            />
+          );
         })}
       <MessageForm chatroom_id={id} />
     </div>
