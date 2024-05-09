@@ -50,6 +50,7 @@ export async function updateBackground(id: number) {
       background_id: id,
     },
   });
+  revalidatePath("/profile");
   return response;
 }
 
