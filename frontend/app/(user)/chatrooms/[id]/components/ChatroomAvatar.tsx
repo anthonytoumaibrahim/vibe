@@ -9,7 +9,7 @@ const ChatroomAvatar = ({ data }) => {
 
   return (
     <Draggable nodeRef={characterRef}>
-      <div ref={characterRef}>
+      <div ref={characterRef} className="inline-block">
         <Character data={data} scale={0.55} />
       </div>
     </Draggable>

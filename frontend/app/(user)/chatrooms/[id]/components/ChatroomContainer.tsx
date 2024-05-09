@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { pusher } from "@/app/lib/pusher";
 import { getParticipant, joinChatroom, sendMessage } from "../../actions";
-import Character from "@/app/(user)/2d_components/Character";
 import Image from "next/image";
 import ChatroomLoading from "./ChatroomLoading";
 import MessageForm from "./MessageForm";
@@ -21,8 +20,7 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
 
   const handleChatPresence = async (userId: number) => {
     const res = await getParticipant(userId);
-    setParticipants([...participants, res]);
-    return res;
+    setParticipants((prevParticipants) => [...prevParticipants, res]);
   };
 
   useEffect(() => {
