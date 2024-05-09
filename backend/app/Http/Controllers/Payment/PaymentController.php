@@ -48,7 +48,7 @@ class PaymentController extends Controller
     public function checkoutSuccess(Request $request)
     {
         $user = User::find(Auth::id());
-        $user->attachRole('premium');
+        $user->assignRole('premium');
         $user->unlock(new BecomePremium());
         $user->save();
 
