@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Bio\BioController;
 use App\Http\Controllers\Chatroom\ChatroomController;
+use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostLikeController;
@@ -26,8 +27,14 @@ Route::prefix('/auth')->group(function () {
     Route::get('/forgot-password/{token}', [PasswordController::class, 'generate'])->name('password.reset');
 });
 
+// Stripe Webhook
+Route::post('/stripe-webhook', [PaymentController::class, 'webhook']);
+
 Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
+
+        Route::get('/premium-checkout', [PaymentController::class, 'premiumCheckout']);
+
         Route::get('/info', [UserController::class, 'getInfo']);
         Route::get('/profile/{username?}', [UserController::class, 'getProfile']);
         Route::post('/save-bio', [BioController::class, 'save']);

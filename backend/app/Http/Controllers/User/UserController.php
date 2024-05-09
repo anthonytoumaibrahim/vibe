@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Events\MessageSent;
 use App\Models\User;
 use App\Models\Background;
 use Illuminate\Support\Str;
