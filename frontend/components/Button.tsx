@@ -1,3 +1,4 @@
+import VibeLoading from "@/app/(user)/components/VibeLoading";
 import Link from "next/link";
 import { LegacyRef, forwardRef } from "react";
 
@@ -125,14 +126,26 @@ const Button = forwardRef(
       </Link>
     ) : (
       <button
-        className={`disabled:cursor-not-allowed disabled:opacity-50 font-bold text-center ${buttonClass[variant].class} ${buttonClass[variant].colors[color]} ${buttonSizeClass[size]} rounded flex items-center justify-center gap-2 ${className}`}
+        className={`disabled:cursor-not-allowed ${
+          loading ? "!bg-transparent" : "disabled:opacity-50"
+        } font-bold text-center ${buttonClass[variant].class} ${
+          buttonClass[variant].colors[color]
+        } ${
+          buttonSizeClass[size]
+        } rounded flex items-center justify-center gap-2 ${className}`}
         disabled={loading ? true : disabled}
         onClick={onClick}
         ref={ref}
         type={type}
       >
-        {ButtonIcon && <ButtonIcon size={24} />}
-        {children}
+        {loading ? (
+          <VibeLoading size={30} rendererClassName="scale-125" />
+        ) : (
+          <>
+            {ButtonIcon && <ButtonIcon size={24} />}
+            {children}
+          </>
+        )}
       </button>
     );
   }

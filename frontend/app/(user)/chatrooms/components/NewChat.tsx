@@ -12,6 +12,7 @@ import Input from "@/components/Input";
 
 const NewChat = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -20,11 +21,13 @@ const NewChat = () => {
   } = useForm();
 
   const handleCreateChatroom = async (data) => {
+    setIsLoading(true);
     const res = await createChatroom(data.name);
     if (res?.success === true) {
       router.push(`/chatrooms/${res?.chatroom_id}`);
     } else {
       toast.error("Sorry, your chat couldn't be created.");
+      setIsLoading(false);
     }
   };
   return (
@@ -52,7 +55,7 @@ const NewChat = () => {
               },
             })}
           />
-          <Button type="submit" className="mx-auto">
+          <Button type="submit" className="mx-auto" loading={isLoading}>
             Create <VC balance={100} balanceClassName="text-white" size={30} />
           </Button>
         </form>
