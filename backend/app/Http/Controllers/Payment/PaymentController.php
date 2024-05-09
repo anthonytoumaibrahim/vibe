@@ -27,11 +27,12 @@ class PaymentController extends Controller
                 'mode' => 'subscription',
                 'success_url' => config('app.frontend_url') . '/premium/thank-you',
                 'cancel_url' => config('app.frontend_url') . '/premium',
-                'client_reference_id' => $user->id,
+                // 'client_reference_id' => $user->id,
             ]);
 
-            $user->stripe_checkout_session_id = $session->id;
-            $user->save();
+            // TODO: Add stripe checkout session ID
+            // $user->stripe_checkout_session_id = $session->id;
+            // $user->save();
 
             return response()->json([
                 'checkout_url' => $session->url,
