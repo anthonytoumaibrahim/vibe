@@ -11,6 +11,7 @@ use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostLikeController;
 use App\Http\Controllers\User\CharacterController;
+use App\Http\Controllers\User\FeedController;
 use App\Http\Controllers\User\FriendController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,14 +28,15 @@ Route::prefix('/auth')->group(function () {
     Route::get('/forgot-password/{token}', [PasswordController::class, 'generate'])->name('password.reset');
 });
 
-// Stripe Webhook
-Route::post('/stripe-webhook', [PaymentController::class, 'webhook']);
+// TODO: Stripe webhook
+// Route::post('/stripe-webhook', [PaymentController::class, 'webhook']);
 
 Route::middleware('auth:api')->group(function () {
     Route::prefix('/user')->group(function () {
-
         Route::get('/premium-checkout', [PaymentController::class, 'premiumCheckout']);
         Route::get('/checkout-success', [PaymentController::class, 'checkoutSuccess']);
+
+        Route::get('/feed', [FeedController::class, 'getFeed']);
 
         Route::get('/info', [UserController::class, 'getInfo']);
         Route::get('/profile/{username?}', [UserController::class, 'getProfile']);
