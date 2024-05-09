@@ -47,7 +47,10 @@ class ChatroomController extends Controller
 
     public function get($id)
     {
-        $chatroom = Chatroom::with('participants')->findOrFail($id);
+        $chatroom = Chatroom::findOrFail($id);
+        $chatroom->users = $chatroom->participants()->get()->map(function ($participant) {
+            return $this->getParticipant($participant->user_id, false);
+        });
         return response()->json($chatroom);
     }
 
@@ -70,9 +73,8 @@ class ChatroomController extends Controller
             $participant->user_id = Auth::id();
             $participant->chatroom_id = $chatroomId;
             $participant->save();
+            broadcast(new JoinChatroom($chatroomId, $userId, Auth::user()->username))->toOthers();
         }
-
-        broadcast(new JoinChatroom($chatroomId, $userId, Auth::user()->username))->toOthers();
     }
 
     public function moveAvatar(Request $request)
@@ -91,13 +93,17 @@ class ChatroomController extends Controller
         broadcast(new MoveAvatar($chatroomId, $userId, $x, $y))->toOthers();
     }
 
-    public function getParticipant($id)
+    public function getParticipant($id, $json = true)
     {
         $user = User::findOrFail($id);
-        return response()->json([
+        $userArr = [
             'id' => $user->id,
             'username' => $user->username,
             'character' => $user->character_data
-        ]);
+        ];
+        if (!$json) {
+            return $userArr;
+        }
+        return response()->json($userArr);
     }
 }
