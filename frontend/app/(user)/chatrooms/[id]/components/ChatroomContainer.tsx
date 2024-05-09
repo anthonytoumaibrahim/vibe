@@ -67,7 +67,7 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
       {isLoading && <ChatroomLoading />}
       {!isError &&
         participants?.map((user) => {
-          const { username, character } = user;
+          const { username, character, x, y } = user;
           return (
             <ChatroomAvatar
               chatroomId={id}

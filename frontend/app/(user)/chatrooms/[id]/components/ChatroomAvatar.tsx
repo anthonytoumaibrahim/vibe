@@ -31,7 +31,7 @@ const ChatroomAvatar = ({
         {messages?.map((msg, index) => {
           const { message } = msg;
           return (
-            <div className="absolute top-0 right-0 bg-white" key={index}>
+            <div className="absolute top-0 right-0 bg-white p-4" key={index}>
               {message}
             </div>
           );
