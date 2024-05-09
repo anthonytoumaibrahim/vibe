@@ -32,7 +32,9 @@ const Showcase = ({
 }: ShowcaseProps) => {
   const dispatch = useAppDispatch();
   const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
-
+  const [bioShowing, setBioShowing] = useState(
+    bioSelector.content !== "<p></p>" && bioSelector.content ? true : false
+  );
   const [isEditingBio, setIsEditingBio] = useState(false);
 
   const characterRef = useRef(null);
@@ -67,61 +69,57 @@ const Showcase = ({
       />
       <Character data={characterData} ref={characterRef} />
 
-      <div className="hidden lg:block p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
-        {isOwner && (
-          <Button
-            icon={MdEdit}
-            variant="link"
-            color="white"
-            size="small"
-            className="text-sm !absolute top-2 right-2"
-            onClick={() => setIsEditingBio(!isEditingBio)}
-          >
-            Edit
-          </Button>
-        )}
-        {isEditingBio ? (
-          <AboutMeEditor />
-        ) : !bioSelector.content ? (
-          <div className="text-white h-full flex flex-col gap-4 items-center justify-center text-center">
-            {isOwner ? (
-              <>
-                <h3>Your biography is empty!</h3>
-                <p>
-                  Write something cool here to introduce yourself to others.
-                </p>
-                <Button
-                  icon={MdEdit}
-                  variant="filled"
-                  color="primary"
-                  size="regular"
-                  onClick={() => setIsEditingBio(!isEditingBio)}
-                >
-                  Start editing now
-                </Button>
-              </>
-            ) : (
-              <>
-                <h3>This user hasn&apos;t written their biography yet.</h3>
-              </>
-            )}
-          </div>
-        ) : (
-          <Transition
-            appear={true}
-            show={true}
-            enter="transition-transform transition-opacity duration-700"
-            enterFrom="opacity-0 -translate-x-1/2"
-            enterTo="opacity-100 translate-x-none"
-            as={Fragment}
-          >
-            <div
-              dangerouslySetInnerHTML={{ __html: bioSelector.content }}
-              className="prose prose-invert prose-base p-5 focus:outline-none max-w-none"
-            ></div>
-          </Transition>
-        )}
-      </div>
+      {bioShowing ? (
+        <div className="hidden lg:block p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
+          {isOwner && (
+            <Button
+              icon={MdEdit}
+              variant="link"
+              color="white"
+              size="small"
+              className="text-sm !absolute top-2 right-2"
+              onClick={() => setIsEditingBio(!isEditingBio)}
+            >
+              Edit
+            </Button>
+          )}
+          {isEditingBio ? (
+            <AboutMeEditor />
+          ) : (
+            <Transition
+              appear={true}
+              show={true}
+              enter="transition-transform transition-opacity duration-700"
+              enterFrom="opacity-0 -translate-x-1/2"
+              enterTo="opacity-100 translate-x-none"
+              as={Fragment}
+            >
+              <div
+                dangerouslySetInnerHTML={{ __html: bioSelector.content }}
+                className="prose prose-invert prose-base p-5 focus:outline-none max-w-none"
+              ></div>
+            </Transition>
+          )}
+        </div>
+      ) : (
+        <>
+          {isOwner && (
+            <Button
+              icon={MdEdit}
+              variant="link"
+              color="white"
+              size="small"
+              className="text-sm !absolute top-2 right-2"
+              onClick={() => {
+                setBioShowing(true);
+                setIsEditingBio(!isEditingBio);
+              }}
+            >
+              Add About Me Section
+            </Button>
+          )}
+        </>
+      )}
     </div>
   );
 };

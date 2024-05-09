@@ -39,6 +39,7 @@ export async function saveBio(data: { bio?: string }) {
       bio: data.bio,
     },
   });
+  revalidatePath("/profile");
   return response;
 }
 
