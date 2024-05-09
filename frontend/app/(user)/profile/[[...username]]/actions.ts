@@ -16,7 +16,13 @@ export async function getProfile(username?: string) {
   }
 }
 
-export async function getPosts(user_id: number, page: number = 1) {
+export async function getPosts({
+  user_id,
+  page = 1,
+}: {
+  user_id?: number;
+  page: number;
+}) {
   const response = await sendRequest({
     method: "GET",
     url: `/user/posts/${user_id}?page=${page}`,

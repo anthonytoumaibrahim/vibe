@@ -7,18 +7,24 @@ import Post from "./Post";
 import Button from "@/components/Button";
 import { FaPencil } from "react-icons/fa6";
 
-interface MyPostsProps {
-  user_id: number;
+interface PostsProps {
+  user_id?: number;
   posts: Array<any>;
   page_links: Array<{ url: string; label: string; active: boolean }>;
+  title?: string;
 }
 
-const Posts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
+const Posts = ({
+  user_id,
+  posts = [],
+  page_links = [],
+  title = "My Posts",
+}: PostsProps) => {
   const dispatch = useAppDispatch();
   const postsSelector = useAppSelector((state) => state.postsSlice);
 
   const goToPage = async (page) => {
-    const res = await getPosts(user_id, page);
+    const res = await getPosts({ page: page, user_id: user_id });
     dispatch({
       type: "postsSlice/initializeData",
       payload: res?.data,
@@ -37,7 +43,7 @@ const Posts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
       <div className="lg:w-1/4 shrink-0"></div>
       <div className="w-full">
         <div className="flex items-center justify-between mb-4">
-          <h3>My Posts</h3>
+          <h3>{title}</h3>
           <Button
             href="/new-post"
             variant="link"
