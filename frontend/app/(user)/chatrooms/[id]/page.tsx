@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Chatroom = async ({ params }: { params: { id: number } }) => {
   const chatroom = await getChatroom(params.id);
 
-  return <ChatroomContainer id={chatroom?.id} />;
+  return <ChatroomContainer id={chatroom?.id} users={chatroom?.users} />;
 };
 
 export default Chatroom;

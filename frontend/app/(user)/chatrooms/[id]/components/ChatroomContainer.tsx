@@ -10,10 +10,11 @@ import ChatroomAvatar from "./ChatroomAvatar";
 
 interface ChatroomContainerProps {
   id: number;
+  users: Array<any>;
 }
 
-const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
-  const [participants, setParticipants] = useState<Array<any>>([]);
+const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
+  const [participants, setParticipants] = useState(users);
   const [messages, setMessages] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -69,8 +70,8 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
           const { username, character } = user;
           return (
             <ChatroomAvatar
-              chatroomId={user?.id}
-              userId={id}
+              chatroomId={id}
+              userId={user?.id}
               key={user?.id}
               data={character}
               messages={messages?.filter(

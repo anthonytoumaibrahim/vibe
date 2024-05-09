@@ -20,7 +20,6 @@ const ChatroomAvatar = ({
 
   const handleAvatarMove = async (x, y) => {
     const res = await moveAvatar(chatroomId, userId, x, y);
-    console.log(res);
   };
 
   return (
