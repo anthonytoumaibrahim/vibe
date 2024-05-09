@@ -33,7 +33,7 @@ const MyPosts = ({ user_id, posts = [], page_links = [] }: MyPostsProps) => {
 
   return (
     <>
-      <div className="w-1/4 shrink-0">
+      <div className="lg:w-1/4 shrink-0">
         <Button href="/new-post">Create new Post</Button>
       </div>
       <div className="flex flex-col gap-6 w-full">

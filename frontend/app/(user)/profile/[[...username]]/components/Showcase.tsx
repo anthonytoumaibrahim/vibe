@@ -55,6 +55,7 @@ const Showcase = ({
         <BackgroundPicker
           backgrounds={backgrounds}
           handleBackgroundUpdate={(id) => setBackground(id)}
+          isPremium={isPremium}
         />
       )}
       <Image
@@ -66,7 +67,7 @@ const Showcase = ({
       />
       <Character data={characterData} ref={characterRef} />
 
-      <div className="p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
+      <div className="hidden lg:block p-6 pt-14 bg-black/45 backdrop-blur-lg rounded-lg w-full max-w-lg z-0 ml-auto relative overflow-y-auto">
         {isOwner && (
           <Button
             icon={MdEdit}

@@ -29,7 +29,7 @@ const BackgroundPicker = ({
   return (
     <>
       <button
-        className="text-white absolute z-10 top-4 left-4 hover:text-primary-500"
+        className="text-white absolute z-10 top-4 left-4 hover:text-primary-500 hidden lg:block"
         onClick={() => setIsOpen(true)}
       >
         <FaImage size={24} />
