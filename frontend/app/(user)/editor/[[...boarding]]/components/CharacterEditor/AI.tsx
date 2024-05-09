@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { generateCharacterAI } from "../../actions";
+import { useForm } from "react-hook-form";
 import Modal, { ModalSize } from "@/components/Modal";
 import AISvg from "./svg/ai.svg";
 import Input from "@/components/Input";
-import { useForm } from "react-hook-form";
 import Button from "@/components/Button";
-import { generateCharacterAI } from "../../actions";
 
 interface AIProps {
   handleCharacterUpdate: (data) => void;
+  isPremium?: boolean;
 }
 
-const AI = ({ handleCharacterUpdate }: AIProps) => {
+const AI = ({ handleCharacterUpdate, isPremium = false }: AIProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,28 +48,43 @@ const AI = ({ handleCharacterUpdate }: AIProps) => {
       >
         <AISvg width={200} height={200} className="mx-auto" />
         <h1>AI Generator</h1>
-        <p>Type something to describe the character that you want.</p>
-        <form className="space-y-4" onSubmit={handleSubmit(aiRequest)}>
-          <Input
-            placeholder="What do you want your character to look like?"
-            textarea={true}
-            error={errors?.user_desc?.message}
-            {...register("user_desc", {
-              required: "Please enter a description",
-              minLength: {
-                value: 16,
-                message: "Please enter more info",
-              },
-              maxLength: {
-                value: 255,
-                message: "Too long",
-              },
-            })}
-          />
-          <Button className="mx-auto" loading={isLoading} type="submit">
-            Generate
-          </Button>
-        </form>
+        {isPremium ? (
+          <form className="space-y-4" onSubmit={handleSubmit(aiRequest)}>
+            <Input
+              placeholder="What do you want your character to look like?"
+              textarea={true}
+              error={errors?.user_desc?.message}
+              {...register("user_desc", {
+                required: "Please enter a description",
+                minLength: {
+                  value: 16,
+                  message: "Please enter more info",
+                },
+                maxLength: {
+                  value: 255,
+                  message: "Too long",
+                },
+              })}
+            />
+            <Button className="mx-auto" loading={isLoading} type="submit">
+              Generate
+            </Button>
+          </form>
+        ) : (
+          <>
+            <p>
+              The AI Generator is for Premium users only. Upgrade now to use it!
+            </p>
+            <Button
+              href="/premium"
+              variant="gradient"
+              color="premium"
+              className="inline-block"
+            >
+              Upgrade to Premium
+            </Button>
+          </>
+        )}
       </Modal>
     </>
   );

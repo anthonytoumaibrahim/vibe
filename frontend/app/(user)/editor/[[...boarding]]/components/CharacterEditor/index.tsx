@@ -188,7 +188,10 @@ const CharacterEditor = ({
           fill
         />
         <div className="flex flex-col gap-4 absolute top-4 left-4 z-10 items-center">
-          <AI handleCharacterUpdate={(data) => updateCharacterAI(data)} />
+          <AI
+            handleCharacterUpdate={(data) => updateCharacterAI(data)}
+            isPremium={is_premium}
+          />
           <Zoom handleZoom={(type: string) => handleZoom(type)} zoom={zoom} />
         </div>
         <div className="w-full h-full flex items-center justify-center pt-40">
