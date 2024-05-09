@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Chatroom extends Model
 {
     use HasFactory;
+
+    protected $appends = ['expires_in'];
 
     protected $fillable = ['name', 'host_id', 'expires_at', 'active'];
 
@@ -19,5 +23,12 @@ class Chatroom extends Model
     public function participants()
     {
         return $this->hasMany(ChatroomParticipant::class);
+    }
+
+    public function expiresIn(): Attribute
+    {
+        return new Attribute(
+            get: fn () => Carbon::parse($this->expires_at)->diffForHumans(),
+        );
     }
 }
