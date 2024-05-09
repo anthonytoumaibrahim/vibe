@@ -1,9 +1,21 @@
-const VC = ({ balance }: { balance: number }) => {
+interface VCProps {
+  balance: number;
+  className?: string;
+  balanceClassName?: string;
+  size?: number;
+}
+
+const VC = ({
+  balance,
+  className = "",
+  balanceClassName = "",
+  size = 36,
+}: VCProps) => {
   return (
-    <div className="flex gap-2 items-center">
+    <div className={`flex gap-2 items-center ${className}`}>
       <svg
-        width="36"
-        height="36"
+        width={size}
+        height={size}
         viewBox="0 0 180 180"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +54,9 @@ const VC = ({ balance }: { balance: number }) => {
           </linearGradient>
         </defs>
       </svg>
-      <p className="font-bold text-primary-main">{balance}</p>
+      <p className={`font-bold text-primary-main ${balanceClassName}`}>
+        {balance}
+      </p>
     </div>
   );
 };

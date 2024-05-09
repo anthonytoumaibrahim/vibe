@@ -7,7 +7,7 @@ import Logo from "@/components/Logo";
 import HeaderAvatar from "./HeaderAvatar";
 import MobileMenu from "./MobileMenu";
 import Nav from "./Nav";
-import VC from "./VC";
+import VC from "../VC";
 import FriendRequests from "./FriendRequests";
 
 interface UserHeaderProps {
