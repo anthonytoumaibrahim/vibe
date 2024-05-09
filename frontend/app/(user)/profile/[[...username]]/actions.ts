@@ -9,10 +9,11 @@ export async function getProfile(username?: string) {
     method: "GET",
     url: `/user/profile/${username ? username : ""}`,
   });
-  if (response?.status === 404) {
+  if (response?.success === false) {
     notFound();
+  } else {
+    return response;
   }
-  return response;
 }
 
 export async function getPosts(user_id: number, page: number = 1) {
