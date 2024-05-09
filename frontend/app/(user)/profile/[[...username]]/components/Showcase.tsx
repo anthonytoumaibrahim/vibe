@@ -33,7 +33,7 @@ const Showcase = ({
   const dispatch = useAppDispatch();
   const bioSelector: any = useAppSelector((state) => state.aboutMeEditorSlice);
   const [bioShowing, setBioShowing] = useState(
-    bioSelector.content !== "<p></p>" && bioSelector.content ? true : false
+    bio !== "<p></p>" && bio ? true : false
   );
   const [isEditingBio, setIsEditingBio] = useState(false);
 
