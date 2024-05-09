@@ -55,11 +55,11 @@ class PostController extends Controller
 
         // Add images
         if ($request->hasFile('images')) {
-
+            $allowed_mimes = ['image/png', 'image/jpeg', 'image/gif', 'image/svg', 'image/webp', 'video/mp4', 'video/x-flv', 'video/ogg', 'video/mpeg'];
             $images = $request->images;
             foreach ($images as $image) {
                 $size = $image->getSize();
-                if ($size <= 6291456) {
+                if ($size <= 6291456 && in_array($image->getMimeType(), $allowed_mimes)) {
                     // Store
                     $filename = Str::random(12) . "." . $image->getClientOriginalExtension();
                     Storage::disk('public')->putFileAs("/post_images", $image, $filename);
