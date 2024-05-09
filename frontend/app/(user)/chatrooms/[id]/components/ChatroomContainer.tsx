@@ -6,6 +6,8 @@ import { getParticipant, joinChatroom, sendMessage } from "../../actions";
 import Character from "@/app/(user)/2d_components/Character";
 import Image from "next/image";
 import ChatroomLoading from "./ChatroomLoading";
+import MessageForm from "./MessageForm";
+import ChatroomAvatar from "./ChatroomAvatar";
 
 interface ChatroomContainerProps {
   id: number;
@@ -13,6 +15,7 @@ interface ChatroomContainerProps {
 
 const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState<Array<any>>([]);
+  const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -20,10 +23,6 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
     const res = await getParticipant(userId);
     setParticipants([...participants, res]);
     return res;
-  };
-
-  const sendMsg = async () => {
-    // channel
   };
 
   useEffect(() => {
@@ -48,19 +47,20 @@ const ChatroomContainer = ({ id }: ChatroomContainerProps) => {
     });
 
     return () => {
-      channel.unbind("pusher:subscription_succeeded");
+      channel.unbind_all();
     };
   }, []);
 
   return (
-    <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden">
+    <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
       <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />
       {isLoading && <ChatroomLoading />}
       {!isError &&
         participants?.map((user) => {
           const { id, username, character } = user;
-          return <Character key={id} data={character} />;
+          return <ChatroomAvatar key={id} data={character} />;
         })}
+      <MessageForm chatroom_id={id} />
     </div>
   );
 };
