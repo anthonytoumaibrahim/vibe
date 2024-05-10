@@ -13,6 +13,7 @@ import { FaRegClock } from "react-icons/fa6";
 import Toggle from "@/components/Toggle";
 import Select from "@/components/Select";
 import Image from "next/image";
+import HelpTooltip from "@/components/HelpTooltip";
 
 const NewChat = ({ backgrounds }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +99,13 @@ const NewChat = ({ backgrounds }) => {
             />
           </div>
           <div className="flex justify-between items-center">
-            <p>Make chat room private</p>
+            <div className="flex items-center gap-2">
+              Make chat room private
+              <HelpTooltip>
+                Checking this will make the chat room available to your friends
+                only.
+              </HelpTooltip>
+            </div>
             <Toggle
               label="Private chat room"
               active={friendsOnly}
