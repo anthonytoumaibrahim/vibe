@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const Chatrooms = async () => {
-  const allChatrooms = await getAllChatrooms();
+  const data = await getAllChatrooms();
 
   return (
     <>
@@ -17,7 +17,7 @@ const Chatrooms = async () => {
         <h1>Chat Rooms</h1>
         <NewChat />
       </div>
-      <Rooms rooms={allChatrooms} />
+      <Rooms rooms={data?.chatrooms} />
     </>
   );
 };
