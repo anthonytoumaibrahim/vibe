@@ -47,7 +47,7 @@ class ChatroomController extends Controller
 
     public function get($id)
     {
-        $chatroom = Chatroom::findOrFail($id);
+        $chatroom = Chatroom::with('host:id,username')->findOrFail($id);
         $chatroom->users = $chatroom->participants()->get()->map(function ($participant) {
             return [
                 ...$this->getParticipant($participant->user_id, false),
