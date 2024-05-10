@@ -7,9 +7,12 @@ import Image from "next/image";
 import ChatroomLoading from "./ChatroomLoading";
 import MessageForm from "./MessageForm";
 import ChatroomAvatar from "./ChatroomAvatar";
+import Button from "@/components/Button";
 
 interface ChatroomContainerProps {
   chatroom_id: number;
+  chatroom_name: string;
+  host_username: string;
   host_id: number;
   logged_in_id: number;
   users: Array<any>;
@@ -17,7 +20,9 @@ interface ChatroomContainerProps {
 
 const ChatroomContainer = ({
   chatroom_id,
+  chatroom_name,
   host_id,
+  host_username,
   logged_in_id,
   users = [],
 }: ChatroomContainerProps) => {
@@ -95,30 +100,39 @@ const ChatroomContainer = ({
   }, []);
 
   return (
-    <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
-      <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />
-      {isLoading && <ChatroomLoading />}
-      {!isError &&
-        participants?.map((user) => {
-          const { username, character, x, y } = user;
-          return (
-            <ChatroomAvatar
-              chatroomId={chatroom_id}
-              userId={user?.id}
-              key={user?.id}
-              data={character}
-              message={user?.message}
-              x={x}
-              y={y}
-              handleAvatarMove={handleAvatarMove}
-              is_owner={logged_in_id === user?.id}
-            />
-          );
-        })}
-      <MessageForm
-        chatroom_id={chatroom_id}
-        handleSendMessage={(msg) => handleNewMessage(logged_in_id, msg)}
-      />
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3>{chatroom_name}</h3>
+          <p>by {host_username}</p>
+        </div>
+        <Button variant="outlined">Leave</Button>
+      </div>
+      <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
+        <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />
+        {isLoading && <ChatroomLoading />}
+        {!isError &&
+          participants?.map((user) => {
+            const { username, character, x, y } = user;
+            return (
+              <ChatroomAvatar
+                chatroomId={chatroom_id}
+                userId={user?.id}
+                key={user?.id}
+                data={character}
+                message={user?.message}
+                x={x}
+                y={y}
+                handleAvatarMove={handleAvatarMove}
+                is_owner={logged_in_id === user?.id}
+              />
+            );
+          })}
+        <MessageForm
+          chatroom_id={chatroom_id}
+          handleSendMessage={(msg) => handleNewMessage(logged_in_id, msg)}
+        />
+      </div>
     </div>
   );
 };
