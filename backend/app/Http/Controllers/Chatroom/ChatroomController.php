@@ -55,6 +55,7 @@ class ChatroomController extends Controller
                 'y' => $participant->y
             ];
         });
+        $chatroom->logged_in_id = Auth::id();
         return response()->json($chatroom);
     }
 
