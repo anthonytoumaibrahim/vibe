@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -13,7 +14,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago'];
+    public $appends = ['time_ago', 'is_owner'];
 
     protected $with = ['user:id,username,avatar'];
 
@@ -36,6 +37,13 @@ class Comment extends Model
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->created_at)->diffForHumans(),
+        );
+    }
+
+    public function isOwner(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->user_id === Auth::id(),
         );
     }
 }

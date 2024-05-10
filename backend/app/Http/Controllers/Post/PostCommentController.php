@@ -30,9 +30,9 @@ class PostCommentController extends Controller
         ]);
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $comment = Comment::where('user_id', Auth::id())->where('id', $request->comment_id)->first();
+        $comment = Comment::where('user_id', Auth::id())->where('id', $id)->first();
         if ($comment) {
             $comment->delete();
             return response()->json([

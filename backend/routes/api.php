@@ -57,7 +57,7 @@ Route::middleware('auth:api')->group(function () {
         });
         Route::post('/post/like', [PostLikeController::class, 'addLike']);
         Route::post('/post-comment', [PostCommentController::class, 'create']);
-        Route::post('/delete-comment', [PostCommentController::class, 'delete']);
+        Route::delete('/post-comment/{id}', [PostCommentController::class, 'delete']);
 
         Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
         Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
