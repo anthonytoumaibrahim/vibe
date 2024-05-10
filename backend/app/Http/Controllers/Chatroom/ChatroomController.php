@@ -21,12 +21,15 @@ class ChatroomController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:20'
+            'name' => 'required|min:3|max:20',
+            'background_id' => 'required|exists:backgrounds,id'
         ]);
         $chatroom = new Chatroom();
         $chatroom->name = $request->name;
         $chatroom->host_id = Auth::id();
         $chatroom->expires_at = Carbon::now()->addHours(4);
+        $chatroom->background_id = $request->background_id;
+        $chatroom->private = $request->boolean('private');
         $chatroom->saveOrFail();
 
         $transaction = new Transaction();

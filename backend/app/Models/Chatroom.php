@@ -13,7 +13,7 @@ class Chatroom extends Model
 
     protected $appends = ['expires_in', 'participants_count'];
 
-    protected $with = ['background'];
+    protected $with = ['background:id,image_url'];
 
     protected $fillable = ['name', 'host_id', 'expires_at', 'active'];
 
@@ -36,7 +36,7 @@ class Chatroom extends Model
 
     public function background()
     {
-        return $this->hasOne(Background::class);
+        return $this->belongsTo(Background::class);
     }
 
     public function participantsCount(): Attribute
