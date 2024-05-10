@@ -4,10 +4,11 @@ import Input from "@/components/Input";
 import { useForm } from "react-hook-form";
 import { sendMessage } from "../../actions";
 
-const MessageForm = ({ chatroom_id }) => {
+const MessageForm = ({ chatroom_id, handleSendMessage }) => {
   const { register, handleSubmit, setValue } = useForm();
 
   const sendMsg = async (data) => {
+    handleSendMessage(data.message);
     setValue("message", "");
     await sendMessage(chatroom_id, data.message);
   };

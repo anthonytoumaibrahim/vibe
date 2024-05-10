@@ -61,7 +61,9 @@ const ChatroomContainer = ({
     const channel = pusher.subscribe(`chat_${chatroom_id}`);
     channel.bind("chatroom-message", function (data) {
       const { userId, message } = data;
-      handleNewMessage(userId, message);
+      if (userId !== logged_in_id) {
+        handleNewMessage(userId, message);
+      }
     });
     channel.bind("chatroom-presence", (data) => {
       const { id } = data;
@@ -113,7 +115,10 @@ const ChatroomContainer = ({
             />
           );
         })}
-      <MessageForm chatroom_id={chatroom_id} />
+      <MessageForm
+        chatroom_id={chatroom_id}
+        handleSendMessage={(msg) => handleNewMessage(logged_in_id, msg)}
+      />
     </div>
   );
 };
