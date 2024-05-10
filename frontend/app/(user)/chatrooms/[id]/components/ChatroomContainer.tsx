@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { pusher } from "@/app/lib/pusher";
-import { getParticipant, joinChatroom, sendMessage } from "../../actions";
+import {
+  getParticipant,
+  joinChatroom,
+  leaveChatroom,
+  sendMessage,
+} from "../../actions";
 import Image from "next/image";
 import ChatroomLoading from "./ChatroomLoading";
 import MessageForm from "./MessageForm";
@@ -62,6 +67,12 @@ const ChatroomContainer = ({
     );
   };
 
+  const handleLeave = (id) => {
+    setParticipants((prevParticipants) =>
+      prevParticipants.filter((us) => us.id !== id)
+    );
+  };
+
   useEffect(() => {
     const channel = pusher.subscribe(`chat_${chatroom_id}`);
     channel.bind("chatroom-message", function (data) {
@@ -75,6 +86,10 @@ const ChatroomContainer = ({
       if (id) {
         handleChatPresence(id);
       }
+    });
+    channel.bind("chatroom-leave", (data) => {
+      const { id } = data;
+      handleLeave(id);
     });
     channel.bind("chatroom-move", (data) => {
       const { id, x, y } = data;
@@ -96,6 +111,7 @@ const ChatroomContainer = ({
 
     return () => {
       channel.unbind_all();
+      channel.disconnect();
     };
   }, []);
 
@@ -106,7 +122,9 @@ const ChatroomContainer = ({
           <h3>{chatroom_name}</h3>
           <p>by {host_username}</p>
         </div>
-        <Button variant="outlined">Leave</Button>
+        <Button variant="outlined" onClick={() => leaveChatroom(chatroom_id)}>
+          Leave
+        </Button>
       </div>
       <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
         <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />

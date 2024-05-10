@@ -1,4 +1,7 @@
+"use server";
+
 import { sendRequest } from "@/app/actions";
+import { redirect } from "next/navigation";
 
 export async function getChatroom(id: number) {
   const response = await sendRequest({
@@ -61,6 +64,18 @@ export async function joinChatroom(chatroomId: number) {
       chatroom_id: chatroomId,
     },
   });
+  return response;
+}
+
+export async function leaveChatroom(chatroomId: number) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/leave-chatroom",
+    body: {
+      chatroom_id: chatroomId,
+    },
+  });
+  redirect("/chatrooms");
   return response;
 }
 
