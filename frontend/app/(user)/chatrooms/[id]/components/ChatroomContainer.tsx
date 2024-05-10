@@ -32,6 +32,20 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
     setMessages((prevMessages) => [...prevMessages, newMsg]);
   };
 
+  const handleAvatarMove = (id, x, y) => {
+    setParticipants((prevParticipants) =>
+      prevParticipants.map((us) =>
+        us.id === id
+          ? {
+              ...us,
+              x: x,
+              y: y,
+            }
+          : us
+      )
+    );
+  };
+
   useEffect(() => {
     const channel = pusher.subscribe(`chat_${id}`);
     channel.bind("chatroom-message", function (data) {
@@ -43,6 +57,10 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
       if (id) {
         handleChatPresence(id);
       }
+    });
+    channel.bind("chatroom-move", (data) => {
+      const { id, x, y } = data;
+      handleAvatarMove(id, x, y);
     });
 
     channel.bind("pusher:subscription_succeeded", () => {
@@ -77,6 +95,9 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
               messages={messages?.filter(
                 (msg: any) => msg?.userId === user?.id
               )}
+              x={x}
+              y={y}
+              handleAvatarMove={handleAvatarMove}
             />
           );
         })}
