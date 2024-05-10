@@ -24,15 +24,7 @@ export default function SignupForm() {
     try {
       const response = await auth({ data, type: "signup" });
       if (response?.success === false) {
-        const errors: Record<string, string> = response?.errors;
-
-        Object.keys(errors)?.forEach((errKey) => {
-          const errorMessage = errors[errKey];
-          setError(errKey, {
-            type: "custom",
-            message: errorMessage,
-          });
-        });
+        toast.error(response?.message);
       }
     } catch (error) {
       toast.error("Sorry, something went wrong.");
