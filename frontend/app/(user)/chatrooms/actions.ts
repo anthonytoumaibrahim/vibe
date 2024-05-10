@@ -19,12 +19,18 @@ export async function getAllChatrooms() {
   return response;
 }
 
-export async function createChatroom(name?: string) {
+export async function createChatroom(
+  name: string,
+  friendsOnly: boolean = false,
+  background_id: string | number
+) {
   const response = await sendRequest({
     method: "POST",
     url: "/user/create-chatroom",
     body: {
       name: name,
+      private: friendsOnly,
+      background_id: background_id,
     },
   });
   return response;

@@ -15,9 +15,15 @@ const Chatrooms = async () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <h1>Chat Rooms</h1>
-        <NewChat />
+        <NewChat backgrounds={data?.backgrounds} />
       </div>
-      <Rooms rooms={data?.chatrooms} />
+      {data?.chatrooms?.length === 0 ? (
+        <div className="text-center">
+          <p className="font-bold">No chat rooms found.</p>
+        </div>
+      ) : (
+        <Rooms rooms={data?.chatrooms} />
+      )}
     </>
   );
 };
