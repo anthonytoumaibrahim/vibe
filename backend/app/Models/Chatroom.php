@@ -13,6 +13,8 @@ class Chatroom extends Model
 
     protected $appends = ['expires_in', 'participants_count'];
 
+    protected $with = ['background'];
+
     protected $fillable = ['name', 'host_id', 'expires_at', 'active'];
 
     public function host()
@@ -30,6 +32,11 @@ class Chatroom extends Model
         return new Attribute(
             get: fn () => Carbon::parse($this->expires_at)->diffForHumans(),
         );
+    }
+
+    public function background()
+    {
+        return $this->hasOne(Background::class);
     }
 
     public function participantsCount(): Attribute
