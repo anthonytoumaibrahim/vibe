@@ -13,6 +13,7 @@ class BackgroundSeeder extends Seeder
      */
     public function run(): void
     {
+        // Showcase Backgrounds
         Background::create([
             'name' => 'Desert Balcony',
             'image_url' => 'desert_balcony.webp'
@@ -52,6 +53,23 @@ class BackgroundSeeder extends Seeder
             'name' => 'Magic Library',
             'image_url' => 'magic_library.webp',
             'premium' => true
+        ]);
+
+        // Chatroom backgrounds
+        Background::create([
+            'name' => 'Neon Living Room',
+            'image_url' => 'neon_room.webp',
+            'chatroom_bg' => true
+        ]);
+        Background::create([
+            'name' => 'Restaurant',
+            'image_url' => 'restaurant.webp',
+            'chatroom_bg' => true
+        ]);
+        Background::create([
+            'name' => 'Pool',
+            'image_url' => 'pool.webp',
+            'chatroom_bg' => true
         ]);
     }
 }
