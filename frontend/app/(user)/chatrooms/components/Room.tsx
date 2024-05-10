@@ -8,13 +8,26 @@ interface RoomProps {
   name: string;
   username: string;
   participants_count: number;
+  background: string;
 }
 
-const Room = ({ id, name, username, participants_count = 0 }: RoomProps) => {
+const Room = ({
+  id,
+  name,
+  username,
+  participants_count = 0,
+  background,
+}: RoomProps) => {
   return (
     <div className="rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-900">
       <div className="h-44 relative">
-        <Image src="/images/chatrooms/bg1.webp" fill sizes="480px" alt="" />
+        <Image
+          src={`/images/2d_backgrounds/${background}`}
+          fill
+          sizes="480px"
+          alt=""
+          className="object-cover"
+        />
         <p className="text-white absolute top-4 right-4 flex items-center gap-2">
           <FaUserGroup size={24} /> {participants_count}
         </p>

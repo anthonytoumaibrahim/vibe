@@ -4,7 +4,7 @@ const Rooms = ({ rooms }) => {
   return (
     <div className="grid grid-cols-3 gap-10">
       {rooms?.map((room) => {
-        const { id, name, host, participants_count } = room;
+        const { id, name, host, participants_count, background } = room;
         return (
           <Room
             key={id}
@@ -12,6 +12,7 @@ const Rooms = ({ rooms }) => {
             id={id}
             username={host?.username}
             participants_count={participants_count}
+            background={background?.image_url}
           />
         );
       })}

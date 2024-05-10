@@ -17,6 +17,7 @@ const Chatroom = async ({ params }: { params: { id: number } }) => {
       host_username={chatroom?.host?.username}
       logged_in_id={chatroom?.logged_in_id}
       users={chatroom?.users}
+      background={chatroom?.background?.image_url}
     />
   );
 };

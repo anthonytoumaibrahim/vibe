@@ -21,6 +21,7 @@ interface ChatroomContainerProps {
   host_id: number;
   logged_in_id: number;
   users: Array<any>;
+  background: string;
 }
 
 const ChatroomContainer = ({
@@ -30,6 +31,7 @@ const ChatroomContainer = ({
   host_username,
   logged_in_id,
   users = [],
+  background,
 }: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState(users);
   const [isLoading, setIsLoading] = useState(true);
@@ -128,11 +130,12 @@ const ChatroomContainer = ({
       </div>
       <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
         <Image
-          src="/images/chatrooms/bg1.webp"
+          src={`/images/2d_backgrounds/${background}`}
           fill
           sizes="100%"
           alt=""
           className="object-cover"
+          priority={true}
         />
         {isLoading && <ChatroomLoading />}
         {!isError &&
