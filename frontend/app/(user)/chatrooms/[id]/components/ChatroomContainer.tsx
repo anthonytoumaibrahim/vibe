@@ -127,7 +127,13 @@ const ChatroomContainer = ({
         </Button>
       </div>
       <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
-        <Image src="/images/chatrooms/bg1.webp" fill sizes="100%" alt="" />
+        <Image
+          src="/images/chatrooms/bg1.webp"
+          fill
+          sizes="100%"
+          alt=""
+          className="object-cover"
+        />
         {isLoading && <ChatroomLoading />}
         {!isError &&
           participants?.map((user) => {

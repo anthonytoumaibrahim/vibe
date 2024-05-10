@@ -35,10 +35,12 @@ const ChatroomAvatar = ({
   };
 
   useEffect(() => {
-    setMsg(message);
-    setTimeout(() => {
+    const msgTimeout = setTimeout(() => {
       setMsg(undefined);
     }, 5000);
+    setMsg(message);
+
+    return () => clearTimeout(msgTimeout);
   }, [message]);
 
   return (
@@ -47,15 +49,18 @@ const ChatroomAvatar = ({
       position={{ x: x, y: y }}
       onStop={(e, data) => handleMove(data?.x, data?.y)}
       disabled={!is_owner}
-      scale={0.55}
     >
-      <div className="inline-block relative" style={{ scale: 0.55 }}>
+      <div
+        className="inline-block relative"
+        ref={characterRef}
+        style={{ scale: 0.55 }}
+      >
         {msg && (
           <div className="shadow-xl max-w-[180px] max-h-[104px] text-center absolute -top-4 left-[90%] bg-white px-6 py-2 scale-[1.65] rounded-lg before:w-0 before:h-0 before:absolute before:left-2 before:-bottom-1.5 before:border-l-[6px] before:border-l-transparent before:border-t-[8px] before:border-t-white before:border-r-[16px] before:border-r-transparent truncate break-words">
             {msg}
           </div>
         )}
-        <Character ref={characterRef} data={data} />
+        <Character data={data} />
       </div>
     </Draggable>
   );
