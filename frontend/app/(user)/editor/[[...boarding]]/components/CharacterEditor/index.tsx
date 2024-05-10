@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 // Headless UI
-import { Tab } from "@headlessui/react";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 
 // Components
 import Image from "next/image";
@@ -31,48 +31,7 @@ interface CharacterEditorProps {
   is_boarding?: boolean;
 }
 
-const tabs = [
-  {
-    name: "Body",
-    type: "body",
-  },
-  {
-    name: "Face",
-    type: "face",
-  },
-  {
-    name: "Hair",
-    type: "hair",
-    optional: true,
-  },
-  {
-    name: "Beard",
-    type: "beard",
-    optional: true,
-  },
-  {
-    name: "Eyebrows",
-    type: "eyebrow",
-    optional: true,
-  },
-  {
-    name: "Eyes",
-    type: "eye",
-  },
-  {
-    name: "Nose",
-    type: "nose",
-  },
-  {
-    name: "Mouth",
-    type: "mouth",
-  },
-  {
-    name: "Eyeglasses",
-    type: "eyeglasses",
-    optional: true,
-  },
-];
+import { tabs } from "../../data";
 
 const CharacterEditor = ({
   data,
@@ -200,23 +159,23 @@ const CharacterEditor = ({
           )}
         </div>
         <div className="flex gap-10">
-          <Tab.Group vertical>
-            <Tab.Panels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
+          <TabGroup as={Fragment} vertical>
+            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
               {tabs.map((tab, tabIndex) => {
                 const { name, type, optional } = tab;
                 return (
-                  <Tab.Panel key={tabIndex} className="h-full">
+                  <TabPanel key={tabIndex} className="h-full">
                     <PartTab
                       colors={colors?.[type]}
                       type={type}
                       is_premium={is_premium}
                       optional={optional}
                     />
-                  </Tab.Panel>
+                  </TabPanel>
                 );
               })}
-            </Tab.Panels>
-            <Tab.List className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 dark:bg-black/75 backdrop-blur-md xl:min-w-[280px]">
+            </TabPanels>
+            <TabList className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 dark:bg-black/75 backdrop-blur-md xl:min-w-[280px]">
               {tabs.map((tab, tabIndex) => {
                 const { name } = tab;
                 return (
@@ -252,8 +211,8 @@ const CharacterEditor = ({
               >
                 Save
               </Button>
-            </Tab.List>
-          </Tab.Group>
+            </TabList>
+          </TabGroup>
         </div>
       </div>
     </>

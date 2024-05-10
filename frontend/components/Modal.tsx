@@ -1,5 +1,11 @@
 import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+} from "@headlessui/react";
 import { FaX } from "react-icons/fa6";
 
 interface ModalProps {
@@ -52,7 +58,7 @@ const Modal = ({
         />
 
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <Dialog.Panel
+          <DialogPanel
             className={`bg-white dark:bg-slate-900 ${size} w-full p-6 rounded-xl shadow-2xl ${className}`}
           >
             {showX && (
@@ -64,15 +70,15 @@ const Modal = ({
               </button>
             )}
             {title && (
-              <Dialog.Title className="mb-2 text-center">{title}</Dialog.Title>
+              <DialogTitle className="mb-2 text-center">{title}</DialogTitle>
             )}
             {description && (
-              <Dialog.Description className="mb-2 text-center">
+              <Description className="mb-2 text-center">
                 {description}
-              </Dialog.Description>
+              </Description>
             )}
             {children}
-          </Dialog.Panel>
+          </DialogPanel>
         </div>
       </Dialog>
     </Transition>

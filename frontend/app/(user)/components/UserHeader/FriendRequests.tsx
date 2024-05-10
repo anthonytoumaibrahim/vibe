@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Popover } from "@headlessui/react";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import Avatar from "../Avatar";
 import Link from "next/link";
 import { FaUserGroup, FaCheck, FaTrash } from "react-icons/fa6";
@@ -28,14 +28,14 @@ const FriendRequests = ({ requests }: FriendRequestsProps) => {
 
   return (
     <Popover className="relative flex">
-      <Popover.Button className="outline-none hover:text-primary-main relative">
+      <PopoverButton className="outline-none hover:text-primary-main relative">
         <FaUserGroup size={24} />
         {allRequests?.length > 0 && (
           <span className="w-2 h-2 rounded-full bg-red-600 absolute -top-1 -right-1"></span>
         )}
-      </Popover.Button>
+      </PopoverButton>
 
-      <Popover.Panel className="absolute translate-y-2 top-full min-w-[320px] left-1/2 -translate-x-1/2 z-50 bg-white dark:bg-black py-4 px-6 rounded-lg shadow-lg flex flex-col gap-2 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white dark:before:border-b-black before:border-r-[8px] before:border-r-transparent">
+      <PopoverPanel className="absolute translate-y-2 top-full min-w-[320px] left-1/2 -translate-x-1/2 z-50 bg-white dark:bg-black py-4 px-6 rounded-lg shadow-lg flex flex-col gap-2 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white dark:before:border-b-black before:border-r-[8px] before:border-r-transparent">
         <h4 className="text-center">Friend Requests</h4>
         {allRequests?.length === 0 && (
           <p className="text-center text-sm text-slate-400">
@@ -70,7 +70,7 @@ const FriendRequests = ({ requests }: FriendRequestsProps) => {
             </div>
           );
         })}
-      </Popover.Panel>
+      </PopoverPanel>
     </Popover>
   );
 };
