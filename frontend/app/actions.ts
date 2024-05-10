@@ -3,7 +3,7 @@
 import axios from "axios";
 import type { AxiosError } from "axios";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { logout } from "./(user)/actions";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -53,7 +53,7 @@ export async function sendRequest({
 
   // Redirect if unauthorized
   if (unauthorized) {
-    redirect("/login");
+    await logout();
   }
 
   return output;

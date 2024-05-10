@@ -36,7 +36,9 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
   if (isProtectedRoute && !isAuthenticated) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
+    const response = NextResponse.redirect(new URL("/login", req.nextUrl));
+    response.cookies.delete("token");
+    return response;
   }
   if (
     isPublicRoute &&

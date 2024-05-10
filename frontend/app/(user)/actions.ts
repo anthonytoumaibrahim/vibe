@@ -1,6 +1,7 @@
 "use server";
 
 import { sendRequest } from "@/app/actions";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function handleFriendRequest(id: number, accepted: boolean) {
@@ -20,5 +21,6 @@ export async function logout() {
     method: "GET",
     url: "/auth/logout",
   });
+  cookies().delete("token");
   redirect("/");
 }
