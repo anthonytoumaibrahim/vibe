@@ -29,4 +29,18 @@ class PostCommentController extends Controller
             'success' => true
         ]);
     }
+
+    public function delete(Request $request)
+    {
+        $comment = Comment::where('user_id', Auth::id())->where('id', $request->comment_id)->first();
+        if ($comment) {
+            $comment->delete();
+            return response()->json([
+                'success' => true
+            ]);
+        }
+        return response()->json([
+            'success' => false
+        ]);
+    }
 }
