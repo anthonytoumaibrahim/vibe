@@ -49,7 +49,11 @@ class ChatroomController extends Controller
     {
         $chatroom = Chatroom::findOrFail($id);
         $chatroom->users = $chatroom->participants()->get()->map(function ($participant) {
-            return $this->getParticipant($participant->user_id, false);
+            return [
+                ...$this->getParticipant($participant->user_id, false),
+                'x' => $participant->x,
+                'y' => $participant->y
+            ];
         });
         return response()->json($chatroom);
     }
