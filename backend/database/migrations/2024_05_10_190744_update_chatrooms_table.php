@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('chatrooms', function (Blueprint $table) {
             $table->unsignedBigInteger('background_id')->after('name');
+            $table->boolean('private')->default(false)->after('name');
             $table->foreign('background_id')->references('id')->on('backgrounds')->cascadeOnDelete();
         });
     }
@@ -24,6 +25,7 @@ return new class extends Migration
     {
         Schema::table('chatrooms', function (Blueprint $table) {
             $table->dropColumn('background_id');
+            $table->dropColumn('private');
         });
     }
 };
