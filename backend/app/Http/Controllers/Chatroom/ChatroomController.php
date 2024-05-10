@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chatroom;
 
 use App\Events\JoinChatroom;
+use App\Events\LeaveChatroom;
 use App\Events\MoveAvatar;
 use App\Events\SendMessage;
 use App\Http\Controllers\Controller;
@@ -80,6 +81,20 @@ class ChatroomController extends Controller
             $participant->save();
             broadcast(new JoinChatroom($chatroomId, $userId, Auth::user()->username))->toOthers();
         }
+    }
+
+    public function leaveChatroom(Request $request)
+    {
+        $chatroomId = $request->chatroom_id;
+        $userId = Auth::id();
+        $chatroom = Chatroom::findOrFail($chatroomId);
+
+        $participant = $chatroom->participants()->where('user_id', $userId)->first();
+
+        if ($participant) {
+            $participant->delete();
+        }
+        broadcast(new LeaveChatroom($chatroomId, $userId))->toOthers();
     }
 
     public function moveAvatar(Request $request)
