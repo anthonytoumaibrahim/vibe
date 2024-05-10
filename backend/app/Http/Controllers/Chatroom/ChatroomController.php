@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Chatroom;
 
-use App\Events\JoinChatroom;
-use App\Events\LeaveChatroom;
-use App\Events\MoveAvatar;
-use App\Events\SendMessage;
-use App\Http\Controllers\Controller;
-use App\Models\Chatroom;
-use App\Models\ChatroomParticipant;
-use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Chatroom;
+use App\Events\MoveAvatar;
+use App\Models\Background;
+use App\Events\SendMessage;
+use App\Models\Transaction;
+use App\Events\JoinChatroom;
 use Illuminate\Http\Request;
+use App\Events\LeaveChatroom;
 use Illuminate\Support\Carbon;
+use App\Models\ChatroomParticipant;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ChatroomController extends Controller
@@ -43,7 +44,11 @@ class ChatroomController extends Controller
     public function getChatrooms()
     {
         $chatrooms = Chatroom::with('host:id,username')->where('expires_at', '>=', Carbon::now())->get();
-        return response()->json($chatrooms);
+        $backgrounds = Background::where('chatroom_bg', true)->get();
+        return response()->json([
+            'chatrooms' => $chatrooms,
+            'backgrounds' => $backgrounds
+        ]);
     }
 
     public function get($id)

@@ -40,7 +40,7 @@ class UserController extends Controller
         // Backgrounds
         $isPremium = $user->is_premium;
 
-        $backgrounds = Background::orderBy('price')->orderBy('premium', $isPremium ? 'DESC' : 'ASC')->get();
+        $backgrounds = Background::where('chatroom_bg', false)->orderBy('price')->orderBy('premium', $isPremium ? 'DESC' : 'ASC')->get();
 
         $backgrounds->map(function ($background) use ($user) {
             if (!$background->default) {

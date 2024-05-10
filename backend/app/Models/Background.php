@@ -10,7 +10,7 @@ class Background extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image_url', 'premium', 'price'];
+    protected $fillable = ['name', 'image_url', 'chatroom_bg', 'premium', 'price'];
 
     public function purchases(): MorphMany
     {
