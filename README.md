@@ -11,13 +11,17 @@
 
 ### User Stories
 
-- As a user, I want to create and customize my own 2D avatar on Vibe to reflect my personality and preferences. By personalizing my avatar's appearance and style, I can express myself creatively and stand out within the community.
-- As a user, I want to unwind and relax on Vibe, escaping from the stresses of daily life. Whether it's through casual chats with friends, participating in fun activities, joining communities, or exploring virtual spaces.
-- As a user, I want to join various communities on Vibe so that I can connect with like-minded individuals who share my interests, whether it's gaming, art, music, or cooking.
+- As a user, I want to create and customize my own 2D avatar on Vibe to reflect my personality and preferences. By personalizing my avatar's appearance and style, I can express myself creatively.
+- As a user, I want to unwind and relax on Vibe, escaping from the stresses of daily life. Whether it's through casual chats with friends, participating in fun activities, or joining chat rooms.
+
+### Premium User Stories
+
+- As a Premium user, I want to have access to exclusive and advanced 2D avatar items so that I can stand out within the community.
+- As a Premium user, I want to be first-in-line in customer support.
 
 ### Admin Stories
 
-- As an admin, I want to oversee, moderate and manage the various communities and chatrooms on Vibe, to ensure that they remain active, engaging, and free from inappropriate content or behavior.
+- As an admin, I want to oversee, moderate and manage the chatrooms on Vibe, to ensure that they remain active, engaging, and free from inappropriate content or behavior.
 - As an admin, I want to manage users on Vibe, and ban them if they break the rules.
 
 <br><br>
