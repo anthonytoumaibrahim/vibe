@@ -45,4 +45,13 @@ class MoveAvatar implements ShouldBroadcastNow
     {
         return 'chatroom-move';
     }
+
+    public function broadcastWith(): array
+    {
+        return [
+            'id' => $this->userId,
+            'x' => $this->x,
+            'y' => $this->y
+        ];
+    }
 }
