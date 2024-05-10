@@ -9,13 +9,19 @@ import MessageForm from "./MessageForm";
 import ChatroomAvatar from "./ChatroomAvatar";
 
 interface ChatroomContainerProps {
-  id: number;
+  chatroom_id: number;
+  host_id: number;
+  logged_in_id: number;
   users: Array<any>;
 }
 
-const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
+const ChatroomContainer = ({
+  chatroom_id,
+  host_id,
+  logged_in_id,
+  users = [],
+}: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState(users);
-  const [messages, setMessages] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -24,12 +30,17 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
     setParticipants((prevParticipants) => [...prevParticipants, res]);
   };
 
-  const handleNewMessage = async (userId, message) => {
-    const newMsg = {
-      userId: userId,
-      message: message,
-    };
-    setMessages((prevMessages) => [...prevMessages, newMsg]);
+  const handleNewMessage = (userId, message) => {
+    setParticipants((prevParticipants) =>
+      prevParticipants.map((us) =>
+        us.id === userId
+          ? {
+              ...us,
+              message: message,
+            }
+          : us
+      )
+    );
   };
 
   const handleAvatarMove = (id, x, y) => {
@@ -47,7 +58,7 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
   };
 
   useEffect(() => {
-    const channel = pusher.subscribe(`chat_${id}`);
+    const channel = pusher.subscribe(`chat_${chatroom_id}`);
     channel.bind("chatroom-message", function (data) {
       const { userId, message } = data;
       handleNewMessage(userId, message);
@@ -60,12 +71,14 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
     });
     channel.bind("chatroom-move", (data) => {
       const { id, x, y } = data;
-      handleAvatarMove(id, x, y);
+      if (id !== logged_in_id) {
+        handleAvatarMove(id, x, y);
+      }
     });
 
     channel.bind("pusher:subscription_succeeded", () => {
       setIsLoading(false);
-      joinChatroom(id);
+      joinChatroom(chatroom_id);
     });
 
     channel.bind("pusher:subscription_error", (error) => {
@@ -88,20 +101,19 @@ const ChatroomContainer = ({ id, users = [] }: ChatroomContainerProps) => {
           const { username, character, x, y } = user;
           return (
             <ChatroomAvatar
-              chatroomId={id}
+              chatroomId={chatroom_id}
               userId={user?.id}
               key={user?.id}
               data={character}
-              messages={messages?.filter(
-                (msg: any) => msg?.userId === user?.id
-              )}
+              message={user?.message}
               x={x}
               y={y}
               handleAvatarMove={handleAvatarMove}
+              is_owner={logged_in_id === user?.id}
             />
           );
         })}
-      <MessageForm chatroom_id={id} />
+      <MessageForm chatroom_id={chatroom_id} />
     </div>
   );
 };
