@@ -42,11 +42,17 @@ const Post = ({ id }: { id: number }) => {
           href={`/profile/${postSelector?.user?.username}`}
           className="flex items-center gap-4 unstyled-link"
         >
-          <Avatar size={40} url={postSelector?.user?.avatar_full} />
+          <Avatar
+            size={40}
+            url={postSelector?.user?.avatar_full}
+            isPremium={postSelector?.user?.is_premium}
+          />
           <p className="font-bold">{postSelector?.user?.username}</p>
         </Link>
         <div className="flex items-center gap-2">
-          <small className="text-slate-600">{postSelector?.time_ago}</small>
+          <small className="text-slate-600 dark:text-slate-400">
+            {postSelector?.time_ago}
+          </small>
           {postSelector?.is_owner && (
             <button
               className="text-red-600 hover:text-red-400"
@@ -113,7 +119,7 @@ const Post = ({ id }: { id: number }) => {
       </div>
 
       {comments && (
-        <div className="p-4 bg-slate-200 space-y-4">
+        <div className="p-4 bg-slate-50 dark:bg-slate-800 space-y-4">
           <h4>Comments ({postSelector?.comments_count})</h4>
           <CommentForm post_id={id} />
           <Comments post_id={id} />

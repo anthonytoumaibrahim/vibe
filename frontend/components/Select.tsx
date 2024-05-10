@@ -1,4 +1,9 @@
-import { Listbox } from "@headlessui/react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
 
 interface SelectProps {
   data: Array<Record<"id" | "value" | "name", number | string>>;
@@ -10,16 +15,16 @@ const Select = ({ data, value, onChange }: SelectProps) => {
   return (
     <label className="flex flex-col gap-0.5">
       <Listbox value={value} onChange={onChange}>
-        <Listbox.Button className="p-3 bg-gray-100 rounded-md placeholder:text-gray-400/80 outline-none focus:ring-2 focus:ring-primary-main">
+        <ListboxButton className="p-3 bg-gray-100 rounded-md placeholder:text-gray-400/80 outline-none focus:ring-2 focus:ring-primary-main">
           {value}
-        </Listbox.Button>
-        <Listbox.Options>
+        </ListboxButton>
+        <ListboxOptions>
           {data.map((option) => (
-            <Listbox.Option key={option.id} value={option.value}>
+            <ListboxOption key={option.id} value={option.value}>
               {option.name}
-            </Listbox.Option>
+            </ListboxOption>
           ))}
-        </Listbox.Options>
+        </ListboxOptions>
       </Listbox>
     </label>
   );

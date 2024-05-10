@@ -83,6 +83,15 @@ export async function deletePost(id: number) {
   return response;
 }
 
+export async function deleteComment(id: number) {
+  const response = await sendRequest({
+    method: "DELETE",
+    url: `/user/post-comment/${id}`,
+  });
+  revalidatePath("/");
+  return response;
+}
+
 export async function createComment(post_id: number, comment: string) {
   const response = await sendRequest({
     method: "POST",
