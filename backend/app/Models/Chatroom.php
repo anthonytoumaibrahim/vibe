@@ -11,7 +11,7 @@ class Chatroom extends Model
 {
     use HasFactory;
 
-    protected $appends = ['expires_in'];
+    protected $appends = ['expires_in', 'participants_count'];
 
     protected $fillable = ['name', 'host_id', 'expires_at', 'active'];
 
@@ -29,6 +29,13 @@ class Chatroom extends Model
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->expires_at)->diffForHumans(),
+        );
+    }
+
+    public function participantsCount(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->participants()->count(),
         );
     }
 }
