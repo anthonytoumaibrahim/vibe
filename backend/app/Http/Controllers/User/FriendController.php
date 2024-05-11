@@ -41,6 +41,16 @@ class FriendController extends Controller
         ]);
     }
 
+    public function unfriend($friendId)
+    {
+        $user = User::find(Auth::id());
+        $friend = $user->friends()->where('id', $friendId)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Unfriended successfully.'
+        ]);
+    }
+
     public function handleFriendRequest(Request $request)
     {
         $user = User::find(Auth::id());

@@ -60,6 +60,7 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/post-comment/{id}', [PostCommentController::class, 'delete']);
 
         Route::get('/send-request/{id}', [FriendController::class, 'sendFriendRequest']);
+        Route::get('/unfriend/{friendId}', [FriendController::class, 'unfriend']);
         Route::post('/handle-request', [FriendController::class, 'handleFriendRequest']);
 
         Route::controller(ChatroomController::class)->group(function () {
