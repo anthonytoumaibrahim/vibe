@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getProfile } from "./actions";
 import Showcase from "./components/Showcase";
-import UserCard from "./components/UserCard";
+import UserCard from "../../components/UserCard";
 import Badges from "./components/Badges";
 import Posts from "../../components/Posts";
 

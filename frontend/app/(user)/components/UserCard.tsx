@@ -4,11 +4,12 @@ import Avatar from "@/app/(user)/components/Avatar";
 import Button from "@/components/Button";
 import { useState } from "react";
 import { FaUserPlus, FaUserMinus } from "react-icons/fa6";
-import { sendFriendRequest } from "../actions";
+import { sendFriendRequest } from "../profile/[[...username]]/actions";
 import toast from "react-hot-toast";
 
 interface UserCardProps {
   avatar?: string | null;
+  avatarSize?: number;
   username: string;
   isFriend?: boolean;
   isOwner?: boolean;
@@ -18,6 +19,7 @@ interface UserCardProps {
 
 const UserCard = ({
   avatar = null,
+  avatarSize = 56,
   username,
   id,
   isFriend = false,
@@ -36,22 +38,22 @@ const UserCard = ({
   };
 
   return (
-    <div className="p-4 rounded-lg bg-slate-100 dark:bg-black">
+    <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-4">
-        <Avatar url={avatar} isPremium={isPremium} />
+        <Avatar url={avatar} isPremium={isPremium} size={avatarSize} />
         <div>
           <h4>{username}</h4>
           <p>Online</p>
         </div>
-        {!isOwner && (
-          <Button
-            icon={friend ? FaUserMinus : FaUserPlus}
-            variant="link"
-            size="small"
-            onClick={() => addFriend()}
-          ></Button>
-        )}
       </div>
+      {!isOwner && (
+        <Button
+          icon={friend ? FaUserMinus : FaUserPlus}
+          variant="link"
+          size="small"
+          onClick={() => addFriend()}
+        ></Button>
+      )}
     </div>
   );
 };
