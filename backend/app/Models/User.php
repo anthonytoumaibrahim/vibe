@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, HasRoles, Achiever, Billable, HasMergedRelationships;
 
-    protected $appends = ['avatar_full', 'is_premium'];
+    protected $appends = ['avatar_full', 'is_premium', 'is_friend', 'is_owner'];
 
     /**
      * The attributes that are mass assignable.
@@ -166,6 +166,20 @@ class User extends Authenticatable implements JWTSubject
     {
         return new Attribute(
             get: fn () => $this->avatar ? config('app.url') . "/storage" . $this->avatar : null,
+        );
+    }
+
+    public function isFriend(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->friends()->exists(Auth::id()),
+        );
+    }
+
+    public function isOwner(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->id === Auth::id(),
         );
     }
 
