@@ -38,6 +38,14 @@ export async function sendFriendRequest(id: number) {
   return response;
 }
 
+export async function unfriend(friendId: number) {
+  const response = await sendRequest({
+    method: "GET",
+    url: `/user/unfriend/${friendId}`,
+  });
+  return response;
+}
+
 export async function saveBio(data: { bio?: string }) {
   const response = await sendRequest({
     method: "POST",
