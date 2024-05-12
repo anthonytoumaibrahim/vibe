@@ -37,6 +37,7 @@ const ChatroomContainer = ({
   const [participants, setParticipants] = useState(users);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [leaving, setLeaving] = useState(false);
 
   const handleChatPresence = async (userId: number) => {
     const res = await getParticipant(userId);
@@ -127,7 +128,14 @@ const ChatroomContainer = ({
             by <Link href={`/profile/${host_username}`}>{host_username}</Link>
           </p>
         </div>
-        <Button variant="outlined" onClick={() => leaveChatroom(chatroom_id)}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setLeaving(true);
+            leaveChatroom(chatroom_id);
+          }}
+          loading={leaving}
+        >
           Leave
         </Button>
       </div>

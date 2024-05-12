@@ -83,7 +83,7 @@ const ChatroomAvatar = ({
             >
               {username} <FaExternalLinkAlt />
             </Link>
-            {is_host && (
+            {/* {is_host && (
               <Button
                 icon={MdBlock}
                 variant="link"
@@ -92,7 +92,7 @@ const ChatroomAvatar = ({
               >
                 Kick
               </Button>
-            )}
+            )} */}
           </div>
         )}
         <Character data={data} />
