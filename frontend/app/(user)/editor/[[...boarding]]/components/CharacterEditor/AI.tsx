@@ -79,7 +79,7 @@ const AI = ({ handleCharacterUpdate, isPremium = false }: AIProps) => {
               href="/premium"
               variant="gradient"
               color="premium"
-              className="inline-block"
+              className="!inline-block"
             >
               Upgrade to Premium
             </Button>

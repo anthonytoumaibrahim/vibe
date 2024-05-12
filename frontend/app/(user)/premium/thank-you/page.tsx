@@ -1,6 +1,11 @@
 import Button from "@/components/Button";
 import VC from "../../components/VC";
 import { becomePremium } from "../actions";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Thank You – Vibe",
+};
 
 const ThankYou = async () => {
   const res = await becomePremium();
@@ -18,7 +23,7 @@ const ThankYou = async () => {
         <VC balance={1000} className="inline-flex" /> were added to your
         account.
       </h4>
-      <Button href="/" className="inline-block">
+      <Button href="/" className="!inline-block">
         Back to Home
       </Button>
     </div>
