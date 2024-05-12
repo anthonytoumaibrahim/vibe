@@ -13,6 +13,7 @@ import ChatroomLoading from "./ChatroomLoading";
 import MessageForm from "./MessageForm";
 import ChatroomAvatar from "./ChatroomAvatar";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 interface ChatroomContainerProps {
   chatroom_id: number;
@@ -122,7 +123,9 @@ const ChatroomContainer = ({
       <div className="flex items-center justify-between">
         <div>
           <h3>{chatroom_name}</h3>
-          <p>by {host_username}</p>
+          <p>
+            by <Link href={`/profile/${host_username}`}>{host_username}</Link>
+          </p>
         </div>
         <Button variant="outlined" onClick={() => leaveChatroom(chatroom_id)}>
           Leave
@@ -140,10 +143,11 @@ const ChatroomContainer = ({
         {isLoading && <ChatroomLoading />}
         {!isError &&
           participants?.map((user) => {
-            const { username, character, x, y } = user;
+            const { username, character, x, y, is_owner, is_friend } = user;
             return (
               <ChatroomAvatar
                 chatroomId={chatroom_id}
+                username={username}
                 userId={user?.id}
                 key={user?.id}
                 data={character}
@@ -151,7 +155,9 @@ const ChatroomContainer = ({
                 x={x}
                 y={y}
                 handleAvatarMove={handleAvatarMove}
-                is_owner={logged_in_id === user?.id}
+                is_host={logged_in_id === host_id}
+                is_owner={is_owner}
+                is_friend={is_friend}
               />
             );
           })}
