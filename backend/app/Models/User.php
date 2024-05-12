@@ -172,7 +172,7 @@ class User extends Authenticatable implements JWTSubject
     public function isFriend(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->friends()->exists(Auth::id()),
+            get: fn () => $this->friends()->where('id', Auth::id())->exists(),
         );
     }
 
