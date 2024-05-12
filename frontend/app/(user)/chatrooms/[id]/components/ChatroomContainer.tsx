@@ -77,6 +77,12 @@ const ChatroomContainer = ({
     );
   };
 
+  const handleBeforeUnload = (e) => {
+    leaveChatroom(chatroom_id);
+    e.preventDefault();
+    e.returnValue = true;
+  };
+
   useEffect(() => {
     const channel = pusher.subscribe(`chat_${chatroom_id}`);
     channel.bind("chatroom-message", function (data) {
@@ -113,9 +119,12 @@ const ChatroomContainer = ({
       setIsError(true);
     });
 
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       channel.unbind_all();
       channel.disconnect();
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
