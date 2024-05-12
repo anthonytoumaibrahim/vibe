@@ -11,7 +11,7 @@ const AdminPanel = async () => {
   const stats = await getStats();
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
       <Statistic count={stats?.users_count} icon={FaUser} accent="primary">
         Users
       </Statistic>

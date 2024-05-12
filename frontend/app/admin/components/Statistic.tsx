@@ -39,9 +39,9 @@ const Statistic = ({
 }: StatisticProps) => {
   return (
     <div
-      className={`p-6 bg-white rounded-lg shadow-lg flex items-center gap-10 overflow-hidden relative after:absolute after:w-24 after:h-44 after:rotate-45 after:-right-9 after:-bottom-16 ${accentClass[accent].after}`}
+      className={`p-6 bg-white dark:bg-black rounded-lg shadow-lg flex items-center gap-10 overflow-hidden relative after:absolute after:w-24 after:h-44 after:rotate-45 after:-right-9 after:-bottom-16 ${accentClass[accent].after}`}
     >
-      <StatIcon size={54} className={`${accentClass[accent].icon}`} />
+      <StatIcon size={54} className={`${accentClass[accent].icon} shrink-0`} />
       <div>
         <h4>{children}</h4>
         <h1 className={`${accentClass[accent].text}`}>{count}</h1>
