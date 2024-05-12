@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AI\AICharacterGeneratorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -32,6 +33,12 @@ Route::prefix('/auth')->group(function () {
 // Route::post('/stripe-webhook', [PaymentController::class, 'webhook']);
 
 Route::middleware('auth:api')->group(function () {
+    // Admin Routes
+    Route::prefix('/admin')->middleware(['role:admin'])->group(function () {
+        Route::get('/users', [AdminController::class, 'getUsers']);
+    });
+
+    // User Routes
     Route::prefix('/user')->group(function () {
         Route::get('/premium-checkout', [PaymentController::class, 'premiumCheckout']);
         Route::get('/premium-items', [PaymentController::class, 'getPremiumItems']);
