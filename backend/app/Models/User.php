@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, HasRoles, Achiever, Billable, HasMergedRelationships;
 
-    protected $appends = ['avatar_full', 'is_premium', 'is_friend', 'is_owner'];
+    protected $appends = ['avatar_full', 'is_premium', 'is_friend', 'is_owner', 'is_admin'];
 
     /**
      * The attributes that are mass assignable.
@@ -180,6 +180,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return new Attribute(
             get: fn () => $this->id === Auth::id(),
+        );
+    }
+
+    public function isAdmin(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->hasRole('admin'),
         );
     }
 
