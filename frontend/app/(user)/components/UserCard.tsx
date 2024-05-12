@@ -1,14 +1,15 @@
 "use client";
 
-import Avatar from "@/app/(user)/components/Avatar";
-import Button from "@/components/Button";
 import { useState } from "react";
-import { FaUserPlus, FaUserMinus } from "react-icons/fa6";
 import {
   sendFriendRequest,
   unfriend,
 } from "../profile/[[...username]]/actions";
+import Avatar from "@/app/(user)/components/Avatar";
+import Button from "@/components/Button";
+import { FaUserPlus, FaUserMinus } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface UserCardProps {
   avatar?: string | null;
@@ -18,6 +19,7 @@ interface UserCardProps {
   isOwner?: boolean;
   id: number;
   isPremium?: boolean;
+  isAdmin?: boolean;
 }
 
 const UserCard = ({
@@ -28,6 +30,7 @@ const UserCard = ({
   isFriend = false,
   isOwner = false,
   isPremium = false,
+  isAdmin = false,
 }: UserCardProps) => {
   const [friend, setFriend] = useState(isFriend);
 
@@ -51,13 +54,20 @@ const UserCard = ({
 
   return (
     <div className="flex items-center justify-between gap-4">
-      <div className="flex items-center gap-4">
+      <Link
+        href={`/profile/${username}`}
+        className="flex items-center gap-4 unstyled-link"
+      >
         <Avatar url={avatar} isPremium={isPremium} size={avatarSize} />
         <div>
           <h4>{username}</h4>
-          <p>Online</p>
+          {isAdmin && (
+            <span className="bg-primary-main text-white rounded-md px-2 py-1 text-sm flex">
+              Admin
+            </span>
+          )}
         </div>
-      </div>
+      </Link>
       {!isOwner && (
         <Button
           icon={friend ? FaUserMinus : FaUserPlus}

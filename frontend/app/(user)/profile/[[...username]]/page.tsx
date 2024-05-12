@@ -32,6 +32,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
             isFriend={profileData?.is_friend}
             isOwner={isOwner}
             isPremium={profileData?.is_premium}
+            isAdmin={profileData?.is_admin}
           />
           <Badges badgesData={profileData?.badges} />
         </div>
