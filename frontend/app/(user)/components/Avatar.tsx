@@ -32,8 +32,7 @@ const Avatar = ({
       <Image
         src={src ? src : "/images/avatar.svg"}
         fill
-        sizes={`${size}px`}
-        className={`object-contain object-top ${className}`}
+        className={`object-cover object-top aspect-auto h-auto ${className}`}
         onError={() => setSrc("/images/avatar.svg")}
         alt={username ? username : "Avatar"}
       />

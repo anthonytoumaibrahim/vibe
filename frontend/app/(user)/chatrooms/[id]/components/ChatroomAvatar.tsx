@@ -49,7 +49,7 @@ const ChatroomAvatar = ({
   useEffect(() => {
     const msgTimeout = setTimeout(() => {
       setMsg(undefined);
-    }, 20000);
+    }, 6000);
     setMsg(message);
 
     return () => clearTimeout(msgTimeout);
@@ -64,7 +64,7 @@ const ChatroomAvatar = ({
       scale={0.55}
     >
       <div
-        className="inline-block relative origin-center"
+        className="inline-block absolute origin-center"
         ref={characterRef}
         style={{ scale: 0.55 }}
         onClick={() => showInfo(!info)}

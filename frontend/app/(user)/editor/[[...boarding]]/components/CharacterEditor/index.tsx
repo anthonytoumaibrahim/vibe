@@ -54,9 +54,9 @@ const CharacterEditor = ({
     setIsLoading(true);
 
     await toCanvas(characterRef.current, {
-      filter: (node: HTMLElement) => {
-        return !node.classList?.contains("2d-body");
-      },
+      // filter: (node: HTMLElement) => {
+      //   return !node.classList?.contains("2d-body");
+      // },
     })
       .then(async (canvas) => {
         const url = removeTransparentBg(canvas);
