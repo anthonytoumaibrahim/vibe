@@ -43,8 +43,15 @@ class FriendController extends Controller
 
     public function unfriend($friendId)
     {
-        $user = User::find(Auth::id());
-        $friend = $user->friends()->where('id', $friendId)->delete();
+        Friend::where(function ($query) use ($friendId) {
+            $query->where('user_id', $friendId)
+                ->where('friend_id', Auth::id());
+        })
+            ->orWhere(function ($query) use ($friendId) {
+                $query->where('friend_id', $friendId)
+                    ->where('user_id', Auth::id());
+            })
+            ->delete();
         return response()->json([
             'success' => true,
             'message' => 'Unfriended successfully.'
@@ -53,17 +60,16 @@ class FriendController extends Controller
 
     public function handleFriendRequest(Request $request)
     {
-        $user = User::find(Auth::id());
         $id = $request->id;
         $accepted = $request->boolean('accepted');
 
         if ($accepted) {
             Friend::where('user_id', $id)
-                ->where('friend_id', $user->id)
+                ->where('friend_id', Auth::id())
                 ->update(['accepted' => true]);
         } else {
             Friend::where('user_id', $id)
-                ->where('friend_id', $user->id)
+                ->where('friend_id', Auth::id())
                 ->delete();
         }
         return response()->json([
