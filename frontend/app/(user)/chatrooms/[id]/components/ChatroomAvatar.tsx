@@ -70,7 +70,7 @@ const ChatroomAvatar = ({
         onClick={() => showInfo(!info)}
       >
         {msg && (
-          <div className="shadow-xl max-w-[180px] text-center absolute -top-4 left-[90%] bg-white dark:text-black px-6 py-2 scale-[1.65] rounded-lg line-clamp-4">
+          <div className="shadow-xl w-max max-w-[180px] text-center absolute -top-4 left-[90%] bg-white dark:text-black px-6 py-2 scale-[1.65] rounded-lg line-clamp-4">
             {msg}
           </div>
         )}

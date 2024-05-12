@@ -90,7 +90,7 @@ const ChatroomContainer = ({
         handleChatPresence(id);
       }
     });
-    channel.bind("chatroom-leave", (data) => {
+    channel.bind("chatroom-left", (data) => {
       const { id } = data;
       handleLeave(id);
     });
