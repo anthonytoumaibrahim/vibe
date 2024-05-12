@@ -12,6 +12,8 @@ class CharacterPart extends Model
 
     protected $fillable = ['client_id', 'type', 'ai_description', 'premium', 'price', 'default'];
 
+    protected $hidden = ['ai_description'];
+
     public function toArray()
     {
         $array = parent::toArray();
