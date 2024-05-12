@@ -35,6 +35,7 @@ Route::prefix('/auth')->group(function () {
 Route::middleware('auth:api')->group(function () {
     // Admin Routes
     Route::prefix('/admin')->middleware(['role:admin'])->group(function () {
+        Route::get('/stats', [AdminController::class, 'getStats']);
         Route::get('/users', [AdminController::class, 'getUsers']);
     });
 
