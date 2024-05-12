@@ -22,7 +22,7 @@ export default function SignupForm() {
 
   const submitSignupForm = async (data: object) => {
     try {
-      const response = await auth({ data, type: "signup" });
+      const response = await auth({ data, type: "signup", boarding: true });
       if (response?.success === false) {
         toast.error(response?.message);
       }
@@ -34,7 +34,7 @@ export default function SignupForm() {
   return (
     <div className="flex flex-col w-full gap-2">
       <div className="flex w-full items-center justify-center">
-        <GLoginButton type="signup" />
+        <GLoginButton type="signup" boarding={true} />
       </div>
       <form
         action=""

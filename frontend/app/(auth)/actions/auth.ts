@@ -7,6 +7,7 @@ type AuthParams = {
   data?: object;
   token?: string;
   type: "login" | "signup" | "oauth";
+  boarding?: boolean;
 };
 
 export async function checkUsername(username: string) {
@@ -20,7 +21,12 @@ export async function checkUsername(username: string) {
   return response;
 }
 
-export async function auth({ data = {}, token, type }: AuthParams) {
+export async function auth({
+  data = {},
+  token,
+  type,
+  boarding = false,
+}: AuthParams) {
   const body = token ? { access_token: token } : { ...data };
   const response: any = await sendRequest({
     method: "POST",
@@ -30,7 +36,7 @@ export async function auth({ data = {}, token, type }: AuthParams) {
   if (response?.success) {
     const { token, type } = response?.authorization;
     cookies().set("token", token, { httpOnly: true });
-    redirect(type === "signup" ? "/editor/boarding" : "/home");
+    redirect(boarding ? "/editor/boarding" : "/home");
   } else {
     return {
       success: false,

@@ -7,9 +7,13 @@ import toast from "react-hot-toast";
 
 interface GLoginButtonProps {
   type: "login" | "signup";
+  boarding?: boolean;
 }
 
-const GLoginButton = ({ type = "signup" }: GLoginButtonProps) => {
+const GLoginButton = ({
+  type = "signup",
+  boarding = false,
+}: GLoginButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const gLogin = useGoogleLogin({
@@ -22,6 +26,7 @@ const GLoginButton = ({ type = "signup" }: GLoginButtonProps) => {
         const response = await auth({
           token: tokenResponse.access_token,
           type: "oauth",
+          boarding: boarding,
         });
         if (response?.success === false) {
           const errorMessage: string = response?.message;
