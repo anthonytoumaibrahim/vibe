@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const AdminUsers = async () => {
   const users = getUsers();
 
-  return <div>AdminUsers</div>;
+  return <div></div>;
 };
 
 export default AdminUsers;
