@@ -1,19 +1,26 @@
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { FaRegQuestionCircle } from "react-icons/fa";
+import type { IconType } from "react-icons";
+
+interface HelpTooltipProps {
+  children: React.ReactNode;
+  className?: string;
+  icon?: IconType;
+  size?: number;
+}
 
 const HelpTooltip = ({
   children,
   className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+  icon: TooltipIcon = FaRegQuestionCircle,
+  size = 16,
+}: HelpTooltipProps) => {
   return (
     <Popover className="relative">
       <PopoverButton
         className={`flex items-center justify-center hover:text-primary-main ${className}`}
       >
-        <FaRegQuestionCircle size={16} />
+        <TooltipIcon size={size} />
       </PopoverButton>
       <PopoverPanel
         anchor="top"
