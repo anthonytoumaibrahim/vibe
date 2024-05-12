@@ -1,0 +1,15 @@
+{
+  "width": 184,
+  "top": -14,
+  "zIndex": 10,
+  "parts": [
+    {
+      "position": "absolute",
+      "width": 180,
+      "center": true,
+      "top": 28,
+      "zIndex": -1,
+      "postfix": "backdrop"
+    }
+  ]
+}
