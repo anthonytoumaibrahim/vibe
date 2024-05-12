@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('client_id');
             $table->string('type');
-            $table->string('ai_description')->nullable();
+            $table->text('ai_description')->nullable();
             $table->boolean('premium')->default(false);
             $table->integer('price')->default(0);
             $table->boolean('default')->default(false);

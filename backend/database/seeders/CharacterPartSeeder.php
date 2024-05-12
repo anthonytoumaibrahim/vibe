@@ -63,6 +63,12 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => 'Rounded face, with slight blush',
             'default' => true
         ]);
+        CharacterPart::create([
+            'client_id' => 6,
+            'type' => 'face',
+            'ai_description' => 'Oval-shaped, with a wider forehead tapering down to a narrower chin',
+            'default' => true
+        ]);
         // Hair
         CharacterPart::create([
             'client_id' => 1,
@@ -157,6 +163,33 @@ class CharacterPartSeeder extends Seeder
             'type' => 'hair',
             'ai_description' => 'Medium-tall male hair',
             'premium' => true,
+            'default' => true,
+        ]);
+        CharacterPart::create([
+            'client_id' => 17,
+            'type' => 'hair',
+            'ai_description' => 'Straight, sleek hairstyle with the hair pulled back. The hair is straight, neatly combed back without any visible strands falling forward. There are no bangs; instead, the hair is smoothly pulled back from the forehead. Ears are visible. The overall look of the hairstyle gives an impression of neatness and simplicity.',
+            'premium' => true,
+            'default' => true,
+        ]);
+        CharacterPart::create([
+            'client_id' => 18,
+            'type' => 'hair',
+            'ai_description' => 'Straight, sleek hairstyle. The hair is combed down smoothly, covering the right ear and reaching just below the base of the head.',
+            'premium' => true,
+            'default' => true,
+        ]);
+        CharacterPart::create([
+            'client_id' => 19,
+            'type' => 'hair',
+            'ai_description' => 'Short, tousled look. The hair is cut above ear length. It\'s a modern and casual style, with strands of hair styled in a tousled manner, giving it a relaxed and carefree vibe. This hairstyle is often associated with a youthful and energetic personality.',
+            'premium' => true,
+            'default' => true,
+        ]);
+        CharacterPart::create([
+            'client_id' => 20,
+            'type' => 'hair',
+            'ai_description' => 'Medium-length, wavy hairstyle. The hair is styled with volume and curls, framing the face and extending just below the ears. It\'s a modern and casual style, giving an impression of a relaxed and carefree vibe. The hair is not covering the ears, indicating that it is cut to a length that allows for this. This hairstyle is often associated with a youthful and energetic personality.',
             'default' => true,
         ]);
         // Brows
