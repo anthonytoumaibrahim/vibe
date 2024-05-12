@@ -127,7 +127,9 @@ class ChatroomController extends Controller
         $userArr = [
             'id' => $user->id,
             'username' => $user->username,
-            'character' => $user->character_data
+            'character' => $user->character_data,
+            'is_owner' => $user->is_owner,
+            'is_friend' => $user->is_friend
         ];
         if (!$json) {
             return $userArr;
