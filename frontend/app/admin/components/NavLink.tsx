@@ -11,14 +11,20 @@ interface NavLinkProps {
   children: React.ReactNode;
 }
 
-const NavLink = ({ href, children, icon: NavLinkIcon = FaQuestion }) => {
+const NavLink = ({
+  href,
+  children,
+  icon: NavLinkIcon = FaQuestion,
+}: NavLinkProps) => {
   const pathname = usePathname();
 
   return (
     <Link
       href={href}
       className={`flex items-center justify-center py-4 unstyled-link gap-4 text-lg rounded-lg ${
-        pathname === href ? "bg-slate-300" : "hover:bg-slate-200"
+        pathname === href
+          ? "bg-slate-300 dark:bg-primary-main"
+          : "hover:bg-slate-200 dark:hover:bg-slate-600"
       }`}
     >
       <NavLinkIcon />

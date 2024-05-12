@@ -1,10 +1,9 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Switch } from "@headlessui/react";
 import Toggle from "@/components/Toggle";
 
-const ThemeToggler = () => {
+const ThemeToggler = ({ className = "" }: { className?: string }) => {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
@@ -16,7 +15,7 @@ const ThemeToggler = () => {
   };
 
   return (
-    <div className="flex items-center gap-6 justify-between">
+    <div className={`flex items-center gap-6 justify-between ${className}`}>
       <p>Dark Mode</p>
       <Toggle
         active={theme === "dark"}
