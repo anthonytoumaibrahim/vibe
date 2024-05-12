@@ -15,7 +15,7 @@ const Premium = async () => {
 
   return (
     <>
-      <section className="flex items-center justify-between max-h-[580px] overflow-hidden mb-10">
+      <section className="flex items-center justify-center lg:justify-between max-h-[580px] overflow-hidden mb-10">
         <div className="space-y-4">
           <h1 className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text uppercase text-6xl">
             Premium
@@ -29,15 +29,15 @@ const Premium = async () => {
           </h3>
           <ul className="space-y-2">
             <li className="flex items-center gap-2">
-              <PremiumBullet width={24} />
+              <PremiumBullet width={24} className="shrink-0" />
               Unlock more items for your Avatar
             </li>
             <li className="flex items-center gap-2">
-              <PremiumBullet width={24} />
+              <PremiumBullet width={24} className="shrink-0" />
               Boost the Visibility of your Posts on Other Users&apos; Pages
             </li>
             <li className="flex items-center gap-2">
-              <PremiumBullet width={24} />
+              <PremiumBullet width={24} className="shrink-0" />
               Unlock the AI Generator
             </li>
           </ul>
@@ -56,14 +56,13 @@ const Premium = async () => {
           alt=""
           quality={100}
           priority={true}
-          className="mt-[310px]"
+          className="mt-[310px] hidden lg:block"
         />
       </section>
       <div className="flex gap-10 items-start justify-center">
         <div className="flex flex-col gap-4 items-center">
           <h1 className="uppercase text-center">What Premium Members Get</h1>
-          <div className="relative grid grid-cols-4 gap-4">
-            {/* <Image src="/images/premium_lady.svg" fill alt="" /> */}
+          <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <PremiumItems items={premiumItems?.items} />
           </div>
           <div className="flex items-center gap-4">
