@@ -244,7 +244,8 @@ class CharacterPartSeeder extends Seeder
             'client_id' => 7,
             'type' => 'eye',
             'ai_description' => 'Big rounded eyes, suitable for anime characters',
-            'price' => 75
+            'premium' => true,
+            'default' => true
         ]);
         // Nose
         CharacterPart::create([
@@ -318,6 +319,7 @@ class CharacterPartSeeder extends Seeder
             'client_id' => 7,
             'type' => 'mouth',
             'ai_description' => 'Smiling, full teeth showing',
+            'premium' => true,
             'default' => true
         ]);
         CharacterPart::create([
