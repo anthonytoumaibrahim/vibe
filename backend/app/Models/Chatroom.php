@@ -6,12 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Chatroom extends Model
 {
     use HasFactory;
 
-    protected $appends = ['expires_in', 'participants_count'];
+    protected $appends = ['expires_in', 'participants_count', 'is_host'];
 
     protected $with = ['background:id,image_url'];
 
@@ -25,6 +26,13 @@ class Chatroom extends Model
     public function participants()
     {
         return $this->hasMany(ChatroomParticipant::class);
+    }
+
+    public function isHost(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->host->id === Auth::id(),
+        );
     }
 
     public function expiresIn(): Attribute
