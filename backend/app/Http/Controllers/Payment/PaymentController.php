@@ -10,11 +10,20 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
+use App\Models\CharacterPart;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Exception\ApiErrorException;
 
 class PaymentController extends Controller
 {
+    public function getPremiumItems()
+    {
+        $items = CharacterPart::where('premium', true)->limit(8)->get();
+        return response()->json([
+            'items' => $items
+        ]);
+    }
+
     public function premiumCheckout(Request $request)
     {
         $user = User::find(Auth::id());
