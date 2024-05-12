@@ -1,5 +1,6 @@
 "use client";
 
+import { FaStripe } from "react-icons/fa6";
 import NavLink from "./NavLink";
 import { MdMonitor, MdPerson } from "react-icons/md";
 
@@ -11,6 +12,13 @@ const Nav = () => {
       </NavLink>
       <NavLink href="/admin/users" icon={MdPerson}>
         Users
+      </NavLink>
+      <NavLink
+        href="https://dashboard.stripe.com/"
+        target="_blank"
+        icon={FaStripe}
+      >
+        Payments
       </NavLink>
     </nav>
   );
