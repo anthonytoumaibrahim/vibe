@@ -28,7 +28,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
         <Logo width={88} className="dark:fill-white" />
       </Link>
 
-      <Nav />
+      <Nav isAdmin={user?.is_admin} />
 
       <div className="hidden md:flex items-center gap-6">
         <FriendRequests requests={user?.friend_requests} />

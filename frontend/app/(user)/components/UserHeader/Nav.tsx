@@ -3,9 +3,10 @@ import NavLink from "./NavLink";
 interface NavProps {
   className?: string;
   mobile?: boolean;
+  isAdmin?: boolean;
 }
 
-const Nav = ({ className = "", mobile = false }: NavProps) => {
+const Nav = ({ className = "", mobile = false, isAdmin = false }: NavProps) => {
   return (
     <nav
       className={`${
@@ -16,6 +17,7 @@ const Nav = ({ className = "", mobile = false }: NavProps) => {
       <NavLink href="/profile">My Profile</NavLink>
       <NavLink href="/editor">Editor</NavLink>
       <NavLink href="/chatrooms">Chat Rooms</NavLink>
+      {isAdmin && <NavLink href="/admin">Admin Panel</NavLink>}
     </nav>
   );
 };
