@@ -14,14 +14,14 @@ class FriendController extends Controller
     {
         $user = User::find(Auth::id());
         // Already friends?
-        if ($user->friends->contains($id)) {
+        if ($user->friends()->where('id', $id)->exists()) {
             return response()->json([
                 'success' => false,
                 'message' => 'You are already friends with this user.'
             ]);
         }
         // Already sent request?
-        if ($user->sentFriendRequests->contains($id)) {
+        if ($user->sentFriendRequests()->where('friend_id', $id)->exists()) {
             return response()->json([
                 'success' => false,
                 'message' => 'You already sent a request to this user.'
