@@ -43,6 +43,7 @@ const Profile = async ({ params }: { params: { username?: string } }) => {
           user_id={profileData?.id}
           posts={profileData?.posts?.data}
           page_links={profileData?.posts?.links}
+          is_owner={profileData?.is_owner}
         />
         <div className="w-1/5 shrink-0"></div>
       </section>
