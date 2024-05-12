@@ -9,6 +9,14 @@ export async function getCheckoutUrl() {
   return response;
 }
 
+export async function getPremiumItems() {
+  const response = await sendRequest({
+    method: "GET",
+    url: "/user/premium-items",
+  });
+  return response;
+}
+
 // TODO: For local testing only
 export async function becomePremium() {
   const response = await sendRequest({
