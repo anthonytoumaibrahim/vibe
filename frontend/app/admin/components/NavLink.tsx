@@ -21,7 +21,7 @@ const NavLink = ({
   return (
     <Link
       href={href}
-      className={`flex items-center justify-center py-4 unstyled-link gap-4 text-lg rounded-lg ${
+      className={`flex items-center py-3 px-6 unstyled-link gap-4 text-lg rounded-lg ${
         pathname === href
           ? "bg-slate-300 dark:bg-primary-main"
           : "hover:bg-slate-200 dark:hover:bg-slate-600"
