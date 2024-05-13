@@ -25,9 +25,7 @@ class PostCommentController extends Controller
 
         $post->comments()->save($comment);
 
-        return response()->json([
-            'success' => true
-        ]);
+        return response()->json(Comment::find($comment->id));
     }
 
     public function delete($id)
