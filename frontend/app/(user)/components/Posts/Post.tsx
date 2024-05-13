@@ -15,7 +15,7 @@ import { FaComment, FaThumbsDown, FaThumbsUp, FaTrash } from "react-icons/fa6";
 const Post = ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
   const postSelector = useAppSelector(
-    (state) => state.postsSlice.filter((post: any) => post.id === id)?.[0]
+    (state) => state.postsSlice.posts.filter((post: any) => post.id === id)?.[0]
   );
   const [comments, showComments] = useState(false);
 

@@ -23,7 +23,8 @@ const Posts = ({
   is_owner = true,
 }: PostsProps) => {
   const dispatch = useAppDispatch();
-  const postsSelector = useAppSelector((state) => state.postsSlice);
+  const postsSelector = useAppSelector((state) => state.postsSlice.posts);
+  const pageLinksSelector = useAppSelector((state) => state.postsSlice.links);
 
   const goToPage = async (page) => {
     const res = await getPosts({ page: page, user_id: user_id });
@@ -31,12 +32,20 @@ const Posts = ({
       type: "postsSlice/initializeData",
       payload: res?.data,
     });
+    dispatch({
+      type: "postsSlice/initializePageLinks",
+      payload: res?.links,
+    });
   };
 
   useEffect(() => {
     dispatch({
       type: "postsSlice/initializeData",
       payload: posts,
+    });
+    dispatch({
+      type: "postsSlice/initializePageLinks",
+      payload: page_links,
     });
   }, [posts]);
 
@@ -66,8 +75,8 @@ const Posts = ({
                 const { id } = post;
                 return <Post key={id} id={id} />;
               })}
-              <div className="flex items-center justify-center">
-                {page_links?.map((link, index) => {
+              <div className="flex items-center justify-center gap-2">
+                {pageLinksSelector?.map((link, index) => {
                   const { url, active, label } = link;
                   return (
                     index !== 0 &&
@@ -76,6 +85,9 @@ const Posts = ({
                         key={index}
                         variant="link"
                         onClick={() => goToPage(label)}
+                        className={`!px-4 !py-2 ${
+                          active ? "bg-primary-main !text-white" : ""
+                        }`}
                       >
                         {label}
                       </Button>
