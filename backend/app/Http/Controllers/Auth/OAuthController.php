@@ -52,18 +52,7 @@ class OAuthController extends AuthController
             $username = Str::of(uniqid('vibe_'))->substr(0, 15);
         }
 
-        $user = new User();
-        $user->username = $username;
-        $user->email = $oAuthEmail;
-        $user->oauth_id = $oAuthId;
-        $user->name = $oAuthName;
-        $user->saveOrFail();
-
-        $transaction = new Transaction();
-        $transaction->operation = "Welcome Gift";
-        $transaction->amount = 1000;
-        $transaction->user_id = $user->id;
-        $transaction->save();
+        $user = $this->createUser($username, $oAuthEmail, null, $oAuthId);
 
         $token = Auth::login($user);
 

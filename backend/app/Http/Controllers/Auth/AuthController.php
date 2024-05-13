@@ -29,6 +29,28 @@ class AuthController extends Controller
         }
     }
 
+    public function createUser($username, $email, $password = null, $oAuthId = null)
+    {
+        $user = new User();
+        $user->username = $username;
+        $user->email = $email;
+        if ($password) {
+            $user->password = Hash::make($password);
+        }
+        if ($oAuthId) {
+            $user->oauth_id = $oAuthId;
+        }
+        $user->saveOrFail();
+
+        $transaction = new Transaction();
+        $transaction->operation = "Welcome Gift";
+        $transaction->amount = 250;
+        $transaction->user_id = $user->id;
+        $transaction->save();
+
+        return $user;
+    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -37,18 +59,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $user = new User();
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->saveOrFail();
-
-        $transaction = new Transaction();
-        $transaction->operation = "Welcome Gift";
-        $transaction->amount = 1000;
-        $transaction->user_id = $user->id;
-        $transaction->save();
-
+        $user = $this->createUser($request->username, $request->email, $request->password);
 
         $token = Auth::login($user);
 
