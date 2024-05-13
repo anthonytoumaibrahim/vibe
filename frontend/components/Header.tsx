@@ -21,7 +21,7 @@ const Header = ({
         <Logo width={128} fill={logoColor} />
       </Link>
 
-      <nav className="flex items-center gap-4">
+      {/* <nav className="flex items-center gap-4">
         <NavLink href="/" className={navLinkClass}>
           Home
         </NavLink>
@@ -31,7 +31,7 @@ const Header = ({
         <NavLink href="/communities" className={navLinkClass}>
           Communities
         </NavLink>
-      </nav>
+      </nav> */}
     </header>
   );
 };
