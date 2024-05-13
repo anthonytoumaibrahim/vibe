@@ -25,7 +25,7 @@ export async function getPosts({
 }) {
   const response = await sendRequest({
     method: "GET",
-    url: `/user/posts/${user_id}?page=${page}`,
+    url: `/user/${user_id ? `posts/${user_id}` : `feed`}?page=${page}`,
   });
   return response;
 }
