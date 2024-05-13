@@ -71,5 +71,10 @@ class BackgroundSeeder extends Seeder
             'image_url' => 'pool.webp',
             'chatroom_bg' => true
         ]);
+        Background::create([
+            'name' => 'Living Room w/ Panoramic View',
+            'image_url' => 'panoramic.webp',
+            'chatroom_bg' => true
+        ]);
     }
 }
