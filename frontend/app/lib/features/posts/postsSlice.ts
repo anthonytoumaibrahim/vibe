@@ -31,6 +31,19 @@ const postsSlice = createSlice({
           : post;
       });
     },
+    addComment: (state, action) => {
+      const { post_id, comment } = action.payload;
+      state.posts = state.posts.map((post) => {
+        const { comments_count } = post;
+        return post.id === post_id
+          ? {
+              ...post,
+              comments_count: comments_count + 1,
+              comments: [...post.comments, comment],
+            }
+          : post;
+      });
+    },
   },
 });
 
@@ -40,5 +53,6 @@ export const {
   addPost,
   deletePost,
   likePost,
+  addComment,
 } = postsSlice.actions;
 export default postsSlice.reducer;

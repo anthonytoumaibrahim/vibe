@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createComment } from "../../profile/[[...username]]/actions";
+import { useAppDispatch } from "@/app/lib/hooks";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import toast from "react-hot-toast";
@@ -19,13 +20,23 @@ const CommentForm = ({ post_id }: CommentFormProps) => {
     setValue,
   } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
 
   const addComment = async (data) => {
     setIsLoading(true);
     const res = await createComment(post_id, data.comment);
-    if (res?.success === true) {
+    if (res) {
       toast.success("Your comment has been added!");
       setValue("comment", "");
+      console.log(res);
+
+      dispatch({
+        type: "postsSlice/addComment",
+        payload: {
+          post_id: post_id,
+          comment: res,
+        },
+      });
     } else {
       toast.error("Sorry, your comment couldn't be added.");
     }

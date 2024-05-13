@@ -95,7 +95,6 @@ export async function deleteComment(id: number) {
     method: "DELETE",
     url: `/user/post-comment/${id}`,
   });
-  revalidatePath("/");
   return response;
 }
 
@@ -108,6 +107,5 @@ export async function createComment(post_id: number, comment: string) {
       comment: comment,
     },
   });
-  revalidatePath("/");
   return response;
 }
