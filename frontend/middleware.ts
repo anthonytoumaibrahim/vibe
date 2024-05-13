@@ -17,7 +17,7 @@ export default async function middleware(req: NextRequest) {
     path.startsWith(route)
   );
   const isPublicRoute = publicRoutes.includes(path);
-  const isAdminRoute = adminRoutes.includes(path);
+  const isAdminRoute = adminRoutes.some((route) => path.startsWith(route));
 
   const cookie = cookies().get("token")?.value;
   let isAuthenticated = false;
