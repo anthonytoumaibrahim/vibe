@@ -57,6 +57,7 @@ const CharacterEditor = ({
       // filter: (node: HTMLElement) => {
       //   return !node.classList?.contains("2d-body");
       // },
+      height: 340,
     })
       .then(async (canvas) => {
         const url = removeTransparentBg(canvas);
