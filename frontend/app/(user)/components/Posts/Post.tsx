@@ -18,21 +18,16 @@ const Post = ({ id }: { id: number }) => {
     (state) => state.postsSlice.posts.filter((post: any) => post.id === id)?.[0]
   );
   const [comments, showComments] = useState(false);
+  const [likeLoading, setLikeLoading] = useState(false);
 
   const like = async () => {
-    dispatch({
-      type: "postsSlice/likePost",
-      payload: id,
-    });
+    setLikeLoading(true);
     const response = await likePost(id);
+    setLikeLoading(false);
   };
 
   const removePost = async () => {
     const response = await deletePost(id);
-    dispatch({
-      type: "postsSlice/deletePost",
-      payload: id,
-    });
   };
 
   return (
@@ -100,9 +95,10 @@ const Post = ({ id }: { id: number }) => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => like()}
-            className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main ${
+            className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main disabled:opacity-50 ${
               postSelector?.liked_by_user ? "text-primary-main" : ""
             }`}
+            disabled={likeLoading}
           >
             <FaThumbsUp size={24} />
             <h5>{postSelector?.likes_count}</h5>

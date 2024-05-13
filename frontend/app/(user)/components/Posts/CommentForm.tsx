@@ -1,9 +1,10 @@
 "use client";
 
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createComment } from "../../profile/[[...username]]/actions";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
 import toast from "react-hot-toast";
 
 interface CommentFormProps {
@@ -15,15 +16,20 @@ const CommentForm = ({ post_id }: CommentFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
 
   const addComment = async (data) => {
+    setIsLoading(true);
     const res = await createComment(post_id, data.comment);
     if (res?.success === true) {
       toast.success("Your comment has been added!");
+      setValue("comment", "");
     } else {
       toast.error("Sorry, your comment couldn't be added.");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -40,7 +46,7 @@ const CommentForm = ({ post_id }: CommentFormProps) => {
           },
         })}
       />
-      <Button type="submit" className="ml-auto">
+      <Button type="submit" className="ml-auto" loading={isLoading}>
         Post
       </Button>
     </form>

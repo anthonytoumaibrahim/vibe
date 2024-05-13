@@ -13,7 +13,8 @@ interface CommentsProps {
 const Comments = ({ post_id }: CommentsProps) => {
   const postCommentsSelector = useAppSelector(
     (state) =>
-      state.postsSlice.filter((post: any) => post.id === post_id)?.[0]?.comments
+      state.postsSlice.posts?.filter((post: any) => post.id === post_id)?.[0]
+        ?.comments
   );
 
   return postCommentsSelector?.length === 0 ? (

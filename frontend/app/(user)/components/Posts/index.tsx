@@ -30,11 +30,11 @@ const Posts = ({
     const res = await getPosts({ page: page, user_id: user_id });
     dispatch({
       type: "postsSlice/initializeData",
-      payload: res?.posts?.data,
+      payload: user_id ? res?.data : res?.posts?.data,
     });
     dispatch({
       type: "postsSlice/initializePageLinks",
-      payload: res?.posts?.links,
+      payload: user_id ? res?.links : res?.posts?.links,
     });
   };
 
