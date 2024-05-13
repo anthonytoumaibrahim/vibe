@@ -1,4 +1,14 @@
+"use client";
+
+import Button from "@/components/Button";
+import { banUser } from "../actions";
+import Link from "next/link";
+
 const UsersTable = ({ data = [] }) => {
+  const handleBanUser = async (id) => {
+    await banUser(id);
+  };
+
   return (
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
@@ -27,7 +37,7 @@ const UsersTable = ({ data = [] }) => {
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                   >
                     Action
                   </th>
@@ -35,20 +45,24 @@ const UsersTable = ({ data = [] }) => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.map((u) => {
-                  const { id, username, email, created_at } = u;
+                  const { id, username, email, active } = u;
                   return (
                     <tr key={id}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {id}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {username}
+                        <Link href={`/profile/${username}`} target="_blank">
+                          {username}
+                        </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {email}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {created_at}
+                        <Button size="small" onClick={() => handleBanUser(id)}>
+                          {active ? "Ban" : "Unban"}
+                        </Button>
                       </td>
                     </tr>
                   );

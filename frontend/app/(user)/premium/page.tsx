@@ -55,9 +55,7 @@ const Premium = async () => {
       </section>
       <div className="flex gap-10 items-start justify-center">
         <div className="flex flex-col gap-4 items-center">
-          <h1 className="uppercase text-center">
-            Premium exclusive Avatar parts
-          </h1>
+          <h1 className="uppercase text-center">Premium exclusives</h1>
           <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <PremiumItems items={premiumItems?.items} />
           </div>
