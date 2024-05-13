@@ -13,10 +13,7 @@ const ThankYou = async () => {
   return (
     <div className="text-center space-y-4">
       <h1>
-        You are now{" "}
-        <span className="bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text uppercase">
-          Premium
-        </span>
+        You are now <span className="premium-text uppercase">Premium</span>
       </h1>
       <h4 className="flex justify-center items-center gap-2">
         Thank you for your purchase! You are now a Premium member.{" "}

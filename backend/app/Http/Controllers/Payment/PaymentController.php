@@ -18,7 +18,7 @@ class PaymentController extends Controller
 {
     public function getPremiumItems()
     {
-        $items = CharacterPart::where('premium', true)->limit(8)->get();
+        $items = CharacterPart::where('premium', true)->get();
         return response()->json([
             'items' => $items
         ]);

@@ -9,6 +9,7 @@ import MobileMenu from "./MobileMenu";
 import Nav from "./Nav";
 import VC from "../VC";
 import FriendRequests from "./FriendRequests";
+import Button from "@/components/Button";
 
 interface UserHeaderProps {
   className?: string;
@@ -33,6 +34,16 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
       <div className="hidden md:flex items-center gap-6">
         <FriendRequests requests={user?.friend_requests} />
         <VC balance={user?.balance} />
+        {!user?.is_premium && (
+          <Button
+            href="/premium"
+            variant="link"
+            size="small"
+            className="premium-text !p-0"
+          >
+            Premium
+          </Button>
+        )}
         <HeaderAvatar
           avatar={user?.avatar_full}
           is_premium={user?.is_premium}

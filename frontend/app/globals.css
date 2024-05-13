@@ -32,3 +32,7 @@ a:not(.unstyled-link),
 .styled-link {
   @apply relative text-primary-main after:content-[''] after:w-0 after:h-0.5 after:bg-primary-main after:absolute after:-bottom-0.5 after:left-0 after:transition-all after:duration-300 hover:after:w-full;
 }
+
+.premium-text {
+  @apply bg-gradient-to-t from-premium-800 to-premium-400 text-transparent bg-clip-text;
+}
