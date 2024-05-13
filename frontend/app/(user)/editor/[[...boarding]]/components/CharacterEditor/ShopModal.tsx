@@ -5,6 +5,7 @@ import Modal, { ModalSize } from "@/components/Modal";
 import Image from "next/image";
 import { purchasePart } from "../../actions";
 import { toast } from "react-hot-toast";
+import VC from "@/app/(user)/components/VC";
 
 interface ShopModalProps {
   type?: string;
@@ -105,12 +106,8 @@ const ShopModal = ({
         ) : (
           <p>
             This item costs{" "}
-            <strong
-              className={`bg-gradient-to-t from-primary-main to-primary-400 text-transparent bg-clip-text`}
-            >
-              {price} VC
-            </strong>
-            . Do you want to purchase it?
+            <strong className="text-primary-main">{price} VC</strong>. Do you
+            want to purchase it?
           </p>
         )}
         {purchaseSuccess ? (
@@ -128,7 +125,13 @@ const ShopModal = ({
             onClick={handlePurchase}
             loading={isLoading}
           >
-            Purchase
+            Purchase{" "}
+            <VC
+              balance={price}
+              size={24}
+              className="inline-flex"
+              balanceClassName="text-white"
+            />
           </Button>
         )}
         <Button

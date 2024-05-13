@@ -13,7 +13,7 @@ const Footer = ({ className = "" }: FooterProps) => {
           <Logo fill="#ffffff" width={88} />
           <p className="mt-2">&copy; 2024 - Vibe</p>
         </div>
-        <div className="md:ml-auto">
+        <div className="md:ml-auto mt-auto">
           <p className="text-sm">
             Illustrations by{" "}
             <Link
