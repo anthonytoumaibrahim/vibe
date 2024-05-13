@@ -1,35 +1,40 @@
 import Feature from "./Feature";
-import ChatIcon from "./FeatureIcons/ChatIcon";
-
-// Icons
-import CurrencyIcon from "./FeatureIcons/CurrencyIcon";
-import TrophyIcon from "./FeatureIcons/TrophyIcon";
-import UsersIcon from "./FeatureIcons/UsersIcon";
 
 const features_data = [
   {
-    title: "Connect",
-    icon: <UsersIcon />,
-    content:
-      "Connect with others through messages and chat rooms, and make friends!",
+    title: "Create your Avatar",
+    icon: "avatar.svg",
+    content: "Create your 2D Character, and stand out within the community!",
   },
   {
-    title: "Vibe Currency",
-    icon: <CurrencyIcon />,
+    title: "AI Generator",
+    icon: "ai.svg",
     content:
-      "Earn Vibe Currency which can be used to buy items for your character!",
+      "Tired of making your Avatar the old school way? Let an AI make it for you!",
+  },
+  {
+    title: "Join Chat Rooms",
+    icon: "chatroom.svg",
+    content:
+      "Join vibrant chat rooms and connect and have fun with other players!",
+  },
+  {
+    title: "Become Premium",
+    icon: "premium.svg",
+    content:
+      "Become a Premium member to gain access to exclusive Avatar items and features!",
   },
   {
     title: "Earn Badges",
-    icon: <TrophyIcon />,
+    icon: "badges.svg",
     content:
-      "Earn badges by completing daily activities, which in turn earn you VC.",
+      "Earn badges and show off your accomplishments, and earn in-game currency!",
   },
   {
-    title: "Earn Badges",
-    icon: <ChatIcon />,
+    title: "Post Anything",
+    icon: "post.svg",
     content:
-      "Earn badges by completing daily activities, which in turn earn you VC.",
+      "Post anything you desire, from images, videos, to plain old text!",
   },
 ];
 
