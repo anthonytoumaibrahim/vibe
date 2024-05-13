@@ -6,7 +6,7 @@ interface MembersProps {
 
 const Members = ({ data = [] }: MembersProps) => {
   return (
-    <div className="w-1/4 shrink-0 p-4 rounded-lg bg-slate-100 dark:bg-black space-y-2">
+    <div className="w-full lg:w-1/4 shrink-0 p-4 rounded-lg bg-slate-100 dark:bg-black space-y-2">
       <h3 className="text-center">Latest Members</h3>
       {data?.map((user) => {
         const {

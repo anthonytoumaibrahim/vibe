@@ -51,8 +51,8 @@ const Posts = ({
 
   return (
     <>
-      <div className="lg:w-1/4 shrink-0"></div>
-      <div className="w-full">
+      {/* <div className="lg:w-1/4 shrink-0"></div> */}
+      <div className="max-lg:order-2 w-full">
         <div className="flex items-center justify-between mb-4">
           <h3>{title}</h3>
           {is_owner && (

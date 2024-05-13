@@ -11,7 +11,7 @@ const Home = async () => {
   const feedData = await getFeed();
 
   return (
-    <div className="flex gap-6 items-start">
+    <div className="flex max-lg:flex-wrap gap-6 items-start">
       <Posts
         posts={feedData?.posts?.data}
         page_links={feedData?.posts?.links}
