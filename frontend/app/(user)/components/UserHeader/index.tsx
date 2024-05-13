@@ -23,15 +23,15 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
 
   return (
     <header
-      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 py-2 w-full flex items-center justify-between md:justify-around mb-4`}
+      className={`${className} bg-slate-50 dark:bg-slate-900 border-b-2 dark:border-black px-8 py-2 w-full flex justify-between lg:grid grid-cols-3 mb-4`}
     >
       <Link href="/" className="unstyled-link">
         <Logo width={88} className="dark:fill-white" />
       </Link>
 
-      <Nav isAdmin={user?.is_admin} />
+      <Nav isAdmin={user?.is_admin} className="justify-center" />
 
-      <div className="hidden md:flex items-center gap-6">
+      <div className="hidden md:flex items-center justify-end gap-4 xl:gap-6">
         <FriendRequests requests={user?.friend_requests} />
         <VC balance={user?.balance} />
         {!user?.is_premium && (

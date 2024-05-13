@@ -9,7 +9,7 @@ interface NavProps {
 const Nav = ({ className = "", mobile = false, isAdmin = false }: NavProps) => {
   return (
     <nav
-      className={`${
+      className={`${className} ${
         mobile ? "flex flex-col" : "hidden md:flex"
       } items-center gap-6`}
     >
