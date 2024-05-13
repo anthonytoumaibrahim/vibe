@@ -20,7 +20,7 @@ class PostController extends Controller
     public function getPosts($id = null)
     {
         $id = $id ? $id : Auth::id();
-        $posts = Post::with('comments', 'images')->where('user_id', $id)->paginate(10);
+        $posts = Post::with('comments', 'images')->where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(5);
         if ($posts) {
             return response()->json($posts);
         }

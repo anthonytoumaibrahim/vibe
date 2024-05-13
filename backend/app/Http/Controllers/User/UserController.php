@@ -26,7 +26,7 @@ class UserController extends Controller
             $id = Auth::id();
         }
         $user = User::find($id)->makeVisible('character_data', 'profile_data', 'bio')->makeHidden('email', 'email_verified_at', 'balance');
-        $user->posts = $user->posts()->paginate(10);
+        $user->posts = $user->posts()->orderBy('created_at', 'DESC')->paginate(5);
 
         // Badges
         $userAchievements = $user->unlockedAchievements();
