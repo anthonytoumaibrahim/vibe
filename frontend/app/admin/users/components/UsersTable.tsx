@@ -3,6 +3,8 @@
 import Button from "@/components/Button";
 import { banUser } from "../actions";
 import Link from "next/link";
+import TableHeader from "./TableHeader";
+import TableData from "./TableData";
 
 const UsersTable = ({ data = [] }) => {
   const handleBanUser = async (id) => {
@@ -14,56 +16,32 @@ const UsersTable = ({ data = [] }) => {
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
           <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <thead>
                 <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    ID
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Username
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Email
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Action
-                  </th>
+                  <TableHeader>ID</TableHeader>
+                  <TableHeader>Username</TableHeader>
+                  <TableHeader>Email</TableHeader>
+                  <TableHeader>Action</TableHeader>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {data?.map((u) => {
                   const { id, username, email, active } = u;
                   return (
                     <tr key={id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {id}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                      <TableData>{id}</TableData>
+                      <TableData>
                         <Link href={`/profile/${username}`} target="_blank">
                           {username}
                         </Link>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {email}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                      </TableData>
+                      <TableData>{email}</TableData>
+                      <TableData>
                         <Button size="small" onClick={() => handleBanUser(id)}>
                           {active ? "Ban" : "Unban"}
                         </Button>
-                      </td>
+                      </TableData>
                     </tr>
                   );
                 })}
