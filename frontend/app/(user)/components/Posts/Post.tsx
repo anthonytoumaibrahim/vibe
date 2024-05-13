@@ -28,6 +28,10 @@ const Post = ({ id }: { id: number }) => {
   };
 
   const removePost = async () => {
+    dispatch({
+      type: "postsSlice/deletePost",
+      payload: id,
+    });
     const response = await deletePost(id);
   };
 

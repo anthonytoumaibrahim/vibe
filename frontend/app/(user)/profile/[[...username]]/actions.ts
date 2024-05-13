@@ -86,7 +86,6 @@ export async function deletePost(id: number) {
     method: "DELETE",
     url: `/user/post/${id}`,
   });
-  revalidatePath("/");
   return response;
 }
 

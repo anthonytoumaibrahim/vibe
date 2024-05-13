@@ -1,7 +1,7 @@
 "use client";
 
 import Avatar from "@/app/(user)/components/Avatar";
-import { useAppSelector } from "@/app/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import Link from "next/link";
 import { FaTrash } from "react-icons/fa6";
 import { deleteComment } from "../../profile/[[...username]]/actions";
@@ -11,11 +11,23 @@ interface CommentsProps {
 }
 
 const Comments = ({ post_id }: CommentsProps) => {
+  const dispatch = useAppDispatch();
   const postCommentsSelector = useAppSelector(
     (state) =>
       state.postsSlice.posts?.filter((post: any) => post.id === post_id)?.[0]
         ?.comments
   );
+
+  const handleDeleteComment = async (comment_id) => {
+    dispatch({
+      type: "postsSlice/deleteComment",
+      payload: {
+        post_id: post_id,
+        comment_id: comment_id,
+      },
+    });
+    await deleteComment(comment_id);
+  };
 
   return postCommentsSelector?.length === 0 ? (
     <div className="text-center">
@@ -48,7 +60,7 @@ const Comments = ({ post_id }: CommentsProps) => {
               {is_owner && (
                 <button
                   className="text-red-600 hover:text-red-400"
-                  onClick={() => deleteComment(id)}
+                  onClick={() => handleDeleteComment(id)}
                 >
                   <FaTrash size={16} />
                 </button>

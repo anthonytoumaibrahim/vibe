@@ -17,7 +17,7 @@ const postsSlice = createSlice({
       state.posts.push(action.payload);
     },
     deletePost: (state, action) => {
-      state.posts.filter((post) => post.id !== action.payload);
+      state.posts = state.posts.filter((post) => post.id !== action.payload);
     },
     likePost: (state, action) => {
       state.posts = state.posts.map((post) => {
@@ -44,6 +44,21 @@ const postsSlice = createSlice({
           : post;
       });
     },
+    deleteComment: (state, action) => {
+      const { post_id, comment_id } = action.payload;
+      state.posts = state.posts.map((post) => {
+        const { comments_count } = post;
+        return post.id === post_id
+          ? {
+              ...post,
+              comments_count: comments_count - 1,
+              comments: post.comments.filter(
+                (comment) => comment.id !== comment_id
+              ),
+            }
+          : post;
+      });
+    },
   },
 });
 
@@ -54,5 +69,6 @@ export const {
   deletePost,
   likePost,
   addComment,
+  deleteComment,
 } = postsSlice.actions;
 export default postsSlice.reducer;
