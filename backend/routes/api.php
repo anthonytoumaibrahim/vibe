@@ -37,7 +37,7 @@ Route::middleware('auth:api')->group(function () {
     // Admin Routes
     Route::prefix('/admin')->middleware(['role:admin'])->group(function () {
         Route::get('/stats', [AdminController::class, 'getStats']);
-        Route::get('/users', [AdminController::class, 'getUsers']);
+        Route::get('/users', [AdminUserController::class, 'getUsers']);
         Route::post('/users/ban', [AdminUserController::class, 'ban']);
     });
 

@@ -20,7 +20,7 @@ class UserController extends Controller
     public function getProfile($username = null)
     {
         if ($username) {
-            $visitedUser = User::where('username', $username)->firstOrFail();
+            $visitedUser = User::where('username', $username)->where('active', true)->firstOrFail();
             $id = $visitedUser->id;
         } else {
             $id = Auth::id();

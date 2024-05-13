@@ -11,12 +11,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function getUsers()
-    {
-        $users = User::paginate(5)->makeVisible('email');
-        return response()->json($users);
-    }
-
     public function getStats()
     {
         $users_count = User::count();
