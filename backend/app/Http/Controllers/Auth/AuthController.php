@@ -82,6 +82,14 @@ class AuthController extends Controller
 
         // Check if user doesn't have password (oauth)
         $user = User::where('username', $credentials['username'])->first();
+
+        if (!$user->active) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Your account has been banned.',
+            ]);
+        }
+
         if ($user) {
             if (!$user->password) {
                 return response()->json([

@@ -29,6 +29,13 @@ class OAuthController extends AuthController
 
         $userExists = User::where('email', $oAuthEmail)->first();
         if ($userExists) {
+            if (!$userExists->active) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Your account has been banned.',
+                ]);
+            }
+
             if ($userExists->oauth_id === $oAuthId) {
                 $token = Auth::login($userExists);
 
