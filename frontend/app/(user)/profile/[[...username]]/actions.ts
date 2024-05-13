@@ -78,7 +78,6 @@ export async function likePost(id: number) {
       post_id: id,
     },
   });
-  revalidatePath("/");
   return response;
 }
 

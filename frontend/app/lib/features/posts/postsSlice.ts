@@ -20,7 +20,7 @@ const postsSlice = createSlice({
       state.posts.filter((post) => post.id !== action.payload);
     },
     likePost: (state, action) => {
-      state.posts.map((post) => {
+      state.posts = state.posts.map((post) => {
         const { likes_count, liked_by_user } = post;
         return post.id === action.payload
           ? {

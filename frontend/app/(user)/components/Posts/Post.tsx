@@ -18,12 +18,13 @@ const Post = ({ id }: { id: number }) => {
     (state) => state.postsSlice.posts.filter((post: any) => post.id === id)?.[0]
   );
   const [comments, showComments] = useState(false);
-  const [likeLoading, setLikeLoading] = useState(false);
 
   const like = async () => {
-    setLikeLoading(true);
+    dispatch({
+      type: "postsSlice/likePost",
+      payload: id,
+    });
     const response = await likePost(id);
-    setLikeLoading(false);
   };
 
   const removePost = async () => {
@@ -98,7 +99,6 @@ const Post = ({ id }: { id: number }) => {
             className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main disabled:opacity-50 ${
               postSelector?.liked_by_user ? "text-primary-main" : ""
             }`}
-            disabled={likeLoading}
           >
             <FaThumbsUp size={24} />
             <h5>{postSelector?.likes_count}</h5>
