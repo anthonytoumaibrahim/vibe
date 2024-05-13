@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         $user = User::find($request->id);
         $user->active = !$user->active;
+        $user->save();
         return response()->json([
             'success' => true
         ]);
