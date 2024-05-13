@@ -84,7 +84,7 @@ const NewChat = ({ backgrounds }) => {
                         alt={name}
                         className="object-cover w-auto h-auto rounded-sm"
                       />
-                      {name}
+                      <p className="truncate">{name}</p>
                     </div>
                   ),
                 };

@@ -152,7 +152,7 @@ const ChatroomContainer = ({
         <Image
           src={`/images/2d_backgrounds/${background}`}
           fill
-          sizes="100%"
+          sizes="1440px"
           alt=""
           className="object-cover"
           priority={true}
