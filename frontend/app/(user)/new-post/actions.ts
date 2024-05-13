@@ -2,7 +2,6 @@
 
 import { sendRequest } from "@/app/actions";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function savePost(data) {
   const response = await sendRequest({
@@ -11,8 +10,5 @@ export async function savePost(data) {
     body: data,
   });
   revalidatePath("/");
-  if (response?.success === true) {
-    redirect("/profile");
-  }
   return response;
 }
