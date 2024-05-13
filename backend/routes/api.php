@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AI\AICharacterGeneratorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -37,6 +38,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/admin')->middleware(['role:admin'])->group(function () {
         Route::get('/stats', [AdminController::class, 'getStats']);
         Route::get('/users', [AdminController::class, 'getUsers']);
+        Route::post('/users/ban', [AdminUserController::class, 'ban']);
     });
 
     // User Routes
