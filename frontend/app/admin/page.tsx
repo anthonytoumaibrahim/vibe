@@ -12,21 +12,23 @@ const AdminPanel = async () => {
 
   return (
     <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
-      <Statistic count={stats?.users_count} icon={FaUser} accent="primary">
+      <Statistic count={stats?.users_count} icon={FaUser}>
         Users
       </Statistic>
-      <Statistic count={stats?.premium_count} icon={FaCrown} accent="premium">
+      <Statistic count={stats?.premium_count} icon={FaCrown}>
         Premium Users
       </Statistic>
-      <Statistic count={stats?.posts_count} icon={FaPen} accent="sky">
+      <Statistic count={stats?.posts_count} icon={FaPen}>
         Posts
       </Statistic>
-      <Statistic
-        count={stats?.comments_count}
-        icon={FaMessage}
-        accent="emerald"
-      >
+      <Statistic count={stats?.comments_count} icon={FaMessage}>
         Comments
+      </Statistic>
+      <Statistic count={stats?.handled_reports_count} icon={FaMessage}>
+        Handled Reports
+      </Statistic>
+      <Statistic count={stats?.unhandled_reports_count} icon={FaMessage}>
+        Unhandled Reports
       </Statistic>
     </div>
   );

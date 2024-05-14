@@ -39,7 +39,7 @@ const ReportModal = ({
     if (res?.success === true) {
       setSuccess(true);
     } else {
-      toast.error("Sorry, your report couldn't be sent.");
+      toast.error(res?.message || "Sorry, your report couldn't be sent.");
       setIsLoading(false);
     }
   };
