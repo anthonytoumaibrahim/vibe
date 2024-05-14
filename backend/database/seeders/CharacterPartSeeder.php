@@ -280,6 +280,13 @@ class CharacterPartSeeder extends Seeder
             'premium' => true,
             'default' => true
         ]);
+        CharacterPart::create([
+            'client_id' => 8,
+            'type' => 'eye',
+            'ai_description' => 'Big rounded curved eyes, looking at a direction',
+            'premium' => true,
+            'default' => true
+        ]);
         // Nose
         CharacterPart::create([
             'client_id' => 1,
