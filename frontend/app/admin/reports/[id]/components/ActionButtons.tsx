@@ -9,10 +9,10 @@ const ActionButtons = ({ id }: { id: number }) => {
     type: "delete_post" | "delete_and_ban" | "nothing"
   ) => {
     const res = await handleReport(id, type);
-    if (res?.success === true) {
-      toast.success("Report handled successfully");
+    if (res?.success === false) {
+      toast.error("Sorry, the report could not be handled.");
     } else {
-      toast.error("Sorry, something went wrong.");
+      toast.success("Report handled successfully.");
     }
   };
 

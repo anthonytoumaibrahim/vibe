@@ -2,7 +2,7 @@
 
 import { sendRequest } from "@/app/actions";
 import { revalidatePath } from "next/cache";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export async function getReports() {
   const res = await sendRequest({
@@ -32,6 +32,9 @@ export async function handleReport(id: number, action: string) {
       action: action,
     },
   });
-  revalidatePath(`/admin/reports/${id}`);
+  if (res?.success === true) {
+    revalidatePath("/admin/reports");
+    redirect("/admin/reports");
+  }
   return res;
 }
