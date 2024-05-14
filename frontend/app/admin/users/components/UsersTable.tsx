@@ -26,25 +26,30 @@ const UsersTable = ({ data = [] }) => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {data?.map((u) => {
-                  const { id, username, email, active } = u;
-                  return (
-                    <tr key={id}>
-                      <TableData>{id}</TableData>
-                      <TableData>
-                        <Link href={`/profile/${username}`} target="_blank">
-                          {username}
-                        </Link>
-                      </TableData>
-                      <TableData>{email}</TableData>
-                      <TableData>
-                        <Button size="small" onClick={() => handleBanUser(id)}>
-                          {active ? "Ban" : "Unban"}
-                        </Button>
-                      </TableData>
-                    </tr>
-                  );
-                })}
+                {data &&
+                  data?.length > 0 &&
+                  data?.map((u) => {
+                    const { id, username, email, active } = u;
+                    return (
+                      <tr key={id}>
+                        <TableData>{id}</TableData>
+                        <TableData>
+                          <Link href={`/profile/${username}`} target="_blank">
+                            {username}
+                          </Link>
+                        </TableData>
+                        <TableData>{email}</TableData>
+                        <TableData>
+                          <Button
+                            size="small"
+                            onClick={() => handleBanUser(id)}
+                          >
+                            {active ? "Ban" : "Unban"}
+                          </Button>
+                        </TableData>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

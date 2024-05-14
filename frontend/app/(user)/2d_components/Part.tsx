@@ -27,7 +27,7 @@ const Part = ({
   const [isLoading, setIsLoading] = useState(true);
   const [json, setJson] = useState<Record<string, any>>({});
 
-  const SvgComponent = useMemo(
+  const SvgComponent: any = useMemo(
     () =>
       id !== 0 ? dynamic(() => import(`../2d/${type}/${type + id}.svg`)) : null,
     [type, id]
@@ -42,6 +42,7 @@ const Part = ({
   };
 
   useEffect(() => {
+    setJson({});
     if (id !== 0) {
       loadJson();
     }
@@ -51,7 +52,7 @@ const Part = ({
     () =>
       parts?.map((part: Record<string, any>, index: number) => {
         const { width, center, postfix, ...jsonData } = part;
-        const SubSvgComponent = dynamic(
+        const SubSvgComponent: any = dynamic(
           () => import(`../2d/${type}/${type + id}_${postfix}.svg`)
         );
         return (

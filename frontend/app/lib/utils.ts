@@ -1,6 +1,11 @@
 export const removeTransparentBg = (canvas: HTMLCanvasElement): string => {
   const context = canvas.getContext("2d");
-  const imageData = context?.getImageData(0, 0, canvas.width, canvas.height);
+  const imageData: any = context?.getImageData(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
   const { data, width, height } = imageData;
 
   let minX = width,
@@ -26,7 +31,7 @@ export const removeTransparentBg = (canvas: HTMLCanvasElement): string => {
   const newCanvas = document.createElement("canvas");
   newCanvas.width = boundingWidth;
   newCanvas.height = boundingHeight;
-  const newContext = newCanvas.getContext("2d");
+  const newContext: any = newCanvas.getContext("2d");
   newContext.drawImage(
     canvas,
     minX,
