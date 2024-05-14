@@ -47,6 +47,7 @@ const UserHeader = async ({ className = "" }: UserHeaderProps) => {
           </Button>
         )}
         <HeaderAvatar
+          username={user?.username}
           avatar={user?.avatar_full}
           is_premium={user?.is_premium}
         />
