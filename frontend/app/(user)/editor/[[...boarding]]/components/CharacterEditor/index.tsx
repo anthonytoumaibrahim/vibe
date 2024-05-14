@@ -22,6 +22,7 @@ import Zoom from "./Zoom";
 import PartTab from "./PartTab";
 import BoardingModal from "./BoardingModal";
 import AI from "./AI";
+import TabBullet from "./svg/tab.svg";
 
 interface CharacterEditorProps {
   data?: Record<PartsType, { id: number; fill?: string }> | undefined;
@@ -161,7 +162,7 @@ const CharacterEditor = ({
         </div>
         <div className="flex gap-10">
           <TabGroup as={Fragment} vertical>
-            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[640px] my-20 shadow-lg p-6">
+            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[540px] 2xl:min-w-[640px] my-20 shadow-lg p-6">
               {tabs.map((tab, tabIndex) => {
                 const { name, type, optional } = tab;
                 return (
@@ -176,7 +177,7 @@ const CharacterEditor = ({
                 );
               })}
             </TabPanels>
-            <TabList className="flex relative z-0 flex-col p-10 gap-8 bg-white/75 dark:bg-black/75 backdrop-blur-md xl:min-w-[280px]">
+            <TabList className="flex relative z-0 flex-col p-8 2xl:p-10 gap-6 2xl:gap-8 bg-white/75 dark:bg-black/75 backdrop-blur-md xl:min-w-[240px]">
               {tabs.map((tab, tabIndex) => {
                 const { name } = tab;
                 return (
@@ -187,18 +188,9 @@ const CharacterEditor = ({
                           selected
                             ? "text-primary-main dark:text-white scale-110"
                             : "text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
-                        } text-lg md:text-xl xl:text-2xl font-bold flex gap-4 items-center outline-none transition-colors duration-200`}
+                        } text-lg md:text-xl 2xl:text-2xl font-bold flex gap-4 items-center outline-none transition-colors duration-200`}
                       >
-                        <svg
-                          width="40"
-                          height="44"
-                          viewBox="0 0 40 44"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="hidden xl:block"
-                        >
-                          <path d="M18.3828 0.333212C19.1625 -0.111075 20.1232 -0.111075 20.903 0.333237L38.0256 10.0896C38.8054 10.5339 39.2857 11.355 39.2857 12.2437V31.7565C39.2857 32.6449 38.8054 33.4659 38.0256 33.9104L20.903 43.6667C20.1232 44.1111 19.1625 44.1111 18.3828 43.6667L1.26009 33.9104C0.480347 33.4659 0 32.6449 0 31.7562V12.2435C0 11.355 0.480347 10.5339 1.26009 10.0896L18.3828 0.333212Z" />
-                        </svg>
+                        <TabBullet className="shrink-0 hidden lg:block w-9 h-9 2xl:w-11 2xl:h-11" />
                         {name}
                       </button>
                     )}

@@ -17,56 +17,56 @@ class CharacterPartSeeder extends Seeder
         CharacterPart::create([
             'client_id' => 1,
             'type' => 'body',
-            'ai_description' => 'Well-defined waist, fuller hips, rounded buttocks, ample bust, hourglass silhouette. Suitable for characters who are females.',
+            'ai_description' => 'well-defined waist, fuller hips, rounded buttocks, ample bust, hourglass silhouette, female',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 2,
             'type' => 'body',
-            'ai_description' => 'Broad shoulders, narrow hips, muscular build, defined chest and abdominal muscles. Conveys strength, athleticism, and masculinity. Suitable for characters who are males.',
+            'ai_description' => 'broad shoulders, narrow hips, muscular build, defined chest and abdominal muscles, male',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 3,
             'type' => 'body',
-            'ai_description' => 'Lean and toned body, slender waist, slight curves, toned arms and legs. Strikes a balance between femininity and athleticism, with a versatile appeal. Mostly suitable for female characters.',
+            'ai_description' => 'lean and toned body, slender waist, slight curves, toned arms and legs, unisex, female',
             'default' => true
         ]);
         // Face
         CharacterPart::create([
             'client_id' => 1,
             'type' => 'face',
-            'ai_description' => 'Round face, feminine appearance',
+            'ai_description' => 'rounded, feminine, small chin',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 2,
             'type' => 'face',
-            'ai_description' => 'Oval face shape, masculine, with skin details and shine',
+            'ai_description' => 'oval shape, masculine, skin details, skin shine',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 3,
             'type' => 'face',
-            'ai_description' => 'Oval face shape, best pick for masculine appearance',
+            'ai_description' => 'oval shape, masculine, well-defined jaw',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 4,
             'type' => 'face',
-            'ai_description' => 'Round face, slighly large',
+            'ai_description' => 'rounded, long chin',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 5,
             'type' => 'face',
-            'ai_description' => 'Rounded face, with slight blush',
+            'ai_description' => 'rounded',
             'default' => true
         ]);
         CharacterPart::create([
             'client_id' => 6,
             'type' => 'face',
-            'ai_description' => 'Oval-shaped, with a wider forehead tapering down to a narrower chin',
+            'ai_description' => 'oval, wide forehead, narrow chin',
             'default' => true
         ]);
         // Hair

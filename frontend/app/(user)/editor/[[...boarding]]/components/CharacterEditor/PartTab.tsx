@@ -34,7 +34,7 @@ const PartTab = ({
   };
 
   return (
-    <div className="flex flex-col justify-between h-full gap-4">
+    <div className="flex flex-col justify-between h-full gap-4 overflow-auto">
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
         {currentItems?.map((part: any) => {
           const { id, premium, price, is_purchased, server_id } = part;
