@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AI\AICharacterGeneratorController;
 use App\Http\Controllers\Auth\AuthController;
@@ -40,6 +41,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/stats', [AdminController::class, 'getStats']);
         Route::get('/users', [AdminUserController::class, 'getUsers']);
         Route::post('/users/ban', [AdminUserController::class, 'ban']);
+        Route::get('/reports', [AdminReportController::class, 'getAllReports']);
     });
 
     // User Routes
