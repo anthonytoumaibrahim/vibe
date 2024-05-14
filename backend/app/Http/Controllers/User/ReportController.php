@@ -12,6 +12,11 @@ class ReportController extends Controller
 {
     public function report(Request $request)
     {
+        $request->validate([
+            'post_id' => 'required|exists:posts,id',
+            'reason' => 'required'
+        ]);
+
         // TODO: Add other report types
         $post = Post::findOrFail($request->post_id);
 
