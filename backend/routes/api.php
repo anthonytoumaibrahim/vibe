@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/users', [AdminUserController::class, 'getUsers']);
         Route::post('/users/ban', [AdminUserController::class, 'ban']);
         Route::get('/reports', [AdminReportController::class, 'getAllReports']);
+        Route::get('/report/{id}', [AdminReportController::class, 'getReport']);
     });
 
     // User Routes
