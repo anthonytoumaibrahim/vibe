@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getReport } from "../actions";
 import Link from "next/link";
 import ActionButtons from "./components/ActionButtons";
+import Post from "./components/Post";
 
 export const metadata: Metadata = {
   title: "Handle Report - Admin Dashboard – Vibe",
@@ -21,6 +22,7 @@ type ReportableType = {
       username: string;
       is_premium: boolean;
     };
+    images: Array<{ id: number; src: string }>;
   };
   user: {
     id: number;
@@ -39,28 +41,26 @@ const AdminReportPage = async ({ params }: { params: { id: number } }) => {
       <div className="flex flex-col gap-2">
         <p>
           <Link
-            href={`/profile/${reportable.user.username}`}
+            href={`/profile/${reportable?.user?.username}`}
             target="_blank"
             className={`unstyled-link font-bold ${
-              reportable.user.is_premium ? "premium-text" : ""
+              reportable?.user?.is_premium ? "premium-text" : ""
             }`}
           >
-            {reportable.user.username}
+            {reportable?.user?.username}
           </Link>{" "}
-          posted, {reportable.time_ago}:
+          posted, {reportable?.time_ago}:
         </p>
-        <p className="p-2 bg-white dark:bg-black rounded-lg shadow-sm">
-          RAW: {reportable.content}
-        </p>
+        <Post images={reportable?.images}>{reportable?.content}</Post>
         <p>
           <Link
-            href={`/profile/${user.username}`}
+            href={`/profile/${user?.username}`}
             target="_blank"
             className={`unstyled-link font-bold ${
-              user.is_premium ? "premium-text" : ""
+              user?.is_premium ? "premium-text" : ""
             }`}
           >
-            {user.username}
+            {user?.username}
           </Link>{" "}
           reported this post, with stated reason: <strong>{reason}</strong>
         </p>
