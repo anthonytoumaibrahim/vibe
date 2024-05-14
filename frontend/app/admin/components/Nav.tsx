@@ -2,7 +2,7 @@
 
 import { FaStripe } from "react-icons/fa6";
 import NavLink from "./NavLink";
-import { MdMonitor, MdPerson } from "react-icons/md";
+import { MdFlag, MdMonitor, MdPerson } from "react-icons/md";
 
 const Nav = () => {
   return (
@@ -12,6 +12,9 @@ const Nav = () => {
       </NavLink>
       <NavLink href="/admin/users" icon={MdPerson}>
         Users
+      </NavLink>
+      <NavLink href="/admin/reports" icon={MdFlag}>
+        Reports
       </NavLink>
       <NavLink
         href="https://dashboard.stripe.com/"

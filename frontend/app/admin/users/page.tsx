@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 const AdminUsers = async () => {
   const users = await getUsers();
 
-  return <UsersTable data={users} />;
+  return (
+    <>
+      <h1 className="mb-4">Users</h1>
+      <UsersTable data={users} />
+    </>
+  );
 };
 
 export default AdminUsers;

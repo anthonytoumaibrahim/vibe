@@ -11,26 +11,29 @@ const AdminPanel = async () => {
   const stats = await getStats();
 
   return (
-    <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
-      <Statistic count={stats?.users_count} icon={FaUser}>
-        Users
-      </Statistic>
-      <Statistic count={stats?.premium_count} icon={FaCrown}>
-        Premium Users
-      </Statistic>
-      <Statistic count={stats?.posts_count} icon={FaPen}>
-        Posts
-      </Statistic>
-      <Statistic count={stats?.comments_count} icon={FaMessage}>
-        Comments
-      </Statistic>
-      <Statistic count={stats?.handled_reports_count} icon={FaMessage}>
-        Handled Reports
-      </Statistic>
-      <Statistic count={stats?.unhandled_reports_count} icon={FaMessage}>
-        Unhandled Reports
-      </Statistic>
-    </div>
+    <>
+      <h1 className="mb-4">Dashboard</h1>
+      <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <Statistic count={stats?.users_count} icon={FaUser}>
+          Users
+        </Statistic>
+        <Statistic count={stats?.premium_count} icon={FaCrown}>
+          Premium Users
+        </Statistic>
+        <Statistic count={stats?.posts_count} icon={FaPen}>
+          Posts
+        </Statistic>
+        <Statistic count={stats?.comments_count} icon={FaMessage}>
+          Comments
+        </Statistic>
+        <Statistic count={stats?.handled_reports_count} icon={FaMessage}>
+          Handled Reports
+        </Statistic>
+        <Statistic count={stats?.unhandled_reports_count} icon={FaMessage}>
+          Unhandled Reports
+        </Statistic>
+      </div>
+    </>
   );
 };
 
