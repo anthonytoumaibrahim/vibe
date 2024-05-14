@@ -76,9 +76,10 @@ const ShopModal = ({
       >
         <Image
           src={`/images/2d_thumbs/${type}/${id}.webp`}
-          fill
-          sizes="100%"
-          className="object-contain"
+          width={288}
+          height={288}
+          quality={100}
+          className="object-contain h-full"
           alt=""
         />
       </div>
