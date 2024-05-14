@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
     public function getAllReports()
     {
-        $reports = Report::with('reportable', 'user')->orderBy('handled', 'desc')->get();
+        $reports = Report::with('reportable', 'user')->where('handled', false)->get();
         return response()->json([
             'reports' => $reports
         ]);
@@ -19,7 +19,7 @@ class ReportController extends Controller
 
     public function getReport($id)
     {
-        $report = Report::with('reportable', 'user')->findOrFail($id);
+        $report = Report::with('reportable', 'user')->where('handled', false)->findOrFail($id);
         return response()->json($report);
     }
 
