@@ -54,9 +54,9 @@ const PartTab = ({
             >
               <Image
                 src={`/images/2d_thumbs/${type}/${id}.svg`}
-                fill
-                sizes="100%"
-                className="object-contain"
+                width={180}
+                height={180}
+                className="object-contain h-auto"
                 alt=""
               />
             </PartCard>

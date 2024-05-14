@@ -13,7 +13,7 @@ const Statistic = ({
   children,
 }: StatisticProps) => {
   return (
-    <div className="p-6 bg-white dark:bg-black rounded-lg shadow-lg flex items-center gap-10 overflow-hidden relative after:absolute after:w-24 after:h-44 after:rotate-45 after:-right-9 after:-bottom-16 after:bg-primary-main">
+    <div className="p-6 bg-white dark:bg-black rounded-lg shadow-lg flex items-center gap-10 overflow-hidden relative after:absolute after:w-24 after:h-44 after:rotate-45 after:-right-9 after:-bottom-16 after:bg-primary-main/50">
       <StatIcon size={54} className="fill-primary-main shrink-0" />
       <div>
         <h4>{children}</h4>
