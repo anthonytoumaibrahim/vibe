@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getStats } from "./actions";
 import Statistic from "./components/Statistic";
-import { FaUser, FaCrown, FaMessage, FaPen } from "react-icons/fa6";
+import { FaUser, FaCrown, FaMessage, FaPen, FaFlag } from "react-icons/fa6";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard – Vibe",
@@ -26,10 +26,10 @@ const AdminPanel = async () => {
         <Statistic count={stats?.comments_count} icon={FaMessage}>
           Comments
         </Statistic>
-        <Statistic count={stats?.handled_reports_count} icon={FaMessage}>
+        <Statistic count={stats?.handled_reports_count} icon={FaFlag}>
           Handled Reports
         </Statistic>
-        <Statistic count={stats?.unhandled_reports_count} icon={FaMessage}>
+        <Statistic count={stats?.unhandled_reports_count} icon={FaFlag}>
           Unhandled Reports
         </Statistic>
       </div>
