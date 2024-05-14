@@ -16,6 +16,18 @@ export async function handleFriendRequest(id: number, accepted: boolean) {
   return response;
 }
 
+export async function sendReport(post_id: number, reason: string) {
+  const response = await sendRequest({
+    method: "POST",
+    url: "/user/report",
+    body: {
+      post_id: post_id,
+      reason: reason,
+    },
+  });
+  return response;
+}
+
 export async function logout() {
   await sendRequest({
     method: "GET",

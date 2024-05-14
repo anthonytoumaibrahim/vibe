@@ -49,6 +49,7 @@ const Post = ({ id }: { id: number }) => {
         isOpen={reportModal}
         handleClose={() => showReportModal(false)}
         type="Post"
+        id={id}
       />
       <div className="overflow-hidden rounded-lg border dark:border-black bg-white dark:bg-black">
         <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-900 p-4">
