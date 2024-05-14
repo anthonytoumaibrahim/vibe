@@ -15,6 +15,7 @@ use App\Http\Controllers\Post\PostLikeController;
 use App\Http\Controllers\User\CharacterController;
 use App\Http\Controllers\User\FeedController;
 use App\Http\Controllers\User\FriendController;
+use App\Http\Controllers\User\ReportController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/premium-checkout', [PaymentController::class, 'premiumCheckout']);
         Route::get('/premium-items', [PaymentController::class, 'getPremiumItems']);
         Route::get('/checkout-success', [PaymentController::class, 'checkoutSuccess']);
+
+        Route::post('/report', [ReportController::class, 'report']);
 
         Route::get('/feed', [FeedController::class, 'getFeed']);
 
