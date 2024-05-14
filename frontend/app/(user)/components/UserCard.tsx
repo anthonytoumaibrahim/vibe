@@ -53,14 +53,14 @@ const UserCard = ({
   };
 
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center gap-2">
       <Link
         href={`/profile/${username}`}
-        className="flex items-center gap-4 unstyled-link"
+        className="flex items-center gap-4 unstyled-link w-full flex-grow-1"
       >
         <Avatar url={avatar} isPremium={isPremium} size={avatarSize} />
         <div>
-          <h4>{username}</h4>
+          <p className="xl:text-xl">{username}</p>
           {isAdmin && (
             <span className="bg-primary-main text-white rounded-md px-2 py-1 text-sm flex">
               Admin
@@ -74,6 +74,7 @@ const UserCard = ({
           variant="link"
           size="small"
           onClick={() => (friend ? deleteFriend() : addFriend())}
+          className="inline-flex ml-auto !p-0"
         ></Button>
       )}
     </div>
