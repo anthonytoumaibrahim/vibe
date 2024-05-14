@@ -3,8 +3,8 @@
 import Button from "@/components/Button";
 import { banUser } from "../actions";
 import Link from "next/link";
-import TableHeader from "./TableHeader";
-import TableData from "./TableData";
+import TableHeader from "../../components/TableHeader";
+import TableData from "../../components/TableData";
 
 const UsersTable = ({ data = [] }) => {
   const handleBanUser = async (id) => {
