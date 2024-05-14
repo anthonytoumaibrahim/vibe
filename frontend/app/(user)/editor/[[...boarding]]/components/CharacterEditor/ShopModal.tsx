@@ -75,7 +75,7 @@ const ShopModal = ({
         } before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0`}
       >
         <Image
-          src={`/images/2d_thumbs/${type}/${id}.svg`}
+          src={`/images/2d_thumbs/${type}/${id}.webp`}
           fill
           sizes="100%"
           className="object-contain"

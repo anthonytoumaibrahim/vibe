@@ -53,11 +53,12 @@ const PartTab = ({
               price={price}
             >
               <Image
-                src={`/images/2d_thumbs/${type}/${id}.svg`}
+                src={`/images/2d_thumbs/${type}/${id}.webp`}
                 width={180}
                 height={180}
-                className="object-contain h-auto"
+                className="object-contain h-full"
                 alt=""
+                quality={100}
               />
             </PartCard>
           );

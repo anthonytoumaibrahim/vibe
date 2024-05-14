@@ -26,6 +26,7 @@ const Post = ({ id }: { id: number }) => {
   );
   const [comments, showComments] = useState(false);
   const [reportModal, showReportModal] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const like = async () => {
     dispatch({
@@ -113,7 +114,7 @@ const Post = ({ id }: { id: number }) => {
           </Carousel>
         )}
         <div
-          className="p-4 flex flex-col gap-4"
+          className={`p-4 flex flex-col gap-4 max-h-[320px] overflow-hidden`}
           dangerouslySetInnerHTML={{ __html: postSelector?.content }}
         ></div>
         <div className="p-4 bg-slate-50 dark:bg-slate-800 flex justify-between">

@@ -24,7 +24,7 @@ const PremiumModal = ({
     >
       <div className="relative z-0 w-72 h-72 overflow-hidden bg-premium-700 before:w-1/2 before:h-1/2 before:absolute before:-right-6 before:-top-6 before:bg-premium-200 before:rounded-full before:filter before:blur-lg after:w-full after:h-full after:rounded-full after:absolute after:top-0 after:left-0 after:bg-premium-400 after:filter after:blur-xl before:-z-[1] after:-z-[2] shrink-0">
         <Image
-          src={`/images/2d_thumbs/${type}/${id}.svg`}
+          src={`/images/2d_thumbs/${type}/${id}.webp`}
           fill
           sizes="100%"
           className="object-contain"
