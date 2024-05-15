@@ -394,6 +394,18 @@ class CharacterPartSeeder extends Seeder
             'ai_description' => 'Rounded eyeglasses, thin frame',
             'default' => true
         ]);
+        CharacterPart::create([
+            'client_id' => 2,
+            'type' => 'eyeglasses',
+            'ai_description' => 'Oval eyeglasses, thin frame',
+            'default' => true
+        ]);
+        CharacterPart::create([
+            'client_id' => 3,
+            'type' => 'eyeglasses',
+            'ai_description' => 'Rectangle eyeglasses, thin frame',
+            'default' => true
+        ]);
         // Beards
         CharacterPart::create([
             'client_id' => 1,
