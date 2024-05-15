@@ -232,7 +232,14 @@ class CharacterPartSeeder extends Seeder
         CharacterPart::create([
             'client_id' => 7,
             'type' => 'eyebrow',
-            'ai_description' => '',
+            'ai_description' => 'curved, thick',
+            'default' => true,
+            'premium' => true
+        ]);
+        CharacterPart::create([
+            'client_id' => 8,
+            'type' => 'eyebrow',
+            'ai_description' => 'arched, thick',
             'default' => true,
             'premium' => true
         ]);
