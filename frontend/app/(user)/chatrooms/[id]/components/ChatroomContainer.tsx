@@ -75,9 +75,8 @@ const ChatroomContainer = ({
     );
   };
 
-  const handleLeave = (id) => {
+  const handleLeave = (id, username) => {
     if (logged_in_id !== id) {
-      const username = participants.filter((us) => us.id === id)?.[0]?.username;
       toast(`${username} left`);
     }
     setParticipants((prevParticipants) =>
@@ -85,13 +84,8 @@ const ChatroomContainer = ({
     );
   };
 
-  const handleBeforeUnload = (e) => {
-    leaveChatroom(chatroom_id);
-    e.preventDefault();
-    e.returnValue = true;
-  };
-
   useEffect(() => {
+    pusher.unsubscribe(`chat_${chatroom_id}`);
     const channel = pusher.subscribe(`chat_${chatroom_id}`);
     channel.bind("chatroom-message", function (data) {
       const { userId, message } = data;
@@ -106,8 +100,8 @@ const ChatroomContainer = ({
       }
     });
     channel.bind("chatroom-left", (data) => {
-      const { id } = data;
-      handleLeave(id);
+      const { id, username } = data;
+      handleLeave(id, username);
     });
     channel.bind("chatroom-move", (data) => {
       const { id, x, y } = data;
@@ -127,11 +121,16 @@ const ChatroomContainer = ({
       setIsError(true);
     });
 
+    const handleBeforeUnload = (e) => {
+      leaveChatroom(chatroom_id);
+      e.preventDefault();
+      e.returnValue = true;
+    };
+
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
       channel.unbind_all();
-      channel.disconnect();
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
