@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\AI\AIAdminGeneratorController;
 use App\Http\Controllers\AI\AICharacterGeneratorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -35,6 +36,7 @@ Route::prefix('/auth')->group(function () {
 // TODO: Stripe webhook
 // Route::post('/stripe-webhook', [PaymentController::class, 'webhook']);
 
+
 Route::middleware('auth:api')->group(function () {
     // Admin Routes
     Route::prefix('/admin')->middleware(['role:admin'])->group(function () {
@@ -44,6 +46,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/reports', [AdminReportController::class, 'getAllReports']);
         Route::get('/report/{id}', [AdminReportController::class, 'getReport']);
         Route::post('/handle-report', [AdminReportController::class, 'handleReport']);
+        Route::get('/ai', [AIAdminGeneratorController::class, 'generate']);
     });
 
     // User Routes
