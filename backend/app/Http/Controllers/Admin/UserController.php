@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function getUsers()
     {
-        $users = User::withoutRole('admin')->paginate(5)->makeVisible('email');
+        $users = User::withoutRole('admin')->get()->makeVisible('email');
         return response()->json($users);
     }
 
