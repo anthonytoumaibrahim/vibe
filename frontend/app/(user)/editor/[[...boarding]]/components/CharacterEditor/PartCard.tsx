@@ -134,7 +134,10 @@ const PartCard = ({
                 <FaPalette size={24} />
               </MenuButton>
             )}
-            <MenuItems className="absolute left-0 top-full z-20 bg-white dark:bg-slate-700 shadow-lg shadow-black/20 p-2 rounded w-full flex items-center justify-center flex-wrap gap-1 before:w-0 before:h-0 before:absolute before:bottom-full before:left-1/2 before:-translate-x-1/2 before:border-l-[8px] before:border-l-transparent before:border-b-[10px] before:border-b-white dark:before:border-b-slate-700 before:border-r-[8px] before:border-r-transparent">
+            <MenuItems
+              className="absolute w-full !max-w-[180px] z-20 bg-white dark:bg-slate-700 shadow-lg shadow-black/20 p-2 rounded flex items-center justify-center flex-wrap gap-1"
+              anchor="bottom"
+            >
               {colors?.map((color, colorIndex) => (
                 <MenuItem
                   as="button"
@@ -149,7 +152,7 @@ const PartCard = ({
 
               <MenuItem
                 as="button"
-                className={`w-6 h-6 rounded-sm relative overflow-hidden before:w-6 before:h-6 before:absolute before:-top-3 before:-right-3 before:bg-white before:rounded-full before:blur-sm before:opacity-0 hover:before:opacity-100 before:mix-blend-overlay`}
+                className={`w-6 h-6 rounded-sm relative`}
                 style={{ backgroundColor: selector?.fill }}
                 onClick={() => showColorPicker(!colorPicker)}
               >

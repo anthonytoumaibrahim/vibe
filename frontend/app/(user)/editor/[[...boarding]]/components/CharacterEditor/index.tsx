@@ -139,7 +139,7 @@ const CharacterEditor = ({
           disabled={isLoading}
         />
       )}
-      <div className="w-full h-screen max-h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
+      <div className="w-full h-screen min-h-[720px] max-h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
         <Image
           src="/images/boarding_bg.webp"
           alt=""
