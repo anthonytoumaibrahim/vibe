@@ -11,7 +11,7 @@ interface PartTabProps {
   optional?: boolean;
 }
 
-const itemsPerPage = 12;
+const itemsPerPage = 9;
 
 const PartTab = ({
   type,

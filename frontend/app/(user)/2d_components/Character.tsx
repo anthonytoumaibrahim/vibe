@@ -27,14 +27,14 @@ const Character = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ) => (
     <div
-      className={`relative z-0 ${className} w-[380px] h-[1100px] origin-top`}
+      className={`relative z-0 ${className} w-[380px] h-[820px] 2xl:h-[1100px] origin-top`}
       style={{ scale }}
       ref={ref}
     >
       <Part
         type="hair"
         center={true}
-        id={data?.hair?.id ?? 3}
+        id={data?.hair?.id ?? 1}
         fill={data?.hair?.fill ?? "#c73030"}
       />
       {data?.beard?.id ? (

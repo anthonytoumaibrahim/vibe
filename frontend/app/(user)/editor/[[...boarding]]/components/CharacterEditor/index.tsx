@@ -95,7 +95,7 @@ const CharacterEditor = ({
       payload: {
         body: { id: data?.body?.id ?? 3, fill: data?.body?.fill ?? "#df9777" },
         face: { id: data?.face?.id ?? 1 },
-        hair: { id: data?.hair?.id ?? 3, fill: data?.hair?.fill ?? "#c73030" },
+        hair: { id: data?.hair?.id ?? 1, fill: data?.hair?.fill ?? "#c73030" },
         beard: {
           id: data?.beard?.id ?? 0,
           fill: data?.beard?.fill ?? "#c73030",
@@ -139,7 +139,7 @@ const CharacterEditor = ({
           disabled={isLoading}
         />
       )}
-      <div className="w-full h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
+      <div className="w-full h-screen max-h-[1024px] mt-4 rounded-2xl flex gap-8 relative overflow-hidden dark:after:w-full dark:after:h-full dark:after:absolute dark:after:bg-slate-900/20 dark:after:-z-10">
         <Image
           src="/images/boarding_bg.webp"
           alt=""
@@ -162,7 +162,7 @@ const CharacterEditor = ({
         </div>
         <div className="flex gap-10">
           <TabGroup as={Fragment} vertical>
-            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[540px] 2xl:min-w-[640px] my-20 shadow-lg">
+            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[540px] 2xl:min-w-[640px] my-6 2xl:my-20 shadow-lg">
               {tabs.map((tab, tabIndex) => {
                 const { name, type, optional } = tab;
                 return (
