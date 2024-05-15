@@ -14,6 +14,7 @@ import MessageForm from "./MessageForm";
 import ChatroomAvatar from "./ChatroomAvatar";
 import Button from "@/components/Button";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface ChatroomContainerProps {
   chatroom_id: number;
@@ -41,6 +42,9 @@ const ChatroomContainer = ({
 
   const handleChatPresence = async (userId: number) => {
     const res = await getParticipant(userId);
+    if (logged_in_id !== res?.id) {
+      toast(`${res?.username} joined`);
+    }
     setParticipants((prevParticipants) => [...prevParticipants, res]);
   };
 
@@ -72,6 +76,10 @@ const ChatroomContainer = ({
   };
 
   const handleLeave = (id) => {
+    if (logged_in_id !== id) {
+      const username = participants.filter((us) => us.id === id)?.[0]?.username;
+      toast(`${username} left`);
+    }
     setParticipants((prevParticipants) =>
       prevParticipants.filter((us) => us.id !== id)
     );
