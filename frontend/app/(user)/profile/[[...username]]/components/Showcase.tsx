@@ -65,7 +65,9 @@ const Showcase = ({
         fill
         alt=""
         className="object-cover"
-        sizes="100%"
+        quality={100}
+        priority={true}
+        sizes="1120px"
       />
       <Character data={characterData} ref={characterRef} />
 

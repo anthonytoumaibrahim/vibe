@@ -59,9 +59,8 @@ const BackgroundPicker = ({
                   >
                     <Image
                       src={`/images/2d_backgrounds/${image_url}`}
-                      width="0"
-                      height="0"
-                      sizes="256px"
+                      width={256}
+                      height={256}
                       className="w-full h-full object-cover"
                       alt={name}
                     />
@@ -75,9 +74,8 @@ const BackgroundPicker = ({
               <div className="h-48 rounded-lg overflow-hidden">
                 <Image
                   src={`/images/2d_backgrounds/${selectedBackground?.image_url}`}
-                  width={0}
-                  height={0}
-                  sizes="320px"
+                  width={320}
+                  height={320}
                   className="w-auto h-full object-cover"
                   alt={selectedBackground?.name}
                 />
