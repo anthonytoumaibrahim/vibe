@@ -17,14 +17,16 @@ class LeaveChatroom implements ShouldBroadcastNow
 
     public $chatroomId;
     public $userId;
+    public $username;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($chatroomId, $userId)
+    public function __construct($chatroomId, $userId, $username)
     {
         $this->chatroomId = $chatroomId;
         $this->userId = $userId;
+        $this->username = $username;
     }
 
     /**
@@ -45,7 +47,8 @@ class LeaveChatroom implements ShouldBroadcastNow
     public function broadcastWith(): array
     {
         return [
-            'id' => $this->userId
+            'id' => $this->userId,
+            'username' => $this->username
         ];
     }
 }

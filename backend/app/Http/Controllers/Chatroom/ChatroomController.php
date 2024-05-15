@@ -94,15 +94,15 @@ class ChatroomController extends Controller
     public function leaveChatroom(Request $request)
     {
         $chatroomId = $request->chatroom_id;
-        $userId = Auth::id();
+        $user = User::find(Auth::id());
         $chatroom = Chatroom::findOrFail($chatroomId);
 
-        $participant = $chatroom->participants()->where('user_id', $userId)->first();
+        $participant = $chatroom->participants()->where('user_id', $user->id)->first();
 
         if ($participant) {
             $participant->delete();
         }
-        broadcast(new LeaveChatroom($chatroomId, $userId))->toOthers();
+        broadcast(new LeaveChatroom($chatroomId, $user->id, $user->username))->toOthers();
     }
 
     public function moveAvatar(Request $request)
