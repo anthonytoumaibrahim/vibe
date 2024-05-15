@@ -162,7 +162,7 @@ const CharacterEditor = ({
         </div>
         <div className="flex gap-10">
           <TabGroup as={Fragment} vertical>
-            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:min-w-[320px] xl:min-w-[540px] 2xl:min-w-[640px] my-6 2xl:my-20 shadow-lg">
+            <TabPanels className="bg-white dark:bg-slate-900 relative rounded-lg md:w-[320px] xl:w-[540px] 2xl:w-[640px] my-6 2xl:my-20 shadow-lg">
               {tabs.map((tab, tabIndex) => {
                 const { name, type, optional } = tab;
                 return (

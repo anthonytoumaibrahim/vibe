@@ -56,7 +56,7 @@ const PartTab = ({
                 src={`/images/2d_thumbs/${type}/${id}.webp`}
                 width={180}
                 height={180}
-                className="object-contain h-full"
+                className="object-contain w-full h-full"
                 alt=""
                 quality={100}
               />
