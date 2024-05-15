@@ -1,5 +1,7 @@
-import Lottie from "lottie-react";
 import vibeLoadingAnimation from "./loading.json";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const VibeLoading = ({ size, rendererClassName = "" }) => {
   return (
