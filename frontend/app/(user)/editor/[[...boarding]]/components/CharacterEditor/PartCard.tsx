@@ -1,11 +1,25 @@
-import { useState } from "react";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { FaPalette } from "react-icons/fa6";
+import { Fragment, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store";
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+} from "@headlessui/react";
+import { FaPalette } from "react-icons/fa6";
+import { HexColorPicker } from "react-colorful";
 
 // Modals
 import PremiumModal from "./PremiumModal";
 import ShopModal from "./ShopModal";
+import Image from "next/image";
 
 interface PartCardProps {
   className?: string;
@@ -40,9 +54,10 @@ const PartCard = ({
   const selector = useAppSelector(
     (state: any) => state.characterEditorSlice?.[type]
   );
-
   const [shopModal, showShopModal] = useState(false);
   const [premiumModal, showPremiumModal] = useState(false);
+  const [colorPicker, showColorPicker] = useState(false);
+
   const handleUpdate = (data: any) => {
     if (premium && !is_premium) {
       return showPremiumModal(true);
@@ -131,7 +146,31 @@ const PartCard = ({
                   onClick={() => handleUpdate({ id: id, fill: color })}
                 ></MenuItem>
               ))}
+
+              <MenuItem
+                as="button"
+                className={`w-6 h-6 rounded-sm relative overflow-hidden before:w-6 before:h-6 before:absolute before:-top-3 before:-right-3 before:bg-white before:rounded-full before:blur-sm before:opacity-0 hover:before:opacity-100 before:mix-blend-overlay`}
+                style={{ backgroundColor: selector?.fill }}
+                onClick={() => showColorPicker(!colorPicker)}
+              >
+                <Image src="/images/rainbow.png" alt="" fill sizes="44px" />
+              </MenuItem>
             </MenuItems>
+
+            <Dialog
+              open={colorPicker}
+              onClose={() => showColorPicker(false)}
+              className="relative z-50"
+            >
+              <div className="fixed inset-0 flex items-center justify-center p-4">
+                <DialogPanel>
+                  <HexColorPicker
+                    color={selector?.fill}
+                    onChange={(col) => handleUpdate({ id: id, fill: col })}
+                  />
+                </DialogPanel>
+              </div>
+            </Dialog>
           </>
         )}
       </Menu>
