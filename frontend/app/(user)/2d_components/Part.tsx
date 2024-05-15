@@ -36,9 +36,13 @@ const Part = ({
   const { width, height, parts, ...jsonData } = json;
 
   const loadJson = async () => {
-    const json = await import(`../2d/${type}/${type + id}.json`);
-    setJson(json);
-    setIsLoading(false);
+    try {
+      const json = await import(`../2d/${type}/${type + id}.json`);
+      setJson(json);
+      setIsLoading(false);
+    } catch (error) {
+      setJson({});
+    }
   };
 
   useEffect(() => {
