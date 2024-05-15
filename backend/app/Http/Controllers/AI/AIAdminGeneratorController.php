@@ -41,7 +41,7 @@ class AIAdminGeneratorController
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => 'You are a helpful assistant designed to output JSON. Your job is to generate 5 user objects in an array for a game/social media website. The output of each user object needs to look like the following: {"username": "...", "email": "...", "character_data": {...}, "posts":[...]}. The username needs to be between 3 and 16 characters. The email needs to be a real email, i.e gmail, outlook or yahoo. The character_data is an object that looks like the following: {"eye": {"id": 4, "fill": "#9a9b9d"}, "body": {"id": 1, "fill": "#f0b8a0"}, "face": {"id": 1}, "hair": {"id": 2, "fill": "#9a3300"}, "nose": {"id": 4}, "mouth": {"id": 8, "fill": "#a31a57"}, "eyebrow": {"id": 4, "fill": "#9a3300"}, "eyeglasses": {"id": 0}}. For each character, use random parts from this data (Do NOT output IDs outside of each category): ' . $parts . '. For the posts key, you can output between 0 and 5 posts randomly to each user, make sure that the post content is related to the username you picked.'
+                    'content' => 'You are a helpful assistant designed to output JSON. Your job is to generate 2 (two) user objects in an array for a game/social media website. The output of each user object needs to look like the following: {"username": "...", "email": "...", "character_data": {...}, "posts":[...]}. The username needs to be between 3 and 16 characters. The email needs to be a real email, i.e gmail, outlook or yahoo. The character_data is an object that looks like the following: {"eye": {"id": 4, "fill": "#9a9b9d"}, "body": {"id": 1, "fill": "#f0b8a0"}, "face": {"id": 1}, "hair": {"id": 2, "fill": "#9a3300"}, "nose": {"id": 4}, "mouth": {"id": 8, "fill": "#a31a57"}, "eyebrow": {"id": 4, "fill": "#9a3300"}, "eyeglasses": {"id": 0}}. For each character, use random parts from this data (Do NOT output IDs outside of each category): ' . $parts . '. For the posts key, you can output between 0 and 5 posts randomly to each user, make sure that the post content is related to the username you picked.'
                 ]
             ]
         ]);
@@ -56,10 +56,10 @@ class AIAdminGeneratorController
                     $u->username = $user['username'];
                     $u->email = $user['email'];
                     $u->password = Hash::make('hello123');
-                    $u->character_data = json_encode($user['character_data']);
+                    $u->character_data = $user['character_data'];
                     $u->saveOrFail();
                     // Posts
-                    $posts = $user['posts'];
+                    $posts = $user['posts'] ?? [];
                     foreach ($posts as $post) {
                         $p = new Post();
                         $p->content = $post['content'];
@@ -75,7 +75,7 @@ class AIAdminGeneratorController
             } catch (Error $e) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Sorry, an error happened.'
+                    'message' => $e->getMessage()
                 ]);
             }
 
