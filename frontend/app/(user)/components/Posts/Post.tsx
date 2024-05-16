@@ -21,14 +21,14 @@ import ReportModal from "./ReportModal";
 
 interface PostProps {
   id: number;
-  post_data?: object;
+  post_data?: object | undefined;
   reportable?: boolean;
   footer?: boolean;
 }
 
 const Post = ({
   id,
-  post_data = {},
+  post_data,
   reportable = true,
   footer = true,
 }: PostProps) => {
