@@ -43,6 +43,7 @@ const UsersTable = ({ data = [] }) => {
                           <Button
                             size="small"
                             onClick={() => handleBanUser(id)}
+                            className="w-24"
                           >
                             {active ? "Ban" : "Unban"}
                           </Button>

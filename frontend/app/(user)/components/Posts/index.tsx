@@ -60,7 +60,7 @@ const Posts = ({
               href="/new-post"
               variant="link"
               icon={FaPencil}
-              className="!px-0"
+              className="!px-0 dark:text-white"
             >
               Create new Post
             </Button>
