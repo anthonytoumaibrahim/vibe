@@ -19,10 +19,24 @@ import {
 } from "react-icons/fa6";
 import ReportModal from "./ReportModal";
 
-const Post = ({ id }: { id: number }) => {
+interface PostProps {
+  id: number;
+  post_data?: object;
+  reportable?: boolean;
+  footer?: boolean;
+}
+
+const Post = ({
+  id,
+  post_data = {},
+  reportable = true,
+  footer = true,
+}: PostProps) => {
   const dispatch = useAppDispatch();
-  const postSelector = useAppSelector(
-    (state) => state.postsSlice.posts.filter((post: any) => post.id === id)?.[0]
+  const postSelector = useAppSelector((state) =>
+    post_data
+      ? post_data
+      : state.postsSlice.posts.filter((post: any) => post.id === id)?.[0]
   );
   const [comments, showComments] = useState(false);
   const [reportModal, showReportModal] = useState(false);
@@ -69,7 +83,7 @@ const Post = ({ id }: { id: number }) => {
             <small className="text-slate-600 dark:text-slate-400">
               {postSelector?.time_ago}
             </small>
-            {!postSelector?.is_owner && (
+            {!postSelector?.is_owner && reportable && (
               <button
                 className="text-primary-main hover:text-primary-500"
                 onClick={() => showReportModal(true)}
@@ -117,33 +131,37 @@ const Post = ({ id }: { id: number }) => {
           className={`p-4 flex flex-col gap-4 max-h-[320px] overflow-hidden`}
           dangerouslySetInnerHTML={{ __html: postSelector?.content }}
         ></div>
-        <div className="p-4 bg-slate-50 dark:bg-slate-800 flex justify-between">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => like()}
-              className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main disabled:opacity-50 ${
-                postSelector?.liked_by_user ? "text-primary-main" : ""
-              }`}
-            >
-              <FaThumbsUp size={24} />
-              <h5>{postSelector?.likes_count}</h5>
-            </button>
-            {/* <FaThumbsDown size={26} /> */}
-          </div>
-          <button
-            className="flex gap-2 items-center transition-colors duration-150 hover:text-primary-main"
-            onClick={() => showComments(!comments)}
-          >
-            <FaComment size={24} />
-            <h5>{postSelector?.comments_count}</h5>
-          </button>
-        </div>
-        {comments && (
-          <div className="p-4 bg-slate-50 dark:bg-slate-800 space-y-4">
-            <h4>Comments ({postSelector?.comments_count})</h4>
-            <CommentForm post_id={id} />
-            <Comments post_id={id} />
-          </div>
+        {footer && (
+          <>
+            <div className="p-4 bg-slate-50 dark:bg-slate-800 flex justify-between">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => like()}
+                  className={`flex gap-2 items-center transition-colors duration-150 hover:text-primary-main disabled:opacity-50 ${
+                    postSelector?.liked_by_user ? "text-primary-main" : ""
+                  }`}
+                >
+                  <FaThumbsUp size={24} />
+                  <h5>{postSelector?.likes_count}</h5>
+                </button>
+                {/* <FaThumbsDown size={26} /> */}
+              </div>
+              <button
+                className="flex gap-2 items-center transition-colors duration-150 hover:text-primary-main"
+                onClick={() => showComments(!comments)}
+              >
+                <FaComment size={24} />
+                <h5>{postSelector?.comments_count}</h5>
+              </button>
+            </div>
+            {comments && (
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 space-y-4">
+                <h4>Comments ({postSelector?.comments_count})</h4>
+                <CommentForm post_id={id} />
+                <Comments post_id={id} />
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

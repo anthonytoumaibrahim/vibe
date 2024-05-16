@@ -48,7 +48,12 @@ const ReportsTable = ({ data = [] }) => {
                             Report handled.
                           </div>
                         ) : (
-                          <ReportModal id={id} reportable={reportable} />
+                          <ReportModal
+                            id={id}
+                            reportable={reportable}
+                            user={user}
+                            reason={reason}
+                          />
                         )}
                       </TableData>
                     </tr>
