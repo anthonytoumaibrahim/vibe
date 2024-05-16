@@ -48,7 +48,7 @@ const buttonClass: Record<ButtonVariants, VariantClass> = {
         "bg-primary-main hover:bg-primary-700 active:bg-gradient-to-t active:from-primary-600 active:to-primary-main text-white",
       secondary:
         "bg-secondary-main hover:bg-secondary-500 active:bg-gradient-to-t active:from-secondary-400 active:to-secondary-main text-white",
-      error: "",
+      error: "bg-red-600 hover:bg-red-500 text-white",
       success:
         "bg-emerald-600 hover:bg-emerald-700 active:bg-gradient-to-t active:from-emerald-400 active:to-emerald-600 text-white",
       white: "text-white",

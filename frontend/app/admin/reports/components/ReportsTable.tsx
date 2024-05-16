@@ -1,7 +1,7 @@
 import Link from "next/link";
 import TableData from "../../components/TableData";
 import TableHeader from "../../components/TableHeader";
-import Button from "@/components/Button";
+import ReportModal from "./ReportModal";
 
 const ReportsTable = ({ data = [] }) => {
   return (
@@ -48,12 +48,7 @@ const ReportsTable = ({ data = [] }) => {
                             Report handled.
                           </div>
                         ) : (
-                          <Button
-                            href={`/admin/reports/${id}`}
-                            className="inline-flex"
-                          >
-                            Handle
-                          </Button>
+                          <ReportModal id={id} reportable={reportable} />
                         )}
                       </TableData>
                     </tr>
