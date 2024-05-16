@@ -48,9 +48,9 @@
 
 ### Mockups
 
-| Home Screen                           | Character Creator Screen           | Profile Screen                      |
-| ------------------------------------- | ---------------------------------- | ----------------------------------- |
-| ![Landing](./readme/demo/landing.png) | ![fsdaf](./readme/demo/editor.png) | ![fsdaf](./readme/demo/profile.png) |
+| Home Screen                                   | Character Creator Screen                    | Profile Screen                                |
+| --------------------------------------------- | ------------------------------------------- | --------------------------------------------- |
+| ![Landing](./readme/demo/mockups/landing.png) | ![Editor](./readme/demo/mockups/editor.png) | ![Profile](./readme/demo/mockups/profile.png) |
 
 <br><br>
 
@@ -59,28 +59,28 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+![ER Diagram](./readme/erd.png)
 
 <br><br>
 
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
-### User Screens (Mobile)
+### User Screens (Web)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Login Screen                          | Register Screen                         | Feed Screen                                |
+| ------------------------------------- | --------------------------------------- | ------------------------------------------ |
+| ![Landing](./readme/demo/login.png)   | ![Register](./readme/demo/register.png) | ![Feed](./readme/demo/feed.png)            |
+| Character Editor Screen               | Profile Screen                          | Chat Rooms Screen                          |
+| ![Editor](./readme/demo/editor.png)   | ![Profile](./readme/demo/profile.png)   | ![Chat Rooms](./readme/demo/chatrooms.png) |
+| Premium Screen                        |
+| ![Premium](./readme/demo/premium.png) |
 
 ### Admin Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Dashboard Screen                                | Register Screen                         | Feed Screen                     |
+| ----------------------------------------------- | --------------------------------------- | ------------------------------- |
+| ![Dashboard](./readme/demo/admin_dashboard.png) | ![Register](./readme/demo/register.png) | ![Feed](./readme/demo/feed.png) |
 
 <br><br>
 
