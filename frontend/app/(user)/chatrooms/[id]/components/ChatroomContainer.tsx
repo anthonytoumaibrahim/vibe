@@ -15,6 +15,7 @@ import ChatroomAvatar from "./ChatroomAvatar";
 import Button from "@/components/Button";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import ChatroomLog from "./ChatroomLog";
 
 interface ChatroomContainerProps {
   chatroom_id: number;
@@ -24,6 +25,7 @@ interface ChatroomContainerProps {
   logged_in_id: number;
   users: Array<any>;
   background: string;
+  messages: ChatroomContainerProps | any;
 }
 
 const ChatroomContainer = ({
@@ -34,6 +36,7 @@ const ChatroomContainer = ({
   logged_in_id,
   users = [],
   background,
+  messages = [],
 }: ChatroomContainerProps) => {
   const [participants, setParticipants] = useState(users);
   const [isLoading, setIsLoading] = useState(true);
@@ -127,11 +130,11 @@ const ChatroomContainer = ({
       e.returnValue = true;
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    // window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
       channel.unbind_all();
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      // window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
@@ -155,7 +158,7 @@ const ChatroomContainer = ({
           Leave
         </Button>
       </div>
-      <div className="w-full h-[720px] bg-slate-500 rounded-lg relative overflow-hidden z-0">
+      <div className="w-full h-[720px] bg-slate-100 rounded-lg relative overflow-hidden z-0 border-2 border-slate-200 dark:border-black">
         <Image
           src={`/images/2d_backgrounds/${background}`}
           fill
@@ -185,6 +188,8 @@ const ChatroomContainer = ({
               />
             );
           })}
+
+        <ChatroomLog messages={messages} />
         <MessageForm
           chatroom_id={chatroom_id}
           handleSendMessage={(msg) => handleNewMessage(logged_in_id, msg)}
