@@ -10,7 +10,7 @@ use Tests\TestCase;
 class UserDataTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Tests the user's profile data
      */
     public function test_user_profile_data(): void
     {
