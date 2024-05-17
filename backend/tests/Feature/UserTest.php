@@ -11,7 +11,7 @@ class UserTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_logged_out_user_info(): void
+    public function test_that_logged_out_cannot_access_user_info(): void
     {
         $response = $this->json("GET", "/api/user/info");
 
