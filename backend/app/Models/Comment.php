@@ -14,7 +14,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public $appends = ['time_ago', 'is_owner'];
+    protected $appends = ['time_ago', 'is_owner'];
 
     protected $with = ['user:id,username,avatar'];
 
