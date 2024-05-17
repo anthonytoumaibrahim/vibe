@@ -28,6 +28,11 @@ class Chatroom extends Model
         return $this->hasMany(ChatroomParticipant::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany(ChatroomMessage::class);
+    }
+
     public function isHost(): Attribute
     {
         return new Attribute(
