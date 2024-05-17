@@ -12,6 +12,7 @@ const Hero = () => {
         quality={100}
         fill
         priority={true}
+        data-testid="landing_hero"
       />
       <h1 className="font-display font-normal text-6xl sm:text-7xl drop-shadow-lg">
         Good Vibes <span className="font-bold">Only</span>.
