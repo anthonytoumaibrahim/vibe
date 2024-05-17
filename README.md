@@ -31,11 +31,11 @@
 
 ### Vibe is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- **Frontend**: The website uses Next.js, a powerful React framework that enables server-side rendering and static site generation, providing improved performance and SEO benefits.
+- **Backend**: The backend API is developed with Laravel, a robust PHP framework known for its elegant syntax, comprehensive feature set, and excellent community support, making it easy to build secure and scalable applications.
+- **Styling**: For styling, the project utilizes Tailwind CSS, a utility-first CSS framework that allows for rapid UI development with a consistent design. Additionally, a custom mini library was created for reusable components like buttons and inputs, designed from scratch to match the project's unique aesthetic.
+- **Database**: The application uses MySQL for persistent storage, a reliable and widely-used relational database management system that ensures data integrity and efficient query performance.
+- The app uses the font ["K2D"](https://fonts.google.com/specimen/K2D) as its main font.
 
 <br><br>
 
@@ -48,9 +48,9 @@
 
 ### Mockups
 
-| Home Screen                                   | Character Creator Screen                    | Profile Screen                                |
-| --------------------------------------------- | ------------------------------------------- | --------------------------------------------- |
-| ![Landing](./readme/demo/mockups/landing.png) | ![Editor](./readme/demo/mockups/editor.png) | ![Profile](./readme/demo/mockups/profile.png) |
+| Home Screen                                   | Character Creator Screen                    |
+| --------------------------------------------- | ------------------------------------------- |
+| ![Landing](./readme/demo/mockups/landing.png) | ![Editor](./readme/demo/mockups/editor.png) |
 
 <br><br>
 
@@ -78,9 +78,9 @@
 
 ### Admin Screens (Web)
 
-| Dashboard Screen                                | Register Screen                         | Feed Screen                     |
-| ----------------------------------------------- | --------------------------------------- | ------------------------------- |
-| ![Dashboard](./readme/demo/admin_dashboard.png) | ![Register](./readme/demo/register.png) | ![Feed](./readme/demo/feed.png) |
+| Dashboard Screen                                | Reports Screen                         |
+| ----------------------------------------------- | -------------------------------------- |
+| ![Dashboard](./readme/demo/admin_dashboard.png) | ![Register](./readme/demo/reports.png) |
 
 <br><br>
 
@@ -89,7 +89,9 @@
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- This project utilizes advanced prompt engineering techniques to optimize interactions with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+
+In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom prompt is designed to help the AI understand the appearance of each body part, enabling it to generate high-quality avatars.
 
 <br><br>
 
