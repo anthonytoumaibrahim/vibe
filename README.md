@@ -13,16 +13,18 @@
 
 - As a user, I want to create and customize my own 2D avatar on Vibe to reflect my personality and preferences. By personalizing my avatar's appearance and style, I can express myself creatively.
 - As a user, I want to unwind and relax on Vibe, escaping from the stresses of daily life. Whether it's through casual chats with friends, participating in fun activities, or joining chat rooms.
+- As a user, I want to be able to report inappropriate content that might appear on my feed to keep my experience fun and stress-free.
 
 ### Premium User Stories
 
 - As a Premium user, I want to have access to exclusive and advanced 2D avatar items so that I can stand out within the community.
-- As a Premium user, I want to be first-in-line in customer support.
+- As a Premium user, I want priority access to new features and updates to experience the latest enhancements before regular users.
+- As a Premium user, I want the ability to customize my profile theme and layouts for a more personalized experience.
 
 ### Admin Stories
 
-- As an admin, I want to oversee, moderate and manage the chatrooms on Vibe, to ensure that they remain active, engaging, and free from inappropriate content or behavior.
-- As an admin, I want to manage users on Vibe, and ban them if they break the rules.
+- As an admin, I want to manage users on Vibe, and ban them if they break the rules to maintain a safe and respectful community.
+- As an admin, I want to handle user reports to ensure that the website remains free of inappropriate or harmful content.
 
 <br><br>
 
@@ -116,31 +118,79 @@ In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Vibe locally, follow these steps:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Before installing and setting up Vibe, ensure you have the following prerequisites installed on your system:
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Node.js and NPM: Ensure you have Node.js and NPM installed. You can download and install them from [nodejs.org](https://www.nodejs.org).
+- Composer: Composer is required for managing PHP dependencies. You can download and install it from [getcomposer.org](https://getcomposer.org).
+- PHP: Make sure you have PHP version 8.2 or higher installed, since Vibe uses Laravel 11. You can download the latest version from [php.net](https://php.net).
+- MySQL: MySQL is required for the database. You can download and install it from [mysql.com](https://mysql.com).
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/anthonytoumaibrahim/vibe.git
+   ```
+2. Navigate to the project repository:
+   ```sh
+   cd vibe
+   ```
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
+#### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```sh
+   cd frontend
+   ```
+2. Install NPM packages:
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Copy the example environment variables file `.env.local.example` and rename it as `.env.local`, either manually or through this command:
+   ```sh
+   cp .env.local.example .env.local
+   ```
+4. Fill out the information in `.env.local` with your configuration details:
+   - `NEXT_PUBLIC_URL`: The URL of the backend server.
+   - `NEXT_PUBLIC_API_URL`: The URL of the API.
+   - `NEXT_PUBLIC_PUSHER_KEY`: Your [Pusher](https://pusher.com/) key. Pusher is needed for the chat rooms.
+   - `NEXT_PUBLIC_PUSHER_CLUSTER`: Your [Pusher](https://pusher.com/) cluster, e.g `ap1`.
+5. To run the frontend in development mode:
+   ```sh
+   num run dev
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+#### Backend Setup
+
+1. Navigate to the backend directory:
+   ```sh
+   cd backend
+   ```
+2. Install Composer dependencies:
+   ```sh
+   composer install
+   ```
+3. Copy the example environment variables file `.env.example` and rename it as `.env`, either manually or through this command:
+   ```sh
+   cp .env.example .env
+   ```
+4. Fill out the information in `.env` with your configuration details, including the database connection settings. You should also provide the following to ensure full functionality:
+   - `OPENAI_API_SECRET`: Your [OpenAI API Secret Key](https://platform.openai.com/api-keys). This is used for the AI Character Generator, and more.
+   - `STRIPE_KEY`: To accept payments for the Premium service, you need a [Stripe API Publishable Key](https://dashboard.stripe.com/test/apikeys).
+   - `STRIPE_SECRET`: The Stripe Secret key.
+   - `STRIPE_WEBHOOK_SECRET`: The [Stripe Webhook Key](https://dashboard.stripe.com/test/webhooks).
+   - As mentioned earlier, the `PUSHER_APP_*` variables are required for Chat Rooms. You can get them from [Pusher](https://pusher.com/).
+5. Run the following commands:
+   ```sh
+   php artisan key:generate
+   php artisan jwt:secret
+   php artisan migrate
+   ```
+6. To serve the backend, run:
+   ```sh
+   php artisan serve
+   ```
