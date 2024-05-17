@@ -82,7 +82,7 @@ class ChatroomController extends Controller
         $chatroomMessage->chatroom_id = $chatroomId;
         $chatroomMessage->save();
 
-        broadcast(new SendMessage($chatroomId, $message, $user->id))->toOthers();
+        broadcast(new SendMessage($chatroomId, $message, $user->id, ChatroomMessage::with('user:id,username,avatar')->find($chatroomMessage->id)))->toOthers();
     }
 
     public function joinChatroom(Request $request)

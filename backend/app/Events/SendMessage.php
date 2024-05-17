@@ -19,15 +19,17 @@ class SendMessage implements ShouldBroadcastNow
     public $chatroomId;
     public $message;
     public $userId;
+    public $log;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($chatroomId, $message, $userId)
+    public function __construct($chatroomId, $message, $userId, $log)
     {
         $this->chatroomId = $chatroomId;
         $this->message = $message;
         $this->userId = $userId;
+        $this->log = $log;
     }
 
     /**
@@ -43,5 +45,15 @@ class SendMessage implements ShouldBroadcastNow
     public function broadcastAs()
     {
         return 'chatroom-message';
+    }
+
+    public function broadcastWith(): array
+    {
+        return [
+            'chatroomId' => $this->chatroomId,
+            'message' => $this->message,
+            'userId' => $this->userId,
+            'log' => $this->log
+        ];
     }
 }
