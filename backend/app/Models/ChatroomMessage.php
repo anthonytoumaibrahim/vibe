@@ -9,6 +9,8 @@ class ChatroomMessage extends Model
 {
     use HasFactory;
 
+    protected $with = ['user:id,username'];
+
     public function chatroom()
     {
         return $this->belongsTo(Chatroom::class);

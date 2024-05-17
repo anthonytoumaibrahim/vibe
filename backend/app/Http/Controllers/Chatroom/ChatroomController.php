@@ -8,10 +8,12 @@ use App\Events\MoveAvatar;
 use App\Models\Background;
 use App\Events\SendMessage;
 use App\Models\Transaction;
+use Illuminate\Support\Str;
 use App\Events\JoinChatroom;
 use Illuminate\Http\Request;
 use App\Events\LeaveChatroom;
 use Illuminate\Support\Carbon;
+use App\Models\ChatroomMessage;
 use App\Models\ChatroomParticipant;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +58,7 @@ class ChatroomController extends Controller
 
     public function get($id)
     {
-        $chatroom = Chatroom::with('host:id,username')->findOrFail($id);
+        $chatroom = Chatroom::with('host:id,username', 'messages')->findOrFail($id);
         $chatroom->users = $chatroom->participants()->get()->map(function ($participant) {
             return [
                 ...$this->getParticipant($participant->user_id, false),
@@ -73,6 +75,13 @@ class ChatroomController extends Controller
         $user = Auth::user();
         $chatroomId = $request->chatroom_id;
         $message = $request->message;
+
+        $chatroomMessage = new ChatroomMessage();
+        $chatroomMessage->message = Str::of($request->message)->substr(0, 150);
+        $chatroomMessage->user_id = $user->id;
+        $chatroomMessage->chatroom_id = $chatroomId;
+        $chatroomMessage->save();
+
         broadcast(new SendMessage($chatroomId, $message, $user->id))->toOthers();
     }
 
