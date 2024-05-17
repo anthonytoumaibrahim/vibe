@@ -42,6 +42,7 @@ const ChatroomContainer = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const [messagesLog, setMessagesLog] = useState(messages);
 
   const handleChatPresence = async (userId: number) => {
     const res = await getParticipant(userId);
@@ -90,8 +91,10 @@ const ChatroomContainer = ({
   useEffect(() => {
     pusher.unsubscribe(`chat_${chatroom_id}`);
     const channel = pusher.subscribe(`chat_${chatroom_id}`);
+
     channel.bind("chatroom-message", function (data) {
-      const { userId, message } = data;
+      const { userId, message, log } = data;
+      setMessagesLog((prev) => [...prev, log]);
       if (userId !== logged_in_id) {
         handleNewMessage(userId, message);
       }
@@ -130,11 +133,11 @@ const ChatroomContainer = ({
       e.returnValue = true;
     };
 
-    // window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
       channel.unbind_all();
-      // window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
@@ -189,7 +192,7 @@ const ChatroomContainer = ({
             );
           })}
 
-        <ChatroomLog messages={messages} />
+        <ChatroomLog messages={messagesLog} />
         <MessageForm
           chatroom_id={chatroom_id}
           handleSendMessage={(msg) => handleNewMessage(logged_in_id, msg)}
