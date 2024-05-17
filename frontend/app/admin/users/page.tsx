@@ -12,7 +12,11 @@ const AdminUsers = async () => {
   return (
     <>
       <h1 className="mb-4">Users</h1>
-      <UsersTable data={users} />
+      {users?.length === 0 ? (
+        <p>No users to show at this time.</p>
+      ) : (
+        <UsersTable data={users} />
+      )}
     </>
   );
 };

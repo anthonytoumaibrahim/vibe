@@ -41,26 +41,23 @@ const ChatroomLog = ({ messages }: ChatroomLogProps) => {
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <div className="bg-white dark:bg-slate-900 h-full w-[280px] max-w-xs shadow-2xl overflow-hidden">
-          <div className="bg-slate-200 dark:bg-black p-4 text-center">
-            <h4>Messages</h4>
-          </div>
-
-          <div className="h-full overflow-auto">
-            {messages?.map((msg) => {
-              const { id, message, user, time_ago } = msg;
-              return (
-                <div key={id} className="flex flex-col gap-2 p-4">
-                  <div className="flex w-full gap-2 items-center">
-                    <Avatar size={32} url={user?.avatar_full} />
-                    <p className="font-bold">{user?.username}</p>
-                    <p className="text-slate-400 ml-auto text-sm">{time_ago}</p>
-                  </div>
-                  <p>{message}</p>
+        <div className="bg-white dark:bg-slate-900 h-full w-[280px] max-w-xs shadow-2xl overflow-auto">
+          {messages?.length === 0 && (
+            <p className="text-center p-4">No messages to show.</p>
+          )}
+          {messages?.map((msg) => {
+            const { id, message, user, time_ago } = msg;
+            return (
+              <div key={id} className="flex flex-col gap-2 p-4">
+                <div className="flex w-full gap-2 items-center">
+                  <Avatar size={32} url={user?.avatar_full} />
+                  <p className="font-bold">{user?.username}</p>
+                  <p className="text-slate-400 ml-auto text-sm">{time_ago}</p>
                 </div>
-              );
-            })}
-          </div>
+                <p>{message}</p>
+              </div>
+            );
+          })}
         </div>
       </Transition>
     </div>

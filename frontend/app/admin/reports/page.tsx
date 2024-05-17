@@ -12,7 +12,11 @@ const AdminReports = async () => {
   return (
     <>
       <h1 className="mb-4">Reports</h1>
-      <ReportsTable data={reports?.reports} />
+      {reports?.reports?.length === 0 ? (
+        <p>No reports to show at this time.</p>
+      ) : (
+        <ReportsTable data={reports?.reports} />
+      )}
     </>
   );
 };
