@@ -18,6 +18,7 @@ import {
   FaTrash,
 } from "react-icons/fa6";
 import ReportModal from "./ReportModal";
+import TimeAgo from "react-timeago";
 
 interface PostProps {
   id: number;
@@ -81,7 +82,7 @@ const Post = ({
           </Link>
           <div className="flex items-center gap-2">
             <small className="text-slate-600 dark:text-slate-400">
-              {postSelector?.time_ago}
+              <TimeAgo date={postSelector?.created_at} />
             </small>
             {!postSelector?.is_owner && reportable && (
               <button

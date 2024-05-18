@@ -1,10 +1,11 @@
 "use client";
 
-import Avatar from "@/app/(user)/components/Avatar";
+import { deleteComment } from "../../profile/[[...username]]/actions";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import Link from "next/link";
+import Avatar from "@/app/(user)/components/Avatar";
+import TimeAgo from "react-timeago";
 import { FaTrash } from "react-icons/fa6";
-import { deleteComment } from "../../profile/[[...username]]/actions";
 
 interface CommentsProps {
   post_id: number;
@@ -37,7 +38,7 @@ const Comments = ({ post_id }: CommentsProps) => {
   ) : (
     <div className="flex flex-col gap-4">
       {postCommentsSelector?.map((comment) => {
-        const { id, text, user, time_ago, is_owner } = comment;
+        const { id, text, user, time_ago, created_at, is_owner } = comment;
 
         return (
           <div key={id} className="flex gap-4 items-start">
@@ -55,7 +56,7 @@ const Comments = ({ post_id }: CommentsProps) => {
             </div>
             <div className="ml-auto flex items-center gap-2 shrink-0">
               <small className="text-slate-600 dark:text-slate-400">
-                {time_ago}
+                <TimeAgo date={created_at} />
               </small>
               {is_owner && (
                 <button
