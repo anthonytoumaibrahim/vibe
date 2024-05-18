@@ -41,6 +41,7 @@ const LoginForm = () => {
         action=""
         className="flex flex-col w-full gap-4"
         onSubmit={handleSubmit(submitLoginForm)}
+        data-testid="login_form"
       >
         <Input
           placeholder="username123"
