@@ -22,10 +22,22 @@ class ChatroomController extends Controller
 {
     public function create(Request $request)
     {
+        $user = User::find(Auth::id());
         $request->validate([
             'name' => 'required|min:3|max:20',
             'background_id' => 'required|exists:backgrounds,id'
         ]);
+
+        // Enough balance?
+        $balance = $user->balance;
+        if ($balance - 100 < 0) {
+            return response()->json([
+                'success' => false,
+                'balance_error' => true,
+                'message' => 'Not enough balance'
+            ]);
+        }
+
         $chatroom = new Chatroom();
         $chatroom->name = $request->name;
         $chatroom->host_id = Auth::id();
