@@ -39,7 +39,7 @@ const NewChat = ({ backgrounds }) => {
     if (res?.success === true) {
       router.push(`/chatrooms/${res?.chatroom_id}`);
     } else {
-      toast.error("Sorry, your chat couldn't be created.");
+      toast.error(res?.message || "Sorry, your chat couldn't be created.");
       setIsLoading(false);
     }
   };
