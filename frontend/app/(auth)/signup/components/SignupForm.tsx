@@ -33,9 +33,11 @@ export default function SignupForm() {
 
   return (
     <div className="flex flex-col w-full gap-2">
-      <div className="flex w-full items-center justify-center">
-        <GLoginButton type="signup" boarding={true} />
-      </div>
+      {process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID && (
+        <div className="flex w-full items-center justify-center">
+          <GLoginButton type="signup" boarding={true} />
+        </div>
+      )}
       <form
         action=""
         className="flex flex-col w-full gap-4"

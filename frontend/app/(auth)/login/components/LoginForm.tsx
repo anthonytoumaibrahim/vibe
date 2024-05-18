@@ -34,9 +34,11 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col w-full gap-2">
-      <div className="flex w-full items-center justify-center">
-        <GLoginButton type="login" />
-      </div>
+      {process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID && (
+        <div className="flex w-full items-center justify-center">
+          <GLoginButton type="login" />
+        </div>
+      )}
       <form
         action=""
         className="flex flex-col w-full gap-4"
