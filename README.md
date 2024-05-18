@@ -95,6 +95,8 @@
 
 In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom prompt is designed to help the AI understand the appearance of each body part, enabling it to generate high-quality avatars.
 
+![AI Prompt](./readme/ai_prompt.png)
+
 <br><br>
 
 <!-- AWS Deployment -->
@@ -128,6 +130,9 @@ Before installing and setting up Vibe, ensure you have the following prerequisit
 - Composer: Composer is required for managing PHP dependencies. You can download and install it from [getcomposer.org](https://getcomposer.org).
 - PHP: Make sure you have PHP version 8.2 or higher installed, since Vibe uses Laravel 11. You can download the latest version from [php.net](https://php.net).
 - MySQL: MySQL is required for the database. You can download and install it from [mysql.com](https://mysql.com).
+- To accept payments for Premium membership, create an account on [Stripe](https://www.stripe.com) and take note of your API keys.
+- For the chat rooms to work, create an account on [Pusher](https://www.pusher.com) and take note of your API keys.
+- For the AI Character Generator, you will need an [OpenAI API Key](https://platform.openai.com/api-keys).
 
 ### Installation
 
@@ -188,6 +193,7 @@ Before installing and setting up Vibe, ensure you have the following prerequisit
    ```sh
    php artisan key:generate
    php artisan jwt:secret
+   php artisan storage:link
    php artisan migrate
    ```
 6. To serve the backend, run:
