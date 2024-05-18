@@ -120,6 +120,10 @@ For Vibe, the following testing frameworks are utilized:
 - **Laravel**: Utilizes Laravel's built-in Unit and Feature Testing to ensure the backend API is robust and functions as expected. These tests help verify the correctness of each component, from individual methods to the overall integration of the application.
 - **Next.js**: Utilizes Jest for testing the frontend components. Jest provides a comprehensive and flexible testing framework, allowing for the thorough examination of React components, ensuring they render correctly and behave as intended.
 
+| Laravel Tests                                | Next.js/Jest Tests                             |
+| -------------------------------------------- | ---------------------------------------------- |
+| ![Laravel Tests](./readme/laravel_tests.png) | ![Next.js/Jest Tests](./readme/next_tests.png) |
+
 <br><br>
 
 <!-- How to run -->
