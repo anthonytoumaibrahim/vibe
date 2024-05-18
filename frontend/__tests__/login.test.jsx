@@ -10,7 +10,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 describe("Login", () => {
   it("renders the login form", () => {
     render(
-      <GoogleOAuthProvider clientId="375974338673-7bq5hv0q8178djj2tjv75k15sr5klhue.apps.googleusercontent.com">
+      <GoogleOAuthProvider
+        clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID ?? ""}
+      >
         <LoginForm />
       </GoogleOAuthProvider>
     );
