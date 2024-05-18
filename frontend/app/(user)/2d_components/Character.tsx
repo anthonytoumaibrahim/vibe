@@ -30,6 +30,7 @@ const Character = forwardRef(
       className={`relative z-0 ${className} w-[380px] h-[820px] 2xl:h-[1100px] origin-top`}
       style={{ scale }}
       ref={ref}
+      data-testid="character_wrapper"
     >
       <Part
         type="hair"
