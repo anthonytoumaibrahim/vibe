@@ -115,6 +115,11 @@ In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
 
+For Vibe, the following testing frameworks are utilized:
+
+- **Laravel**: Utilizes Laravel's built-in Unit and Feature Testing to ensure the backend API is robust and functions as expected. These tests help verify the correctness of each component, from individual methods to the overall integration of the application.
+- **Next.js**: Utilizes Jest for testing the frontend components. Jest provides a comprehensive and flexible testing framework, allowing for the thorough examination of React components, ensuring they render correctly and behave as intended.
+
 <br><br>
 
 <!-- How to run -->
@@ -130,6 +135,7 @@ Before installing and setting up Vibe, ensure you have the following prerequisit
 - Composer: Composer is required for managing PHP dependencies. You can download and install it from [getcomposer.org](https://getcomposer.org).
 - PHP: Make sure you have PHP version 8.2 or higher installed, since Vibe uses Laravel 11. You can download the latest version from [php.net](https://php.net).
 - MySQL: MySQL is required for the database. You can download and install it from [mysql.com](https://mysql.com).
+- For the Google OAuth Login to work, you'll need to obtain OAuth credentials from Google. You can read more here: [https://developers.google.com/identity/protocols/oauth2](https://developers.google.com/identity/protocols/oauth2)
 - To accept payments for Premium membership, create an account on [Stripe](https://www.stripe.com) and take note of your API keys.
 - For the chat rooms to work, create an account on [Pusher](https://www.pusher.com) and take note of your API keys.
 - For the AI Character Generator, you will need an [OpenAI API Key](https://platform.openai.com/api-keys).
@@ -164,6 +170,7 @@ Before installing and setting up Vibe, ensure you have the following prerequisit
    - `NEXT_PUBLIC_API_URL`: The URL of the API.
    - `NEXT_PUBLIC_PUSHER_KEY`: Your [Pusher](https://pusher.com/) key. Pusher is needed for the chat rooms.
    - `NEXT_PUBLIC_PUSHER_CLUSTER`: Your [Pusher](https://pusher.com/) cluster, e.g `ap1`.
+   - `NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID`: Your Google OAuth client ID.
 5. To run the frontend in development mode:
    ```sh
    num run dev
