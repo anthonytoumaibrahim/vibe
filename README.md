@@ -77,8 +77,8 @@
 | ![Feed](./readme/demo/feed.png)          | ![Editor](./readme/demo/editor.png)     |
 | Profile Screen                           | Chat Rooms Screen                       |
 | ![Profile](./readme/demo/profile.png)    | ![Chat](./readme/demo/chatrooms.png)    |
-| Premium Screen                           |
-| ![Premium](./readme/demo/premium.gif)    |
+| Premium Screen                           | Premium Upgrade Demo                    |
+| ![Premium](./readme/demo/premium.png)    | ![Premium](./readme/demo/premium.gif)   |
 
 ### Admin Screens (Web)
 
