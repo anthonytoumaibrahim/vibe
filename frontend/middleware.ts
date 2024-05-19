@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 const protectedRoutes = [
   "/home",
-  "/boarding",
+  "/editor",
   "/profile",
   "/premium",
   "/chatrooms",
