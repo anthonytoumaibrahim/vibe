@@ -18,6 +18,7 @@ interface SelectProps {
   optionClassName?: string;
   placeholder?: string;
   onChange?: (value: string) => void;
+  className?: string;
 }
 
 const Select = ({
@@ -26,13 +27,15 @@ const Select = ({
   buttonClassName = "",
   optionClassName = "",
   placeholder = "",
+  className = "",
   onChange,
 }: SelectProps) => {
   return (
-    <label className="flex flex-col gap-0.5 relative">
+    <div className={`relative w-full ${className}`}>
       <Listbox value={value} onChange={onChange}>
         <ListboxButton
-          className={`p-3 bg-gray-100 dark:bg-black rounded-md outline-none focus:ring-2 focus:ring-primary-main flex items-center justify-between ${buttonClassName}`}
+          tabIndex={-1}
+          className={`p-3 bg-gray-100 dark:bg-black rounded-md outline-none focus:ring-2 focus:ring-primary-main w-full flex items-center justify-between ${buttonClassName}`}
         >
           <p className="truncate">{value ? value : placeholder}</p>
           <FaChevronDown size={24} className="shrink-0" />
@@ -49,7 +52,7 @@ const Select = ({
           ))}
         </ListboxOptions>
       </Listbox>
-    </label>
+    </div>
   );
 };
 
