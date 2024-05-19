@@ -84,6 +84,26 @@
 | ----------------------------------------------- | -------------------------------------- |
 | ![Dashboard](./readme/demo/admin_dashboard.png) | ![Register](./readme/demo/reports.png) |
 
+### Videos
+
+<table>
+  <tr>
+    <td align="center">
+      
+https://github.com/anthonytoumaibrahim/vibe/assets/66482972/c5710154-a302-4dd7-b2a5-ab7212695988
+
+</td>
+    <td align="center">
+       
+
+https://github.com/anthonytoumaibrahim/vibe/assets/66482972/4af67829-3b00-4951-b5d3-ce0a64665340
+
+
+</td>
+</table>
+
+ | ![Register](./readme/demo/reports.png) |
+
 <br><br>
 
 <!-- Prompt Engineering -->
