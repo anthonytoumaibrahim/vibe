@@ -102,8 +102,6 @@ https://github.com/anthonytoumaibrahim/vibe/assets/66482972/4af67829-3b00-4951-b
 </td>
 </table>
 
- | ![Register](./readme/demo/reports.png) |
-
 <br><br>
 
 <!-- Prompt Engineering -->
