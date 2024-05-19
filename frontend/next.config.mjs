@@ -15,6 +15,12 @@ const nextConfig = {
         port: "8000",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "13.38.238.234",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {
