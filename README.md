@@ -70,13 +70,15 @@
 
 ### User Screens (Web)
 
-| Login Screen                          | Register Screen                         | Feed Screen                                |
-| ------------------------------------- | --------------------------------------- | ------------------------------------------ |
-| ![Landing](./readme/demo/login.png)   | ![Register](./readme/demo/register.png) | ![Feed](./readme/demo/feed.png)            |
-| Character Editor Screen               | Profile Screen                          | Chat Rooms Screen                          |
-| ![Editor](./readme/demo/editor.png)   | ![Profile](./readme/demo/profile.png)   | ![Chat Rooms](./readme/demo/chatrooms.png) |
-| Premium Screen                        |
-| ![Premium](./readme/demo/premium.png) |
+| Login Screen (and Google Login Demo)     | Register Screen                         |
+| ---------------------------------------- | --------------------------------------- |
+| ![Login](./readme/demo/login_signup.gif) | ![Register](./readme/demo/register.png) |
+| Feed Screen                              | Character Editor Screen                 |
+| ![Feed](./readme/demo/feed.png)          | ![Editor](./readme/demo/editor.png)     |
+| Profile Screen                           | Chat Rooms Screen                       |
+| ![Profile](./readme/demo/profile.png)    | ![Chat](./readme/demo/chatrooms.png)    |
+| Premium Screen                           |
+| ![Premium](./readme/demo/premium.png)    |
 
 ### Admin Screens (Web)
 
