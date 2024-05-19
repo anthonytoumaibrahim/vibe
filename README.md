@@ -96,10 +96,8 @@ https://github.com/anthonytoumaibrahim/vibe/assets/66482972/c5710154-a302-4dd7-b
 
 </td>
     <td align="center">
-       
 
 https://github.com/anthonytoumaibrahim/vibe/assets/66482972/4af67829-3b00-4951-b5d3-ce0a64665340
-
 
 </td>
 </table>
@@ -122,9 +120,69 @@ In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+### Efficient Deployment: Unleashing the Potential with AWS Integration:
 
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy the backend services. With a focus on scalability, reliability, and performance, we ensure that the Laravel backend for Vibe delivers robust and responsive solutions for diverse use cases. By deploying the Laravel backend on AWS, Vibe benefits from the comprehensive suite of services and tools that AWS offers, providing a solid foundation for future growth and enhancements.
+
+Below were the steps taken to deploy Vibe's Laravel backend to AWS, after [connecting to the AWS EC2 instance through PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Special thanks to [the Step-by-Step Guide: Hosting a Laravel Application on AWS EC2 with RDS on Medium.com](https://medium.com/@shairaliyamin/step-by-step-guide-hosting-a-laravel-application-on-aws-ec2-with-rds-b1c3f16db315).
+
+- **Step 1**: Update Packages
+  ```sh
+  sudo apt update
+  sudo apt upgrade -y
+  ```
+- **Step 2**: Install Composer, Apache and PHP
+  ```sh
+  sudo apt install composer -y
+  sudo apt-get install apache2
+  sudo apt-get install php-mysql
+  ```
+- **Step 3**: Create Virtual Hosts File
+  ```sh
+  sudo nano /etc/apache2/sites-available/laravel.conf
+  ```
+- **Step 4**: Copy and paste the following snippet into `laravel.conf`:
+
+  ```
+  <VirtualHost *:80>
+      ServerName <YOUR_IPv4_ADDRESS_HERE>
+      DocumentRoot /var/www/html/vibe/backend/public
+
+      <Directory /var/www/html/vibe/backend/public>
+         AllowOverride All
+         Require all granted
+     </Directory>
+     ProxyRequests Off
+     ProxyPass / http://127.0.0.1:8000/
+     ProxyPassReverse / http://127.0.0.1:8000/
+
+     <Proxy *>
+         Order allow,deny
+         Allow from all
+     </Proxy>
+
+     ErrorLog ${APACHE_LOG_DIR}/error.log
+     CustomLog ${APACHE_LOG_DIR}/access.log combined
+  </VirtualHost>
+  ```
+
+  Replace `YOUR_IPv4_ADDRESS_HERE` with your AWS EC2 instance's IPv4 Public Address.
+
+- **Step 5**: Activate your virtual host setup, then reload Apache:
+  ```sh
+  sudo a2ensite laravel
+  sudo systemctl reload apache2
+  ```
+- **Step 6**: Clone this repository, then set permissions
+  ```sh
+  cd /var/www/html
+  sudo git clone https://github.com/anthonytoumaibrahim/vibe.git /var/www/html/vibe
+  sudo chown -R ubuntu:ubuntu /var/www/html/vibe
+  ```
+  Replace `ubuntu:ubuntu` with your instance username.
+- **Step 7**: Install MySQL on your instance. A good guide can be found here: [How To Install MySQL on Ubuntu 20.04 (DigitalOcean)](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+
+- **Step 8**: Once MySQL is installed, follow the steps in the "How To Run?" section below (Backend Setup).
 
 <br><br>
 
