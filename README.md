@@ -283,7 +283,7 @@ Before installing and setting up Vibe, ensure you have the following prerequisit
    php artisan key:generate
    php artisan jwt:secret
    php artisan storage:link
-   php artisan migrate
+   php artisan migrate --seed
    ```
 6. To serve the backend, run:
    ```sh
