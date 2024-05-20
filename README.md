@@ -125,6 +125,7 @@ In Vibe, the OpenAI API is employed to create 2D human-like characters. A custom
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy the backend services. With a focus on scalability, reliability, and performance, we ensure that the Laravel backend for Vibe delivers robust and responsive solutions for diverse use cases. By deploying the Laravel backend on AWS, Vibe benefits from the comprehensive suite of services and tools that AWS offers, providing a solid foundation for future growth and enhancements.
 
 ![Postman Demo](./readme/aws_postman.png)
+_A demo of a Postman request to the Vibe backend running on an AWS EC2 instance._
 
 Below were the steps taken to deploy Vibe's Laravel backend to AWS, after [connecting to the AWS EC2 instance through PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html). Special thanks to [the Step-by-Step Guide: Hosting a Laravel Application on AWS EC2 with RDS on Medium.com](https://medium.com/@shairaliyamin/step-by-step-guide-hosting-a-laravel-application-on-aws-ec2-with-rds-b1c3f16db315).
 
