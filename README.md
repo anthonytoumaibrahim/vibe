@@ -134,11 +134,11 @@ Below were the steps taken to deploy Vibe's Laravel backend to AWS, after [conne
   sudo apt update
   sudo apt upgrade -y
   ```
-- **Step 2**: Install Composer, Apache and PHP
+- **Step 2**: Install Composer, Apache and PHP and its extensions
   ```sh
   sudo apt install composer -y
   sudo apt-get install apache2
-  sudo apt-get install php-mysql
+  sudo apt-get install php-mysql php-bcmath php-curl php-json php-mbstring php-tokenizer php-xml php-zip
   ```
 - **Step 3**: Create Virtual Hosts File
   ```sh
@@ -173,6 +173,7 @@ Below were the steps taken to deploy Vibe's Laravel backend to AWS, after [conne
 
 - **Step 5**: Activate your virtual host setup, then reload Apache:
   ```sh
+  sudo a2enmod proxy proxy_http
   sudo a2ensite laravel
   sudo systemctl reload apache2
   ```
